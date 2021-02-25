@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden !important;
+}
+
+.qbus-customs {
+    display: none;
+    height: 100vh;
+}
+
+.menu-container {
+    position: absolute;
+    width: 40vh;
+    min-height: 10vh;
+    margin: 3vh;
+    top: 2vh;
+    left: -45vh;
+}
+
+.menu-header {
+    width: 100%;
+    min-height: 5vh;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+.menu-header img {
+    width: 100%;
+    height: 100%;
+}
+
+.menu-information {
+    position: relative;
+    height: 6vh;
+    width: 100%;
+    text-align: center;
+    line-height: 2.5vh;
+    font-size: 1.8vh;
+    font-family: 'Roboto';
+    font-style: italic;
+    -webkit-text-stroke: .02vh black;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+#menu-name {
+    position: relative;
+    top: .6vh;
+}
+
+#menu-help {
+    position: relative;
+    top: .6vh;
+    font-size: 1.3vh;
+}
+
+.menu-options {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    max-height: 35vh;
+    border-bottom: .15vh solid #fff;
+    overflow: hidden;
+}
+
+.menu-options::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-option {
+    width: 100%;
+    height: 3.5vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    color: white;
+}
+
+.menu-option:nth-child(2n+1) {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.menu-option-name {
+    line-height: 3.6vh;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    text-indent: 1vh;
+    font-size: 1.6vh;
+}
+
+.menu-option-price {
+    line-height: 3.5vh;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    text-indent: 1vh;
+    font-size: 1.6vh;
+    color: white;
+    float: right;
+    margin-right: 1vh;
+}
+
+.menu-option-selected {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.menu-option-selected > .menu-option-name {
+    color: black !important;
+}
+
+.menu-option-selected .equiped-check {
+    color: black !important;
+}
+
+.menu-option-selected > .menu-option-name > .menu-option-price {
+    color: black !important;
+}
+
+/* .menu-option-selected > .menu-option-price {
+    color: black !important;
+} */
+
+.menu-option-selected .menu-option-name::before {
+    content: "\f101 \00a0";
+    font-family: "Font Awesome 5 Free";
+    font-weight: bold !important;
+    font-size: 1.8vh;
+    position: relative;
+    color: black;
+    top: .1vh;
+}
+
+.menu-hint {
+    width: 100%;
+    height: 3.5vh;
+    background-color: rgba(0, 0, 0, 0.98);
+    color: white;
+    text-align: center;
+    font-size: 2.6vh;
+}
+
+.menu-hint > i:nth-of-type(1) {
+    position: relative;
+    top: -.2vh;
+}
+
+.menu-hint > i:nth-of-type(2) {
+    position: relative;
+    top: -2vh;
+}
+
+#menu-index {
+    position: absolute;
+    bottom: 1vh;
+    right: 1vh;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1vh;
+}

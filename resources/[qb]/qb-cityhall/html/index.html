@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>QB Cityhall</title>
+</head>
+    <body>
+        <div class="container">
+            <div class="cityhall-main-container">
+                <div class="cityhall-header"></div>
+
+                <div class="cityhall-option-blocks">
+                    <div class="cityhall-option-block" style="background: linear-gradient(0deg, rgb(21, 255, 0) 0%, rgb(13, 187, 7) 100%);" data-page="identity"><i class="fas fa-passport"></i><p>Documentação</p></div>
+                    <div class="cityhall-option-block" style="background: linear-gradient(0deg, rgb(21, 255, 0) 0%, rgba(13, 187, 7) 100%);" data-page="job"><i class="fas fa-user-tie"></i><p>Agencia de Emprego</p></div>
+                </div>
+
+                <div class="cityhall-identity-page">
+                    <div class="identity-page-blocks">
+                        <!-- <div class="identity-page-block" data-type="rijbewijs" onmouseover="hoverDescription('rijbewijs')" onmouseout="hoverDescription('rijbewijs')"><p>Rijbewijs</p></div> -->
+                    </div>
+
+                    <div class="hover-description">
+
+                    </div>
+
+                    <div class="request-identity-button"></div>
+
+                    <div class="back-to-main"><p>Voltar</p></div>
+                </div>
+
+                <div class="cityhall-job-page">
+                    <div class="job-page-blocks">
+                        <div class="job-page-block" data-job="trucker"><p>Fornecedor Herbalife</p></div>
+                        <div class="job-page-block" data-job="taxi"><p>Taxista</p></div>
+                        <!--<div class="job-page-block" data-job="reporter"><p>Reporter</p></div>-->
+                        <div class="job-page-block" data-job="garbage"><p>Lixeiro</p></div>
+                    </div>
+
+                    <div class="apply-job-button"><p>Fazer Contrato!</p></div>
+
+                    <div class="back-to-main"><p>Voltar</p></div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="./app.js"></script>
+</html>

@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    display: none;
+    height: 100vh;
+}
+
+.task1letter {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 60vh;
+    height: 80vh;
+    top: 12vh;
+    background-color: black;
+}

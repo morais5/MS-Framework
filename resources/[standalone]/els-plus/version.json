@@ -1,0 +1,4 @@
+{
+    "version": "1.92",
+    "changelog": "- Fix thread crashing, this is it for good now. Everything _should_ be fine, please report and issues!"
+}

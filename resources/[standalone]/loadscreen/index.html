@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <title>Loadingscreen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<style>
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #000000;
+  width: 100%;
+  padding: 20px;
+}
+
+#myBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: rgb(0, 183, 255);
+  color: black;
+}
+
+.home-banner .slide .video-slide {
+  background-color: rgb(96, 28, 255); }
+
+.home-banner.loading .video-background {
+  opacity: 0; }
+
+.video-background {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: 2s opacity ease;
+  transition: 2s opacity ease;
+  opacity: 1; }
+
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; }
+</style>
+
+	<div class="video-background" style="background: #000;">
+		<div class="video-foreground" id="YouTubeBackgroundVideoPlayer"></div>
+	</div>
+
+<script async src="https://www.youtube.com/iframe_api"></script>
+<script async src="video.js"></script>
+
+  <div id="intro">
+       <div>
+	   	   <img src='png.png' class="heartBeat animated infinite"style='width:424px;height:424px;'>
+    </div>
+
+            <div><img src='Discord.png' style='width:70px;height:17px'>
+
+            <div> 
+                <font face='Montserrat' size="3px" style='color: white;'>https://discord.me/criminalrp</font>
+                <br>
+                <font face='Montserrat' size="3px" style='color: white;'>Pressiona o <strong>Espaço</strong> para parar a música</font>
+            </div>
+  </div>
+</div>
+
+<div class="kreska razem"></div>
+<div class="kreska2 razem"></div>
+
+<audio id="leson" src="audio.mp3" autoplay="true" hidden="true" loop="true"/>
+    <script>
+
+    var play = false;
+    var myAudio = document.getElementById("leson");
+    
+    myAudio.volume = 0.4;
+
+    function onKeyDown(event) {
+            switch (event.keyCode) {
+                case 32: //SpaceBar                    
+                    if (play) {
+                        myAudio.pause();
+                        play = false;
+                    } else {
+                        myAudio.play();
+                        play = true;
+                    }
+                    break;
+            }
+      return false;
+    }
+
+    window.addEventListener("keydown", onKeyDown, false);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+Version 1.0 (2017-12-25):
+* Optional limp mode. If enabled, the vehicle will not die completely, but be able to drive slowly.
+* Optional alternative configuration, provided by ImDylan93
+
+Version 0.6 beta (2017-12-13):
+New "Sunday Driver" feature:
+* Smooth acceleration and braking.
+* Easy speed control makes it much easier to drive a steady slow speed.
+* Brake holder feature prevents vehicle from switching direction after braking
+* Keeps the brakelight on while holding the brake.
+
+Version 0.5 beta (2017-12-11):
+* Moved config to a separate file for easier updating
+* Prevents flipping an upside down car over
+* Vehicle will progressively slow down as damage increases
+* Balanced the damage and visual damage to be more consistent across vehicle classes and types
+* Changes to handling values are now multiplied from existing values instead of just setting values. Preserves the differences between vehicles more (ie. armoured cars should be somewhat tough)
+* Damage multiplier can be set for each vehicle class separately
+* Fix for not resetting handling while exiting the vehicle
+
+Version 0.4 beta (2017-12-10):
+* Increased visual damage
+* Fix for problem with weapons damage while someone is in the vehicle
+
+Version 0.3 beta (2017-12-08):
+* Rewrite of algorithm to fix easy explosions from bullets
+* Disabled mod for planes, trains and helicopters
+* Made sure that only the driver of the car will have the script active
+* Fixed a bug that caused /fix scripts or trainers to sometimes not work
+* Fixed bug that caused /repair at mechanic to sometimes not work
+* Enhanced compatibility with fuel scripts
+* Added a couple of mechanics
+* Code cleanup and added lots of comments to help you understand what is going on
+* More configuration options
+* New degradingFailure feature. When the vehicle gets some damage it will start to slowly degrade until just before cascading failure sets in, then it stays at that level until car takes more damage.
+* Configurable health level for final failure, balances how easy you can ignite engine fire with a gun, and how much smoke comes from a disabled engine.
+
+Version 0.2 beta (2017-12-08)
+* added /repair function
+
+
+Version 0.1 beta (2017-12-06)
+* First release

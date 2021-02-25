@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque de cachorro-quente</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="./ui.css">
+</head>
+    <body>
+        <div class="container">
+            <div class="hotdogs-stock">
+                <span id="hotdogs-stock-header">Stock</span>
+                <span id="my-level">LEVEL 1 : 100xp</span>
+
+                <div class="hotdogs-stocks">
+                    <div class="stock" data-stock="exotic">
+                        <img src="./icon.png" class="stock-img">
+                        <span class="stock-amount">0 / 15</span>
+                        <span class="stock-rating" style="color: green;">A</span>
+                    </div>
+                    <div class="stock" data-stock="rare">
+                        <img src="./icon.png" class="stock-img">
+                        <span class="stock-amount">0 / 15</span>
+                        <span class="stock-rating" style="color: orange;">B</span>
+                    </div>
+                    <div class="stock" data-stock="common">
+                        <img src="./icon.png" class="stock-img">
+                        <span class="stock-amount">0 / 15</span>
+                        <span class="stock-rating" style="color: red;">C</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="./ui.js"></script>
+</html>

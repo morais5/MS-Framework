@@ -1,0 +1,539 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+.container {
+    height: 100vh;
+}
+
+::-webkit-inner-spin-button {
+    display: none;
+}
+
+.clothing-menu-container {
+    display: none;
+    position: absolute;
+    height: 100vh;
+    width: 42vh;
+    background-color: #2f3640;
+    right: -25vw;
+}
+
+.clothing-menu-header {
+    position: relative;
+    height: 6vh;
+    width: 100%;
+    top: 2.2vh;
+}
+
+.clothing-menu-header-btn {
+    position: relative;
+    height: 55%;
+    top: 2.3vh;
+    background-color: #4e5969;
+    float: left;
+    color: white;
+    text-align: center;
+    line-height: 3.5vh;
+    border-bottom: 2px solid rgba(255, 255, 255, 0);
+    transition: all 0.1s linear;
+}
+
+.clothing-menu-header-btn:hover {
+    background-color: #b1242486;
+}
+
+.selected {
+    background-color: #b12424;
+    border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+.clothing-menu-header-btn > p {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.1vh;
+    letter-spacing: 0.1vh;
+}
+
+.clothing-menu-header-cameras {
+    position: absolute;
+    height: 5.5vh;
+    width: 100%;
+    top: -2vh;
+}
+
+.clothing-menu-header-camera-btn {
+    position: relative;
+    height: 55%;
+    top: 2.3vh;
+    background-color: #7b8aa0;
+    width: 33.33%;
+    float: left;
+    color: white;
+    text-align: center;
+    line-height: 3.4vh;
+    border-bottom: 2px solid rgba(255, 255, 255, 0);
+    transition: all 0.1s linear;
+}
+
+.selected-cam {
+    background-color: #424953;
+    border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+.clothing-menu-header-camera-btn:hover {
+    background-color: #b1242486;
+}
+
+.clothing-menu-header-camera-btn > i {
+    font-size: 1.4vh;
+}
+
+.clothing-menu-roomOutfits-container {
+    display: none;
+    position: absolute;
+    margin: 0 auto;
+    left: 0.3vh;
+    right: 0;
+    top: 9vh;
+    height: 87vh;
+    width: 92%;
+    background-color: #282e36;
+    overflow-y: scroll !important;
+}
+
+.clothing-menu-myOutfits-container {
+    display: none;
+    position: absolute;
+    margin: 0 auto;
+    left: 0.3vh;
+    right: 0;
+    top: 9vh;
+    height: 87vh;
+    width: 92%;
+    background-color: #282e36;
+    overflow-y: scroll !important;
+}
+
+.clothing-menu-outfit-option-button {
+    position: relative;
+    text-align: center;
+    line-height: 4.8vh;
+    width: 60%;
+    height: 40%;
+    margin: 0 auto;
+    top: 2.3vh;
+    background-color: #b12424;
+    border-radius: 0.75vh;
+    transition: all 0.1s linear;
+}
+
+.clothing-menu-outfit-option-button:hover {
+    background-color: #d62f2f;
+}
+
+.clothing-menu-outfit-option-button > p {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    letter-spacing: 0.1vh;
+    font-size: 1vh;
+}
+
+.clothing-menu-myOutfit-option-button {
+    position: absolute;
+    text-align: center;
+    line-height: 4.8vh;
+    width: 40%;
+    height: 40%;
+    left: 2vh;
+    top: 5.1vh;
+    background-color: #b12424;
+    border-radius: 0.75vh;
+    transition: all 0.1s linear;
+}
+
+.clothing-menu-myOutfit-option-button:hover {
+    background-color: #d62f2f;
+}
+
+.clothing-menu-myOutfit-option-button > p {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    letter-spacing: 0.1vh;
+    font-size: 1vh;
+}
+
+.clothing-menu-myOutfit-option-button-remove {
+    position: absolute;
+    text-align: center;
+    line-height: 4.8vh;
+    width: 40%;
+    height: 40%;
+    right: 2vh;
+    top: 5.1vh;
+    background-color: #b12424;
+    border-radius: 0.75vh;
+    transition: all 0.1s linear;
+}
+
+.clothing-menu-myOutfit-option-button-remove:hover {
+    background-color: #d62f2f;
+}
+
+.clothing-menu-myOutfit-option-button-remove > p {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    letter-spacing: 0.1vh;
+    font-size: 1vh;
+}
+
+.clothing-menu-character-container {
+    display: none;
+    position: absolute;
+    margin: 0 auto;
+    left: 0.3vh;
+    right: 0;
+    top: 9vh;
+    height: 87vh;
+    width: 92%;
+    background-color: #282e36;
+    overflow-y: scroll !important;
+}
+
+.clothing-menu-clothing-container {
+    display: none;
+    position: absolute;
+    margin: 0 auto;
+    left: 0.3vh;
+    right: 0;
+    top: 9vh;
+    height: 90vh;
+    width: 92%;
+    background-color: #282e36;
+    overflow-y: scroll !important;
+}
+
+.clothing-menu-accessoires-container {
+    display: none;
+    position: absolute;
+    margin: 0 auto;
+    left: 0.3vh;
+    right: 0;
+    top: 9vh;
+    height: 90vh;
+    width: 92%;
+    background-color: #282e36;
+    overflow-y: scroll !important;
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
+	background-color: rgba(245, 245, 245, 0.089);
+}
+
+::-webkit-scrollbar
+{
+	width: 0.4vh;
+	background-color: rgba(245, 245, 245, 0.089);
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #dd2e2edc;
+}
+
+.clothing-menu-option {
+    position: relative;
+    width: 100%;
+    height: 14%;
+    background-color: #20202088;
+    margin-bottom: 1.5vh;
+}
+
+.clothing-menu-option-header {
+    color: white;
+    padding: 0.8vh;
+    width: 100%;
+    background-color: rgb(117, 117, 117)
+}
+
+.clothing-menu-option-header > p {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.0vh;
+    letter-spacing: 0.1vh;
+}
+
+.clothing-menu-option-item {
+    position: relative;
+    float: left;
+    height: 50%;
+    width: 40%;
+    margin-left: 2.4vh;
+    margin-top: 2vh;
+}
+
+.clothing-menu-option-item-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 70%;
+    width: 33%;
+    background-color: rgb(136, 136, 136);
+    color: #e9e9e9;
+    text-align: center;
+    line-height: 5vh;
+    border-radius: 5px 0px 0px 5px;
+    transition: all 0.1s linear;
+}
+
+.clothing-menu-option-item-left:hover {
+    background-color: rgb(109, 109, 109);
+}
+
+.clothing-menu-option-item-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 70%;
+    width: 33%;
+    background-color: rgb(136, 136, 136);
+    color: #e9e9e9;
+    text-align: center;
+    line-height: 5vh;
+    border-radius: 0px 5px 5px 0px;
+    transition: all 0.1s linear;
+}
+
+.clothing-menu-option-item-right:hover {
+    background-color: rgb(109, 109, 109);
+}
+
+.item-number {
+    position: absolute;
+    width: 25%;
+    height: 60%;
+    top: 2vh;
+    left: 5.75vh;
+    background: none;
+    border: none;
+    border-bottom: 2px solid rgb(211, 211, 211);
+    text-align: center;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1vh;
+    letter-spacing: 0.1vh;
+    color: white;
+    outline: none;
+    transition: all 0.1s linear;
+}
+
+.item-number:focus {
+    border-bottom: 2px solid rgb(252, 151, 151);
+}
+
+.clothing-menu-option-item-header {
+    position: absolute;
+    bottom: 5vh;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8vh;
+    letter-spacing: 0.07vh;
+    color: white;
+}
+
+.clothing-menu-option-item-header > p {
+    font-family: sans-serif;
+    padding: 0.2vh;
+}
+
+.clothing-menu-option-buttons {
+    position: absolute;
+    bottom: 0.75vh;
+    width: 100%;
+    height: 2.5vh;
+    background: black;
+}
+
+.clothing-menu-option-button {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 33.33%;
+    background-color: #dd2e2edc;
+    transition: all 0.1s linear;
+}
+
+.clothing-menu-option-button:hover {
+    background-color: #8a1f1f;
+}
+
+.clothing-menu-option-button > p {
+    line-height: 2.5vh;
+    font-size: 0.9vh;
+    font-family: sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+}
+
+.clothing-menu-save-outfit-name {
+    display: none;
+    position: relative;
+    width: 40vh;
+    height: 25vh;
+    background: #424953;
+    margin: 0 auto;
+    top: 30%;
+    border-radius: 0.7vh;
+
+}
+
+.clothing-menu-save-outfit-name-buttons {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 17%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.clothing-menu-save-outfit-name-button {
+    position: relative;
+    background: #b12424;
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    line-height: 4vh;
+    transition: all 0.1s linear;
+}
+
+.clothing-menu-save-outfit-name-button:hover {
+    background: #d62f2f;
+}
+
+.clothing-menu-save-outfit-name-button > p {
+    font-family: sans-serif;
+    font-size: 1.1vh;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+}
+
+.clothing-menu-save-outfit-name-header {
+    position: relative;
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    line-height: 5vh;
+}
+
+.clothing-menu-save-outfit-name-header > p {
+    font-family: sans-serif;
+    font-size: 1.5vh;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+}
+
+#outfit-name {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 40%;
+    background: none;
+    border: none;
+    outline: none;
+    background: #292e36;
+    width: 60%;
+    height: 30%;
+    text-align: center;
+    border-bottom: 3px solid #791a1a;
+    transition: all 0.1s linear;
+}
+
+#outfit-name:focus {
+    border-bottom: 3px solid #f73b3b;
+}
+
+#outfit-name {
+    color: white;
+    font-family: sans-serif;
+    font-size: 1.75vh;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#outfit-name::placeholder {
+    color: rgba(255, 255, 255, 0.404);
+    font-family: sans-serif;
+    font-size: 1.75vh;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.change-camera-buttons {
+    display: none;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    height: 7vh;
+    width: 20vh;
+}
+
+.change-camera-button {
+    position: relative;
+    height: 80%;
+    width: 50%;
+    float: left;
+    background: #4e5969;
+    text-align: center;
+    transition: 0.08s;
+}
+
+.change-camera-button:hover {
+    background: #6d7c92;
+}
+
+.change-camera-button > i {
+    font-size: 3vh;
+    color: white;
+    line-height: 5.5vh;
+}
+
+.change-camera-footer {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    height: 20%;
+    background: #ca2828;
+    line-height: 1.5vh;
+}
+
+.change-camera-footer > p {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 0.8vh;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 0.1vh;
+}

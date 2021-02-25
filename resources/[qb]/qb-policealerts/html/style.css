@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+body {
+    padding: 0;
+    margin: 0;
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+}
+
+.container {
+    height: 100vh;
+}
+
+.template-container {
+    display: none !important;
+}
+
+.alerts-container {
+    position: absolute;
+    height: 50vh;
+    width: 35vh;
+    top: 8vh;
+    right: 1vh;
+    overflow: hidden;
+}
+
+.alert-container {
+    position: relative;
+    width: 98%;
+    height: fit-content;
+    background-color: #1e37997c;
+    border-right: .8vh solid rgb(58, 109, 204);
+    margin-bottom: 1vh;
+}
+
+.alert-header {
+    position: relative;
+    width: 100%;
+    height: 4vh;
+}
+
+.alert-details {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+}
+
+.alert-detail {
+    padding: .2vh;
+    padding-left: 1vh;
+    height: 1.1vh;
+    margin-bottom: 1.2vh;
+}
+
+.alert-detail > i {
+    color: white;
+    font-size: 1.75vh;
+}
+
+.alert-detail > span {
+    position: absolute;
+    color: white;
+    font-size: 1.3vh;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px #0000009d;
+    display: inline-block;
+    max-width: 31vh;
+    left: 3.2vh;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.alert-prefix {
+    position: absolute;
+    top: .8vh;
+    left: 1vh;
+    width: fit-content;
+    height: fit-content;
+    padding: .4vh;
+    background-color: rgb(238, 56, 56);
+    font-family: sans-serif;
+    color: white;
+    font-weight: bold;
+    border-radius: .5vh;
+    font-size: 1.4vh;
+    box-shadow: inset 0 0 1vh 0 rgba(0, 0, 0, 0.247);
+    /* text-shadow: 1px 1px 1px #000000; */
+}
+
+.alert-title {
+    position: absolute;
+    top: 1.3vh;
+    left: 6vh;
+    font-family: sans-serif;
+    color: white;
+    text-shadow: 1px 1px 2px #000000;
+    font-size: 1.5vh;
+    font-weight: bold;
+}
+
+@keyframes Emergency {
+    0% { 
+        background-color: #1e37997c;
+    }
+    25% { 
+        background-color: #be18187e;
+    }
+    50% { 
+        background-color: #301885a1;
+    }
+    75% { 
+        background-color: #be18187e;
+    }
+    100% { 
+        background-color: #1e37997c;
+    }
+}
+
+.emergency {
+    animation: Emergency 2s infinite;
+}
+
+
+.transReset {
+    transition: intial;
+}
+
+.alert-location {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3vh;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 3vh;
+    transition: .1s linear;
+}
+
+.alert-location > i {
+    transition: .1s linear;
+}
+
+.alert-location:hover > i {
+    color: rgba(255, 255, 255, 1.0);
+    transition: .1s linear;
+}

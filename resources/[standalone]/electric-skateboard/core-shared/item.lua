@@ -1,0 +1,1 @@
+["skateboard"] 	  	 	 	     = {["name"] = "skateboard",           		    ["label"] = "Skateboard",	 			["weight"] = 1, 		["type"] = "item", 		["image"] = "skateboard.png", 		    ["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,    ["combinable"] = nil,   ["description"] = "A cool skateboard!"},
