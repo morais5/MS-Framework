@@ -22,7 +22,7 @@ AddEventHandler('hospital:server:RespawnAtHospital', function()
 		Player.Functions.ClearInventory()
 		QBCore.Functions.ExecuteSql(true, "UPDATE `players` SET `inventory` = '"..QBCore.EscapeSqli(json.encode({})).."' WHERE `citizenid` = '"..Player.PlayerData.citizenid.."'")
 		Player.Functions.RemoveMoney("bank", Config.BillCost, "respawned-at-hospital")
-		TriggerClientEvent('QBCore:Notify', src, 'Todos os seus pertences foram levados..', 'error')
+		TriggerClientEvent('QBCore:Notify', src, 'Todas as suas posses foram tomadas..', 'error')
 		TriggerClientEvent('hospital:client:SendBillEmail', src, Config.BillCost)
 		return
 	end
@@ -122,7 +122,7 @@ AddEventHandler('hospital:server:RevivePlayer', function(playerId, isOldMan)
 			if Player.Functions.RemoveMoney("cash", 5000, "revived-player") then
 				TriggerClientEvent('hospital:client:Revive', Patient.PlayerData.source)
 			else
-				TriggerClientEvent('QBCore:Notify', src, "Não tem dinheiro suficiente no seu bolso..", "error")
+				TriggerClientEvent('QBCore:Notify', src, "Você não tem dinheiro suficiente com você..", "error")
 			end
 		else
 			TriggerClientEvent('hospital:client:Revive', Patient.PlayerData.source)
@@ -137,7 +137,7 @@ AddEventHandler('hospital:server:SendDoctorAlert', function()
 		local Player = QBCore.Functions.GetPlayer(v)
 		if Player ~= nil then 
 			if (Player.PlayerData.job.name == "doctor" and Player.PlayerData.job.onduty) then
-				TriggerClientEvent("hospital:client:SendAlert", v, "Precisamos de um médico no Hospital Pillbox")
+				TriggerClientEvent("hospital:client:SendAlert", v, "É necessário um médico no Pillbox Hospital")
 			end
 		end
 	end
@@ -151,10 +151,10 @@ AddEventHandler('hospital:server:MakeDeadCall', function(blipSettings, gender, s
 	if gender == 1 then genderstr = "Woman" end
 
 	if street2 ~= nil then
-		TriggerClientEvent("911:client:SendAlert", -1, "Um ".. genderstr .." feridos em " ..street1 .. " "..street2, blipSettings)
-		TriggerClientEvent('cash-policenotifier:client:AddPoliceAlert', -1, {
+		TriggerClientEvent("112:client:SendAlert", -1, "A ".. genderstr .." está ferido em " ..street1 .. " "..street2, blipSettings)
+		TriggerClientEvent('qb-policealerts:client:AddPoliceAlert', -1, {
             timeOut = 5000,
-            alertTitle = "Pessoa ferida",
+            alertTitle = "Ferido",
             details = {
                 [1] = {
                     icon = '<i class="fas fa-venus-mars"></i>',
@@ -168,10 +168,10 @@ AddEventHandler('hospital:server:MakeDeadCall', function(blipSettings, gender, s
             callSign = nil,
         }, true)
 	else
-		TriggerClientEvent("911:client:SendAlert", -1, "Um ".. genderstr .." feridos em "..street1, blipSettings)
-		TriggerClientEvent('cash-policenotifier:client:AddPoliceAlert', -1, {
+		TriggerClientEvent("112:client:SendAlert", -1, "A ".. genderstr .." está ferido em "..street1, blipSettings)
+		TriggerClientEvent('qb-policealerts:client:AddPoliceAlert', -1, {
             timeOut = 5000,
-            alertTitle = "Pessoa ferida",
+            alertTitle = "Ferido",
             details = {
                 [1] = {
                     icon = '<i class="fas fa-venus-mars"></i>',
@@ -252,7 +252,7 @@ QBCore.Functions.CreateCallback('hospital:GetPlayerBleeding', function(source, c
 	end
 end)
 
-QBCore.Commands.Add("status", "Verificar a saúde de uma pessoa", {}, false, function(source, args)
+QBCore.Commands.Add("status", "Check a person his health", {}, false, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(source)
 	if Player.PlayerData.job.name == "doctor" or Player.PlayerData.job.name == "ambulance" then
 		TriggerClientEvent("hospital:client:CheckStatus", source)
@@ -261,7 +261,7 @@ QBCore.Commands.Add("status", "Verificar a saúde de uma pessoa", {}, false, fun
 	end
 end)
 
-QBCore.Commands.Add("ferimentos", "ajudar os ferimentos de uma pessoa", {}, false, function(source, args)
+QBCore.Commands.Add("heal", "Help a person his injuries", {}, false, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(source)
 	if Player.PlayerData.job.name == "doctor" or Player.PlayerData.job.name == "ambulance" then
 		TriggerClientEvent("hospital:client:TreatWounds", source)
@@ -270,7 +270,7 @@ QBCore.Commands.Add("ferimentos", "ajudar os ferimentos de uma pessoa", {}, fals
 	end
 end)
 
-QBCore.Commands.Add("revivep", "Ajudar alguma pessoa", {}, false, function(source, args)
+QBCore.Commands.Add("revivep", "Revive a person", {}, false, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(source)
 	if Player.PlayerData.job.name == "doctor" then
 		TriggerClientEvent("hospital:client:RevivePlayer", source)
@@ -279,7 +279,7 @@ QBCore.Commands.Add("revivep", "Ajudar alguma pessoa", {}, false, function(sourc
 	end
 end)
 
-QBCore.Commands.Add("revive", "Dar revive a alguem", {{name="id", help="Player ID (may be blank)"}}, false, function(source, args)
+QBCore.Commands.Add("revive", "Reviva um jogador ou você mesmo", {{name="id", help="ID do jogador (pode estar vazio)"}}, false, function(source, args)
 	if args[1] ~= nil then
 		local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
 		if Player ~= nil then
@@ -292,7 +292,7 @@ QBCore.Commands.Add("revive", "Dar revive a alguem", {{name="id", help="Player I
 	end
 end, "admin")
 
-QBCore.Commands.Add("meterpain", "Colocar um nível de dor a si próprio ou a outra pessoa", {{name="id", help="Player ID (may be blank)"}}, false, function(source, args)
+QBCore.Commands.Add("setpain", "Defina a dor para um jogador ou para você", {{name="id", help="ID do jogador (pode estar vazio)"}}, false, function(source, args)
 	if args[1] ~= nil then
 		local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
 		if Player ~= nil then
@@ -305,20 +305,20 @@ QBCore.Commands.Add("meterpain", "Colocar um nível de dor a si próprio ou a ou
 	end
 end, "god")
 
-QBCore.Commands.Add("kill", "matar alguem :D", {{name="id", help="Player ID (may be blank)"}}, false, function(source, args)
+QBCore.Commands.Add("kill", "Mate um jogador ou você mesmo", {{name="id", help="ID do jogador (pode estar vazio)"}}, false, function(source, args)
 	if args[1] ~= nil then
 		local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
 		if Player ~= nil then
 			TriggerClientEvent('hospital:client:KillPlayer', Player.PlayerData.source)
 		else
-			TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "O jogador não está online!")
+			TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Player not online!")
 		end
 	else
 		TriggerClientEvent('hospital:client:KillPlayer', source)
 	end
 end, "god")
 
-QBCore.Commands.Add("contratarinem", "Dar o trabalho de ambulância a alguém ", {{name="id", help="Player ID"}}, true, function(source, args)
+QBCore.Commands.Add("setambulance", "Dê a ambulância para alguém ", {{name="id", help="ID do jogador"}}, true, function(source, args)
     local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
     local Myself = QBCore.Functions.GetPlayer(source)
     if Player ~= nil then 
@@ -328,7 +328,7 @@ QBCore.Commands.Add("contratarinem", "Dar o trabalho de ambulância a alguém ",
     end
 end)
 
-QBCore.Commands.Add("contratardoutor", "Dar o trabalho de médico a alguém ", {{name="id", help="Player ID"}}, true, function(source, args)
+QBCore.Commands.Add("setdoctor", "Dê trabalho ao médico para alguém ", {{name="id", help="ID do jogador"}}, true, function(source, args)
     local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
     local Myself = QBCore.Functions.GetPlayer(source)
     if Player ~= nil then 
@@ -384,6 +384,6 @@ AddEventHandler('hospital:server:CanHelp', function(helperId, canHelp)
 	if canHelp then
 		TriggerClientEvent('hospital:client:HelpPerson', helperId, src)
 	else
-		TriggerClientEvent('QBCore:Notify', helperId, "Ainda não pode reparar esta pessoa..", "error")
+		TriggerClientEvent('QBCore:Notify', helperId, "Você não pode ajudar esta pessoa..", "error")
 	end
 end)

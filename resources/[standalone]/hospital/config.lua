@@ -1,30 +1,30 @@
 Config = {}
 
-Config.MinimalDoctors = 2
+Config.MinimalDoctors = 1
 
 Config.Locations = {
     ["checking"] = {x = 309.08, y = -592.91, z = 43.28, h = 0.0},
     ["duty"] = {
         [1] = {x = 304.27, y = -600.33, z = 43.28, h = 0.0},
-        [2] = {x = -254.88, y = 6324.5, z = 32.58, h = 0.0},
+        --[2] = {x = -254.88, y = 6324.5, z = 32.58, h = 0.0},--hospital de paleto
     },    
     ["vehicle"] = {
         [1] = {x = 294.578, y = -574.761, z = 43.179, h = 35.792},
-        [2] = {x = -234.28, y = 6329.16, z = 32.15, h = 222.5},
+        --[2] = {x = -234.28, y = 6329.16, z = 32.15, h = 222.5},--hospital de paleto
     },
     ["helicopter"] = {
         [1] = {x = 351.58, y = -587.45, z = 74.16, h = 160.5},
-        [2] = {x = -475.43, y = 5988.353, z = 31.716, h = 31.34},
+        --[2] = {x = -475.43, y = 5988.353, z = 31.716, h = 31.34},--comentei isto pq isto esta na localização da esquadra de paleto
     },    
     ["armory"] = {
         [1] = {x = 306.26, y = -601.7, z = 43.28, h = 90.654},
-        [2] = {x = -245.13, y = 6315.71, z = 32.82, h = 90.654},
+        --[2] = {x = -245.13, y = 6315.71, z = 32.82, h = 90.654},--hospital de paleto
     },
     ["roof"] = {
         [1] = {x = 338.5, y = -583.85, z = 74.16, h = 245.5},
     },
     ["main"] = {
-        [1] = {x = 332.51, y = -595.74, z = 43.28, h = 76.0},
+        [1] = {x = 332.51, y = -595.74, z = 43.28, h = 76.0},--elevador para subir ao telhado
     },        
     ["beds"] = {
         [1] = {x = 311.13, y = -582.89, z = 43.53, h = 335.65, taken = false, model = 1631638868},
@@ -40,24 +40,25 @@ Config.Locations = {
 
 Config.Vehicles = {
     ["ambulance"] = "Ambulancia",
-    ["ambulancec"] = "Mercedes",
-    ["inem_vwcrafter"] = "Carrinha",
+    ["ambulancei"] = "Carrinha",
+    ["ems_gs1200"] = "Motociclo",
 }
 
 Config.Whitelist = {
-    "TIP81273",
+    "DRI88853",  --FLAKOO!!
+    "WCU16898",   --Jordann
 }
 
-Config.Helicopter = ""
+Config.Helicopter = "swift"
 
 Config.Items = {
-    label = "Hospital Safe",
+    label = "Cofre do Hospital",
     slots = 30,
     items = {
         [1] = {
             name = "radio",
             price = 0,
-            amount = 50,
+            amount = 500,
             info = {},
             type = "item",
             slot = 1,
@@ -65,7 +66,7 @@ Config.Items = {
         [2] = {
             name = "bandage",
             price = 0,
-            amount = 50,
+            amount = 500,
             info = {},
             type = "item",
             slot = 2,
@@ -73,7 +74,7 @@ Config.Items = {
         [3] = {
             name = "painkillers",
             price = 0,
-            amount = 50,
+            amount = 500,
             info = {},
             type = "item",
             slot = 3,
@@ -81,7 +82,7 @@ Config.Items = {
         [4] = {
             name = "weapon_flashlight",
             price = 0,
-            amount = 50,
+            amount = 500,
             info = {},
             type = "item",
             slot = 4,
@@ -89,7 +90,7 @@ Config.Items = {
         [5] = {
             name = "weapon_fireextinguisher",
             price = 0,
-            amount = 50,
+            amount = 500,
             info = {},
             type = "item",
             slot = 5,
@@ -98,7 +99,7 @@ Config.Items = {
 }
 
 Config.BillCost = 2000
-Config.DeathTime = 300
+Config.DeathTime = 600
 Config.CheckTime = 10
 
 Config.PainkillerInterval = 60 -- seconds
@@ -160,7 +161,7 @@ Config.BleedTickDamage = 8
     AdvanceBleedTimer : How many bleed ticks occur before bleed level increases
 ]]
 Config.FadeOutTimer = 2
-Config.BlackoutTimer = 5
+Config.BlackoutTimer = 10
 Config.AdvanceBleedTimer = 10
 
 --[[
@@ -272,15 +273,15 @@ Config.StaggerAreas = {
 
 Config.WoundStates = {
     'irritado',
-    'bastante dores',
-    'dores',
-    'muitas dores',
+    'um pouco doloroso',
+    'doloroso',
+    'muito doloroso',
 }
 
 Config.BleedingStates = {
     [1] = {label = 'a sangrar um pouco..', damage = 10, chance = 50},
-    [2] = {label = 'a sangrar razoavelmente..', damage = 15, chance = 65},
-    [3] = {label = 'a sangrar muito..', damage = 20, chance = 65},
+    [2] = {label = 'a sangrar..', damage = 15, chance = 65},
+    [3] = {label = 'a sangrar bastante..', damage = 20, chance = 65},
     [4] = {label = 'a sangrar muito..', damage = 25, chance = 75},
 }
 
