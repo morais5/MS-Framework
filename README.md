@@ -1,4 +1,4 @@
-# QBCore-Morais v1
+# QBCore-Morais v2
 
 ## Documentation
 Take a look at [Wiki](https://github.com/morais5/QBCore-Morais/wiki)
