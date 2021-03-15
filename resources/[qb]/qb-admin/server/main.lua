@@ -7,6 +7,7 @@ local permissions = {
     ["ban"] = "admin",
     ["noclip"] = "admin",
     ["kickall"] = "admin",
+    ["managegroup"] = "admin"
 }
 
 RegisterServerEvent('qb-admin:server:togglePlayerNoclip')
@@ -19,7 +20,10 @@ end)
 
 RegisterServerEvent('qb-admin:server:killPlayer')
 AddEventHandler('qb-admin:server:killPlayer', function(playerId)
-    TriggerClientEvent('hospital:client:KillPlayer', playerId)
+    local src = source
+    if QBCore.Functions.HasPermission(src, permissions["kickall"]) then
+        TriggerClientEvent('hospital:client:KillPlayer', playerId)
+    end
 end)
 
 RegisterServerEvent('qb-admin:server:kickPlayer')
@@ -32,7 +36,10 @@ end)
 
 RegisterServerEvent('qb-admin:server:Freeze')
 AddEventHandler('qb-admin:server:Freeze', function(playerId, toggle)
-    TriggerClientEvent('qb-admin:client:Freeze', playerId, toggle)
+    local src = source
+    if QBCore.Functions.HasPermission(src, permissions["kickall"]) then
+        TriggerClientEvent('qb-admin:client:Freeze', playerId, toggle)
+    end
 end)
 
 RegisterServerEvent('qb-admin:server:serverKick')
@@ -71,7 +78,10 @@ AddEventHandler('qb-admin:server:banPlayer', function(playerId, time, reason)
 end)
 RegisterServerEvent('qb-admin:server:revivePlayer')
 AddEventHandler('qb-admin:server:revivePlayer', function(target)
-	TriggerClientEvent('hospital:client:Revive', target)
+    local src = source
+    if QBCore.Functions.HasPermission(src, permissions["kickall"]) then
+	    TriggerClientEvent('hospital:client:Revive', target)
+    end
 end)
 
 QBCore.Commands.Add("anuciostaff", "Anuncie uma mensagem a todos", {}, false, function(source, args)
@@ -310,13 +320,19 @@ end)
 
 RegisterServerEvent('qb-admin:server:setPermissions')
 AddEventHandler('qb-admin:server:setPermissions', function(targetId, group)
-    QBCore.Functions.AddPermission(targetId, group.rank)
-    TriggerClientEvent('QBCore:Notify', targetId, 'Seus níveis de permissão foram definidos para '..group.label)
+    local src = source
+    if QBCore.Functions.HasPermission(src, permissions["managegroup"]) then
+        QBCore.Functions.AddPermission(targetId, group.rank)
+        TriggerClientEvent('QBCore:Notify', targetId, 'Added Permission '..group.label)
+    end
 end)
 
 RegisterServerEvent('qb-admin:server:OpenSkinMenu')
 AddEventHandler('qb-admin:server:OpenSkinMenu', function(targetId)
-    TriggerClientEvent("qb-clothing:client:openMenu", targetId)
+    local src = source
+    if QBCore.Functions.HasPermission(src, permissions["noclip"]) then
+        TriggerClientEvent("qb-clothing:client:openMenu", targetId)
+    end
 end)
 
 RegisterServerEvent('qb-admin:server:SendReport')

@@ -2,7 +2,7 @@ radioConfig = {
     Controls = {
         Activator = { -- Open/Close Radio
             Name = "INPUT_REPLAY_START_STOP_RECORDING_SECONDARY", -- Control name
-            Key = 289, -- F2
+            Key = 73, -- X
         },
         Secondary = {
             Name = "INPUT_SPRINT",
@@ -11,7 +11,7 @@ radioConfig = {
         },
         Toggle = { -- Toggle radio on/off
             Name = "INPUT_CONTEXT", -- Control name
-            Key = 51, -- E
+            Key = 38, -- E
         },
         Increase = { -- Increase Frequency
             Name = "INPUT_CELLPHONE_RIGHT", -- Control name
@@ -40,6 +40,11 @@ radioConfig = {
     Frequency = {
         Private = { -- List of private frequencies
             [1] = true, -- Make 1 a private frequency
+			[2] = true, -- Make 1 a private frequency
+			[3] = true, -- Make 1 a private frequency
+			[4] = true, -- Make 1 a private frequency
+			[5] = true, -- Make 1 a private frequency
+			
         }, -- List of private frequencies
         Current = 1, -- Don't touch
         CurrentIndex = 1, -- Don't touch

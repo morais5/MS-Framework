@@ -1,0 +1,17 @@
+in your file: consumables.lua
+
+add this code
+
+
+
+QBCore.Functions.CreateUseableItem("radio", function(source, item)
+    local Player = QBCore.Functions.GetPlayer(source)
+	--TriggerClientEvent('Radio.Set', source, true)
+    TriggerClientEvent('Radio.Toggle', source)
+    --TriggerClientEvent('coderadio:use', source)
+end)
+
+
+
+
+in the tokovoip anim file disables the code for using the radio

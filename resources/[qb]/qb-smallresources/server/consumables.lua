@@ -131,6 +131,13 @@ QBCore.Functions.CreateUseableItem("firework1", function(source, item)
     TriggerClientEvent("fireworks:client:UseFirework", source, item.name, "proj_indep_firework")
 end)
 
+QBCore.Functions.CreateUseableItem("radio", function(source, item)
+    local Player = QBCore.Functions.GetPlayer(source)
+	--TriggerClientEvent('Radio.Set', source, true)
+    TriggerClientEvent('Radio.Toggle', source)
+    --TriggerClientEvent('coderadio:use', source)
+end)
+
 QBCore.Functions.CreateUseableItem("firework2", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
     TriggerClientEvent("fireworks:client:UseFirework", source, item.name, "proj_indep_firework_v2")

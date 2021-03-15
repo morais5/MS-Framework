@@ -52,21 +52,29 @@ end
 RegisterServerEvent('qb-weathersync:server:setWeather')
 AddEventHandler('qb-weathersync:server:setWeather', function(type)
     local src = source
-    if src ~= nil then
-        TriggerEvent("qb-log:server:CreateLog", "weather", "Changed weather", "red", "**".. GetPlayerName(src) .. "**")
+    if QBCore.Functions.HasPermission(src, "admin") then
+        if src ~= nil then
+            TriggerEvent("qb-log:server:CreateLog", "weather", "Changed weather", "red", "**".. GetPlayerName(src) .. "**")
+        end
+        CurrentWeather = string.upper(type)
+        TriggerEvent('qb-weathersync:server:RequestStateSync')
     end
-    CurrentWeather = string.upper(type)
-    TriggerEvent('qb-weathersync:server:RequestStateSync')
 end)
 
 RegisterServerEvent('qb-weathersync:server:toggleBlackout')
 AddEventHandler('qb-weathersync:server:toggleBlackout', function()
-    ToggleBlackout()
+    local src = source
+    if QBCore.Functions.HasPermission(src, "admin") then
+        ToggleBlackout()
+    end
 end)
 
 RegisterServerEvent('qb-weathersync:server:setTime')
 AddEventHandler('qb-weathersync:server:setTime', function(hour, minute)
-    SetExactTime(hour, minute)
+    local src = source
+    if QBCore.Functions.HasPermission(src, "admin") then
+        SetExactTime(hour, minute)
+    end
 end)
 
 function SetWeather(type)
