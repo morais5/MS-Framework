@@ -154,7 +154,7 @@ function enterRobberyHouse(house)
     Citizen.Wait(250)
     local coords = { x = Config.Houses[house]["coords"]["x"], y = Config.Houses[house]["coords"]["y"], z= Config.Houses[house]["coords"]["z"] - Config.MinZOffset}
     if Config.Houses[house]["tier"] == 1 then
-        data = exports['offs-interior']:CreateTier1HouseFurnished(coords)
+        data = exports['qb-interior']:CreateTier1HouseFurnished(coords)
     end
     Citizen.Wait(100)
     houseObj = data[1]
@@ -178,7 +178,7 @@ function leaveRobberyHouse(house)
     Citizen.Wait(250)
     DoScreenFadeOut(250)
     Citizen.Wait(500)
-    exports['offs-interior']:DespawnInterior(houseObj, function()
+    exports['qb-interior']:DespawnInterior(houseObj, function()
         TriggerEvent('qb-weathersync:client:EnableSync')
         Citizen.Wait(250)
         DoScreenFadeIn(250)
@@ -345,7 +345,7 @@ local NeededAttempts = 4
 function searchCabin(cabin)
     local ped = GetPlayerPed(-1)
 
-    local Skillbar = exports['offs-skillbar']:GetSkillbarObject()
+    local Skillbar = exports['qb-skillbar']:GetSkillbarObject()
     if math.random(1, 100) <= 85 and not IsWearingHandshoes() then
         local pos = GetEntityCoords(GetPlayerPed(-1))
         TriggerServerEvent("evidence:server:CreateFingerDrop", pos)
