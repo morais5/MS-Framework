@@ -265,6 +265,7 @@ QBShared.Items = {
 	["printerdocument"] 			 = {["name"] = "printerdocument", 				["label"] = "Documento", 				["weight"] = 500, 		["type"] = "item", 		["image"] = "printerdocument.png", 		["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
 	["casinochips"] 		 	 	 = {["name"] = "casinochips",           		["label"] = "Fichas de casino",	 		["weight"] = 0, 		["type"] = "item", 		["image"] = "casino_chips.png", 		["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = ""},
 	["black_money"] 				 = {["name"] = "black_money", 			 	  	["label"] = "Dinheiro Sujo", 			["weight"] = 10, 		["type"] = "item", 		["image"] = "black_money.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
+	["sim_card"] 		 				 = {["name"] = "sim_card", 						["label"] = "Sim Card", 					["weight"] = 100, 	["type"] = "item", 		["image"] = "sim_card.png", 	["unique"] = true, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "Change Your phone Number to Any Number (One-time use)"},
 }
 
 -- // HASH WEAPON ITEMS, NEED SOMETIMES TO GET INFO FOR CLIENT

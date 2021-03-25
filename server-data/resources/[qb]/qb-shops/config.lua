@@ -134,6 +134,14 @@ Config.Products = {
             type = "item",
             slot = 15,
         },
+        [16] = {
+            name = "sim_card",
+            price = 500,
+            amount = 1000,
+            info = {},
+            type = "item",
+            slot = 16,
+        },
     },
     ["casino"] = {
         [1] = {
