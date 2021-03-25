@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>JK Fitbit</title>
+</head>
+    <body>
+        <div class="container">
+            <img src="./watch.png" alt="watch" class="watch">
+
+            <div class="watch-screen">
+                <div class="main-screen">
+                    <!-- <div class="fitbit-app" data-app="settings"><i class="fa fa-cog" style="color: #d3d3d3;"></i></div> -->
+                    <div class="fitbit-app" data-app="food"><i class="fa fa-utensils" style="color: #3da83b;"></i></div>
+                    <div class="fitbit-app" data-app="thirst"><i class="fa fa-tint" style="color: #6767dd;"></i></div>
+                </div>
+
+                <div class="food-app">
+                    <span class="app-titel">Nutrição</span>
+                    <div class="food-alert-setting">
+                        <p>Em quantos % você deseja receber uma notificação?</p>
+                    </div>
+                    <input type="number" class="food-precentage" placeholder="50%" min="1" max="100">
+                    <div class="app-buttons">
+                        <div class="app-button save-food-settings"><p>Salvar</p></div>
+                        <div class="app-button back-food-settings"><p>Voltar</p></div>
+                    </div>
+                </div>
+
+                <div class="thirst-app">
+                    <span class="app-titel">Dorst</span>
+                    <div class="food-alert-setting">
+                        <p>Em quantos % você deseja receber uma notificação?</p>
+                    </div>
+                    <input type="number" class="food-precentage" placeholder="50%" min="1" max="100">
+                    <div class="app-buttons">
+                        <div class="app-button save-thirst-settings"><p>Salvar</p></div>
+                        <div class="app-button back-thirst-settings"><p>Voltar</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./app.js"></script>
+    </body>
+</html>

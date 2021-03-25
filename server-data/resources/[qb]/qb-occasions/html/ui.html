@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" ></script>
+    <link rel="stylesheet" href="./ui.css">
+    <link rel="stylesheet" href="./reset.css">
+    <title>QB Occasions</title>
+</head>
+    <body>
+        <div class="sell-container">
+            <img id="sell-contract" src="./sell-contract.png" alt="sell-contract">
+            <div class="sell-contract">
+                <span id="seller-name"></span>
+                <span id="seller-banknr"></span>
+                <span id="seller-telnr"></span>
+                <span id="vehicle-plate"></span>
+
+                <input type="text" class="vehicle-sell-price" placeholder="Preço do veiculo." oninput="validity.valid||(value=''); calculatePrice();">
+                <span id="tax">&euro; 0</span>
+                <span id="mosley-cut">&euro; 0</span>
+                <span id="total-money">&euro; 0</span>
+
+                <input type="text" class="vehicle-description" maxlength="500" placeholder="Preenche aqui a descrição do teu veiculo, maximo de 500 caracteres...">
+
+                <div class="btn" id="sell-vehicle"><p>Vender</p></div>
+            </div>
+        </div>
+
+        <div class="buy-container">
+            <img id="buy-contract" src="./buy-contract.png" alt="buy-contract">
+            <div class="buy-contract">
+                <span id="buy-seller-name"></span>
+                <span id="buy-seller-banknr"></span>
+                <span id="buy-seller-telnr"></span>
+                <span id="buy-vehicle-plate"></span>
+
+                <span id="buy-vehicle-desc"></span>
+
+                <span id="buy-price"></span>
+
+                <div class="btn" id="buy-vehicle"><p>Comprar</p></div>
+            </div>
+        </div>
+        <script src="./ui.js"></script>
+    </body>
+</html>

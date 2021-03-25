@@ -1,0 +1,16 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: block;
+    height: 100vh;
+    background-color: black;
+    overflow: hidden;
+}
+
+#sample_video {
+    object-fit: fill;
+    opacity: 1.0;
+}

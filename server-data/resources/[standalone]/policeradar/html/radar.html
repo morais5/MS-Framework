@@ -1,0 +1,109 @@
+<!-- 
+
+    Wraith Radar System - v1.01
+	Created by WolfKnight
+	
+	Plate Reader added by Ascaped
+    
+-->
+
+<html>
+
+<head>
+	<script src="nui://game/ui/jquery.js" type="text/javascript">
+	</script>
+	<script src="radar.js" type="text/javascript"></script>
+	<link href="radar.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body onselectstart="return false;" ondragstart="return false;">
+	<!-- Police Radar -->
+	<div id="policeradar" style="display: none;">
+		<!-- <div id="policeradar"> -->
+
+		<div class="logo"></div>
+
+		<div class="main">
+
+			<div class="container">
+				<div class="patrolcontainer">
+					<div class="speedsourcecontainer target" data-target="fwdspeed">
+						<div class="speednumber text"></div>
+						<div class="speednumber text"></div>
+						<div class="speednumber text"></div>
+					</div>
+
+					<div class="label">ANPR FRONT</div>
+				</div>
+
+				<div class="patrolcontainer">
+					<div class="speedsourcecontainer target" data-target="bwdspeed">
+						<div class="speednumber text"></div>
+						<div class="speednumber text"></div>
+						<div class="speednumber text"></div>
+					</div>
+
+					<div class="label">ANPR REAR</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="patrolcontainer" style="margin-top: 20px;">
+					<div class="speedfastcontainer target" data-target="fwdfast">
+						<div class="speednumber text"></div>
+						<div class="speednumber text"></div>
+						<div class="speednumber text"></div>
+					</div>
+
+					<div class="label">ANPR FRONT TOP</div>
+				</div>
+
+				<div class="patrolcontainer" style="margin-bottom: 20px;">
+					<div class="speedfastcontainer target" data-target="bwdfast">
+						<div class="speednumber text"></div>
+						<div class="speednumber text"></div>
+						<div class="speednumber text"></div>
+					</div>
+
+					<div class="label">ANPR REAR TOP</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- License Plate Reader -->
+		<div id="platereader">
+			<div class="container">
+				<div id="fwdPlate" class="pReader fwdPlate"></div>
+				<div class="label">LICENSE FRONT</div>
+			</div>
+			<div class="container">
+				<div id="bwdPlate" class="pReader bwdPlate"></div>
+				<div class="label">LICENSE REAR</div>
+			</div>
+		</div>
+		<!-- -==================- -->
+	</div>
+
+	<!-- Police Radar - Remote control -->
+	<div id="policeradarrc" style="display: none;">
+
+		<div class="container">
+			<button class="rowbutton" data-action="radar_frontxmit">TOGGLE FRONT</button>
+		</div>
+
+		<div class="container">
+			<button class="rowbutton" data-action="radar_rearxmit">TOGGLE REAR</button>
+		</div>
+
+		<div class="container">
+			<button class="limit" data-action="radar_setlimit">ZET SNELHEIDSLIMIET</button>
+		</div>
+
+		<div class="container">
+			<button class="close" data-action="close">CLOSE</button>
+		</div>
+	</div>
+</body>
+
+</html>

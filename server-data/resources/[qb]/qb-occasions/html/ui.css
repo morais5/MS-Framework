@@ -1,0 +1,224 @@
+body {
+    overflow: hidden;
+}
+
+.container {
+    overflow: hidden;
+}
+
+#sell-contract {
+    position: absolute;
+    width: 165vh;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    user-select: none;
+}
+
+#buy-contract {
+    position: absolute;
+    width: 165vh;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    user-select: none;
+}
+
+.vehicle-description {
+    position: absolute;
+    left: 66.5vh;
+    bottom: 48vh;
+    width: 45vh;
+    height: 2vh;
+    border: none;
+    outline: none;
+    background: none;
+    font-family: 'Lato';
+    transition: background-color 0.1s ease-in-out;
+    overflow:hidden;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#buy-vehicle-desc {
+    position: absolute;
+    left: 66.8vh;
+    bottom: 48vh;
+    font-family: 'Lato';
+    font-size: 13px;
+    width: 45vh;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.vehicle-description:hover {
+    background-color: rgba(214, 214, 214, 0.589);
+}
+
+.vehicle-description:focus {
+    background-color: rgba(214, 214, 214, 0.589);
+}
+
+.vehicle-description::placeholder {
+    text-align: left;
+}
+
+#sell-vehicle {
+    position: absolute;
+    width: 10vh;
+    height: 3vh;
+    background: rgb(141, 141, 141);
+    bottom: 22vh;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    border-radius: 2px;
+    transition: all 0.1s ease-in-out;
+}
+
+#sell-vehicle:hover {
+    background: rgb(179, 179, 179);
+}
+
+#sell-vehicle > p {
+    text-align: center;
+    line-height: 2.9vh;
+    color: white;
+    font-family: 'Lato';
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#buy-vehicle {
+    position: absolute;
+    width: 10vh;
+    height: 3vh;
+    background: rgb(141, 141, 141);
+    bottom: 22vh;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    border-radius: 2px;
+    transition: all 0.1s ease-in-out;
+}
+
+#buy-vehicle:hover {
+    background: rgb(179, 179, 179);
+}
+
+#buy-vehicle > p {
+    text-align: center;
+    line-height: 2.9vh;
+    color: white;
+    font-family: 'Lato';
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#seller-name {
+    position: absolute;
+    left: 66.8vh;
+    top: 21.5vh;
+    font-family: 'Lato';
+    font-size: 14px;
+}
+
+#seller-banknr {
+    position: absolute;
+    left: 66.8vh;
+    top: 28vh;
+    font-family: 'Lato';
+    font-size: 14px;
+}
+
+#seller-telnr {
+    position: absolute;
+    left: 66.8vh;
+    top: 34.2vh;
+    font-family: 'Lato';
+    font-size: 14px;
+}
+
+#vehicle-plate {
+    position: absolute;
+    left: 66.8vh;
+    top: 40.5vh;
+    font-family: 'Lato';
+    font-size: 14px;
+}
+
+.vehicle-sell-price {
+    position: absolute;
+    left: 85.8vh;
+    bottom: 35.75vh;
+    font-family: 'Lato';
+    font-size: 12px;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+#tax {
+    position: absolute;
+    left: 86.5vh;
+    bottom: 33.5vh;
+    font-family: 'Lato';
+    font-size: 12px;
+}
+
+#mosley-cut {
+    position: absolute;
+    left: 87.5vh;
+    bottom: 31.05vh;
+    font-family: 'Lato';
+    font-size: 12px;
+}
+
+#total-money {
+    position: absolute;
+    left: 90vh;
+    bottom: 28.6vh;
+    font-family: 'Lato';
+    font-size: 12px;
+}
+
+#buy-price {
+    position: absolute;
+    left: 87vh;
+    bottom: 35.8vh;
+    font-family: 'Lato';
+    font-size: 12px;
+}
+
+#buy-seller-name {
+    position: absolute;
+    left: 66.8vh;
+    top: 21.5vh;
+    font-family: 'Lato';
+    font-size: 14px;
+}
+
+#buy-seller-banknr {
+    position: absolute;
+    left: 66.8vh;
+    top: 28vh;
+    font-family: 'Lato';
+    font-size: 14px;
+}
+
+#buy-seller-telnr {
+    position: absolute;
+    left: 66.8vh;
+    top: 34.2vh;
+    font-family: 'Lato';
+    font-size: 14px;
+}
+
+#buy-vehicle-plate {
+    position: absolute;
+    left: 66.8vh;
+    top: 40.5vh;
+    font-family: 'Lato';
+}
+   

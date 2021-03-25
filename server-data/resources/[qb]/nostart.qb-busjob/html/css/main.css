@@ -1,0 +1,178 @@
+.sm-pill {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.bg-pill {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.sm-header {
+    padding: .25em;
+    text-align: center;
+}
+
+
+.card-body-sm {
+    padding: 0.25em;
+}
+
+.els-ui {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+body {
+    background-color: transparent;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2px;
+    grid-auto-rows: minmax(auto, auto);
+}
+
+.pri-lights {
+    width: 20px;
+    height: 10px;
+    border-width: 1px;
+    border-color: #000;
+    border-style: inset;
+}
+
+.sec-lights {
+    width: 10px;
+    height: 10px;
+    border-width: 1px;
+    border-color: #000;
+    border-style: inset;
+    margin: auto;
+}
+/* front light Display */
+.front-1 {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.front-2 {
+    grid-column: 4;
+    grid-row: 1;
+}
+/* Primary lightbar Display */
+.pri-1 {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.pri-2 {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.pri-3 {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+.pri-4 {
+    grid-column: 5;
+    grid-row: 2;
+}
+
+/* rear light Display */
+.rear-1 {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.rear-2 {
+    grid-column: 4;
+    grid-row: 3;
+}
+
+.rear-3 {
+    grid-column: 6;
+    grid-row: 3;
+}
+/* Takedown lights Display */
+.tkdn-1 {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.tkdn-2 {
+    grid-column: 6;
+    grid-row: 2;
+}
+
+/* Arrow board Display */
+.arrow-1 {
+    grid-column: 1;
+    grid-row: 4;
+    border-top: 5px solid transparent;
+    border-right: 20px solid transparent;
+    border-left: none;
+    border-bottom: 5px solid transparent;
+}
+
+.arrow-2 {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+.arrow-3 {
+    grid-column: 3;
+    grid-row: 4;
+}
+
+.arrow-4 {
+    grid-column: 4;
+    grid-row: 4;
+}
+
+.arrow-5 {
+    grid-column: 5;
+    grid-row: 4;
+}
+
+.arrow-6 {
+    grid-column: 6;
+    grid-row: 4;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 20px solid transparent;
+    border-right: none;
+    border-bottom: 5px solid transparent;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.amber {
+    background-color: #FF7E00;
+}
+
+.white {
+    background-color: #fff
+}
+
+.off {
+    background-color: transparent;
+}
+
+.left-arrow-on {
+    border-right: 20px solid #FF7E00;
+}
+
+.right-arrow-on {
+    border-left: 20px solid #FF7E00;
+}

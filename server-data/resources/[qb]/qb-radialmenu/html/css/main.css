@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+body {
+	/* font-family: 'Lato';
+	font-size: 10px;
+	font-weight: lighter; */
+}
+
+h1 {
+	font-weight: normal;
+	color: white;
+}
+
+div.info {
+	margin: 12px 0;
+}
+
+div.info * {
+	color: white;
+	text-shadow: 1px 1px 0 #000000D0;
+}
+
+#icons {
+	display: none;
+	filter:url(#drop-shadow);
+}
+
+.container {
+	position: absolute;
+	left: 1000px;
+}
+
+#vehicle {
+	fill: white;
+}

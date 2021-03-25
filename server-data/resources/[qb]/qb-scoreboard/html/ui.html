@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./reset.css">
+    <title>Qbus Scoreboard</title>
+</head>
+    <body>
+        <div class="container">
+            <div class="scoreboard-block">
+                <div class="scoreboard-header">
+                    <img src="sb-logo.png" alt="sb-logo" class="sb-logo">
+                </div>
+
+                <div class="scoreboard-info">
+                    <div class="scoreboard-info-header">
+                        <div id="info-tab-label"><p>Informação</p></div>
+                        <div id="status-tab-label"><p>Estado</p></div>
+                    </div>
+                    <div class="scoreboard-info-beam" data-type="storerobbery" style="background: rgb(224, 224, 224);">
+                        <div class="info-beam-title"><p>Roubo a Lojas</p></div>
+                        <div class="info-beam-status"></div>
+                    </div>
+                    <div class="scoreboard-info-beam" data-type="bankrobbery" style="background: rgb(248, 248, 248);">
+                        <div class="info-beam-title"><p>Roubo ao Banco</p></div>
+                        <div class="info-beam-status"></div>
+                    </div>
+                    <div class="scoreboard-info-beam" data-type="jewellery" style="background: rgb(224, 224, 224);">
+                        <div class="info-beam-title"><p>Roubo à Joelharia</p></div>
+                        <div class="info-beam-status"></div>
+                    </div>
+                    <div class="scoreboard-info-beam" data-type="pacific" style="background: rgb(248, 248, 248);">
+                        <div class="info-beam-title"><p>Roubo ao Banco Pacific</p></div>
+                        <div class="info-beam-status"></div>
+                    </div>
+                    <!-- <div class="scoreboard-info-beam" data-type="police" style="background: rgb(224, 224, 224);">
+                        <div class="info-beam-title"><p>Politie</p></div>
+                        <div class="info-beam-status"></div>
+                    </div> -->
+                    <div class="scoreboard-info-beam" data-type="ambulance" style="background: rgb(248, 248, 248);">
+                        <div class="info-beam-title"><p>Médicos</p></div>
+                        <div class="info-beam-status"></div>
+                    </div>
+                    <div class="scoreboard-info-beam" style="background: rgb(224, 224, 224);">
+                        <div class="info-beam-title"><p>Total Jogadores</p></div>
+                        <div class="info-beam-status" id="total-players"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./app.js"></script>
+    </body>
+</html>

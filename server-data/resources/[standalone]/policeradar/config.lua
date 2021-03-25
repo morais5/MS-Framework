@@ -1,0 +1,25 @@
+Config = {}
+
+Config.Vehicles = {
+    ["palablue"] = "Pala PSP",
+    ["psp_ftipo2"] = "Fiat PSP",
+    ["bmwpsp"] = "BMW PSP",
+    ["14tesla"] = "Tesla PSP",
+    ["2020camaropp"] = "Camaro PSP",
+    ["camaroBB"] = "Camaro BB",
+    ["psp_thilux"] = "Thulux PSP",
+    ["16explorer"] = "Explorer PSP",
+    ["riot"] = "Riot",
+    ["17zr2bb"] = "Colorado PSP",
+    ["tahoepsp"] = "Tahoe PSP",
+    ["14teslabt"] = "Tesla PSP",
+    ["camarobt"] = "Camaro BT",
+    ["c8b"] = "Corvette BT",
+    ["psp_ftipo"] = "Fiat PSP BT",
+    ["carrinhaci"] = "Carrinha PSP 3",
+    ["psp_ftransit"] = "Cinotecnica PSP",
+    ["uep_thilux"] = "Thiluxps UEP",
+    ["psp_bmwgs"] = "BMWGS PSP",
+    ["dgrsp_vwcrafter"] = "Carrinha SP",
+    ["f450s"] = "Reboque PSP",
+}

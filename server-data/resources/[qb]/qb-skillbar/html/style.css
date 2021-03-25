@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    height: 100vh;
+}
+
+.bar-container {
+    display: none;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    height: 4.3vh;
+    width: 27.5vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    bottom: 12vh;
+    /* border-radius: .5vh; */
+    box-shadow: inset 0 0 2vh 0 rgba(0, 0, 0, 0.6);
+    border: .3vh solid rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+}
+
+.bar-check {
+    position: absolute;
+    height: 100%;
+    width: 10%;
+    background-color: rgba(65, 65, 65, 0.651);
+    bottom: 0;
+    right: 50%;
+    z-index: 101;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+    text-align: center;
+    transition: background-color .1s ease;
+    z-index: 101;
+}
+
+.bar-check > span {
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.3vh;
+    font-weight: bold;
+    line-height: 4.3vh;
+    text-shadow: 1px 1px 1px #00000033;
+}
+
+.bar-total {
+    height: 100%;
+    width: 0%;
+    background: rgb(125,29,29);
+    background: linear-gradient(-90deg, rgba(125,29,29,0.75) 0%, rgba(228,66,66,0.75) 100%);
+    z-index: 100;
+}
+
+.bar-label {
+    position: absolute;
+    height: auto;
+    width: auto;
+    text-align: center;
+    z-index: 101;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 8vh;
+}
+
+.bar-label > span {
+    line-height: 4.3vh;
+    color: rgb(218, 218, 218);
+    font-size: 1.1vh;
+    text-shadow: 1px 1px 1px #00000075;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<CPackFileMetaData>
+  <MapDataGroups/>
+  <HDTxdBindingArray/>
+  <imapDependencies/>
+  <imapDependencies_2>
+    <Item>
+      <imapName>xmap</imapName>
+      <manifestFlags/>
+      <itypDepArray>
+        <Item>v_christmas_tree</Item>
+        <Item>xs_prop_int_arena_christmas</Item>
+      </itypDepArray>
+    </Item>
+  </imapDependencies_2>
+  <itypDependencies_2/>
+  <Interiors/>
+</CPackFileMetaData>
+

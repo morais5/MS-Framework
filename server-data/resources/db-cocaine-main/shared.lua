@@ -1,0 +1,36 @@
+    ["coke_brick"] = {
+        ["name"] = "coke_brick",
+        ["label"] = "Coke Brick",
+        ["weight"] = 1000,
+        ["type"] = "item",
+        ["image"] = "coke_brick.png",
+        ["unique"] = false,
+        ["useable"] = false,
+        ["shouldClose"] = true,
+        ["combinable"] = nil,
+        ["description"] = "Heavy package of cocaine, often used for sale and takes up a lot of space."
+    },
+    ["coke_small_brick"] = {
+        ["name"] = "coke_small_brick",
+        ["label"] = "Coke Package",
+        ["weight"] = 350,
+        ["type"] = "item",
+        ["image"] = "coke_small_brick.png",
+        ["unique"] = false,
+        ["useable"] = true,
+        ["shouldClose"] = true,
+        ["combinable"] = nil,
+        ["description"] = "Quite a few grams of cocaine, often used for sale and taking up a lot of space."
+    },
+        ["cokebaggy"] = {
+        ["name"] = "cokebaggy",
+        ["label"] = "Coke Baggy",
+        ["weight"] = 0,
+        ["type"] = "item",
+        ["image"] = "cocaine_baggy.png",
+        ["unique"] = false,
+        ["useable"] = true,
+        ["shouldClose"] = true,
+        ["combinable"] = nil,
+        ["description"] = "For the quick pick-ups."
+    },
