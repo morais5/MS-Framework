@@ -1,7 +1,10 @@
 # QBCore-Morais v3.1
 
-## 📚 Documentation
+### 📚 Documentation
 Take a look at [Wiki](https://github.com/morais5/QBCore-Morais/wiki)
+
+### 📞 Installation
+Click [Here](https://github.com/morais5/QBCore-Morais/wiki/Installation) to go to the base installation page 
 
 ### 🐞 Issues
 If you get a bug, please report it [Here](https://github.com/morais5/QBCore-Morais/issues)
