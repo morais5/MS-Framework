@@ -1,23 +1,23 @@
 -- QBCore Command Events
 RegisterNetEvent('QBCore:Command:TeleportToPlayer')
 AddEventHandler('QBCore:Command:TeleportToPlayer', function(othersource)
-	local coords = QBCore.Functions.GetCoords(GetPlayerPed(GetPlayerFromServerId(othersource)))
-	local entity = GetPlayerPed(-1)
-	if IsPedInAnyVehicle(Entity, false) then
-		entity = GetVehiclePedIsUsing(entity)
-	end
-	SetEntityCoords(entity, coords.x, coords.y, coords.z)
-	SetEntityHeading(entity, coords.a)
-end)
+    local coords = QBCore.Functions.GetCoords(GetPlayerPed(GetPlayerFromServerId(othersource)))
+    local entity = GetPlayerPed(-1)
+    if IsPedInAnyVehicle(entity, false) then
+        entity = GetVehiclePedIsUsing(entity)
+    end
+    SetEntityCoords(entity, coords.x, coords.y, coords.z)
+    SetEntityHeading(entity, coords.a)
+end) 
 
 RegisterNetEvent('QBCore:Command:TeleportToCoords')
 AddEventHandler('QBCore:Command:TeleportToCoords', function(x, y, z)
-	local entity = GetPlayerPed(-1)
-	if IsPedInAnyVehicle(Entity, false) then
-		entity = GetVehiclePedIsUsing(entity)
-	end
-	SetEntityCoords(entity, x, y, z)
-end)
+    local entity = GetPlayerPed(-1)
+    if IsPedInAnyVehicle(entity, false) then
+        entity = GetVehiclePedIsUsing(entity)
+    end
+    SetEntityCoords(entity, x, y, z)
+end) 
 
 RegisterNetEvent('QBCore:Command:SpawnVehicle')
 AddEventHandler('QBCore:Command:SpawnVehicle', function(model)

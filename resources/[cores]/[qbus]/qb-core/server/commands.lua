@@ -23,27 +23,27 @@ QBCore.Commands.Refresh = function(source)
 	end
 end
 
-QBCore.Commands.Add("tp", "Teleport to a player or location", {{name="id/x", help="ID of player or X position"}, {name="y", help="Y position"}, {name="z", help="Z position"}}, false, function(source, args)
-	if (args[1] ~= nil and (args[2] == nil and args[3] == nil)) then
-		-- tp to player
-		local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
-		if Player ~= nil then
-			TriggerClientEvent('QBCore:Command:TeleportToPlayer', source, Player.PlayerData.source)
-		else
-			TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "O Jogador não esta online!")
-		end
-	else
-		-- tp to location
-		if args[1] ~= nil and args[2] ~= nil and args[3] ~= nil then
-			local x = tonumber(args[1])
-			local y = tonumber(args[2])
-			local z = tonumber(args[3])
-			TriggerClientEvent('QBCore:Command:TeleportToCoords', source, x, y, z)
-		else
-			TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Nem todos os argumentos foram inseridos (x, y, z)")
-		end
-	end
-end, "admin")
+QBCore.Commands.Add("tp", "Teleport to a player or location", {{name="id/x", help="ID of a player or X position"}, {name="y", help="Y position"}, {name="z", help="Z position"}}, false, function(source, args)
+    if (args[1] ~= nil and (args[2] == nil and args[3] == nil)) then
+        -- tp to player
+        local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
+        if Player ~= nil then
+            TriggerClientEvent('QBCore:Command:TeleportToPlayer', source, Player.PlayerData.source)
+        else
+            TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Player is not online!")
+        end
+    else
+        -- tp to location
+        if args[1] ~= nil and args[2] ~= nil and args[3] ~= nil then
+            local x = tonumber(args[1])
+            local y = tonumber(args[2])
+            local z = tonumber(args[3])
+            TriggerClientEvent('QBCore:Command:TeleportToCoords', source, x, y, z)
+        else
+            TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Not every argument is filled in (x, y, z)")
+        end
+    end
+end, "admin") 
 
 QBCore.Commands.Add("darperms", "Conceda permissões a alguém (god/admin)", {{name="id", help="ID of player"}, {name="permission", help="Permission level"}}, true, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
