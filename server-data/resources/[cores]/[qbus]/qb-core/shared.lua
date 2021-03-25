@@ -2302,12 +2302,12 @@ QBShared.Gangs = {
 
 QBShared.Jobs = {
 	["unemployed"] = {
-		label = "Depregado",
+		label = "Unemployed",
 		payment = 500,
 		defaultDuty = true,
 	},
 	["police"] = {
-		label = "PSP",
+		label = "Police",
 		payment = 1500,
 		defaultDuty = true,
 	},
@@ -2317,27 +2317,27 @@ QBShared.Jobs = {
 		defaultDuty = true,
 	},--]]
 	["ambulance"] = {
-		label = "INEM",
+		label = "Ambulance",
 		payment = 2500,
 		defaultDuty = true,
 	},
 	["trucker"] = {
-		label = "Fornecedor Herbalife",
+		label = "Trucker",
 		payment = 1200,
 		defaultDuty = true,
 	},
 	["taxi"] = {
-		label = "Taxista",
+		label = "Taxi",
 		payment = 800,
 		defaultDuty = true,
 	},
 	["realestate"] = {
-		label = "Agente Imobiliario",
+		label = "Reale State",
 		payment = 1000,
 		defaultDuty = true,
 	},
 	["tow"] = {
-		label = "Reboques",
+		label = "Tow",
 		payment = 10,
 		defaultDuty = true,
 	},
@@ -2347,27 +2347,27 @@ QBShared.Jobs = {
 		defaultDuty = true,
 	},--]]
 	["judge"] = {
-		label = "Juiz",
+		label = "Judge",
 		payment = 2000,
 		defaultDuty = true,
 	},
 	["lawyer"] = {
-		label = "Advogado",
+		label = "Lawyer",
 		payment = 1500,
 		defaultDuty = true,
 	},
 	["cardealer"] = {
-		label = "Gerente de Stand",
+		label = "Car Dealer",
 		payment = 1000,
 		defaultDuty = true,
 	},
 	["mechanic"] = {
-		label = "Mecanico",
+		label = "Mechanic",
 		payment = 1000,
 		defaultDuty = true,
 	},
 	["garbage"] = {
-		label = "Lixeiro",
+		label = "Garbage",
 		payment = 900,
 		defaultDuty = true,
 	},
