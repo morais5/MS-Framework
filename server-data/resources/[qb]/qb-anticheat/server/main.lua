@@ -18,7 +18,7 @@ AddEventHandler('qb-anticheat:server:banPlayer', function(reason)
     local src = source
     TriggerClientEvent('chatMessage', -1, "LUNA Anti-Cheat", "error", GetPlayerName(src).." foste banido por usar cheats: " ..reason )
     QBCore.Functions.ExecuteSql(false, "INSERT INTO `bans` (`name`, `steam`, `license`, `discord`,`ip`, `reason`, `expire`, `bannedby`) VALUES ('"..GetPlayerName(src).."', '"..GetPlayerIdentifiers(src)[1].."', '"..GetPlayerIdentifiers(src)[2].."', '"..GetPlayerIdentifiers(src)[3].."', '"..GetPlayerIdentifiers(src)[4].."', '"..reason.."', 2145913200, '"..GetPlayerName(src).."')")
-    DropPlayer(src, "Você foi muito sinalizado, para mais informações, junte-se à nosso discord: https://discord.io/criminalrp :)")
+    DropPlayer(src, "Você foi muito sinalizado, para mais informações, junte-se à nosso discord: https://discord.io/moraisscripts :)")
 end)
 
 -- Fake events --

@@ -5,7 +5,7 @@ RegisterServerEvent('qb-multicharacter:server:disconnect')
 AddEventHandler('qb-multicharacter:server:disconnect', function()
     local src = source
 
-    DropPlayer(src, "Você se desconectou do Criminal Roleplay")
+    DropPlayer(src, "Você se desconectou do Morais Scripts Roleplay")
 end)
 
 RegisterServerEvent('qb-multicharacter:server:loadUserData')

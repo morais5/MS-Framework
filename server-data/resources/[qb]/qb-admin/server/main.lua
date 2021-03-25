@@ -30,7 +30,7 @@ RegisterServerEvent('qb-admin:server:kickPlayer')
 AddEventHandler('qb-admin:server:kickPlayer', function(playerId, reason)
     local src = source
     if QBCore.Functions.HasPermission(src, permissions["kick"]) then
-        DropPlayer(playerId, "Você foi expulso do servidor:\n"..reason.."\n\n🔸 Junte-se ao nosso Discord para mais informações: https://discord.io/criminalrp")
+        DropPlayer(playerId, "Você foi expulso do servidor:\n"..reason.."\n\n🔸 Junte-se ao nosso Discord para mais informações: https://discord.io/moraisscripts")
     end
 end)
 
@@ -48,7 +48,7 @@ AddEventHandler('qb-admin:server:serverKick', function(reason)
     if QBCore.Functions.HasPermission(src, permissions["kickall"]) then
         for k, v in pairs(QBCore.Functions.GetPlayers()) do
             if v ~= src then 
-                DropPlayer(v, "Você foi expulso do servidor:\n"..reason.."\n\n🔸 Junte-se ao nosso Discord para mais informações: https://discord.io/criminalrp")
+                DropPlayer(v, "Você foi expulso do servidor:\n"..reason.."\n\n🔸 Junte-se ao nosso Discord para mais informações: https://discord.io/moraisscripts")
             end
         end
     end
@@ -297,7 +297,7 @@ RegisterCommand("kickall", function(source, args, rawCommand)
         for k, v in pairs(QBCore.Functions.GetPlayers()) do
             local Player = QBCore.Functions.GetPlayer(v)
             if Player ~= nil then 
-                DropPlayer(Player.PlayerData.source, "Olá cabeça de ananás 🍍 - Estamos a reniciar o servidor, Verifique o seu Discord para mais informações! (https://discord.io/criminalrp)")
+                DropPlayer(Player.PlayerData.source, "Olá cabeça de ananás 🍍 - Estamos a reniciar o servidor, Verifique o seu Discord para mais informações! (https://discord.io/moraisscripts)")
             end
         end
     end

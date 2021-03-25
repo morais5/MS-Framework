@@ -312,7 +312,7 @@ function Queue:AddToConnecting(ids, ignorePos, autoRemove, done)
     local function remove()
         if not autoRemove then return end
 
-        done(Config.Language.connectingerr .."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/criminalrp")
+        done(Config.Language.connectingerr .."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/moraisscripts")
         Queue:RemoveFromConnecting(ids)
         Queue:RemoveFromQueue(ids)
         Queue:DebugPrint("O jogador não pôde ser adicionado à lista de conexão")
@@ -493,7 +493,7 @@ local function playerConnect(source, setKickReason, deferrals)
 
     if not ids then
         -- prevent joining
-        done(Config.Language.idrr .."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/criminalrp")
+        done(Config.Language.idrr .."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/moraisscripts")
         CancelEvent()
         if name ~= nil then
             Queue:DebugPrint("Desistiu " .. name .. ", não conseguiram recuperar nenhum de seus ids")
@@ -503,7 +503,7 @@ local function playerConnect(source, setKickReason, deferrals)
 
     if Config.RequireSteam and not Queue:IsSteamRunning(src) then
         -- prevent joining
-        done(Config.Language.steam .."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/criminalrp")
+        done(Config.Language.steam .."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/moraisscripts")
         CancelEvent()
         return
     end
@@ -532,7 +532,7 @@ local function playerConnect(source, setKickReason, deferrals)
     if not allow then return end
 
     if Config.PriorityOnly and not Queue:IsPriority(ids) then
-        done(Config.Language.wlonly .."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/criminalrp") 
+        done(Config.Language.wlonly .."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/moraisscripts") 
         return 
     end
 
@@ -574,7 +574,7 @@ local function playerConnect(source, setKickReason, deferrals)
     local pos, data = Queue:IsInQueue(ids, true)
     
     if not pos or not data then
-        done(Config.Language.err .. " [1]\n🔸 Verifique nosso Discord para mais informações: https://discord.io/criminalrp")
+        done(Config.Language.err .. " [1]\n🔸 Verifique nosso Discord para mais informações: https://discord.io/moraisscripts")
 
         Queue:RemoveFromQueue(ids)
         Queue:RemoveFromConnecting(ids)
@@ -596,7 +596,7 @@ local function playerConnect(source, setKickReason, deferrals)
         return
     end
     
-    update(string_format(Config.Language.pos .. ((Queue:TempSize() and Config.ShowTemp) and " (" .. Queue:TempSize() .. " temp)" or "00:00:00"), pos, Queue:GetSize(), "").."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/criminalrp")
+    update(string_format(Config.Language.pos .. ((Queue:TempSize() and Config.ShowTemp) and " (" .. Queue:TempSize() .. " temp)" or "00:00:00"), pos, Queue:GetSize(), "").."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/moraisscripts")
 
     if rejoined then return end
 
@@ -661,7 +661,7 @@ local function playerConnect(source, setKickReason, deferrals)
         local seconds = data.queuetime()
         local qTime = string_format("%02d", math_floor((seconds % 86400) / 3600)) .. ":" .. string_format("%02d", math_floor((seconds % 3600) / 60)) .. ":" .. string_format("%02d", math_floor(seconds % 60))
 
-        local msg = string_format(Config.Language.pos .. ((Queue:TempSize() and Config.ShowTemp) and " (" .. Queue:TempSize() .. " temp)" or ""), pos, Queue:GetSize(), qTime).."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/criminalrp"
+        local msg = string_format(Config.Language.pos .. ((Queue:TempSize() and Config.ShowTemp) and " (" .. Queue:TempSize() .. " temp)" or ""), pos, Queue:GetSize(), qTime).."\n🔸 Verifique nosso Discord para mais informações: https://discord.io/moraisscripts"
         update(msg, data.deferrals)
     end
 end
