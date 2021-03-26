@@ -36,10 +36,21 @@ function DrawText3D(x, y, z, text)
 end
 
 local maxDistance = 1.25
-
-
--- HOUSING EDITION TO CRAFT NEAR OBJECT -- 
-
+Citizen.CreateThread(function()
+	
+		local blip = AddBlipForCoord(3618.32,3730.28,28.69)
+        SetBlipSprite(blip, 466)
+        --SetBlipDisplay(blip, 4)
+        SetBlipScale(blip, 0.8)
+        SetBlipAsShortRange(blip, true)
+        SetBlipColour(blip, 5)
+        BeginTextCommandSetBlipName("STRING")
+        AddTextComponentSubstringPlayerName("Craft")
+        EndTextCommandSetBlipName(blip)
+	
+    Citizen.Wait(1000)
+    
+end)
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
@@ -64,41 +75,6 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
-
-
-
-------------------------------- SECRET ROOM --------------------------
-
-Citizen.CreateThread(function()
-	while true do
-		local ped = GetPlayerPed(-1)
-		local pos = GetEntityCoords(ped)
-		local inRange = false
-		local distance = GetDistanceBetweenCoords(pos, Config.CraftingItems["location"].x, Config.CraftingItems["location"].y, Config.CraftingItems["location"].z, true)
-
-		if distance < 10 then
-			inRange = true
-			if distance < 1.5 then
-				DrawText3D(Config.CraftingItems["location"].x, Config.CraftingItems["location"].y, Config.CraftingItems["location"].z, "~g~E~w~ - Craft Items")
-				if IsControlJustPressed(0, Keys["E"]) then
-					local crafting = {}
-					crafting.label = "Items Crafting"
-					crafting.items = GetThresholdItems()
-					TriggerServerEvent("inventory:server:OpenInventory", "crafting", math.random(1, 99), crafting)
-				end
-			end
-		end
-
-		if not inRange then
-			Citizen.Wait(1000)
-		end
-
-		Citizen.Wait(3)
-	end
-end)
-
------------------------------------------------------------------------------
-
 
 Citizen.CreateThread(function()
 	while true do
@@ -130,9 +106,9 @@ end)
 
 function GetThresholdItems()
 	local items = {}
-	for k, item in pairs(Config.CraftingItems["items"]) do
-		if QBCore.Functions.GetPlayerData().metadata["craftingrep"] >= Config.CraftingItems["items"][k].threshold then
-			items[k] = Config.CraftingItems["items"][k]
+	for k, item in pairs(Config.CraftingItems) do
+		if QBCore.Functions.GetPlayerData().metadata["craftingrep"] >= Config.CraftingItems[k].threshold then
+			items[k] = Config.CraftingItems[k]
 		end
 	end
 	return items
@@ -142,12 +118,13 @@ function SetupAttachmentItemsInfo()
 	itemInfos = {
 		[1] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 140x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 250x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 60x"},
 		[2] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 165x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 285x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 75x"},
-		[3] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 190x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 305x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 85x, " .. QBCore.Shared.Items["smg_extendedclip"]["label"] .. ": 1x"},
-		[4] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 205x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 340x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 110x, " .. QBCore.Shared.Items["smg_extendedclip"]["label"] .. ": 2x"},
+		[3] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 190x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 305x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 85x"},
+		[4] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 205x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 340x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 110x"},
 		[5] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 230x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 365x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 130x"},
 		[6] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 255x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 390x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 145x"},
 		[7] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 270x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 435x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 155x"},
 		[8] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 300x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 469x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 170x"},
+		[9] = {costs = QBCore.Shared.Items["metalscrap"]["label"] .. ": 300x, " .. QBCore.Shared.Items["steel"]["label"] .. ": 469x, " .. QBCore.Shared.Items["rubber"]["label"] .. ": 170x"},
 	}
 
 	local items = {}
@@ -201,7 +178,7 @@ function ItemsToItemInfo()
 	}
 
 	local items = {}
-	for k, item in pairs(Config.CraftingItems["items"]) do
+	for k, item in pairs(Config.CraftingItems) do
 		local itemInfo = QBCore.Shared.Items[item.name:lower()]
 		items[item.slot] = {
 			name = itemInfo["name"],
@@ -220,29 +197,5 @@ function ItemsToItemInfo()
 			points = item.points,
 		}
 	end
-	Config.CraftingItems["items"] = items
+	Config.CraftingItems = items
 end
-
---[[
-local items = {}
-for k, item in pairs(Config.AttachmentCrafting["items"]) do
-	local itemInfo = QBCore.Shared.Items[item.name:lower()]
-	items[item.slot] = {
-		name = itemInfo["name"],
-		amount = tonumber(item.amount),
-		info = itemInfos[item.slot],
-		label = itemInfo["label"],
-		description = itemInfo["description"] ~= nil and itemInfo["description"] or "",
-		weight = itemInfo["weight"], 
-		type = itemInfo["type"], 
-		unique = itemInfo["unique"], 
-		useable = itemInfo["useable"], 
-		image = itemInfo["image"],
-		slot = item.slot,
-		costs = item.costs,
-		threshold = item.threshold,
-		points = item.points,
-	}
-end
-Config.AttachmentCrafting["items"] = items
-end--]]

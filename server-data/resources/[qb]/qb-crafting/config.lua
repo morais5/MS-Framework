@@ -1,131 +1,142 @@
 Config = {}
-
+--["location"] = {x = 3520.94, y = 3705.84, z = 20.76, h = 156.5, r = 1.0}, 
 Config.AttachmentCrafting = {
-    ["location"] = {x = 1110.31, y = -2328.35, z = 31.39, h = 89.44, r = 1.0}, 
+    ["location"] = {x = 3618.32, y = 3730.28, z = 28.69, h = 156.5, r = 1.0}, 
     ["items"] = {
         [1] = {
             name = "pistol_extendedclip",
-            amount = 1,
+            amount = 50,
             info = {},
             costs = {
-                ["metalscrap"] = 140,
-                ["steel"] = 250,
-                ["rubber"] = 60,
+                ["metalscrap"] = 1, -- test (change)
+                ["steel"] = 1, -- test (change)
+                ["rubber"] = 1, -- test (change)
             },
             type = "item",
             slot = 1,
             threshold = 0,
-            points = 1,
+            points = 0,
         },
         [2] = {
             name = "pistol_suppressor",
-            amount = 1,
+            amount = 50,
             info = {},
             costs = {
                 ["metalscrap"] = 165,
                 ["steel"] = 285,
-                ["rubber"] = 75,
+                ["rubber"] = 20,
             },
             type = "item",
             slot = 2,
-            threshold = 10,
-            points = 2,
+            threshold = 0,
+            points = 0,
         },
         [3] = {
-            name = "rifle_extendedclip",
-            amount = 1,
+            name = "pistol_suppressor",
+            amount = 50,
             info = {},
             costs = {
-                ["metalscrap"] = 190,
-                ["steel"] = 305,
-                ["rubber"] = 85,
-                ["smg_extendedclip"] = 1,
+                ["metalscrap"] = 165,
+                ["steel"] = 285,
+                ["rubber"] = 20,
             },
             type = "item",
-            slot = 7,
-            threshold = 25,
-            points = 8,
+            slot = 3,
+            threshold = 0,
+            points = 0,
         },
         [4] = {
             name = "rifle_drummag",
-            amount = 1,
+            amount = 50,
             info = {},
             costs = {
                 ["metalscrap"] = 205,
                 ["steel"] = 340,
-                ["rubber"] = 110,
+                ["rubber"] = 20,
                 ["smg_extendedclip"] = 2,
             },
             type = "item",
-            slot = 8,
-            threshold = 50,
-            points = 8,
+            slot = 4,
+            threshold = 0,
+            points = 0,
         },
         [5] = {
             name = "smg_flashlight",
-            amount = 1,
+            amount = 50,
             info = {},
             costs = {
                 ["metalscrap"] = 230,
                 ["steel"] = 365,
-                ["rubber"] = 130,
+                ["rubber"] = 20,
             },
             type = "item",
-            slot = 3,
-            threshold = 75,
-            points = 3,
+            slot = 5,
+            threshold = 0,
+            points = 0,
         },
         [6] = {
             name = "smg_extendedclip",
-            amount = 1,
+            amount = 50,
             info = {},
             costs = {
                 ["metalscrap"] = 255,
                 ["steel"] = 390,
-                ["rubber"] = 145,
+                ["rubber"] = 20,
             },
             type = "item",
-            slot = 4,
-            threshold = 100,
-            points = 4,
+            slot = 6,
+            threshold = 0,
+            points = 0,
         },
         [7] = {
             name = "smg_suppressor",
-            amount = 1,
+            amount = 50,
             info = {},
             costs = {
                 ["metalscrap"] = 270,
                 ["steel"] = 435,
-                ["rubber"] = 155,
+                ["rubber"] = 20,
             },
             type = "item",
-            slot = 5,
-            threshold = 150,
-            points = 5,
+            slot = 7,
+            threshold = 0,
+            points = 0,
         },
         [8] = {
             name = "smg_scope",
-            amount = 1,
+            amount = 50,
             info = {},
             costs = {
                 ["metalscrap"] = 300,
                 ["steel"] = 469,
-                ["rubber"] = 170,
+                ["rubber"] = 20,
             },
             type = "item",
-            slot = 6,
-            threshold = 200,
-            points = 6,
+            slot = 8,
+            threshold = 0,
+            points = 0,
+        },
+        [9] = {
+            name = "weapon_pistol",
+            amount = 50,
+            info = {},
+            costs = {
+                ["metalscrap"] = 300,
+                ["steel"] = 469,
+                ["rubber"] = 20,
+            },
+            type = "item",
+            slot = 9,
+            threshold = 0,
+            points = 0,
         },
     }
 }
 
 Config.CraftingItems = {
-    ["location"] = {x = 1107.01, y = -2326.4, z = 31.39, h = 174.87, r = 1.0}, 
-    ["items"] = {
     [1] = {
         name = "lockpick",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["metalscrap"] = 22,
@@ -138,7 +149,7 @@ Config.CraftingItems = {
     },
     [2] = {
         name = "screwdriverset",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["metalscrap"] = 30,
@@ -151,7 +162,7 @@ Config.CraftingItems = {
     },
     [3] = {
         name = "electronickit",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["metalscrap"] = 30,
@@ -165,7 +176,7 @@ Config.CraftingItems = {
     },
     [4] = {
         name = "radioscanner",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["electronickit"] = 2,
@@ -179,7 +190,7 @@ Config.CraftingItems = {
     },
     [5] = {
         name = "gatecrack",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["metalscrap"] = 10,
@@ -195,7 +206,7 @@ Config.CraftingItems = {
     },
     [6] = {
         name = "handcuffs",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["metalscrap"] = 36,
@@ -209,7 +220,7 @@ Config.CraftingItems = {
     },
     [7] = {
         name = "repairkit",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["metalscrap"] = 32,
@@ -223,7 +234,7 @@ Config.CraftingItems = {
     },
     [8] = {
         name = "pistol_ammo",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["metalscrap"] = 50,
@@ -237,7 +248,7 @@ Config.CraftingItems = {
     },
     [9] = {
         name = "ironoxide",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["iron"] = 60,
@@ -250,7 +261,7 @@ Config.CraftingItems = {
     },
     [10] = {
         name = "aluminumoxide",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["aluminum"] = 60,
@@ -263,7 +274,7 @@ Config.CraftingItems = {
     },
     [11] = {
         name = "armor",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["iron"] = 33,
@@ -273,12 +284,12 @@ Config.CraftingItems = {
         },
         type = "item",
         slot = 11,
-        threshold = 350,
+        threshold = 305,
         points = 11,
     },
     [12] = {
         name = "drill",
-        amount = 1,
+        amount = 50,
         info = {},
         costs = {
             ["iron"] = 50,
@@ -288,8 +299,7 @@ Config.CraftingItems = {
         },
         type = "item",
         slot = 12,
-        threshold = 1750,
+        threshold = 350,
         points = 12,
     },
-  }
 }
