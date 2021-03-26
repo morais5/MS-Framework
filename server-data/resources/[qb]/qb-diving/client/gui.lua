@@ -110,9 +110,9 @@ function Menu.renderButtons()
 		
 		boxColor = {38,38,38,199}
 		local movetext = 0.0
-		if(settings["extra"] == "Casa de barco") then
+		if(settings["extra"] == "Boothuis") then
 			boxColor = {44,100,44,200}
-		elseif (settings["extra"] == "Apreendidos Barcos") then
+		elseif (settings["extra"] == "In Beslag") then
 			boxColor = {77, 8, 8,155}
 		end
 

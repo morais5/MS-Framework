@@ -9,7 +9,7 @@ local CurrentDivingLocation = {
 RegisterNetEvent('qb-diving:client:NewLocations')
 AddEventHandler('qb-diving:client:NewLocations', function()
     QBCore.Functions.TriggerCallback('qb-diving:server:GetDivingConfig', function(Config, Area)
-        QBDiving.Locations = Config
+        QBCoreDiving.Locations = Config
         TriggerEvent('qb-diving:client:SetDivingLocation', Area)
     end)
 end)
@@ -25,23 +25,23 @@ AddEventHandler('qb-diving:client:SetDivingLocation', function(DivingLocation)
     end
     
     Citizen.CreateThread(function()
-        RadiusBlip = AddBlipForRadius(QBDiving.Locations[CurrentDivingLocation.Area].coords.Area.x, QBDiving.Locations[CurrentDivingLocation.Area].coords.Area.y, QBDiving.Locations[CurrentDivingLocation.Area].coords.Area.z, 100.0)
+        RadiusBlip = AddBlipForRadius(QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Area.x, QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Area.y, QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Area.z, 100.0)
         
         SetBlipRotation(RadiusBlip, 0)
-        SetBlipColour(RadiusBlip, 47)
+        SetBlipColour(RadiusBlip, 40)
 
         CurrentDivingLocation.Blip.Radius = RadiusBlip
 
-        LabelBlip = AddBlipForCoord(QBDiving.Locations[CurrentDivingLocation.Area].coords.Area.x, QBDiving.Locations[CurrentDivingLocation.Area].coords.Area.y, QBDiving.Locations[CurrentDivingLocation.Area].coords.Area.z)
+        LabelBlip = AddBlipForCoord(QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Area.x, QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Area.y, QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Area.z)
 
-        SetBlipSprite (LabelBlip, 597)
-        SetBlipDisplay(LabelBlip, 4)
+        SetBlipSprite (LabelBlip, 587)
+        SetBlipDisplay(LabelBlip, 2)
         SetBlipScale  (LabelBlip, 0.7)
         SetBlipColour(LabelBlip, 0)
         SetBlipAsShortRange(LabelBlip, true)
 
         BeginTextCommandSetBlipName('STRING')
-        AddTextComponentSubstringPlayerName('Área de mergulho')
+        AddTextComponentSubstringPlayerName('Diving Spot')
         EndTextCommandSetBlipName(LabelBlip)
 
         CurrentDivingLocation.Blip.Label = LabelBlip
@@ -62,7 +62,7 @@ Citizen.CreateThread(function()
         local Pos = GetEntityCoords(Ped)
 
         if CurrentDivingLocation.Area ~= 0 then
-            local AreaDistance = GetDistanceBetweenCoords(Pos, QBDiving.Locations[CurrentDivingLocation.Area].coords.Area.x, QBDiving.Locations[CurrentDivingLocation.Area].coords.Area.y, QBDiving.Locations[CurrentDivingLocation.Area].coords.Area.z)
+            local AreaDistance = GetDistanceBetweenCoords(Pos, QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Area.x, QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Area.y, QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Area.z)
             local CoralDistance = nil
 
             if AreaDistance < 100 then
@@ -70,7 +70,7 @@ Citizen.CreateThread(function()
             end
 
             if inRange then
-                for cur, CoralLocation in pairs(QBDiving.Locations[CurrentDivingLocation.Area].coords.Coral) do
+                for cur, CoralLocation in pairs(QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Coral) do
                     CoralDistance = GetDistanceBetweenCoords(Pos, CoralLocation.coords.x, CoralLocation.coords.y, CoralLocation.coords.z, true)
 
                     if CoralDistance ~= nil then
@@ -78,13 +78,13 @@ Citizen.CreateThread(function()
                             if not CoralLocation.PickedUp then
                                 DrawMarker(32, CoralLocation.coords.x, CoralLocation.coords.y, CoralLocation.coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 1.0, 0.4, 255, 223, 0, 255, true, false, false, false, false, false, false)
                                 if CoralDistance <= 1.5 then
-                                    DrawText3D(CoralLocation.coords.x, CoralLocation.coords.y, CoralLocation.coords.z, '[E] Colete coral')
+                                    DrawText3D(CoralLocation.coords.x, CoralLocation.coords.y, CoralLocation.coords.z, '[E] Collecting coral')
                                     if IsControlJustPressed(0, Keys["E"]) then
                                         -- loadAnimDict("pickup_object")
                                         local times = math.random(2, 5)
                                         CallCops()
                                         FreezeEntityPosition(Ped, true)
-                                        QBCore.Functions.Progressbar("take_coral", "Coletando coral..", times * 1000, false, true, {
+                                        QBCore.Functions.Progressbar("take_coral", "Collecting coral..", times * 1000, false, true, {
                                             disableMovement = true,
                                             disableCarMovement = true,
                                             disableMouse = false,
@@ -119,13 +119,13 @@ Citizen.CreateThread(function()
 end)
 
 function TakeCoral(coral)
-    QBDiving.Locations[CurrentDivingLocation.Area].coords.Coral[coral].PickedUp = true
+    QBCoreDiving.Locations[CurrentDivingLocation.Area].coords.Coral[coral].PickedUp = true
     TriggerServerEvent('qb-diving:server:TakeCoral', CurrentDivingLocation.Area, coral, true)
 end
 
 RegisterNetEvent('qb-diving:client:UpdateCoral')
 AddEventHandler('qb-diving:client:UpdateCoral', function(Area, Coral, Bool)
-    QBDiving.Locations[Area].coords.Coral[Coral].PickedUp = Bool
+    QBCoreDiving.Locations[Area].coords.Coral[Coral].PickedUp = Bool
 end)
 
 function CallCops()
@@ -142,15 +142,15 @@ end
 RegisterNetEvent('qb-diving:server:CallCops')
 AddEventHandler('qb-diving:server:CallCops', function(Coords, msg)
     PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
-    TriggerEvent("chatMessage", "112-ALERTA", "error", msg)
+    TriggerEvent("chatMessage", "911-MESSAGE", "error", msg)
     local transG = 100
     local blip = AddBlipForRadius(Coords.x, Coords.y, Coords.z, 100.0)
-    SetBlipSprite(blip, 9)
-    SetBlipColour(blip, 1)
+    SetBlipSprite(blip, 10)
+    SetBlipColour(blip, 38)
     SetBlipAlpha(blip, transG)
     SetBlipAsShortRange(blip, false)
     BeginTextCommandSetBlipName('STRING')
-    AddTextComponentString("122 - Local de mergulho")
+    AddTextComponentString("911 - Dive site")
     EndTextCommandSetBlipName(blip)
     while transG ~= 0 do
         Wait(180 * 4)
@@ -188,7 +188,7 @@ RegisterNetEvent('qb-diving:client:UseGear')
 AddEventHandler('qb-diving:client:UseGear', function(bool)
     if bool then
         GearAnim()
-        QBCore.Functions.Progressbar("equip_gear", "Colocando roupa de neoprene..", 5000, false, true, {}, {}, {}, {}, function() -- Done
+        QBCore.Functions.Progressbar("equip_gear", "Putting on wet suit..", 5000, false, true, {}, {}, {}, {}, function() -- Done
             DeleteGear()
             local maskModel = GetHashKey("p_d_scuba_mask_s")
             local tankModel = GetHashKey("p_s_scuba_tank_s")
@@ -217,12 +217,12 @@ AddEventHandler('qb-diving:client:UseGear', function(bool)
             currentGear.enabled = true
             TriggerServerEvent('qb-diving:server:RemoveGear')
             ClearPedTasks(GetPlayerPed(-1))
-            TriggerEvent('chatMessage', "SISTEMA", "error", "/tirarroupademergulho para tirar o fato de mergulho!")
+            TriggerEvent('chatMessage', "SYSTEM", "error", "/wetsuit to take off your wetsuit!")
         end)
     else
         if currentGear.enabled then
             GearAnim()
-            QBCore.Functions.Progressbar("remove_gear", "Tirando a roupa de neoprene..", 5000, false, true, {}, {}, {}, {}, function() -- Done
+            QBCore.Functions.Progressbar("remove_gear", "Removing wet suit..", 5000, false, true, {}, {}, {}, {}, function() -- Done
                 DeleteGear()
 
                 SetEnableScuba(GetPlayerPed(-1), false)
@@ -230,10 +230,10 @@ AddEventHandler('qb-diving:client:UseGear', function(bool)
                 currentGear.enabled = false
                 TriggerServerEvent('qb-diving:server:GiveBackGear')
                 ClearPedTasks(GetPlayerPed(-1))
-                QBCore.Functions.Notify('Você tirou sua roupa de mergulho')
+                QBCore.Functions.Notify('You took your wetsuit off')
             end)
         else
-            QBCore.Functions.Notify('Você não está usando roupa de mergulho..', 'error')
+            QBCore.Functions.Notify('You are not wearing a diving gear..', 'error')
         end
     end
 end)

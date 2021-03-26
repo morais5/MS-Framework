@@ -7,22 +7,22 @@ RegisterServerEvent('qb-diving:server:SetBerthVehicle')
 AddEventHandler('qb-diving:server:SetBerthVehicle', function(BerthId, vehicleModel)
     TriggerClientEvent('qb-diving:client:SetBerthVehicle', -1, BerthId, vehicleModel)
     
-    QBBoatshop.Locations["berths"][BerthId]["boatModel"] = boatModel
+    QBCoreBoatshop.Locations["berths"][BerthId]["boatModel"] = boatModel
 end)
 
 RegisterServerEvent('qb-diving:server:SetDockInUse')
 AddEventHandler('qb-diving:server:SetDockInUse', function(BerthId, InUse)
-    QBBoatshop.Locations["berths"][BerthId]["inUse"] = InUse
+    QBCoreBoatshop.Locations["berths"][BerthId]["inUse"] = InUse
     TriggerClientEvent('qb-diving:client:SetDockInUse', -1, BerthId, InUse)
 end)
 
 QBCore.Functions.CreateCallback('qb-diving:server:GetBusyDocks', function(source, cb)
-    cb(QBBoatshop.Locations["berths"])
+    cb(QBCoreBoatshop.Locations["berths"])
 end)
 
 RegisterServerEvent('qb-diving:server:BuyBoat')
 AddEventHandler('qb-diving:server:BuyBoat', function(boatModel, BerthId)
-    local BoatPrice = QBBoatshop.ShopBoats[boatModel]["price"]
+    local BoatPrice = QBCoreBoatshop.ShopBoats[boatModel]["price"]
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     local PlayerMoney = {
@@ -30,7 +30,7 @@ AddEventHandler('qb-diving:server:BuyBoat', function(boatModel, BerthId)
         bank = Player.PlayerData.money.bank,
     }
     local missingMoney = 0
-    local plate = "LUAL"..math.random(1111, 9999)
+    local plate = "IDEK"..math.random(1111, 9999)
 
     if PlayerMoney.cash >= BoatPrice then
         Player.Functions.RemoveMoney('cash', BoatPrice, "bought-boat")
@@ -46,7 +46,7 @@ AddEventHandler('qb-diving:server:BuyBoat', function(boatModel, BerthId)
         else
             missingMoney = (BoatPrice - PlayerMoney.cash)
         end
-        TriggerClientEvent('QBCore:Notify', src, 'Você não tem dinheiro suficiente, está faltando €'..missingMoney, 'error', 4000)
+        TriggerClientEvent('QBCore:Notify', src, 'You do not have enough money, you are missing $'..missingMoney, 'error', 4000)
     end
 end)
 
@@ -104,7 +104,7 @@ RegisterServerEvent('qb-diving:server:SetBoatState')
 AddEventHandler('qb-diving:server:SetBoatState', function(plate, state, boathouse)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    QBCore.Functions.ExecuteSql(false, "SELECT * FROM `player_boats` WHERE `plate` = '"..plate.."'", function(result)
+    QBCore.Functions.ExecuteSqlv(false, "SELECT * FROM `player_boats` WHERE `plate` = '"..plate.."'", function(result)
         if result[1] ~= nil then
             QBCore.Functions.ExecuteSql(false, "UPDATE `player_boats` SET `state` = '"..state.."' WHERE `plate` = '"..plate.."' AND `citizenid` = '"..Player.PlayerData.citizenid.."'")
     
@@ -122,10 +122,10 @@ AddEventHandler('qb-diving:server:CallCops', function(Coords)
         local Player = QBCore.Functions.GetPlayer(v)
         if Player ~= nil then
             if (Player.PlayerData.job.name == "police" and Player.PlayerData.job.onduty) then
-                local msg = "alguem esta roubando coral!"
+                local msg = "Coral may be stolen!"
                 TriggerClientEvent('qb-diving:client:CallCops', Player.PlayerData.source, Coords, msg)
                 local alertData = {
-                    title = "Mergulho ilegal",
+                    title = "illegal diving",
                     coords = {x = Coords.x, y = Coords.y, z = Coords.z},
                     description = msg,
                 }
@@ -137,7 +137,7 @@ end)
 
 local AvailableCoral = {}
 
-QBCore.Commands.Add("tirarroupademergulho", "Tire sua roupa de neoprene", {}, false, function(source, args)
+QBCore.Commands.Add("wetsuit", "take or put on wetsuit", {}, false, function(source, args)
     local Player = QBCore.Functions.GetPlayer(source)
     TriggerClientEvent("qb-diving:client:UseGear", source, false)
 end)
@@ -167,7 +167,7 @@ AddEventHandler('qb-diving:server:SellCoral', function()
             end
         end
     else
-        TriggerClientEvent('QBCore:Notify', src, 'Você não tem nenhum coral para vender..', 'error')
+        TriggerClientEvent('QBCore:Notify', src, 'You dont have coral to sell..', 'error')
     end
 end)
 
@@ -187,7 +187,7 @@ function HasCoral(src)
     local retval = false
     AvailableCoral = {}
 
-    for k, v in pairs(QBDiving.CoralTypes) do
+    for k, v in pairs(QBCoreDiving.CoralTypes) do
         local Item = Player.Functions.GetItemByName(v.item)
         if Item ~= nil then
             table.insert(AvailableCoral, v)

@@ -26,11 +26,11 @@ end)
 RegisterNetEvent("QBCore:Client:OnPlayerLoaded")
 AddEventHandler("QBCore:Client:OnPlayerLoaded", function()
     QBCore.Functions.TriggerCallback('qb-diving:server:GetBusyDocks', function(Docks)
-        QBBoatshop.Locations["berths"] = Docks
+        QBCoreBoatshop.Locations["berths"] = Docks
     end)
 
     QBCore.Functions.TriggerCallback('qb-diving:server:GetDivingConfig', function(Config, Area)
-        QBDiving.Locations = Config
+        QBCoreDiving.Locations = Config
         TriggerEvent('qb-diving:client:SetDivingLocation', Area)
     end)
 
@@ -42,7 +42,7 @@ AddEventHandler("QBCore:Client:OnPlayerLoaded", function()
         if PoliceBlip ~= nil then
             RemoveBlip(PoliceBlip)
         end
-        PoliceBlip = AddBlipForCoord(QBBoatshop.PoliceBoat.x, QBBoatshop.PoliceBoat.y, QBBoatshop.PoliceBoat.z)
+        PoliceBlip = AddBlipForCoord(QBCoreBoatshop.PoliceBoat.x, QBCoreBoatshop.PoliceBoat.y, QBCoreBoatshop.PoliceBoat.z)
         SetBlipSprite(PoliceBlip, 410)
         SetBlipDisplay(PoliceBlip, 4)
         SetBlipScale(PoliceBlip, 0.8)
@@ -50,9 +50,9 @@ AddEventHandler("QBCore:Client:OnPlayerLoaded", function()
         SetBlipColour(PoliceBlip, 29)
 
         BeginTextCommandSetBlipName("STRING")
-        AddTextComponentSubstringPlayerName("Barco da polícia")
+        AddTextComponentSubstringPlayerName("Police boat")
         EndTextCommandSetBlipName(PoliceBlip)
-        PoliceBlip = AddBlipForCoord(QBBoatshop.PoliceBoat2.x, QBBoatshop.PoliceBoat2.y, QBBoatshop.PoliceBoat2.z)
+        PoliceBlip = AddBlipForCoord(QBCoreBoatshop.PoliceBoat2.x, QBCoreBoatshop.PoliceBoat2.y, QBCoreBoatshop.PoliceBoat2.z)
         SetBlipSprite(PoliceBlip, 410)
         SetBlipDisplay(PoliceBlip, 4)
         SetBlipScale(PoliceBlip, 0.8)
@@ -60,7 +60,7 @@ AddEventHandler("QBCore:Client:OnPlayerLoaded", function()
         SetBlipColour(PoliceBlip, 29)
     
         BeginTextCommandSetBlipName("STRING")
-        AddTextComponentSubstringPlayerName("Barco da polícia")
+        AddTextComponentSubstringPlayerName("Police boat")
         EndTextCommandSetBlipName(PoliceBlip)
     end
 end)
@@ -88,20 +88,20 @@ AddEventHandler('qb-diving:client:UseJerrycan', function()
     local boat = IsPedInAnyBoat(ped)
     if boat then
         local curVeh = GetVehiclePedIsIn(ped, false)
-        QBCore.Functions.Progressbar("reful_boat", "Abastecimento de barcos..", 20000, false, true, {
+        QBCore.Functions.Progressbar("reful_boat", "Refueling boat..", 20000, false, true, {
             disableMovement = true,
             disableCarMovement = true,
             disableMouse = false,
             disableCombat = true,
         }, {}, {}, {}, function() -- Done
             exports['LegacyFuel']:SetFuel(curVeh, 100)
-            QBCore.Functions.Notify('O barco foi reabastecido', 'success')
+            QBCore.Functions.Notify('The boat has been refueled!', 'success')
             TriggerServerEvent('qb-diving:server:RemoveItem', 'jerry_can', 1)
             TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items['jerry_can'], "remove")
         end, function() -- Cancel
-            QBCore.Functions.Notify('O reabastecimento foi cancelado!', 'error')
+            QBCore.Functions.Notify('Refueling has been canceled!', 'error')
         end)
     else
-        QBCore.Functions.Notify('Você não está em um barco', 'error')
+        QBCore.Functions.Notify('You are not in a boat!', 'error')
     end
 end)

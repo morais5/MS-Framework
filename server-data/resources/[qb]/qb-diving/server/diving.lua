@@ -1,16 +1,16 @@
-local CurrentDivingArea = math.random(1, #QBDiving.Locations)
+local CurrentDivingArea = math.random(1, #QBCoreDiving.Locations)
 
 QBCore.Functions.CreateCallback('qb-diving:server:GetDivingConfig', function(source, cb)
-    cb(QBDiving.Locations, CurrentDivingArea)
+    cb(QBCoreDiving.Locations, CurrentDivingArea)
 end)
 
 RegisterServerEvent('qb-diving:server:TakeCoral')
 AddEventHandler('qb-diving:server:TakeCoral', function(Area, Coral, Bool)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local CoralType = math.random(1, #QBDiving.CoralTypes)
-    local Amount = math.random(1, QBDiving.CoralTypes[CoralType].maxAmount)
-    local ItemData = QBCore.Shared.Items[QBDiving.CoralTypes[CoralType].item]
+    local CoralType = math.random(1, #QBCoreDiving.CoralTypes)
+    local Amount = math.random(1, QBCoreDiving.CoralTypes[CoralType].maxAmount)
+    local ItemData = QBCore.Shared.Items[QBCoreDiving.CoralTypes[CoralType].item]
 
     if Amount > 1 then
         for i = 1, Amount, 1 do
@@ -23,23 +23,23 @@ AddEventHandler('qb-diving:server:TakeCoral', function(Area, Coral, Bool)
         TriggerClientEvent('inventory:client:ItemBox', src, ItemData, "add")
     end
 
-    if (QBDiving.Locations[Area].TotalCoral - 1) == 0 then
-        for k, v in pairs(QBDiving.Locations[CurrentDivingArea].coords.Coral) do
+    if (QBCoreDiving.Locations[Area].TotalCoral - 1) == 0 then
+        for k, v in pairs(QBCoreDiving.Locations[CurrentDivingArea].coords.Coral) do
             v.PickedUp = false
         end
-        QBDiving.Locations[CurrentDivingArea].TotalCoral = QBDiving.Locations[CurrentDivingArea].DefaultCoral
+        QBCoreDiving.Locations[CurrentDivingArea].TotalCoral = QBCoreDiving.Locations[CurrentDivingArea].DefaultCoral
 
-        local newLocation = math.random(1, #QBDiving.Locations)
+        local newLocation = math.random(1, #QBCoreDiving.Locations)
         while (newLocation == CurrentDivingArea) do
             Citizen.Wait(3)
-            newLocation = math.random(1, #QBDiving.Locations)
+            newLocation = math.random(1, #QBCoreDiving.Locations)
         end
         CurrentDivingArea = newLocation
         
         TriggerClientEvent('qb-diving:client:NewLocations', -1)
     else
-        QBDiving.Locations[Area].coords.Coral[Coral].PickedUp = Bool
-        QBDiving.Locations[Area].TotalCoral = QBDiving.Locations[Area].TotalCoral - 1
+        QBCoreDiving.Locations[Area].coords.Coral[Coral].PickedUp = Bool
+        QBCoreDiving.Locations[Area].TotalCoral = QBCoreDiving.Locations[Area].TotalCoral - 1
     end
 
     TriggerClientEvent('qb-diving:server:UpdateCoral', -1, Area, Coral, Bool)

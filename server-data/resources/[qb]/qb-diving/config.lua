@@ -1,35 +1,35 @@
-QBBoatshop = QBBoatshop or {}
-QBDiving = QBDiving or {}
+QBCoreBoatshop = QBCoreBoatshop or {}
+QBCoreDiving = QBCoreDiving or {}
 
-QBBoatshop.PoliceBoat = {
+QBCoreBoatshop.PoliceBoat = {
     x = -800.67, 
     y = -1494.54, 
     z = 1.59,
 }
 
-QBBoatshop.PoliceBoatSpawn = {
+QBCoreBoatshop.PoliceBoatSpawn = {
     x = -793.58, 
     y = -1501.4, 
     z = 0.12,
     h = 111.5,
 }
 
-QBBoatshop.PoliceBoat2 = {
+QBCoreBoatshop.PoliceBoat2 = {
     x = -279.41, 
     y = 6635.09, 
     z = 7.51,
 }
 
-QBBoatshop.PoliceBoatSpawn2 = {
+QBCoreBoatshop.PoliceBoatSpawn2 = {
     x = -293.10, 
     y = 6642.69, 
     z = 0.15,
     h = 65.5,
 }
 
-QBBoatshop.Docks = {
+QBCoreBoatshop.Docks = {
     ["lsymc"] = {
-        label = "LSYMC Boat house",
+        label = "Donovans Boat House",
         coords = {
             take = {
                 x = -794.66, 
@@ -45,7 +45,7 @@ QBBoatshop.Docks = {
         }
     },
     ["paletto"] = {
-        label = "Paleto Boat house",
+        label = "Paleto Boat House",
         coords = {
             take = {
                 x = -277.46, 
@@ -61,7 +61,7 @@ QBBoatshop.Docks = {
         }
     },    
     ["millars"] = {
-        label = "Millars Boat house",
+        label = "Pauls Boat House",
         coords = {
             take = {
                 x = 1299.24, 
@@ -78,9 +78,9 @@ QBBoatshop.Docks = {
     },
 }
 
-QBBoatshop.Depots = {
+QBCoreBoatshop.Depots = {
     [1] = {
-        label = "LSYMC Impound",
+        label = "La Puerta Boat Storage",
         coords = {
             take = {
                 x = -772.98, 
@@ -97,7 +97,7 @@ QBBoatshop.Depots = {
     },
 }
 
-QBBoatshop.Locations = {
+QBCoreBoatshop.Locations = {
     ["berths"] = {
         [1] = {
             ["boatModel"] = "dinghy",
@@ -111,7 +111,7 @@ QBBoatshop.Locations = {
                 ["buy"] = {
                     ["x"] = -723.3,
                     ["y"] = -1323.61,
-                    ["z"] = 1.59,
+                    ["z"] = 0.64,
                 }
             },
             ["inUse"] = false
@@ -128,7 +128,7 @@ QBBoatshop.Locations = {
                 ["buy"] = {
                     ["x"] = -729.19, 
                     ["y"] = -1330.58, 
-                    ["z"] = 1.67, 
+                    ["z"] = 0.64, 
                 },
             },
             ["inUse"] = false
@@ -145,7 +145,7 @@ QBBoatshop.Locations = {
                 ["buy"] = {
                     ["x"] = -734.98, 
                     ["y"] = -1337.42, 
-                    ["z"] = 1.67, 
+                    ["z"] = 0.60, 
                 },
             },
             ["inUse"] = false
@@ -160,9 +160,9 @@ QBBoatshop.Locations = {
                     ["h"] = 229.5
                 },
                 ["buy"] = {
-                    ["x"] = -740.62, 
+                    ["x"] = -741.0, 
                     ["y"] = -1344.28, 
-                    ["z"] = 1.67, 
+                    ["z"] = .64, 
                 },
             },
             ["inUse"] = false
@@ -179,7 +179,7 @@ QBBoatshop.Locations = {
                 ["buy"] = {
                     ["x"] = -746.6, 
                     ["y"] = -1351.36, 
-                    ["z"] = 1.59, 
+                    ["z"] = 0.64, 
                 },
             },
             ["inUse"] = false
@@ -196,7 +196,7 @@ QBBoatshop.Locations = {
                 ["buy"] = {
                     ["x"] = -752.49,
                     ["y"] = -1358.28,
-                    ["z"] = 1.59,
+                    ["z"] = 0.64,
                 },
             },
             ["inUse"] = false
@@ -306,7 +306,7 @@ QBBoatshop.Locations = {
     }
 }
 
-QBBoatshop.ShopBoats = {
+QBCoreBoatshop.ShopBoats = {
     ["dinghy"] = {
         ["model"] = "dinghy",
         ["label"] = "Dinghy",
@@ -319,16 +319,16 @@ QBBoatshop.ShopBoats = {
     }
 }
 
-QBBoatshop.SpawnVehicle = {
+QBCoreBoatshop.SpawnVehicle = {
     x = -729.77, 
     y = -1355.49, 
     z = 1.19, 
     h = 142.5,
 }
 
-QBDiving.Locations = {
+QBCoreDiving.Locations = {
     [1] = {
-        label = "Location 1",
+        label = "This is location 1",
         coords = {
             Area = {
                 x = -2838.8, 
@@ -374,7 +374,7 @@ QBDiving.Locations = {
         TotalCoral = 4,
     },
     [2] = {
-        label = "location 2",
+        label = "This is location 2",
         coords = {
             Area = {
                 x = -3288.2, 
@@ -412,7 +412,7 @@ QBDiving.Locations = {
         TotalCoral = 3,
     },
     [3] = {
-        label = "location 3",
+        label = "This is location 3",
         coords = {
             Area = {
                 x = -3367.24, 
@@ -450,7 +450,7 @@ QBDiving.Locations = {
         TotalCoral = 3,
     },
     [4] = {
-        label = "location 4",
+        label = "This is location 4",
         coords = {
             Area = {
                 x = 3002.5, 
@@ -488,7 +488,7 @@ QBDiving.Locations = {
         TotalCoral = 3,
     },
     [5] = {
-        label = "location 5",
+        label = "This is location 5",
         coords = {
             Area = {
                 x = 3421.58, 
@@ -534,7 +534,7 @@ QBDiving.Locations = {
         TotalCoral = 4,
     },
     [6] = {
-        label = "location 6",
+        label = "This is location 6",
         coords = {
             Area = {
                 x = 2720.14, 
@@ -580,7 +580,7 @@ QBDiving.Locations = {
         TotalCoral = 4,
     },
     [7] = {
-        label = "location 7",
+        label = "This is location 7",
         coords = {
             Area = {
                 x = 536.69, 
@@ -627,7 +627,7 @@ QBDiving.Locations = {
     },
 }
 
-QBDiving.CoralTypes = {
+QBCoreDiving.CoralTypes = {
     [1] = {
         item = "dendrogyra_coral",
         maxAmount = math.random(2, 7),
@@ -640,7 +640,7 @@ QBDiving.CoralTypes = {
     }
 }
 
-QBDiving.SellLocations = {
+QBCoreDiving.SellLocations = {
     [1] = {
         ["coords"] = {
             ["x"] = -1686.9, 
