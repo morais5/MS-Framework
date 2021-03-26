@@ -2271,33 +2271,21 @@ QBShared.VehicleModels = {
 }
 
 QBShared.Gangs = {
-	["geen"] = {--gang default não mexer
-		label = "Não Tens Gang"
+	["none"] = {
+		label = "No Gang"
 	},
-	["bloods"] = {
-		label = "Bloods"
+	["ballas"] = {
+		label = "Ballas"
 	},
-	["vanilla"] = {
-		label = "Vanilla"
+	["thefamily"] = {
+		label = "The Family"
 	},
-	["hyper"] = {
-		label = "Hyper"
+	["vagos"] = {
+		label = "Vagos"
 	},
-	["bahamas"] = {
-		label = "Bahamas"
+	["marabunta"] = {
+		label = "marabunta"
 	},
-	["groove"] = {
-		label = "Groove"
-	},
-	["cartel"] = {
-		label = "Cartel"
-	},
-	["orgarmas"] = { -- TESTE
-		label = "orgarmas" -- TESTE
-	},
-	["mafia"] = {
-		label = "Mafia"
-	}
 }
 
 QBShared.Jobs = {

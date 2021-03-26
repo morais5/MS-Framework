@@ -223,6 +223,12 @@ function IsAuthorized(doorID)
 			return true
 		end
 	end
+
+	for _,gang in pairs(doorID.authorizedJobs) do
+		if gang == PlayerData.gang.name then
+			return true
+		end
+	end
 	
 	return false
 end
