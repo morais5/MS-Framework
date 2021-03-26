@@ -12,10 +12,9 @@ If you get a bug, please report it [Here](https://github.com/morais5/QBCore-Mora
 ### ❓ Support 
 If you have any questions about it, click [Here](https://discord.gg/yMShaH5Kae)
 
-### 💝 Update v3.2.1
+### 💝 Update v3.2.2
 
-- [QB-Gangs](https://github.com/morais5/QBCore-Morais/commit/7fd52c4955c3f73c3a1f5491840d8054259b9c06)
-- [QB-Core](https://github.com/morais5/QBCore-Morais/commit/7fd52c4955c3f73c3a1f5491840d8054259b9c06)
+- [QB-Crafting](https://github.com/morais5/QBCore-Morais/commit/d0e3574cb615e1e7b508bf01485e077bb12f3cad)
 
 ## 📑 License
 Copyright © 2021 Miguel Morais.
