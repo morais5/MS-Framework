@@ -1,9 +1,4 @@
-fx_version 'cerulean'
-game 'gta5'
-
-version '2.2'
-
-author 'Mojito-Fivem'
+resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 client_scripts {
 	'config.lua',
@@ -12,7 +7,10 @@ client_scripts {
 }
 
 server_scripts {
-	'server/version.lua'
+	'config.lua',
+	'server/main.lua',
 }
 
-file 'version.json'
+exports {
+	'refreshPlayerWhitelisted',
+}

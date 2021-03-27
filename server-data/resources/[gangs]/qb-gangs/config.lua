@@ -11,118 +11,115 @@ Keys = {
 
 Config = Config or {}
 
-Config.Gangs = {
-    ["ballas"] = {
-        ["VehicleSpawner"] = {
-            label = "Car Spawn",
-            coords = {x =89.04, y =-1967.09, z =20.75, h =324.12},
-            ["colours"] = {
-                ["primary"] = {
-                    r = 108,
-                    g = 11, 
-                    b = 184
-                },
-                ["secondary"] = { 
-                    r = 108,
-                    b = 11, 
-                    g = 18
-                },
-            },
-            ["vehicles"] = {
-                ["buffalo2"] = "Buffalo Sport",
-                ["rumpo3"] = "RumpoXL",
-                ["manchez"] = "Manchez",
-                ["chino2"] = "Lowrider",
-            }
-        },
-        ["Stash"] = {
-            label = "Ballas Stash",
-            coords = {x =113.3059, y =-1970.89, z =21.3276},
-        }
+-- Config --
+
+Config.gang = "bloods"
+Config.stashname = "bloodstash" --Always Keep It Like vagostash,gsfstash,mafiastash
+
+Config.Locations = {
+
+    -- Bloods
+
+    ["ogcarspawnbloods"] = {
+        label = "Gagarem Spawn",
+        coords = {x =-179.09, y =-1623.75, z =33.31, h =4.39},
     },
-    ["families"] = {
-        ["VehicleSpawner"] = {
-            label = "Car Spawn",
-            coords = {x =-108.24, y =-1597.97, z =31.65, h =322.23},
-            ["colours"] = {
-                ["primary"] = {
-                    r = 0,
-                    g = 50, 
-                    b = 0
-                },
-                ["secondary"] = { 
-                    r = 0,
-                    b = 0, 
-                    g = 0
-                },
-            },
-            ["vehicles"] = {
-                ["buffalo2"] = "Buffalo Sport",
-                ["rumpo3"] = "RumpoXL",
-                ["manchez"] = "Manchez",
-                ["chino2"] = "Lowrider",
-            } 
-        },
-        ["Stash"] = {
-            label = "Families Stash",
-            coords = {x =-136.91, y =-1609.84, z =35.03, h =66.89},
-        },
+    ["stashbloods"] = {
+        label = "Bloods Armario",
+        coords = {x =-161.15, y =-1638.55, z =34.03},
     },
-    ["marabunta"] = {
-        ["VehicleSpawner"] = {
-            label = "Car Spawn",
-            coords = {x =1421.77, y =-1506.75, z =60.9, h =170.31},
-            ["colours"] = {
-                ["primary"] = {
-                    r = 0,
-                    g = 65, 
-                    b = 188
-                },
-                ["secondary"] = { 
-                    r = 0,
-                    b = 65, 
-                    g = 188
-                }
-            },
-            ["vehicles"] = {
-                ["buffalo2"] = "Buffalo Sport",
-                ["rumpo3"] = "RumpoXL",
-                ["manchez"] = "Manchez",
-                ["chino2"] = "Lowrider",
-            }
-        },
-        ["Stash"] = {
-            label = "Marabunta Stash",
-            coords = {x =1438.95, y =-1489.91, z =66.62, h =151.24},
-            
-        },
+
+    -- Vanilla
+
+    ["ogcarspawnvanilla"] = {
+        label = "Gagarem Spawn",
+        coords = {x =137.2, y =-1306.94, z =28.92, h =311.44},
     },
-    ["vagos"] = {
-        ["VehicleSpawner"] = {
-            label = "Car Spawn",
-            coords = {x =335.98, y =-2040.44, z =21.14, h =53.29},
-            ["colours"] = {
-                ["primary"] = {
-                    r = 179,
-                    g = 176, 
-                    b = 37
-                },
-                ["secondary"] = { 
-                    r = 0,
-                    b = 0, 
-                    g = 0
-                }
-            },
-            ["vehicles"] = {
-                ["buffalo2"] = "Buffalo Sport",
-                ["rumpo3"] = "RumpoXL",
-                ["manchez"] = "Manchez",
-                ["chino2"] = "Lowrider",
-            }
-        },
-        ["Stash"] = {
-            label = "Vagos Stash",
-            coords = {x =344.67, y =-2022.14, z =22.39, h =318.46},
-        },
-    }
+    ["stashvanilla"] = {
+        label = "Vanilla Armario",
+        coords = {x =93.48, y =-1288.32, z =29.26},
+    },
+
+    -- Bahamas
+    ["ogcarspawnvbahamas"] = {
+        label = "Gagarem Spawn",
+        coords = {x =-1402.6, y =-586.45, z =30.28, h =124.04},
+    },
+    ["stashbahamas"] = {
+        label = "Bahamas Armario",
+        coords = {x =1386.22, y =-627.45, z =30.82},
+    },
+
+    -- Hyper
+    ["ogcarspawnhyper"] = {
+        label = "Gagarem Spawn",
+        coords = {x =-30.95, y =-1382.81, z =29.3, h =354.19},
+    },
+    ["stashhyper"] = {
+        label = "Hyper Armario",
+        coords = {x =-31.3, y =-1395.71, z =29.51},
+    },
+
+    -- Groove
+    ["ogcarspawnGroove"] = {
+        label = "Gagarem Spawn",
+        coords = {x =88.33, y =-1968.8, z =20.75, h =136.05},
+    },
+    ["stashGroove"] = {
+        label = "Groove Armario",
+        coords = {x =84.92, y =-1967.06, z =20.75, h =75.97},
+    },
+
+    -- Mafia 
+    ["ogcarspawnMafia"] = {
+        label = "Gagarem Spawn",
+        coords = {x =-1893.24, y =2033.98, z =140.74, h =147.25},
+    },
+    ["stashMafia"] = {
+        label = "Mafia Armario",
+        coords = {x =-1869.8, y =2059.57, z =135.43, h =70.47},
+    },
+
+    -- Cartel
+    ["ogcarspawnCartel"] = {
+        label = "Gagarem Spawn",
+        coords = {x =1370.48, y =1146.75, z =113.76, h =350.6},
+    },
+    ["stashCartel"] = {
+        label = "Cartel Armario",
+        coords = {x =1392.55, y =1139.09, z =114.44, h =268.95},
+    },
+}
+
+Config.Vehicles = {
+    ["buffalo2"] = "Buffalo Sport",
+    ["rumpo3"] = "RumpoXL",
+    ["manchez"] = "Manchez",
+    ["chino2"] = "Lowrider",
+
+}
+
+Config.VehiclesMafia = {
+    ["g65amg"] = "Mercedes Benz G65AMG",
+
+}
+
+Config.VehiclesCartel = {
+    ["g65amg"] = "Mercedes Benz G65AMG",
+
+}
+
+Config.VehiclesVanilla = {
+    ["g65amg"] = "Mercedes Benz G65AMG",
+
+}
+
+Config.VehiclesBahamas = {
+    ["g65amg"] = "Mercedes Benz G65AMG",
+
+}
+
+Config.VehiclesHyper = {
+    ["g65amg"] = "Mercedes Benz G65AMG",
+
 }
