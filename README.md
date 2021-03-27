@@ -16,6 +16,10 @@ If you have any questions about it, click [Here](https://discord.gg/yMShaH5Kae)
 
 - [QB-Crafting](https://github.com/morais5/QBCore-Morais/commit/d0e3574cb615e1e7b508bf01485e077bb12f3cad)
 
+### ☕ Buy Me a Coffee
+
+If you want to help in this project you have [Here](https://www.buymeacoffee.com/moraisscripts)
+
 ## 📑 License
 Copyright © 2021 Miguel Morais.
 
