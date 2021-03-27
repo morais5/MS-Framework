@@ -6745,16 +6745,6 @@
             See also: [Resource manifest](https://docs.fivem.net/resources/manifest/)
             </summary>
         </member>
-        <member name="F:CitizenFX.Core.Native.Hash.GET_PED_SOURCE_OF_DAMAGE">
-            <summary>
-            Get the last entity that damaged the ped. This native is used server side when using OneSync.
-            </summary>
-        </member>
-        <member name="F:CitizenFX.Core.Native.Hash.GET_PED_SOURCE_OF_DEATH">
-            <summary>
-            Get the entity that killed the ped. This native is used server side when using OneSync.
-            </summary>
-        </member>
         <member name="F:CitizenFX.Core.Native.Hash.GET_PLAYER_CAMERA_ROTATION">
             <summary>
             Gets the current camera rotation for a specified player. This native is used server side when using OneSync.
@@ -6925,11 +6915,6 @@
         <member name="F:CitizenFX.Core.Native.Hash.IS_DUPLICITY_VERSION">
             <summary>
             Gets whether or not this is the CitizenFX server.
-            </summary>
-        </member>
-        <member name="F:CitizenFX.Core.Native.Hash.IS_ENTITY_VISIBLE">
-            <summary>
-            This native checks if the given entity is visible.
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.IS_PED_A_PLAYER">
@@ -7370,12 +7355,6 @@
             Flags(256, 260, 384, 768, 896, 900, 952, 1280)  
             
             cameraRotation = flags &amp; (1 &lt;&lt; 8)
-            </summary>
-        </member>
-        <member name="F:CitizenFX.Core.Native.Hash.SET_PLAYER_CULLING_RADIUS">
-            <summary>
-            Sets the culling radius for the specified player.
-            Set to `0.0` to reset.
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.SET_PLAYER_INVINCIBLE">
@@ -7956,7 +7935,7 @@
             Immediately stops the pedestrian from whatever it's doing. They stop fighting, animations, etc. they forget what they were doing.
             </summary>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.ClearPlayerWantedLevel(System.String)">
+        <member name="M:CitizenFX.Core.Native.API.ClearPlayerWantedLevel(System.Int32)">
             <summary>
             This executes at the same as speed as PLAYER::SET_PLAYER_WANTED_LEVEL(player, 0, false);
             PLAYER::GET_PLAYER_WANTED_LEVEL(player); executes in less than half the time. Which means that it's worth first checking if the wanted level needs to be cleared before clearing. However, this is mostly about good code practice and can important in other situations. The difference in time in this example is negligible.
@@ -8224,28 +8203,6 @@
             The key to look up in the resource manifest.
             </param>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.GetPedSourceOfDamage(System.Int32)">
-            <summary>
-            Get the last entity that damaged the ped. This native is used server side when using OneSync.
-            </summary>
-            <param name="ped">
-            The target ped
-            </param>
-            <returns>
-            The entity id. Returns 0 if the ped has not been damaged recently.
-            </returns>
-        </member>
-        <member name="M:CitizenFX.Core.Native.API.GetPedSourceOfDeath(System.Int32)">
-            <summary>
-            Get the entity that killed the ped. This native is used server side when using OneSync.
-            </summary>
-            <param name="ped">
-            The target ped
-            </param>
-            <returns>
-            The entity id. Returns 0 if the ped has no killer.
-            </returns>
-        </member>
         <member name="M:CitizenFX.Core.Native.API.GetPlayerCameraRotation(System.String)">
             <summary>
             Gets the current camera rotation for a specified player. This native is used server side when using OneSync.
@@ -8268,7 +8225,7 @@
             The fake wanted level
             </returns>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.GetPlayerMeleeWeaponDamageModifier(System.String)">
+        <member name="M:CitizenFX.Core.Native.API.GetPlayerMeleeWeaponDamageModifier(System.Int32)">
             <summary>
             A getter for [SET_PLAYER_MELEE_WEAPON_DAMAGE_MODIFIER](#\_0x4A3DC7ECCC321032).
             </summary>
@@ -8345,7 +8302,7 @@
             The wanted level
             </returns>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.GetPlayerWeaponDamageModifier(System.String)">
+        <member name="M:CitizenFX.Core.Native.API.GetPlayerWeaponDamageModifier(System.Int32)">
             <summary>
             A getter for [SET_PLAYER_WEAPON_DAMAGE_MODIFIER](#\_0xCE07B9F7817AADA3).
             </summary>
@@ -8356,7 +8313,7 @@
             The value of player weapon damage modifier.
             </returns>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.GetPlayerWeaponDefenseModifier(System.String)">
+        <member name="M:CitizenFX.Core.Native.API.GetPlayerWeaponDefenseModifier(System.Int32)">
             <summary>
             A getter for [SET_PLAYER_WEAPON_DEFENSE_MODIFIER](#\_0x2D83BC011CA14A3C).
             </summary>
@@ -8367,7 +8324,7 @@
             The value of player weapon defense modifier.
             </returns>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.GetPlayerWeaponDefenseModifier_2(System.String)">
+        <member name="M:CitizenFX.Core.Native.API.GetPlayerWeaponDefenseModifier_2(System.Int32)">
             <summary>
             A getter for [\_SET_PLAYER_WEAPON_DEFENSE_MODIFIER\_2](#\_0xBCFDE9EDE4CF27DC).
             </summary>
@@ -8551,14 +8508,6 @@
             </summary>
             <returns>
             A boolean value.
-            </returns>
-        </member>
-        <member name="M:CitizenFX.Core.Native.API.IsEntityVisible(System.Int32)">
-            <summary>
-            This native checks if the given entity is visible.
-            </summary>
-            <returns>
-            Returns `true` if the entity is visible, `false` otherwise.
             </returns>
         </member>
         <member name="M:CitizenFX.Core.Native.API.IsPedAPlayer(System.Int32)">
@@ -9224,7 +9173,7 @@
             ped::set_ped_to_ragdoll_with_fall(ped, 1500, 2000, 1, -entity::get_entity_forward_vector(ped), 1f, 0f, 0f, 0f, 0f, 0f, 0f);
             </summary>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.SetPlayerControl(System.String,System.Boolean,System.Int32)">
+        <member name="M:CitizenFX.Core.Native.API.SetPlayerControl(System.Int32,System.Boolean,System.Int32)">
             <summary>
             Flags used in the scripts: 0,4,16,24,32,56,60,64,128,134,256,260,384,512,640,768,896,900,952,1024,1280,2048,2560
             Note to people who needs this with camera mods, etc.:
@@ -9234,26 +9183,14 @@
             cameraRotation = flags &amp; (1 &lt;&lt; 8)
             </summary>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.SetPlayerCullingRadius(System.String,System.Single)">
-            <summary>
-            Sets the culling radius for the specified player.
-            Set to `0.0` to reset.
-            </summary>
-            <param name="playerSrc">
-            The player to set the culling radius for.
-            </param>
-            <param name="radius">
-            The radius.
-            </param>
-        </member>
-        <member name="M:CitizenFX.Core.Native.API.SetPlayerInvincible(System.String,System.Boolean)">
+        <member name="M:CitizenFX.Core.Native.API.SetPlayerInvincible(System.Int32,System.Boolean)">
             <summary>
             Simply sets you as invincible (Health will not deplete).
             Use 0x733A643B5B0C53C1 instead if you want Ragdoll enabled, which is equal to:
             *(DWORD *)(playerPedAddress + 0x188) |= (1 &lt;&lt; 9);
             </summary>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.SetPlayerModel(System.String,System.UInt32)">
+        <member name="M:CitizenFX.Core.Native.API.SetPlayerModel(System.Int32,System.UInt32)">
             <summary>
             Set the model for a specific Player. Be aware that this will destroy the current Ped for the Player and create a new one, any
             reference to the old ped should be reset (by using the GetPlayerPed native).
@@ -9274,7 +9211,7 @@
             The bucket ID.
             </param>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.SetPlayerWantedLevel(System.String,System.Int32,System.Boolean)">
+        <member name="M:CitizenFX.Core.Native.API.SetPlayerWantedLevel(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Call SET_PLAYER_WANTED_LEVEL_NOW for immediate effect
             wantedLevel is an integer value representing 0 to 5 stars even though the game supports the 6th wanted level but no police will appear since no definitions are present for it in the game files
