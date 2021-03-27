@@ -43,7 +43,7 @@ QBCore.Commands.Add("tp", "Teleport to a player or location", {{name="id/x", hel
             TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Not every argument is filled in (x, y, z)")
         end
     end
-end, "admin") 
+end, "admin")
 
 QBCore.Commands.Add("darperms", "Conceda permissões a alguém (god/admin)", {{name="id", help="ID of player"}, {name="permission", help="Permission level"}}, true, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
@@ -97,15 +97,24 @@ QBCore.Commands.Add("setmoney", "set a players money amount", {{name="id", help=
 		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Player is not online!")
 	end
 end, "admin")
-
-QBCore.Commands.Add("setjob", "Assign a job to a player", {{name="id", help="Speler ID"}, {name="job", help="Job name"}}, true, function(source, args)
+------------------------------------------------------
+QBCore.Commands.Add("setjob", "Set a job for a player.", {{name="id", help="Player ID"}, {name="job", help="Job name"}, {name="grade", help= "Grade"}}, true, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
 	if Player ~= nil then
-		Player.Functions.SetJob(tostring(args[2]))
+		Player.Functions.SetJob(tostring(args[2]), tonumber(args[3]))
 	else
 		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Player is not online!")
 	end
 end, "admin")
+-----------------------------------------------------
+--QBCore.Commands.Add("setjob", "Assign a job to a player", {{name="id", help="Speler ID"}, {name="job", help="Job name"}}, true, function(source, args)
+	--local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
+	--if Player ~= nil then
+	--	Player.Functions.SetJob(tostring(args[2]))
+	--else
+	--	TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Player is not online!")
+	--end
+--end, "admin")
 
 QBCore.Commands.Add("trabalho", "Veja que trabalho você tem", {}, false, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(source)
@@ -154,8 +163,8 @@ QBCore.Commands.Add("ooc", "Mensagem fora do personagem", {}, false, function(so
 	for k, v in pairs(QBCore.Functions.GetPlayers()) do
 		if QBCore.Functions.HasPermission(v, "admin") then
 			if QBCore.Functions.IsOptin(v) then
-				TriggerClientEvent('chatMessage', v, "OOC " .. GetPlayerName(source), "normal", message)
-				TriggerEvent("qb-log:server:CreateLog", "ooc", "OOC", "white", "**"..GetPlayerName(source).."** (CitizenID: "..Player.PlayerData.citizenid.." | ID: "..source..") **Message:** " ..message, false)
+				TriggerClientEvent('chatMessage', v, "OP " .. GetPlayerName(source), "normal", message)
+				TriggerEvent("qb-log:server:CreateLog", "op", "OP", "white", "**"..GetPlayerName(source).."** (CitizenID: "..Player.PlayerData.citizenid.." | ID: "..source..") **Message:** " ..message, false)
 			end
 		end
 	end

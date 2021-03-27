@@ -8,7 +8,7 @@ AddEventHandler('QBCore:Command:TeleportToPlayer', function(othersource)
     end
     SetEntityCoords(entity, coords.x, coords.y, coords.z)
     SetEntityHeading(entity, coords.a)
-end) 
+end)
 
 RegisterNetEvent('QBCore:Command:TeleportToCoords')
 AddEventHandler('QBCore:Command:TeleportToCoords', function(x, y, z)
@@ -17,7 +17,7 @@ AddEventHandler('QBCore:Command:TeleportToCoords', function(x, y, z)
         entity = GetVehiclePedIsUsing(entity)
     end
     SetEntityCoords(entity, x, y, z)
-end) 
+end)
 
 RegisterNetEvent('QBCore:Command:SpawnVehicle')
 AddEventHandler('QBCore:Command:SpawnVehicle', function(model)

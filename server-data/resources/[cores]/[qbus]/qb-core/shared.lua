@@ -157,12 +157,12 @@ QBShared.Items = {
 	["smg_ammo"] 				 	 = {["name"] = "smg_ammo", 			  	  		["label"] = "Carregador de SMG", 		["weight"] = 500, 		["type"] = "item", 		["image"] = "smg_ammo.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = ""},
 	["shotgun_ammo"] 				 = {["name"] = "shotgun_ammo", 			  	  	["label"] = "Carregador de shotgun", 	["weight"] = 500, 		["type"] = "item", 		["image"] = "shotgun_ammo.png", 		["unique"] = false, 	["useable"] = true, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = ""},
 	["mg_ammo"] 				 	 = {["name"] = "mg_ammo", 			  	  		["label"] = "Carregador de MG", 		["weight"] = 1000, 		["type"] = "item", 		["image"] = "mg_ammo.png", 				["unique"] = false, 	["useable"] = true, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = ""},
-	["lockpick"] 					 = {["name"] = "lockpick", 			 	  	  	["label"] = "Lockpick", 				["weight"] = 300, 		["type"] = "item", 		["image"] = "lockpick.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = {accept = {"screwdriverset"}, reward = "advancedlockpick", anim = {["dict"] = "anim@amb@business@weed@weed_inspecting_high_dry@", ["lib"] = "weed_inspecting_high_base_inspector", ["text"] = "Crafting lockpick", ["timeOut"] = 7500,}},   ["description"] = ""},
-	["advancedlockpick"] 			 = {["name"] = "advancedlockpick", 			 	["label"] = "Lockpick avançada", 		["weight"] = 500, 		["type"] = "item", 		["image"] = "advancedlockpick.png", 	["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
+	["lockpick"] 					 = {["name"] = "lockpick", 			 	  	  	["label"] = "Ganzua", 				["weight"] = 300, 		["type"] = "item", 		["image"] = "lockpick.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = {accept = {"screwdriverset"}, reward = "advancedlockpick", anim = {["dict"] = "anim@amb@business@weed@weed_inspecting_high_dry@", ["lib"] = "weed_inspecting_high_base_inspector", ["text"] = "Crafting lockpick", ["timeOut"] = 7500,}},   ["description"] = "Very useful if you lose your keys a lot.. or if you want to use it for something else..."},
+	["advancedlockpick"] 			 = {["name"] = "advancedlockpick", 			 	["label"] = "Ganzua Avanzada", 		["weight"] = 500, 		["type"] = "item", 		["image"] = "advancedlockpick.png", 	["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "If you lose your keys a lot this is very useful.. Also useful to open your beers :)"},
 	["repairkit"] 					 = {["name"] = "repairkit", 			 	  	["label"] = "Kit Reparação", 			["weight"] = 2500, 		["type"] = "item", 		["image"] = "repairkit.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
 	["advancedrepairkit"] 			 = {["name"] = "advancedrepairkit", 			["label"] = "Kit Reparação avançada", 	["weight"] = 4000, 		["type"] = "item", 		["image"] = "advancedkit.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
 	["cleaningkit"] 				 = {["name"] = "cleaningkit", 			 	  	["label"] = "Kit de limpeza", 			["weight"] = 250, 		["type"] = "item", 		["image"] = "cleaningkit.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
-	["screwdriverset"] 				 = {["name"] = "screwdriverset", 			    ["label"] = "Caixa de ferramentas", 	["weight"] = 1000, 		["type"] = "item", 		["image"] = "screwdriverset.png", 		["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = ""},
+	["screwdriverset"] 				 = {["name"] = "screwdriverset", 			    ["label"] = "Kit de Herramientas", 		["weight"] = 1000, 		["type"] = "item", 		["image"] = "screwdriverset.png", 		["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "Very useful to screw... screws.."},
 	["drill"] 				 		 = {["name"] = "drill", 			    		["label"] = "Broca", 					["weight"] = 20000, 	["type"] = "item", 		["image"] = "drill.png", 				["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = ""},
 	["droga_meta"] 			 		= {["name"] = "droga_meta", 			 		["label"] = "Metanfetamina 1g", 		["weight"] = 1, 		["type"] = "item", 		["image"] = "weed-baggie.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = ""},
 	["droga_coca"] 			 		= {["name"] = "droga_coca", 			 		["label"] = "Cocaina 1g", 				["weight"] = 1, 		["type"] = "item", 		["image"] = "weed-baggie.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = ""},
@@ -259,13 +259,13 @@ QBShared.Items = {
 	["rifle_drummag"] 		 	 	 = {["name"] = "rifle_drummag", 				["label"] = "Carregador redondo Riffle", ["weight"] = 1000, 		["type"] = "item", 		["image"] = "rifle_drummag.png", 		["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
 	["rifle_suppressor"] 			 = {["name"] = "rifle_suppressor", 				["label"] = "Silenciador de Riffle", 	["weight"] = 1000, 		["type"] = "item", 		["image"] = "rifle_suppressor.png", 	["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
 	["labkey"] 			 			 = {["name"] = "labkey", 						["label"] = "Chaves do laboratorio", 	["weight"] = 500, 		["type"] = "item", 		["image"] = "labkey.png", 				["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
-		["matricula"] 			 			 = {["name"] = "matricula", 						["label"] = "Matricula", 	["weight"] = 500, 		["type"] = "item", 		["image"] = "matricula.png", 				["unique"] = false, 		["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
+	["matricula"] 			 		= {["name"] = "matricula", 						["label"] = "Matricula", 	["weight"] = 500, 		["type"] = "item", 		["image"] = "matricula.png", 				["unique"] = false, 		["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
+	["license_plate"] 			 		= {["name"] = "license_plate", 						["label"] = "license_plate", 	["weight"] = 500, 		["type"] = "item", 		["image"] = "matricula.png", 				["unique"] = false, 		["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
 	["pinger"] 			 			 = {["name"] = "pinger", 						["label"] = "Pinger", 					["weight"] = 1000, 		["type"] = "item", 		["image"] = "pinger.png", 				["unique"] = false, 	["useable"] = false, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
 	["firstaid"] 			 		 = {["name"] = "firstaid", 						["label"] = "Kit Primeiros Socorros", 				["weight"] = 2500, 		["type"] = "item", 		["image"] = "firstaid.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
 	["printerdocument"] 			 = {["name"] = "printerdocument", 				["label"] = "Documento", 				["weight"] = 500, 		["type"] = "item", 		["image"] = "printerdocument.png", 		["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
 	["casinochips"] 		 	 	 = {["name"] = "casinochips",           		["label"] = "Fichas de casino",	 		["weight"] = 0, 		["type"] = "item", 		["image"] = "casino_chips.png", 		["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = ""},
 	["black_money"] 				 = {["name"] = "black_money", 			 	  	["label"] = "Dinheiro Sujo", 			["weight"] = 10, 		["type"] = "item", 		["image"] = "black_money.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = ""},
-	["sim_card"] 		 				 = {["name"] = "sim_card", 						["label"] = "Sim Card", 					["weight"] = 100, 	["type"] = "item", 		["image"] = "sim_card.png", 	["unique"] = true, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "Change Your phone Number to Any Number (One-time use)"},
 }
 
 -- // HASH WEAPON ITEMS, NEED SOMETIMES TO GET INFO FOR CLIENT
@@ -357,85 +357,85 @@ QBShared.Weapons = {
 
 -- // VEHICLES
 QBShared.Vehicles = {
-	["124spider"] = {
-		["name"] = "Abarth 124 Spider",
+	["350z"] = {
+		["name"] = "toyota 350z",
 		["brand"] = "Abarth",
-		["model"] = "124spider",
+		["model"] = "350z",
 		["price"] = 25000,
 		["category"] = "abarth",
-		["hash"] = "124spider",
+		["hash"] = "350z",
 		["image"] = "",
 		["trunkspace"] = 100000,
 		["trunkslots"] = 80,
 		["shop"] = "pdm",
 	},
-	    ["yFiat595ssA"] = {
-		["name"] = "Abarth Fiat595",
+	    ["a80"] = {
+		["name"] = "Toyota Supra 80",
 		["brand"] = "Abarth",
-		["model"] = "yFiat595ssA",
+		["model"] = "a80",
 		["price"] = 2500,
 		["category"] = "abarth",
-		["hash"] = "yFiat595ssA",
+		["hash"] = "a80",
 		["image"] = "",
 		["trunkspace"] = 100000,
 		["trunkslots"] = 80,
 		["shop"] = "pdm",
 	},
-	    ["4c"] = {
-		["name"] = "Alfa Romeo 4C",
+	    ["amarok"] = {
+		["name"] = "Volkswagen Amarok V6",
 		["brand"] = "Alfa Romeo",
-		["model"] = "4c",
+		["model"] = "amarok",
 		["price"] = 76000,
 		["category"] = "alfaromeo",
-		["hash"] = "4c",
+		["hash"] = "amarok",
 		["image"] = "",
 		["trunkspace"] = 100000,
 		["trunkslots"] = 80,
 		["shop"] = "pdm",
 	},
-	    ["brera"] = {
-		["name"] = "Alfa Brera",
+	    ["amggtbs"] = {
+		["name"] = "Mercedes-AMGGTBlackSeries",
 		["brand"] = "Alfa Romeo",
-		["model"] = "brera",
+		["model"] = "amggtbs",
 		["price"] = 15000,
 		["category"] = "alfaromeo",
-		["hash"] = "brera",
+		["hash"] = "amggtbs",
 		["image"] = "",
 		["trunkspace"] = 100000,
 		["trunkslots"] = 80,
 		["shop"] = "pdm",
 	},
-	    ["vantage"] = {
-		["name"] = "Aston Martin Vantage",
+	    ["c63coupe"] = {
+		["name"] = "Mercedes-Benz C63 Coupe AMG",
 		["brand"] = "Aston Martin",
-		["model"] = "vantage",
+		["model"] = "c63coupe",
 		["price"] = 600000,
 		["category"] = "vantage",
-		["hash"] = "vantage",
+		["hash"] = "c63coupe",
 		["image"] = "",
 		["trunkspace"] = 100000,
 		["trunkslots"] = 80,
 		["shop"] = "pdm",
 	},
-	    ["2015a3"] = {
-		["name"] = "Audi A3",
+	    ["cooper15"] = {
+		["name"] = "MINI John Cooper Works",
 		["brand"] = "Audi",
-		["model"] = "2015a3",
+		["model"] = "cooper15",
 		["price"] = 28000,
 		["category"] = "audi",
-		["hash"] = "2015a3",
+		["hash"] = "cooper15",
 		["image"] = "",
 		["trunkspace"] = 100000,
 		["trunkslots"] = 80,
 		["shop"] = "pdm",
 	},
-	    ["aaq4"] = {
-		["name"] = "Audi A4",
+	    ["corsae"] = {
+		["name"] = "Opel Corsa E",
 		["brand"] = "Audi",
-		["model"] = "aaq4",
+		["model"] = "corsae",
 		["price"] = 70000,
 		["category"] = "audi",
-		["hash"] = "aaq4",
+		["hash"] = "corsae",
 		["image"] = "",
 		["trunkspace"] = 100000,
 		["trunkslots"] = 80,
@@ -2271,97 +2271,534 @@ QBShared.VehicleModels = {
 }
 
 QBShared.Gangs = {
-	["none"] = {
-		label = "No Gang"
+	["geen"] = {--gang default não mexer
+		label = "Não Tens Gang"
 	},
-	["ballas"] = {
-		label = "Ballas"
+	["bloods"] = {
+		label = "Bloods"
 	},
-	["thefamily"] = {
-		label = "The Family"
+	["vanilla"] = {
+		label = "Vanilla"
 	},
-	["vagos"] = {
-		label = "Vagos"
+	["hyper"] = {
+		label = "Hyper"
 	},
-	["marabunta"] = {
-		label = "marabunta"
+	["bahamas"] = {
+		label = "Bahamas"
 	},
+	["groove"] = {
+		label = "Groove"
+	},
+	["cartel"] = {
+		label = "Cartel"
+	},
+	["orgarmas"] = { -- TESTE
+		label = "orgarmas" -- TESTE
+	},
+	["mafia"] = {
+		label = "Mafia"
+	}
 }
 
+
+
+
 QBShared.Jobs = {
-	["unemployed"] = {
+	["unemployed"] = { 
 		label = "Unemployed",
-		payment = 500,
+		grades = {
+			['0'] = {
+				name = "Homeless",
+				payment = 500
+			},
+			['1'] = {
+				name = "Unemployed",
+				payment = 1000
+			},
+		},
+		['boss'] = {
+			[1] = {x = 451.95, y = -973.71, z = 30.69}
+		},
 		defaultDuty = true,
 	},
-	["police"] = {
-		label = "Police",
-		payment = 1500,
+	
+	----------------------------------------------------POLICE
+	["police"] = { 
+		label = "LSPD",
+		grades = {
+			['0'] = {
+				name = "Cadet",
+				payment = 2000
+			},
+			['1'] = {
+				name = "Trooper",
+				payment = 3000
+			},
+			['2'] = {
+				name = "Senior Trooper",
+				payment = 4000
+			},
+			['3'] = {
+				name = "Corporal",
+				payment = 5000
+			},
+			['4'] = {
+				name = "Sergeant",
+				payment = 6000
+			},
+			['5'] = {
+				name = "Lieutenant",
+				isboss = true,
+				payment = 7000
+			},
+			['6'] = {
+				name = "Captain",
+				payment = 8000
+			},
+			['7'] = {
+				name = "Colonel",
+				payment = 9000
+			},
+			['8'] = {
+				name = "Assistant Chief",
+				isboss = true,
+				payment = 10000
+			},
+			['9'] = {
+				name = "Chief",
+				isboss = true,
+				payment = 11000
+			},
+		},
+		['boss'] = {
+			[1] = {x = 451.95, y = -973.71, z = 30.69}
+		},
 		defaultDuty = true,
 	},
-	--[[["doctor"] = {--eu comentei este job
-		label = "Doutor",
-		payment = 600,
-		defaultDuty = true,
-	},--]]
-	["ambulance"] = {
-		label = "Ambulance",
-		payment = 2500,
-		defaultDuty = true,
-	},
-	["trucker"] = {
-		label = "Trucker",
-		payment = 1200,
-		defaultDuty = true,
-	},
-	["taxi"] = {
-		label = "Taxi",
-		payment = 800,
-		defaultDuty = true,
-	},
-	["realestate"] = {
-		label = "Reale State",
-		payment = 1000,
-		defaultDuty = true,
-	},
-	["tow"] = {
-		label = "Tow",
-		payment = 10,
-		defaultDuty = true,
-	},
-	--[[["reporter"] = {--eu comentei este job
-		label = "Reporter",
-		payment = 10,
-		defaultDuty = true,
-	},--]]
-	["judge"] = {
-		label = "Judge",
-		payment = 2000,
-		defaultDuty = true,
-	},
-	["lawyer"] = {
-		label = "Lawyer",
-		payment = 1500,
-		defaultDuty = true,
-	},
-	["cardealer"] = {
-		label = "Car Dealer",
-		payment = 1000,
-		defaultDuty = true,
-	},
-	["mechanic"] = {
-		label = "Mechanic",
-		payment = 1000,
+	-------------------------------------------------------------------------DOCTOR
+	["doctor"] = { 
+		label = "PBMedical",
+		grades = {
+			['0'] = {
+				name = "Intern",
+				payment = 1000
+			},
+			['1'] = {
+				name = "EMT",
+				payment = 2000
+			},
+			['2'] = {
+				name = "Senior EMT",
+				payment = 3000
+			},
+			['3'] = {
+				name = "Paramedic",
+				payment = 3000
+			},
+			['4'] = {
+				name = "Doctor",
+				payment = 4000
+			},
+			['5'] = {
+				name = "Lead Doctor",
+				payment = 5000
+			},
+			['6'] = {
+				name = "Director of Medicine",
+				payment = 6000
+			},
+			['7'] = {
+				name = "Director of Administration",
+				payment = 6600
+			},
+			['8'] = {
+				name = "Assistant Dean",
+				isboss = true,
+				payment = 8000
+			},
+			['9'] = {
+				name = "Dean of Medicine",
+				isboss = true,
+				payment = 10000
+			},
+			
+		},
+		["boss"] = {
+			[1] = {x = 335.17, y = -593.36, z = 43.28, h = 248.57}, 
+		},
 		defaultDuty = true,
 	},
-	["garbage"] = {
-		label = "Garbage",
-		payment = 900,
+	--------------------------------------------------------------------AMBULANCE
+	["ambulance"] = { 
+		label = "Psychiatric",
+		grades = {
+			['0'] = {
+				name = "Intern",
+				payment = 3000
+			},
+			['1'] = {
+				name = "Yoga Instructor",
+				payment = 3500
+			},
+			['2'] = {
+				name = "Counselor",
+				payment = 4000
+			},
+			['3'] = {
+				name = "Therapist",
+				payment = 4500
+			},
+			['4'] = {
+				name = "Psychiatrist",
+				payment = 5000
+			},
+			['5'] = {
+				name = "Head of Psychiatry",
+				payment = 6500
+			},
+			['6'] = {
+				name = "Facility Warden",
+				payment = 7000
+			},
+			['7'] = {
+				name = "Assistant Dean of Parsons'",
+				isboss = true,
+				payment = 8500
+			},
+			['8'] = {
+				name = "Dean of Parsons'",
+				isboss = true,
+				payment = 9500
+			},
+			
+		},
+		["boss"] = {
+			[1] = {x = -1524.1, y = 843.64, z = 181.59, h = 202.47}, 
+		},
 		defaultDuty = true,
 	},
-	["hotdog"] = {
-		label = "Hotdog Stand",
-		payment = 12,
+	---------------------------------------------------------------------------------TRUCKER
+	["trucker"] = { 
+		label = "Hayes Auto Tow Yard",
+		grades = {
+			['0'] = {
+				name = "Tow Truck Driver",
+				payment = 20
+			},
+			['1'] = {
+				name = "Repo Driver",
+				payment = 25
+			},
+			['2'] = {
+				name = "Hayes Auto Manager",
+				isboss = true,
+				payment = 30
+			},
+			['3'] = {
+				name = "Hayes Auto Owner",
+				isboss = true,
+				payment = 40
+			},
+		},
+		["coords"] = {
+			[1] = {x = 335.17, y = -593.36, z = 43.28, h = 248.57}, 
+		},
+		["boss"] = {
+			[1] = {x = 474.64, y = -1308.56, z = 29.21, h = 29.8},  
+		},
+		defaultDuty = true,
+	},
+	---------------------------------------------------------------------------TAXI
+	["taxi"] = { 
+		label = "DownTown Taxi Co",
+		grades = {
+			['0'] = {
+				name = "Taxi Driver",
+				payment = 20
+			},
+			['1'] = {
+				name = "Tow Operator",
+				payment = 25
+			},
+			['2'] = {
+				name = "Manager",
+				isboss = true,
+				payment = 30
+			},
+			['3'] = {
+				name = "Downtown Taxi Owner",
+				isboss = true,
+				payment = 40
+			},
+		},
+		["coords"] = {
+			[1] = {x = 335.17, y = -593.36, z = 43.28, h = 248.57}, 
+		},
+		["boss"] = {
+			[1] = {x = 905.69, y = -150.45, z = 74.17, h = 326.35}, 
+		},
+		defaultDuty = true,
+	},
+	---------------------------------------------------------------------------REALESTATEAGENT
+	["realestate"] = { 
+		label = "Dynasty 8 Realestate",
+		grades = {
+			['0'] = {
+				name = "Secretary",
+				payment = 5000
+			},
+			['1'] = {
+				name = "Real Estate Agent",
+				payment = 6000
+			},
+			['2'] = {
+				name = "Dynasty 8 Manager",
+				isboss = true,
+				payment = 8500
+			},
+			['3'] = {
+				name = "Dynasty 8 Owner",
+				isboss = true,
+				payment = 16000
+			},
+		},
+		["boss"] = {
+			[1] = {x = -814.33, y = -1357.08, z = 5.23, h = 40.51}, 
+		},
+		defaultDuty = true,
+	},
+	----------------------------------------------------------------------------TRACKER2
+	["tow"] = { 
+		label = "Hayes Auto Tow Yard",
+		grades = {
+			['0'] = {
+				name = "Tow Truck Driver",
+				payment = 20
+			},
+			['1'] = {
+				name = "Repo Driver",
+				payment = 25
+			},
+			['2'] = {
+				name = "Hayes Auto Manager",
+				isboss = true,
+				payment = 30
+			},
+			['3'] = {
+				name = "Hayes Auto Owner",
+				isboss = true,
+				payment = 40
+			},
+		},
+		["coords"] = {
+			[1] = {x = 335.17, y = -593.36, z = 43.28, h = 248.57}, 
+		},
+		["boss"] = {
+			[1] = {x = 474.64, y = -1308.56, z = 29.21, h = 29.8}, 
+		},
+		defaultDuty = true,
+	},
+	--------------------------------------------------------------------REPORTER
+	["reporter"] = { 
+		label = "Weazle News",
+		grades = {
+			['0'] = {
+				name = "Camera Man",
+				payment = 7500
+			},
+			['1'] = {
+				name = "Reporter",
+				payment = 8500
+			},
+			['2'] = {
+				name = "News Director",
+				isboss = true,
+				payment = 9000
+			},
+			['3'] = {
+				name = "Weazle News Owner",
+				isboss = true,
+				payment = 13500
+			},
+		},
+		["coords"] = {
+			[1] = {x = 335.17, y = -593.36, z = 43.28, h = 248.57}, 
+		},
+		["boss"] = {
+			[1] = {x = -580.81, y = -936.58, z = 23.88, h = 88.69}, 
+		},
+		defaultDuty = true,
+	},
+	---------------------------------------------------------------------------JUDICE
+	["judge"] = { 
+		label = "Judicial Court System",
+		grades = {
+			['0'] = {
+				name = "Judge Canditate",
+				payment = 5000
+			},
+			['1'] = {
+				name = "Judge",
+				payment = 9500
+			},
+			['2'] = {
+				name = "Senior Judge",
+				payment = 11000
+			},
+			['3'] = {
+				name = "Head Judge",
+				isboss = true,
+				payment = 13000
+			},
+		},
+		["boss"] = {
+			[1] = {x = 224.44, y = -437.29, z = 47.96, h = 249.27}, 
+		},
+		defaultDuty = true,
+	},
+	------------------------------------------------------------------------------LAWYER
+	["lawyer"] = { 
+		label = "Law Offices of LS",
+		grades = {
+			['0'] = {
+				name = "Advocate",
+				payment = 8500
+			},
+			['1'] = {
+				name = "Defense Attorney",
+				payment = 11000
+			},
+			['2'] = {
+				name = "State Prosecuter",
+				payment = 12000
+			},
+			['3'] = {
+				name = "Attorney General",
+				isboss = true,
+				payment = 15000
+			},
+		},
+		["boss"] = {
+			[1] = {x = -80.72, y = -802.25, z = 243.4, h = 258.09}, 
+		},
+		defaultDuty = true,
+	},
+	-----------------------------------------------------------------------------CARDEALER
+	["cardealer"] = { 
+		label = "Luxury Auto Dealership",
+		grades = {
+			['0'] = {
+				name = "Sales Team Member",
+				payment = 5000
+			},
+			['1'] = {
+				name = "Lead Sales Team Member",
+				payment = 7000
+			},
+			['2'] = {
+				name = "Dealership Manager",
+				isboss = true,
+				payment = 8500
+			},
+			['3'] = {
+				name = "Dealership Owner",
+				isboss = true,
+				payment = 15000
+			},
+		},
+			["boss"] = {
+				[1] = {x = -790.01, y = -214.3, z = 37.08, h = 21.01}, 
+			},
+		
+		defaultDuty = true,
+	},
+	----------------------------------------------------------------------------MECHANIC
+	["mechanic"] = { 
+		label = "Mechanics Shop",
+		grades = {
+			['0'] = {
+				name = "Mechanic",
+				payment = 3500
+			},
+			['1'] = {
+				name = "Tow Operator",
+				payment = 3500
+			},
+			['2'] = {
+				name = "Senior Mechanic",
+				payment = 4500
+			},
+			['3'] = {
+				name = "Mechanic Shop Manager",
+				isboss = true,
+				payment = 5000
+			},
+			['4'] = {
+				name = "Mechanic Shop Owner",
+				isboss = true,
+				payment = 5500
+			},
+		},
+		["boss"] = {
+			[1] = {x = -207.39, y = -1340.68, z = 34.89, h = 209.06}, 
+		},
+		defaultDuty = true,
+	},
+	-----------------------------------------------------------------------NETTURBINO
+	["garbage"] = { 
+		label = "Los Santos Sanitation Department",
+		grades = {
+			['0'] = {
+				name = "Recruit",
+				payment = 20
+			},
+			['1'] = {
+				name = "Garbage Collector",
+				payment = 30
+			},
+			['2'] = {
+				name = "Sanitation Supervisor",
+				isboss = true,
+				payment = 40
+			},
+			['3'] = {
+				name = "Sanitation Owner",
+				isboss = true,
+				payment = 50
+			},
+		},
+		["coords"] = {
+			[1] = {x = 335.17, y = -593.36, z = 43.28, h = 248.57}, 
+		},
+		["boss"] = {
+			[1] = {x = -322.25, y = -1545.84, z = 31.02, h = 90.87}, 
+		},
+		defaultDuty = true,
+	},
+	------------------------------------------------------------------------HOTDOG
+	["hotdog"] = { 
+		label = "Chuauha HotDogs",
+		grades = {
+			['0'] = {
+				name = "Hotdog Vendor",
+				payment = 15
+			},
+			['1'] = {
+				name = "Head Chef",
+				payment = 25
+			},
+			['2'] = {
+				name = "Chuauha Hotdog Owner",
+				isboss = true,
+				payment = 35
+			},
+		},
+		["coords"] = {
+			[1] = {x = 335.17, y = -593.36, z = 43.28, h = 248.57}, 
+		},
+		["boss"] = {
+			[1] = {x = 41.5, y = -1009.68, z = 29.49, h = 243.53}, 
+		},
 		defaultDuty = true,
 	},
 }
