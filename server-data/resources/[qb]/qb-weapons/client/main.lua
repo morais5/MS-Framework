@@ -122,19 +122,25 @@ Citizen.CreateThread(function()
         if IsControlJustReleased(0, 24) or IsDisabledControlJustReleased(0, 24) then
             local weapon = GetSelectedPedWeapon(GetPlayerPed(-1))
             local ammo = GetAmmoInPedWeapon(GetPlayerPed(-1), weapon)
-            if ammo > 0 then
-                TriggerServerEvent("weapons:server:UpdateWeaponAmmo", CurrentWeaponData, tonumber(ammo))
-            else
-                TriggerEvent('inventory:client:CheckWeapon')
-                TriggerServerEvent("weapons:server:UpdateWeaponAmmo", CurrentWeaponData, 0)
+            if weapon ~= GetHashKey("WEAPON_UNARMED") then
+                if ammo > 0 then
+    
+                    TriggerServerEvent("weapons:server:UpdateWeaponAmmo", CurrentWeaponData, tonumber(ammo))
+                    Citizen.Wait(500)
+                else
+                    TriggerEvent('inventory:client:CheckWeapon')
+                    TriggerServerEvent("weapons:server:UpdateWeaponAmmo", CurrentWeaponData, 0)
+                end
+    
+                
+                if MultiplierAmount > 0 then
+                    TriggerServerEvent("weapons:server:UpdateWeaponQuality", CurrentWeaponData, MultiplierAmount)
+                    MultiplierAmount = 0
+                end
             end
-
-            if MultiplierAmount > 0 then
-                TriggerServerEvent("weapons:server:UpdateWeaponQuality", CurrentWeaponData, MultiplierAmount)
-                MultiplierAmount = 0
-            end
+    
         end
-        Citizen.Wait(1)
+        Citizen.Wait(0)
     end
 end)
 
