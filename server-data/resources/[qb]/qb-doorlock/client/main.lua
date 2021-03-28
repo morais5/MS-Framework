@@ -166,7 +166,7 @@ RegisterNetEvent('lockpicks:UseLockpick')
 AddEventHandler('lockpicks:UseLockpick', function()
 	local ped = GetPlayerPed(-1)
 	local pos = GetEntityCoords(ped)
-	QBCore.Functions.TriggerCallback('qb-radio:server:GetItem', function(hasItem)
+	QBCore.Functions.TriggerCallback('qb-doorlock:server:GetItem', function(hasItem)
 		for k, v in pairs(QB.Doors) do
 			local dist = GetDistanceBetweenCoords(pos, QB.Doors[k].textCoords.x, QB.Doors[k].textCoords.y, QB.Doors[k].textCoords.z)
 			if dist < 1.5 then
@@ -220,12 +220,6 @@ function IsAuthorized(doorID)
 
 	for _,job in pairs(doorID.authorizedJobs) do
 		if job == PlayerData.job.name then
-			return true
-		end
-	end
-
-	for _,gang in pairs(doorID.authorizedJobs) do
-		if gang == PlayerData.gang.name then
 			return true
 		end
 	end

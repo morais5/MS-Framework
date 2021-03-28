@@ -18,3 +18,19 @@ AddEventHandler('qb-doorlock:server:updateState', function(doorID, state)
 
 	TriggerClientEvent('qb-doorlock:client:setState', -1, doorID, state)
 end)
+
+
+QBCore.Functions.CreateCallback('qb-doorlock:server:GetItem', function(source, cb, item)
+  local src = source
+  local Player = QBCore.Functions.GetPlayer(src)
+  if Player ~= nil then 
+    local RadioItem = Player.Functions.GetItemByName(item)
+    if RadioItem ~= nil then
+      cb(true)
+    else
+      cb(false)
+    end
+  else
+    cb(false)
+  end
+end)
