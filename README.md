@@ -1,4 +1,4 @@
-# <img src="https://i.imgur.com/RxoQ2SU.png" width="32" height="32"> Morais Scripts v4
+# <img src="https://i.imgur.com/RxoQ2SU.png" width="32" height="32"> Morais Scripts v4.1.1
 
 ### 📚 Documentation
 Take a look at [Wiki](https://github.com/morais5/QBCore-Morais/wiki)
@@ -12,12 +12,9 @@ If you get a bug, please report it [Here](https://github.com/morais5/QBCore-Mora
 ### ❓ Support 
 If you have any questions about it, click [Here](https://discord.gg/yMShaH5Kae)
 
-### 💝 Update v4
+### 💝 Update v4.1.1
 
-- [Change artifacts](https://github.com/morais5/QBCore-Morais/commit/c1ea7ab2e28e3519e0b7f86da337b732fca2120c)
-- [Weapon Loop](https://github.com/morais5/QBCore-Morais/commit/fce611e606618f7c0a7b0f6fdc57c4677a2b0657)
-- [Fix Lockpick](https://github.com/morais5/QBCore-Morais/commit/024be43d3e37c07032a87f917fcc62f568f66175)
-- [Old Gang](https://github.com/morais5/QBCore-Morais/commit/4f67bc542e4c54e4c3e4a67c269964d5705f8120)
+- [Changing the lockpick resolution](https://github.com/morais5/QBCore-Morais/commit/c368868714d67aa05eca448f3fcd0d6cc21f02a7)
 
 ### ☕ Buy Me a Coffee
 
