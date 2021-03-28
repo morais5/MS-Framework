@@ -12,10 +12,6 @@ If you get a bug, please report it [Here](https://github.com/morais5/QBCore-Mora
 ### ❓ Support 
 If you have any questions about it, click [Here](https://discord.gg/yMShaH5Kae)
 
-### 💝 Update v4.1.1
-
-- [Changing the lockpick resolution](https://github.com/morais5/QBCore-Morais/commit/c368868714d67aa05eca448f3fcd0d6cc21f02a7)
-
 ### ☕ Buy Me a Coffee
 
 If you want to help in this project you have [Here](https://www.buymeacoffee.com/moraisscripts)
