@@ -23,6 +23,7 @@ files {
 	'html/images/*.png',
 	'html/images/*.jpg',
 	'html/ammo_images/*.png',
+	'html/images/weapons/*.png',
 	'html/attachment_images/*.png',
 	'html/*.ttf',
 }
