@@ -53,7 +53,7 @@ function halte(naam)
 end
 
 function geld(amount)
-	local stat = "€"..amount
+	local stat = "$"..amount
 	SendNUIMessage({
 		text = stat,
 		meta = 'geld'
@@ -62,7 +62,7 @@ end
 
 function lijn(nummer)
 	--lijn(3)
-	local buslijn = 'LIJN - '..nummer
+	local buslijn = 'LINE - '..nummer
 	SendNUIMessage({
 		text = buslijn,
 		meta = 'lijn'

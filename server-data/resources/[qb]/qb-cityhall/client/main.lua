@@ -74,7 +74,7 @@ Citizen.CreateThread(function()
     SetBlipColour(CityhallBlip, 0)
 
     BeginTextCommandSetBlipName("STRING")
-    AddTextComponentSubstringPlayerName("Camara Municipal")
+    AddTextComponentSubstringPlayerName("Cityhall")
     EndTextCommandSetBlipName(CityhallBlip)
 end)
 local creatingCompany = false
@@ -93,7 +93,7 @@ Citizen.CreateThread(function()
             inRange = true
             DrawMarker(2, Config.Cityhall.coords.x, Config.Cityhall.coords.y, Config.Cityhall.coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.2, 155, 152, 234, 155, false, false, false, true, false, false, false)
             if GetDistanceBetweenCoords(pos, Config.Cityhall.coords.x, Config.Cityhall.coords.y, Config.Cityhall.coords.z, true) < 1.5 then
-                qbCityhall.DrawText3Ds(Config.Cityhall.coords, '~g~E~w~ - Interagir com o sujeito')
+                qbCityhall.DrawText3Ds(Config.Cityhall.coords, '~g~E~w~ - Interact with the subject')
                 if IsControlJustPressed(0, Keys["E"]) then
                     qbCityhall.Open()
                 end
@@ -101,7 +101,7 @@ Citizen.CreateThread(function()
             --DrawMarker(2, Config.DriverTest.coords.x, Config.DriverTest.coords.y, Config.DriverTest.coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.2, 155, 152, 234, 155, false, false, false, true, false, false, false)--eu comentei isto
                 --if GetDistanceBetweenCoords(pos, Config.DriverTest.coords.x, Config.DriverTest.coords.y, Config.DriverTest.coords.z, true) < 1.5 then--eu comentei isto
                     if creatingCompany then
-                        qbCityhall.DrawText3Ds(Config.DriverTest.coords, '~g~E~w~ - Criar empresa (€'..Config.CompanyPrice..') | ~r~G~w~ - Parar')
+                        qbCityhall.DrawText3Ds(Config.DriverTest.coords, '~g~E~w~ - Create company ($'..Config.CompanyPrice..') | ~r~G~w~ - Cancel')
                         if IsControlJustPressed(0, Keys["E"]) then
                             TriggerServerEvent("qb-companies:server:createCompany", currentName)
                             creatingCompany = false
@@ -152,11 +152,11 @@ end)--]]
 
 local idTypes = {
     ["id-kaart"] = {
-        label = "Cartão de Cidadão",
+        label = "Citizen Card",
         item = "id_card"
     },
     ["rijbewijs"] = {
-        label = "Carta de condução",
+        label = "Driving license",
         item = "driver_license"
     }
 }
@@ -167,7 +167,7 @@ RegisterNUICallback('requestId', function(data)
 
         TriggerServerEvent('qb-cityhall:server:requestId', idTypes[idType])
     else
-        QBCore.Functions.Notify('Não é possivel...', 'error')
+        QBCore.Functions.Notify('Its not possible...', 'error')
     end
 end)
 
@@ -181,7 +181,7 @@ RegisterNUICallback('requestLicenses', function(data, cb)
             local licenseType = nil
             local label = nil
 
-            if type == "driver" then licenseType = "rijbewijs" label = "Carta de Condução" end
+            if type == "driver" then licenseType = "rijbewijs" label = "Driving license" end
 
             table.insert(availableLicenses, {
                 idType = licenseType,

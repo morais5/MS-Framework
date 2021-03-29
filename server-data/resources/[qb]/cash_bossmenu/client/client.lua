@@ -81,13 +81,13 @@ Citizen.CreateThread(function()
                 for k, v in pairs(QBCore.Shared.Jobs[PlayerJob.name]["boss"]) do
                     if (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 2) then
                         if (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 1.0) then
-                            DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Chefe Menu")
+                            DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Boss Menu")
                             DrawMarker(25, v.x, v.y, v.z-0.96, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 255, 255, 255, 200, 0, 0, 0, 0)
                             if IsControlJustReleased(0, Keys["E"]) then
                                 TriggerServerEvent("cash_bossmenu:server:openMenu")
                             end
                         elseif (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 1.5) then
-                            DrawText3D(v.x, v.y, v.z, "Chefe Menu")
+                            DrawText3D(v.x, v.y, v.z, "Boss Menu")
                             DrawMarker(25, v.x, v.y, v.z-0.96, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 255, 255, 255, 200, 0, 0, 0, 0)
                              end
                          end

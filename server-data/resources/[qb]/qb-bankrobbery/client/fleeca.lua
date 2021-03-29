@@ -131,7 +131,7 @@ Citizen.CreateThread(function()
                                             if CurrentCops >= Config.MinimumFleecaPolice then
                                                 openLocker(closestBank, k)
                                             else
-                                                QBCore.Functions.Notify("Não existe policias suficientes..", "error")
+                                                QBCore.Functions.Notify("There are not sufficient police..", "error")
                                             end
                                         end
                                     end
@@ -182,7 +182,7 @@ AddEventHandler('electronickit:UseElectronickit', function()
                                 QBCore.Functions.TriggerCallback('QBCore:HasItem', function(result)
                                     if result then 
                                         TriggerEvent('inventory:client:requiredItems', requiredItems, false)
-                                        QBCore.Functions.Progressbar("hack_gate", "A utilizar um Kit eletronico..", math.random(5000, 10000), false, true, {
+                                        QBCore.Functions.Progressbar("hack_gate", "To use electronic kit..", math.random(5000, 10000), false, true, {
                                             disableMovement = true,
                                             disableCarMovement = true,
                                             disableMouse = false,
@@ -210,22 +210,22 @@ AddEventHandler('electronickit:UseElectronickit', function()
                                             end
                                         end, function() -- Cancel
                                             StopAnimTask(GetPlayerPed(-1), "anim@gangops@facility@servers@", "hotwire", 1.0)
-                                            QBCore.Functions.Notify("Cancelado..", "error")
+                                            QBCore.Functions.Notify("Called off..", "error")
                                         end)
                                     else
-                                        QBCore.Functions.Notify("Esta a faltar-te um item..", "error")
+                                        QBCore.Functions.Notify("This is missing an item..", "error")
                                     end
                                 end, "trojan_usb")
                             else
-                                QBCore.Functions.Notify("Parece que o banco ja foi arrombado..", "error")
+                                QBCore.Functions.Notify("It looks like the bank was already broken into..", "error")
                             end
                         else
-                            QBCore.Functions.Notify("Não existe policias suficientes..", "error")
+                            QBCore.Functions.Notify("There are not sufficient police..", "error")
                         end
                     end
                 end
             else
-                QBCore.Functions.Notify("O codigo de segurança esta ativo,de momento não é possivel arrombar a porta..", "error", 5500)
+                QBCore.Functions.Notify("The security code is active, for the moment it is not possible to break the door..", "error", 5500)
             end
         end)
     end
@@ -349,7 +349,7 @@ function openLocker(bankId, lockerId)
                 local DrillObject = CreateObject(GetHashKey("hei_prop_heist_drill"), pos.x, pos.y, pos.z, true, true, true)
                 AttachEntityToEntity(DrillObject, GetPlayerPed(-1), GetPedBoneIndex(GetPlayerPed(-1), 57005), 0.14, 0, -0.01, 90.0, -90.0, 180.0, true, true, false, true, 1, true)
                 IsDrilling = true
-                QBCore.Functions.Progressbar("open_locker_drill", "A arrombar o cofre...", math.random(40000, 60000), false, true, {
+                QBCore.Functions.Progressbar("open_locker_drill", "To break the safe...", math.random(40000, 60000), false, true, {
                     disableMovement = true,
                     disableCarMovement = true,
                     disableMouse = false,
@@ -391,7 +391,7 @@ function openLocker(bankId, lockerId)
                 local DrillObject = CreateObject(GetHashKey("hei_prop_heist_drill"), pos.x, pos.y, pos.z, true, true, true)
                 AttachEntityToEntity(DrillObject, GetPlayerPed(-1), GetPedBoneIndex(GetPlayerPed(-1), 57005), 0.14, 0, -0.01, 90.0, -90.0, 180.0, true, true, false, true, 1, true)
                 IsDrilling = true
-                QBCore.Functions.Progressbar("open_locker_drill", "Cracking the save..", math.random(40000, 60000), false, true, {
+                QBCore.Functions.Progressbar("open_locker_drill", "Cracking the safe..", math.random(40000, 60000), false, true, {
                     disableMovement = true,
                     disableCarMovement = true,
                     disableMouse = false,
@@ -403,14 +403,14 @@ function openLocker(bankId, lockerId)
                     TriggerServerEvent('qb-bankrobbery:server:setLockerState', bankId, lockerId, 'isOpened', true)
                     TriggerServerEvent('qb-bankrobbery:server:setLockerState', bankId, lockerId, 'isBusy', false)
                     TriggerServerEvent('qb-bankrobbery:server:recieveItem', 'pacific')
-                    QBCore.Functions.Notify("Sucesso!", "success")
+                    QBCore.Functions.Notify("Success!", "success")
                     IsDrilling = false
                 end, function() -- Cancel
                     StopAnimTask(GetPlayerPed(-1), "anim@heists@fleeca_bank@drilling", "drill_straight_idle", 1.0)
                     TriggerServerEvent('qb-bankrobbery:server:setLockerState', bankId, lockerId, 'isBusy', false)
                     DetachEntity(DrillObject, true, true)
                     DeleteObject(DrillObject)
-                    QBCore.Functions.Notify("Cancelado..", "error")
+                    QBCore.Functions.Notify("Called off..", "error")
                     IsDrilling = false
                 end)
                 Citizen.CreateThread(function()
@@ -420,13 +420,13 @@ function openLocker(bankId, lockerId)
                     end
                 end)
             else
-                QBCore.Functions.Notify("Parece que o cadeado do cofre é muito forte...", "error")
+                QBCore.Functions.Notify("It seems that the safe padlock is very strong...", "error")
                 TriggerServerEvent('qb-bankrobbery:server:setLockerState', bankId, lockerId, 'isBusy', false)
             end
         end, "drill")
     else
         IsDrilling = true
-        QBCore.Functions.Progressbar("open_locker", "A arrombar o cofre..", math.random(24000, 48000), false, true, {
+        QBCore.Functions.Progressbar("open_locker", "To break the safe..", math.random(24000, 48000), false, true, {
             disableMovement = true,
             disableCarMovement = true,
             disableMouse = false,
@@ -440,12 +440,12 @@ function openLocker(bankId, lockerId)
             TriggerServerEvent('qb-bankrobbery:server:setLockerState', bankId, lockerId, 'isOpened', true)
             TriggerServerEvent('qb-bankrobbery:server:setLockerState', bankId, lockerId, 'isBusy', false)
             TriggerServerEvent('qb-bankrobbery:server:recieveItem', 'small')
-            QBCore.Functions.Notify("Sucesso!", "success")
+            QBCore.Functions.Notify("Success!", "success")
             IsDrilling = false
         end, function() -- Cancel
             StopAnimTask(GetPlayerPed(-1), "anim@gangops@facility@servers@", "hotwire", 1.0)
             TriggerServerEvent('qb-bankrobbery:server:setLockerState', bankId, lockerId, 'isBusy', false)
-            QBCore.Functions.Notify("Cancelado..", "error")
+            QBCore.Functions.Notify("Called off..", "error")
             IsDrilling = false
         end)
         Citizen.CreateThread(function()
@@ -488,7 +488,7 @@ AddEventHandler('qb-bankrobbery:client:robberyCall', function(type, key, streetL
             PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
             TriggerEvent('qb-policealerts:client:AddPoliceAlert', {
                 timeOut = 10000,
-                alertTitle = "Tentativa de roubo ao banco",
+                alertTitle = "Bank robbery in progress",
                 coords = {
                     x = coords.x,
                     y = coords.y,
@@ -522,7 +522,7 @@ AddEventHandler('qb-bankrobbery:client:robberyCall', function(type, key, streetL
             PlaySoundFrontend( -1, "Beep_Red", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 1 )
             TriggerEvent('qb-policealerts:client:AddPoliceAlert', {
                 timeOut = 10000,
-                alertTitle = "Tentativa de roubo ao banco",
+                alertTitle = "Bank robbery in progress",
                 coords = {
                     x = coords.x,
                     y = coords.y,
@@ -551,7 +551,7 @@ AddEventHandler('qb-bankrobbery:client:robberyCall', function(type, key, streetL
             PlaySoundFrontend( -1, "Beep_Red", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 1 )
             TriggerEvent('qb-policealerts:client:AddPoliceAlert', {
                 timeOut = 10000,
-                alertTitle = "Tentativa de roubo ao banco",
+                alertTitle = "Bank robbery in progress",
                 coords = {
                     x = coords.x,
                     y = coords.y,
@@ -583,7 +583,7 @@ AddEventHandler('qb-bankrobbery:client:robberyCall', function(type, key, streetL
         SetBlipScale(blip, 1.2)
         SetBlipFlashes(blip, true)
         BeginTextCommandSetBlipName('STRING')
-        AddTextComponentString("112: Bankoverval")
+        AddTextComponentString("911: Bank robbery")
         EndTextCommandSetBlipName(blip)
         while transG ~= 0 do
             Wait(180 * 4)

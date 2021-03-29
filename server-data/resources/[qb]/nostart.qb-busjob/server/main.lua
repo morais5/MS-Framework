@@ -56,8 +56,8 @@ AddEventHandler('Job_Bus:GetBorg', function()
 	TriggerClientEvent('JobsCoreO:DisplayNotification', source, "You have gotten your ~g~€ 1000~s~ deposit back!")
 end)
 
-RegisterServerEvent('Job_Bus:BetaalPassenger')
-AddEventHandler('Job_Bus:BetaalPassenger', function(amount)
+RegisterServerEvent('Job_Bus:GetPayment')
+AddEventHandler('Job_Bus:GetPayment', function(amount)
 	local xPlayer = JobsClientCore.ESX.GetPlayerFromId(source)
 	local GiveMoney = amount
 	xPlayer.addMoney(GiveMoney)

@@ -45,12 +45,12 @@ Citizen.CreateThread(function()
                     if dist <= 7.5 then
                         if Driver == PlayerPed then
                             if not washingVehicle then
-                                DrawText3Ds(Config.Locations[k]["coords"]["x"], Config.Locations[k]["coords"]["y"], Config.Locations[k]["coords"]["z"], '~g~E~w~ - Lavar o veiculo (€'..Config.DefaultPrice..')')
+                                DrawText3Ds(Config.Locations[k]["coords"]["x"], Config.Locations[k]["coords"]["y"], Config.Locations[k]["coords"]["z"], '~g~E~w~ - Wash the vehicle ($'..Config.DefaultPrice..')')
                                 if IsControlJustPressed(0, Keys["E"]) then
                                     TriggerServerEvent('qb-carwash:server:washCar')
                                 end
                             else
-                                DrawText3Ds(Config.Locations[k]["coords"]["x"], Config.Locations[k]["coords"]["y"], Config.Locations[k]["coords"]["z"], 'De momento não é possivel lavares o veiculo..')
+                                DrawText3Ds(Config.Locations[k]["coords"]["x"], Config.Locations[k]["coords"]["y"], Config.Locations[k]["coords"]["z"], 'For the moment it is not possible to wash the vehicle..')
                             end
                         end
                     end
@@ -74,7 +74,7 @@ AddEventHandler('qb-carwash:client:washCar', function()
 
     washingVehicle = true
 
-    QBCore.Functions.Progressbar("search_cabin", "A lavar o veiculo..", math.random(4000, 8000), false, true, {
+    QBCore.Functions.Progressbar("search_cabin", "Wash the vehicle..", math.random(4000, 8000), false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -85,7 +85,7 @@ AddEventHandler('qb-carwash:client:washCar', function()
         WashDecalsFromVehicle(PedVehicle, 1.0)
         washingVehicle = false
     end, function() -- Cancel
-        QBCore.Functions.Notify("Cancelado..", "error")
+        QBCore.Functions.Notify("Called off..", "error")
         washingVehicle = false
     end)
 end)

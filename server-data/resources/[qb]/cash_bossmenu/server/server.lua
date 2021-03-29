@@ -33,13 +33,13 @@ AddEventHandler("cash_bossmenu:server:withdrawMoney", function(amount)
         Accounts[job] = Accounts[job] - amount
         xPlayer.Functions.AddMoney("cash", amount)
     else
-        TriggerClientEvent('QBCore:Notify', src, "Montante inválido :/", "error")
+        TriggerClientEvent('QBCore:Notify', src, "Invalid amount :/", "error")
         return
     end
 
     TriggerClientEvent('cash_bossmenu:client:refreshSociety', -1, job, Accounts[job])
     SaveResourceFile(GetCurrentResourceName(), "./database.json", json.encode(Accounts), -1)
-    TriggerEvent('cash_logs:server:createLog', 'bossmenu', 'Retirar dinheiro', "Retirado com sucesso €" .. amount .. ' (' .. job .. ')', src)
+    TriggerEvent('cash_logs:server:createLog', 'bossmenu', 'Withdraw money', "Successfully whitdrawn $" .. amount .. ' (' .. job .. ')', src)
 end)
 
 RegisterServerEvent("cash_bossmenu:server:depositMoney")
@@ -55,13 +55,13 @@ AddEventHandler("cash_bossmenu:server:depositMoney", function(amount)
     if xPlayer.Functions.RemoveMoney("cash", amount) then
         Accounts[job] = Accounts[job] + amount
     else
-        TriggerClientEvent('QBCore:Notify', src, "Montante inválido :/", "error")
+        TriggerClientEvent('QBCore:Notify', src, "Invalid amount :/", "error")
         return
     end
 
     TriggerClientEvent('cash_bossmenu:client:refreshSociety', -1, job, Accounts[job])
     SaveResourceFile(GetCurrentResourceName(), "./database.json", json.encode(Accounts), -1)
-    TriggerEvent('cash_logs:server:createLog', 'bossmenu', 'Depositar dinheiro', "Depositado com sucesso €" .. amount .. ' (' .. job .. ')', src)
+    TriggerEvent('cash_logs:server:createLog', 'bossmenu', 'Cash deposit', "Successfully deposited $" .. amount .. ' (' .. job .. ')', src)
 end)
 
 RegisterServerEvent("cash_bossmenu:server:addAccountMoney")
@@ -128,7 +128,7 @@ AddEventHandler("cash_bossmenu:server:openMenu", function()
             TriggerClientEvent('cash_bossmenu:client:refreshSociety', -1, job.name, Accounts[job.name])
         end)
     else
-    TriggerClientEvent('QBCore:Notify', src, "Você não é o chefe, como chegou aqui vadia?!", "error")
+    TriggerClientEvent('QBCore:Notify', src, "You're not the boss, how did you get here bitch?!", "error")
     end
 end)
 
@@ -141,10 +141,10 @@ AddEventHandler('cash_bossmenu:server:fireEmployee', function(data)
 
     if xEmployee then
         if xEmployee.Functions.SetJob("unemployed", '0') then
-            TriggerEvent('cash_logs:server:createLog', 'bossmenu', 'Tirar do emprego', "Disparado com sucesso " .. GetPlayerName(xEmployee.PlayerData.source) .. ' (' .. xPlayer.PlayerData.job.name .. ')', src)
+            TriggerEvent('cash_logs:server:createLog', 'bossmenu', 'Unemploy', "Successfully set " .. GetPlayerName(xEmployee.PlayerData.source) .. ' (' .. xPlayer.PlayerData.job.name .. ')', src)
 
-            TriggerClientEvent('QBCore:Notify', src, "Despedido com sucesso!", "success")
-            TriggerClientEvent('QBCore:Notify', xEmployee.PlayerData.source , "Você foi demitido.", "success")
+            TriggerClientEvent('QBCore:Notify', src, "Successful fired!", "success")
+            TriggerClientEvent('QBCore:Notify', xEmployee.PlayerData.source , "You were fired.", "success")
 
             Wait(500)
             local employees = {}
@@ -182,7 +182,7 @@ AddEventHandler('cash_bossmenu:server:fireEmployee', function(data)
 
                 local job = {}
 	            job.name = "unemployed"
-	            job.label = "Desempregado"
+	            job.label = "Unemployed"
 	            job.payment = 10
 	            job.onduty = true
 	            job.isboss = false
@@ -191,8 +191,8 @@ AddEventHandler('cash_bossmenu:server:fireEmployee', function(data)
                 job.grade.level = 0
 
                 QBCore.Functions.ExecuteSql(false, "UPDATE `players` SET `job` = '"..json.encode(job).."' WHERE `citizenid` = '".. data.source .."'")
-                TriggerClientEvent('QBCore:Notify', src, "Despedido com sucesso!", "success")
-                TriggerEvent('cash_logs:server:createLog', 'bossmenu', 'Despedido', "Disparado com sucesso " .. data.source .. ' (' .. xPlayer.PlayerData.job.name .. ')', src)
+                TriggerClientEvent('QBCore:Notify', src, "Successfully fired!", "success")
+                TriggerEvent('cash_logs:server:createLog', 'bossmenu', 'Fired', "Successfully fired " .. data.source .. ' (' .. xPlayer.PlayerData.job.name .. ')', src)
                 
                 Wait(500)
                 local employees = {}
@@ -222,7 +222,7 @@ AddEventHandler('cash_bossmenu:server:fireEmployee', function(data)
                     end
                 end)
             else
-                TriggerClientEvent('QBCore:Notify', src, "Erro. Não foi possível encontrar jogador.", "error")
+                TriggerClientEvent('QBCore:Notify', src, "Error. Could not find player.", "error")
             end
         end)
     end
@@ -236,9 +236,9 @@ AddEventHandler('cash_bossmenu:server:giveJob', function(data)
 
     if xPlayer.PlayerData.job.isboss == true then
         if xTarget and xTarget.Functions.SetJob(xPlayer.PlayerData.job.name) then
-            TriggerClientEvent('QBCore:Notify', src, "Você recrutou " .. (xTarget.PlayerData.charinfo.firstname .. ' ' .. xTarget.PlayerData.charinfo.lastname) .. " para " .. xPlayer.PlayerData.job.label .. ".", "success")
-            TriggerClientEvent('QBCore:Notify', xTarget.PlayerData.source , "Você foi recrutado para " .. xPlayer.PlayerData.job.label .. ".", "success")
-            TriggerEvent('cash_logs:server:createLog', 'bossmenu', 'Recrutado', "Recrutado com sucesso " .. (xTarget.PlayerData.charinfo.firstname .. ' ' .. xTarget.PlayerData.charinfo.lastname) .. ' (' .. xPlayer.PlayerData.job.name .. ')', src)
+            TriggerClientEvent('QBCore:Notify', src, "You have recruited " .. (xTarget.PlayerData.charinfo.firstname .. ' ' .. xTarget.PlayerData.charinfo.lastname) .. " for " .. xPlayer.PlayerData.job.label .. ".", "success")
+            TriggerClientEvent('QBCore:Notify', xTarget.PlayerData.source , "You were recruited to " .. xPlayer.PlayerData.job.label .. ".", "success")
+            TriggerEvent('cash_logs:server:createLog', 'bossmenu', 'Recruited', "Recruited successfully " .. (xTarget.PlayerData.charinfo.firstname .. ' ' .. xTarget.PlayerData.charinfo.lastname) .. ' (' .. xPlayer.PlayerData.job.name .. ')', src)
         end
     else
         TriggerClientEvent('QBCore:Notify', src, "Você não é o chefe, como chegou aqui vadia?!", "error")
@@ -253,8 +253,8 @@ AddEventHandler('cash_bossmenu:server:updateGrade', function(data)
 
     if xEmployee then
         if xEmployee.Functions.SetJob(xPlayer.PlayerData.job.name, data.grade) then
-            TriggerClientEvent('QBCore:Notify', src, "Promovido com sucesso!", "success")
-            TriggerClientEvent('QBCore:Notify', xEmployee.PlayerData.source , "Você acabou de ser promovido [" .. data.grade .."].", "success")
+            TriggerClientEvent('QBCore:Notify', src, "Successfully promoted!", "success")
+            TriggerClientEvent('QBCore:Notify', xEmployee.PlayerData.source , "You have been promoted [" .. data.grade .."].", "success")
 
             Wait(500)
             local employees = {}
@@ -294,7 +294,7 @@ AddEventHandler('cash_bossmenu:server:updateGrade', function(data)
                 local employeejob = json.decode(xEmployee.job)
                 employeejob.grade = job.grades[data.grade]
                 QBCore.Functions.ExecuteSql(false, "UPDATE `players` SET `job` = '"..json.encode(employeejob).."' WHERE `citizenid` = '".. data.source .."'")
-                TriggerClientEvent('QBCore:Notify', src, "Promovido com sucesso!", "success")
+                TriggerClientEvent('QBCore:Notify', src, "Successfully promoted!", "success")
                 
                 Wait(500)
                 local employees = {}
@@ -324,7 +324,7 @@ AddEventHandler('cash_bossmenu:server:updateGrade', function(data)
                     end
                 end)
             else
-                TriggerClientEvent('QBCore:Notify', src, "Erro. Não foi possível encontrar jogador.", "error")
+                TriggerClientEvent('QBCore:Notify', src, "Error. Could not find player.", "error")
             end
         end)
     end
