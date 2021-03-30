@@ -196,7 +196,7 @@ $(document).on('click', '.phone-application', function(e){
                         $(".house-app-mykeys-container").html("");
                         if (Keys.length > 0) {
                             $.each(Keys, function(i, key){
-                                var elem = '<div class="mykeys-key" id="keyid-'+i+'"> <span class="mykeys-key-label">' + key.HouseData.adress + '</span> <span class="mykeys-key-sub">Klik om GPS in te stellen</span> </div>';
+                                var elem = '<div class="mykeys-key" id="keyid-'+i+'"> <span class="mykeys-key-label">' + key.HouseData.adress + '</span> <span class="mykeys-key-sub">Click to set GPS</span> </div>';
 
                                 $(".house-app-mykeys-container").append(elem);
                                 $("#keyid-"+i).data('KeyData', key);
@@ -229,7 +229,7 @@ $(document).on('click', '.phone-application', function(e){
             }
         }
     } else {
-        QB.Phone.Notifications.Add("fas fa-exclamation-circle", "Sistema", QB.Phone.Data.Applications[PressedApplication].tooltipText+" não esta disponivel!")
+        QB.Phone.Notifications.Add("fas fa-exclamation-circle", "System", QB.Phone.Data.Applications[PressedApplication].tooltipText+" Not Available!")
     }
 });
 
@@ -526,7 +526,7 @@ $(document).ready(function(){
                 QB.Phone.Notifications.LoadMentionedTweets(event.data.Tweets);                
                 break;
             case "UpdateBank":
-                $(".bank-app-account-balance").html("&euro; "+event.data.NewBalance);
+                $(".bank-app-account-balance").html("&dollar; "+event.data.NewBalance);
                 $(".bank-app-account-balance").data('balance', event.data.NewBalance);
                 break;
             case "UpdateChat":
@@ -577,8 +577,8 @@ $(document).ready(function(){
                         $(".call-notifications").css({"display":"block"});
                         $(".call-notifications").animate({right: 5+"vh"});
                     }
-                    $(".call-notifications-title").html("Chamada ("+timeString+")");
-                    $(".call-notifications-content").html("Em chamada com "+event.data.Name);
+                    $(".call-notifications-title").html("Call ("+timeString+")");
+                    $(".call-notifications-content").html("On call with "+event.data.Name);
                     $(".call-notifications").removeClass('call-notifications-shake');
                 } else {
                     $(".call-notifications").animate({

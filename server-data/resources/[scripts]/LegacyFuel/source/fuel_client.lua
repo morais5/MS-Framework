@@ -207,7 +207,7 @@ AddEventHandler('fuel:refuelFromPump', function(pumpObject, ped, vehicle)
 		if pumpObject then
 			local stringCoords = GetEntityCoords(pumpObject)
 
-			extraString = Config.Strings.TotalCost .. ": ~g~€" .. Round(currentCost, 1)
+			extraString = Config.Strings.TotalCost .. ": ~g~$" .. Round(currentCost, 1)
 
 			QBCore.Functions.DrawText3D(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.CancelFuelingPump .. extraString)
 			QBCore.Functions.DrawText3D(vehicleCoords.x, vehicleCoords.y, vehicleCoords.z + 0.5, Round(currentFuel, 1) .. "%")

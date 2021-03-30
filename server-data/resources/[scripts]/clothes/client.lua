@@ -95,7 +95,7 @@ function startClothes(hasToPay)
 			if cashBalance >= 100 or cashBalance >= 100 then
 				TriggerServerEvent("clothes:server:PayClothes")
 			else
-				QBCore.Functions.Notify("You don\'t have enough money! (€100,-)")
+				QBCore.Functions.Notify("You don\'t have enough money! ($100,-)")
 			end
 		end)
 	end

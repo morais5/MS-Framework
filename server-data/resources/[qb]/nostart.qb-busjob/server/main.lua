@@ -46,14 +46,14 @@ RegisterServerEvent('Job_Bus:BetaalBorg')
 AddEventHandler('Job_Bus:BetaalBorg', function()
 	local xPlayer = JobsClientCore.ESX.GetPlayerFromId(source)
 	xPlayer.removeMoney(1000)
-	TriggerClientEvent('JobsCoreO:DisplayNotification', source, "You paid ~g~€ 1000~s~ deposit!")
+	TriggerClientEvent('JobsCoreO:DisplayNotification', source, "You paid ~g~$ 1000~s~ deposit!")
 end)
 
 RegisterServerEvent('Job_Bus:GetBorg')
 AddEventHandler('Job_Bus:GetBorg', function()
 	local xPlayer = JobsClientCore.ESX.GetPlayerFromId(source)
 	xPlayer.addMoney(1000)
-	TriggerClientEvent('JobsCoreO:DisplayNotification', source, "You have gotten your ~g~€ 1000~s~ deposit back!")
+	TriggerClientEvent('JobsCoreO:DisplayNotification', source, "You have gotten your ~g~$ 1000~s~ deposit back!")
 end)
 
 RegisterServerEvent('Job_Bus:GetPayment')
@@ -61,7 +61,7 @@ AddEventHandler('Job_Bus:GetPayment', function(amount)
 	local xPlayer = JobsClientCore.ESX.GetPlayerFromId(source)
 	local GiveMoney = amount
 	xPlayer.addMoney(GiveMoney)
-	TriggerClientEvent('JobsCoreO:DisplayNotification', source, "Your passenger has paid ~b~€ "..GiveMoney.." ~s~with their ~g~OV~s~.")
+	TriggerClientEvent('JobsCoreO:DisplayNotification', source, "Your passenger has paid ~b~$ "..GiveMoney.." ~s~with their ~g~OV~s~.")
 end)
 
 RegisterServerEvent('Job_Bus:eindstop')
@@ -69,7 +69,7 @@ AddEventHandler('Job_Bus:eindstop', function(amount)
 	local xPlayer = JobsClientCore.ESX.GetPlayerFromId(source)
 	local GiveMoney = amount
 	xPlayer.addMoney(GiveMoney)
-	TriggerClientEvent('JobsCoreO:DisplayNotification', source, "You received a bonus of ~b~€ "..GiveMoney.."~s~.")
+	TriggerClientEvent('JobsCoreO:DisplayNotification', source, "You received a bonus of ~b~$ "..GiveMoney.."~s~.")
 end)
 
 

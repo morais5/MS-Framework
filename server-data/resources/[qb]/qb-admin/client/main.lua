@@ -532,7 +532,7 @@ Citizen.CreateThread(function()
             end
 
             if WarMenu.MenuButton("Criar Dealer", 'createDealer') then
-                DisplayOnscreenKeyboard(1, "Nome do Dealer", "Nome do Dealer", "", "", "", "", 128 + 1)
+                DisplayOnscreenKeyboard(1, "Name do Dealer", "Name do Dealer", "", "", "", "", 128 + 1)
                 while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
                     Citizen.Wait(7)
                 end

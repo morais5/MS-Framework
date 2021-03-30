@@ -74,10 +74,10 @@ Citizen.CreateThread(function()
                     if dstCheck <= 2 then
                         if not IsPedInAnyVehicle(ped) then
                             if not isConfirming then
-                                DrawText3Ds(vehPos.x, vehPos.y, vehPos.z + 1.45, '~g~E~w~ Para ver documentação do veiculo')
-                                DrawText3Ds(vehPos.x, vehPos.y, vehPos.z + 1.25, QBCore.Shared.Vehicles[Config.OccasionSlots[i]["model"]]["name"]..', Preço: €'..Config.OccasionSlots[i]["price"]..',-')
+                                DrawText3Ds(vehPos.x, vehPos.y, vehPos.z + 1.45, '~g~E~w~ To see the vehicle documentation')
+                                DrawText3Ds(vehPos.x, vehPos.y, vehPos.z + 1.25, QBCore.Shared.Vehicles[Config.OccasionSlots[i]["model"]]["name"]..', Preço: $'..Config.OccasionSlots[i]["price"]..',-')
                                 if Config.OccasionSlots[i]["owner"] == QBCore.Functions.GetPlayerData().citizenid then
-                                    DrawText3Ds(vehPos.x, vehPos.y, vehPos.z + 1.05, '~r~G~w~ Retirar veiculo da venda')
+                                    DrawText3Ds(vehPos.x, vehPos.y, vehPos.z + 1.05, '~r~G~w~ Remove vehicle from sale')
                                     if IsControlJustPressed(0, Keys["G"]) then
                                         isConfirming = true
                                     end
@@ -91,10 +91,10 @@ Citizen.CreateThread(function()
                                         else
                                             info = {}
                                             info.charinfo = {
-                                                firstname = "Desconhecido",
-                                                lastname = "Desconhecido",
-                                                account = "Desconhecido",
-                                                phone = "Desconhecido"
+                                                firstname = "Unknown",
+                                                lastname = "Unknown",
+                                                account = "Unknown",
+                                                phone = "Unknown"
                                             }
                                         end
                                         
@@ -102,8 +102,8 @@ Citizen.CreateThread(function()
                                     end, Config.OccasionSlots[currentVehicle]["owner"])
                                 end
                             else
-                                DrawText3Ds(vehPos.x, vehPos.y, vehPos.z + 1.45, 'Tens a certeza que queres remover o carro do stand de usados?')
-                                DrawText3Ds(vehPos.x, vehPos.y, vehPos.z + 1.25, '~g~7~w~ - Sim | ~r~8~w~ - Não')
+                                DrawText3Ds(vehPos.x, vehPos.y, vehPos.z + 1.45, 'Are you sure you want to remove the car from the used stand?')
+                                DrawText3Ds(vehPos.x, vehPos.y, vehPos.z + 1.25, '~g~7~w~ - Yes | ~r~8~w~ - No')
                                 if IsDisabledControlJustPressed(0, Keys["7"]) then
                                     isConfirming = false
                                     currentVehicle = i
@@ -122,14 +122,14 @@ Citizen.CreateThread(function()
                 if sellDist <= 13.0 and IsPedInAnyVehicle(ped) then 
                     DrawMarker(2, Config.SellVehicle["x"], Config.SellVehicle["y"], Config.SellVehicle["z"] + 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.7, 0.7, 0.6, 255, 0, 0, 155, false, false, false, true, false, false, false)
                     if sellDist <= 3.5 and IsPedInAnyVehicle(ped) then
-                        DrawText3Ds(Config.SellVehicle["x"], Config.SellVehicle["y"], Config.SellVehicle["z"], '~g~E~w~ - Inserir veiculo na lista de venda')
+                        DrawText3Ds(Config.SellVehicle["x"], Config.SellVehicle["y"], Config.SellVehicle["z"], '~g~E~w~ - Insert vehicle in the sales list')
                         if IsControlJustPressed(0, Keys["E"]) then
                             local VehiclePlate = GetVehicleNumberPlateText(GetVehiclePedIsIn(ped))
                             QBCore.Functions.TriggerCallback('qb-garage:server:checkVehicleOwner', function(owned)
                                 if owned then
                                     openSellContract(true)
                                 else
-                                    QBCore.Functions.Notify('Este veiculo pertence-te?', 'error', 3500)
+                                    QBCore.Functions.Notify('Does this vehicle belong to you?', 'error', 3500)
                                 end
                             end, VehiclePlate)
                         end
@@ -239,7 +239,7 @@ AddEventHandler('qb-occasions:client:BuyFinished', function(model, plate, mods)
         SetEntityHeading(veh, Config.BuyVehicle.h)
         TaskWarpPedIntoVehicle(GetPlayerPed(-1), veh, -1)
         exports['LegacyFuel']:SetFuel(veh, 100)
-        QBCore.Functions.Notify("Veiculo comprado", "success", 2500)
+        QBCore.Functions.Notify("Purchased vehicle", "success", 2500)
         TriggerEvent("vehiclekeys:client:SetOwner", plate)
         SetVehicleEngineOn(veh, true, true)
         Citizen.Wait(500)
@@ -260,7 +260,7 @@ AddEventHandler('qb-occasions:client:ReturnOwnedVehicle', function(vehdata)
         SetEntityHeading(veh, Config.BuyVehicle.h)
         TaskWarpPedIntoVehicle(GetPlayerPed(-1), veh, -1)
         exports['LegacyFuel']:SetFuel(veh, 100)
-        QBCore.Functions.Notify("Retiras-te o teu veiculo do stand ..")
+        QBCore.Functions.Notify("You removed your vehicle from the stand ..")
         TriggerEvent("vehiclekeys:client:SetOwner", vehdata.plate)
         SetVehicleEngineOn(veh, true, true)
         Citizen.Wait(500)
@@ -290,7 +290,7 @@ function sellVehicleWait(price)
     QBCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))
     Citizen.Wait(1500)
     DoScreenFadeIn(250)
-    QBCore.Functions.Notify('O teu carro esta a venda por €'..price..',-', 'success')
+    QBCore.Functions.Notify('Your car is on sale for $'..price..',-', 'success')
     PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
 end
 
@@ -315,6 +315,6 @@ Citizen.CreateThread(function()
     SetBlipColour(OccasionBlip, 3)
 
     BeginTextCommandSetBlipName("STRING")
-    AddTextComponentSubstringPlayerName("Stand de Usados")
+    AddTextComponentSubstringPlayerName("Used Stand")
     EndTextCommandSetBlipName(OccasionBlip)
 end)

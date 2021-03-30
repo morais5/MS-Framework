@@ -73,7 +73,7 @@ AddEventHandler('qb-tunerchip:server:TuneStatus', function()
 
     QBCore.Functions.TriggerCallback('qb-tunerchip:server:GetStatus', function(status)
         if status then
-            TriggerEvent("chatMessage", "VEHICLE STATUS", "warning", displayName..": CLIPTuner: Sim")
+            TriggerEvent("chatMessage", "VEHICLE STATUS", "warning", displayName..": CLIPTuner: Yes")
         else
             TriggerEvent("chatMessage", "VEHICLE STATUS", "warning", displayName..": CLIPTuner: Não")
         end

@@ -27,7 +27,7 @@ OpenMeosPage = function(page) {
 }
 
 SetupMeosHome = function() {
-    $("#meos-app-name").html("Bem vindo " + QB.Phone.Data.PlayerData.charinfo.firstname + " " + QB.Phone.Data.PlayerData.charinfo.lastname);
+    $("#meos-app-name").html("Welcome " + QB.Phone.Data.PlayerData.charinfo.firstname + " " + QB.Phone.Data.PlayerData.charinfo.lastname);
 }
 
 MeosHomePage = function() {
@@ -64,24 +64,24 @@ $(document).on('click', '.person-search-result', function(e){
     var ClickedPersonId = $(this).attr('id');
     var ClickedPersonData = $("#"+ClickedPersonId).data('PersonData');
 
-    var Gender = "Masculino";
+    var Gender = "Male";
     if (ClickedPersonData.gender == 1) {
-        Gender = "Feminino";
+        Gender = "Female";
     }
-    var HasLicense = "Sim";
+    var HasLicense = "Yes";
     if (!ClickedPersonData.driverlicense) {
-        HasLicense = "Nao";
+        HasLicense = "No";
     }
-    var IsWarrant = "Nao";
+    var IsWarrant = "No";
     if (ClickedPersonData.warrant) {
-        IsWarrant = "Sim";
+        IsWarrant = "Yes";
     }
     var appartementData = {};
     if (ClickedPersonData.appartmentdata) {
         appartementData = ClickedPersonData.appartmentdata;
     }
 
-    var OpenElement = '<div class="person-search-result-name">Nome: '+ClickedPersonData.firstname+' '+ClickedPersonData.lastname+'</div> <div class="person-search-result-bsn">NIF: '+ClickedPersonData.citizenid+'</div> <div class="person-opensplit"></div> &nbsp; <div class="person-search-result-dob">Data de Nascimento: '+ClickedPersonData.birthdate+'</div> <div class="person-search-result-number">Nº Telemovel: '+ClickedPersonData.phone+'</div> <div class="person-search-result-nationality">Nacionalidade: '+ClickedPersonData.nationality+'</div> <div class="person-search-result-gender">Genero: '+Gender+'</div> &nbsp; <div class="person-search-result-apartment"><span id="'+ClickedPersonId+'">Apartamento: '+appartementData.label+'</span> <i class="fas fa-map-marker-alt appartment-adress-location" id="'+ClickedPersonId+'"></i></div> &nbsp; <div class="person-search-result-warned">Procurado: '+IsWarrant+'</div> <div class="person-search-result-driverslicense">Carta de Condução: '+HasLicense+'</div>';
+    var OpenElement = '<div class="person-search-result-name">Name: '+ClickedPersonData.firstname+' '+ClickedPersonData.lastname+'</div> <div class="person-search-result-bsn">ID: '+ClickedPersonData.citizenid+'</div> <div class="person-opensplit"></div> &nbsp; <div class="person-search-result-dob">Birth date: '+ClickedPersonData.birthdate+'</div> <div class="person-search-result-number">Phone Nº: '+ClickedPersonData.phone+'</div> <div class="person-search-result-nationality">Nationality: '+ClickedPersonData.nationality+'</div> <div class="person-search-result-gender">Gender: '+Gender+'</div> &nbsp; <div class="person-search-result-apartment"><span id="'+ClickedPersonId+'">Apartment: '+appartementData.label+'</span> <i class="fas fa-map-marker-alt appartment-adress-location" id="'+ClickedPersonId+'"></i></div> &nbsp; <div class="person-search-result-warned">Wanted: '+IsWarrant+'</div> <div class="person-search-result-driverslicense">Driving license: '+HasLicense+'</div>';
 
     if (OpenedPerson === null) {
         $(ClickedPerson).html(OpenElement)
@@ -89,13 +89,13 @@ $(document).on('click', '.person-search-result', function(e){
     } else if (OpenedPerson == ClickedPerson) {
         var PreviousPersonId = $(OpenedPerson).attr('id');
         var PreviousPersonData = $("#"+PreviousPersonId).data('PersonData');
-        var PreviousElement = '<div class="person-search-result-name">Nome: '+PreviousPersonData.firstname+' '+PreviousPersonData.lastname+'</div> <div class="person-search-result-bsn">NIF: '+PreviousPersonData.citizenid+'</div>';
+        var PreviousElement = '<div class="person-search-result-name">Name: '+PreviousPersonData.firstname+' '+PreviousPersonData.lastname+'</div> <div class="person-search-result-bsn">ID: '+PreviousPersonData.citizenid+'</div>';
         $(ClickedPerson).html(PreviousElement)
         OpenedPerson = null;
     } else {
         var PreviousPersonId = $(OpenedPerson).attr('id');
         var PreviousPersonData = $("#"+PreviousPersonId).data('PersonData');
-        var PreviousElement = '<div class="person-search-result-name">Nome: '+PreviousPersonData.firstname+' '+PreviousPersonData.lastname+'</div> <div class="person-search-result-bsn">NIF: '+PreviousPersonData.citizenid+'</div>';
+        var PreviousElement = '<div class="person-search-result-name">Name: '+PreviousPersonData.firstname+' '+PreviousPersonData.lastname+'</div> <div class="person-search-result-bsn">ID: '+PreviousPersonData.citizenid+'</div>';
         $(OpenedPerson).html(PreviousElement)
         $(ClickedPerson).html(OpenElement)
         OpenedPerson = ClickedPerson;
@@ -140,7 +140,7 @@ $(document).on('click', '.person-search-result-apartment > span', function(e){
     copyText.setSelectionRange(0, 99999);
     document.execCommand("copy");
 
-    QB.Phone.Notifications.Add("fas fa-university", "CAD", "Numero de Casa copiado!", "#badc58", 1750);
+    QB.Phone.Notifications.Add("fas fa-university", "CAD", "Copied house number!", "#badc58", 1750);
 
     $.post('http://qb-phone_new/SetApartmentLocation', JSON.stringify({
         data: ClickedPersonData
@@ -160,7 +160,7 @@ $(document).on('click', '.person-search-result-house', function(e){
         GarageLabel = "Yes";
     }
 
-    var OpenElement = '<div class="person-search-result-name">Dono: '+ClickedHouseData.charinfo.firstname+' '+ClickedHouseData.charinfo.lastname+'</div><div class="person-search-result-bsn">Casa: '+ClickedHouseData.label+'</div> <div class="person-opensplit"></div> &nbsp; <div class="person-search-result-dob">Morada: '+ClickedHouseData.label+' &nbsp; <i class="fas fa-map-marker-alt house-adress-location" id="'+ClickedHouseId+'"></i></div> <div class="person-search-result-number">Tier: '+ClickedHouseData.tier+'</div> <div class="person-search-result-nationality">Garagem: ' + GarageLabel + '</div>';
+    var OpenElement = '<div class="person-search-result-name">Owner: '+ClickedHouseData.charinfo.firstname+' '+ClickedHouseData.charinfo.lastname+'</div><div class="person-search-result-bsn">House: '+ClickedHouseData.label+'</div> <div class="person-opensplit"></div> &nbsp; <div class="person-search-result-dob">Address: '+ClickedHouseData.label+' &nbsp; <i class="fas fa-map-marker-alt house-adress-location" id="'+ClickedHouseId+'"></i></div> <div class="person-search-result-number">Tier: '+ClickedHouseData.tier+'</div> <div class="person-search-result-nationality">Garage: ' + GarageLabel + '</div>';
 
     if (OpenedHouse === null) {
         $(ClickedHouse).html(OpenElement)
@@ -168,13 +168,13 @@ $(document).on('click', '.person-search-result-house', function(e){
     } else if (OpenedHouse == ClickedHouse) {
         var PreviousPersonId = $(OpenedHouse).attr('id');
         var PreviousPersonData = $("#"+PreviousPersonId).data('HouseData');
-        var PreviousElement = '<div class="person-search-result-name">Dono: '+PreviousPersonData.charinfo.firstname+' '+PreviousPersonData.charinfo.lastname+'</div> <div class="person-search-result-bsn">Casa: '+PreviousPersonData.label+'</div>';
+        var PreviousElement = '<div class="person-search-result-name">Owner: '+PreviousPersonData.charinfo.firstname+' '+PreviousPersonData.charinfo.lastname+'</div> <div class="person-search-result-bsn">House: '+PreviousPersonData.label+'</div>';
         $(ClickedHouse).html(PreviousElement)
         OpenedHouse = null;
     } else {
         var PreviousPersonId = $(OpenedHouse).attr('id');
         var PreviousPersonData = $("#"+PreviousPersonId).data('HouseData');
-        var PreviousElement = '<div class="person-search-result-name">Dono: '+PreviousPersonData.charinfo.firstname+' '+PreviousPersonData.charinfo.lastname+'</div> <div class="person-search-result-bsn">Casa: '+PreviousPersonData.label+'</div>';
+        var PreviousElement = '<div class="person-search-result-name">Owner: '+PreviousPersonData.charinfo.firstname+' '+PreviousPersonData.charinfo.lastname+'</div> <div class="person-search-result-bsn">House: '+PreviousPersonData.label+'</div>';
         $(OpenedHouse).html(PreviousElement)
         $(ClickedHouse).html(OpenElement)
         OpenedHouse = ClickedHouse;
@@ -192,17 +192,17 @@ $(document).on('click', '.confirm-search-person-test', function(e){
             if (result != null) {
                 $(".person-search-results").html("");
                 $.each(result, function (i, person) {
-                    var PersonElement = '<div class="person-search-result" id="person-'+i+'"><div class="person-search-result-name">Nome: '+person.firstname+' '+person.lastname+'</div> <div class="person-search-result-bsn">NIF: '+person.citizenid+'</div> </div>';
+                    var PersonElement = '<div class="person-search-result" id="person-'+i+'"><div class="person-search-result-name">Name: '+person.firstname+' '+person.lastname+'</div> <div class="person-search-result-bsn">ID: '+person.citizenid+'</div> </div>';
                     $(".person-search-results").append(PersonElement);
                     $("#person-"+i).data("PersonData", person);
                 });
             } else {
-                QB.Phone.Notifications.Add("politie", "CAD", "Não foram encontrados resultados da pesquisa!");
+                QB.Phone.Notifications.Add("politie", "CAD", "No results found!");
                 $(".person-search-results").html("");
             }
         });
     } else {
-        QB.Phone.Notifications.Add("politie", "CAD", "Não foram encontrados resultados da pesquisa!");
+        QB.Phone.Notifications.Add("politie", "CAD", "No results found!");
         $(".person-search-results").html("");
     }
 });
@@ -218,17 +218,17 @@ $(document).on('click', '.confirm-search-person-house', function(e){
             if (result != null) {
                 $(".person-search-results").html("");
                 $.each(result, function (i, house) {
-                    var PersonElement = '<div class="person-search-result-house" id="personhouse-'+i+'"><div class="person-search-result-name">Dono: '+house.charinfo.firstname+' '+house.charinfo.lastname+'</div> <div class="person-search-result-bsn">Casa: '+house.label+'</div></div>';
+                    var PersonElement = '<div class="person-search-result-house" id="personhouse-'+i+'"><div class="person-search-result-name">Owner: '+house.charinfo.firstname+' '+house.charinfo.lastname+'</div> <div class="person-search-result-bsn">House: '+house.label+'</div></div>';
                     $(".person-search-results").append(PersonElement);
                     $("#personhouse-"+i).data("HouseData", house);
                 });
             } else {
-                QB.Phone.Notifications.Add("politie", "CAD", "Não foram encontrados resultados da pesquisa!");
+                QB.Phone.Notifications.Add("politie", "CAD", "No results found!");
                 $(".person-search-results").html("");
             }
         });
     } else {
-        QB.Phone.Notifications.Add("politie", "CAD", "Não foram encontrados resultados da pesquisa!");
+        QB.Phone.Notifications.Add("politie", "CAD", "No results found!");
         $(".person-search-results").html("");
     }
 });
@@ -244,22 +244,22 @@ $(document).on('click', '.confirm-search-vehicle', function(e){
             if (result != null) {
                 $(".vehicle-search-results").html("");
                 $.each(result, function (i, vehicle) {
-                    var APK = "Sim";
+                    var APK = "Yes";
                     if (!vehicle.status) {
-                        APK = "Nao";
+                        APK = "No";
                     }
-                    var Flagged = "Nao";
+                    var Flagged = "No";
                     if (vehicle.isFlagged) {
-                        Flagged = "Sim";
+                        Flagged = "Yes";
                     }
                     
-                    var VehicleElement = '<div class="vehicle-search-result"> <div class="vehicle-search-result-name">'+vehicle.label+'</div> <div class="vehicle-search-result-plate">Matricula: '+vehicle.plate+'</div> <div class="vehicle-opensplit"></div> &nbsp; <div class="vehicle-search-result-owner">Dono: '+vehicle.owner+'</div> &nbsp; <div class="vehicle-search-result-apk">CHIP: '+APK+'</div> <div class="vehicle-search-result-warrant">Procurado: '+Flagged+'</div> </div>'
+                    var VehicleElement = '<div class="vehicle-search-result"> <div class="vehicle-search-result-name">'+vehicle.label+'</div> <div class="vehicle-search-result-plate">Registration: '+vehicle.plate+'</div> <div class="vehicle-opensplit"></div> &nbsp; <div class="vehicle-search-result-owner">Owner: '+vehicle.owner+'</div> &nbsp; <div class="vehicle-search-result-apk">CHIP: '+APK+'</div> <div class="vehicle-search-result-warrant">Wanted: '+Flagged+'</div> </div>'
                     $(".vehicle-search-results").append(VehicleElement);
                 });
             }
         });
     } else {
-        QB.Phone.Notifications.Add("politie", "CAD", "Não foram encontrados resultados da pesquisa!");
+        QB.Phone.Notifications.Add("politie", "CAD", "No results found!");
         $(".vehicle-search-results").html("");
     }
 });
@@ -269,19 +269,19 @@ $(document).on('click', '.scan-search-vehicle', function(e){
     $.post('http://qb-phone_new/FetchVehicleScan', JSON.stringify({}), function(vehicle){
         if (vehicle != null) {
             $(".vehicle-search-results").html("");
-            var APK = "Sim";
+            var APK = "Yes";
             if (!vehicle.status) {
-                APK = "Nao";
+                APK = "No";
             }
-            var Flagged = "Nao";
+            var Flagged = "No";
             if (vehicle.isFlagged) {
-                Flagged = "Sim";
+                Flagged = "Yes";
             }
 
-            var VehicleElement = '<div class="vehicle-search-result"> <div class="vehicle-search-result-name">'+vehicle.label+'</div> <div class="vehicle-search-result-plate">Matricula: '+vehicle.plate+'</div> <div class="vehicle-opensplit"></div> &nbsp; <div class="vehicle-search-result-owner">Dono: '+vehicle.owner+'</div> &nbsp; <div class="vehicle-search-result-apk">CHIP: '+APK+'</div> <div class="vehicle-search-result-warrant">Procurado: '+Flagged+'</div> </div>'
+            var VehicleElement = '<div class="vehicle-search-result"> <div class="vehicle-search-result-name">'+vehicle.label+'</div> <div class="vehicle-search-result-plate">Registration: '+vehicle.plate+'</div> <div class="vehicle-opensplit"></div> &nbsp; <div class="vehicle-search-result-owner">Owner: '+vehicle.owner+'</div> &nbsp; <div class="vehicle-search-result-apk">CHIP: '+APK+'</div> <div class="vehicle-search-result-warrant">Wanted: '+Flagged+'</div> </div>'
             $(".vehicle-search-results").append(VehicleElement);
         } else {
-            QB.Phone.Notifications.Add("politie", "CAD", "Nenhum veiculo por perto!");
+            QB.Phone.Notifications.Add("politie", "CAD", "No vehicles nearby!");
             $(".vehicle-search-results").append("");
         }
     });
@@ -291,11 +291,11 @@ AddPoliceAlert = function(data) {
     var randId = Math.floor((Math.random() * 10000) + 1);
     var AlertElement = '';
     if (data.alert.coords != undefined && data.alert.coords != null) {
-        AlertElement = '<div class="meos-alert" id="alert-'+randId+'"> <span class="meos-alert-new" style="margin-bottom: 1vh;">NOVO</span> <p class="meos-alert-type">Alerta: '+data.alert.title+'</p> <p class="meos-alert-description">'+data.alert.description+'</p> <hr> <div class="meos-location-button">LOC.</div> </div>';
+        AlertElement = '<div class="meos-alert" id="alert-'+randId+'"> <span class="meos-alert-new" style="margin-bottom: 1vh;">NEW</span> <p class="meos-alert-type">Alert: '+data.alert.title+'</p> <p class="meos-alert-description">'+data.alert.description+'</p> <hr> <div class="meos-location-button">LOC.</div> </div>';
     } else {
-        AlertElement = '<div class="meos-alert" id="alert-'+randId+'"> <span class="meos-alert-new" style="margin-bottom: 1vh;">NOVO</span> <p class="meos-alert-type">Alerta: '+data.alert.title+'</p> <p class="meos-alert-description">'+data.alert.description+'</p></div>';
+        AlertElement = '<div class="meos-alert" id="alert-'+randId+'"> <span class="meos-alert-new" style="margin-bottom: 1vh;">NEW</span> <p class="meos-alert-type">Alert: '+data.alert.title+'</p> <p class="meos-alert-description">'+data.alert.description+'</p></div>';
     }
-    $(".meos-recent-alerts").html('<div class="meos-recent-alert" id="recent-alert-'+randId+'"><span class="meos-recent-alert-title">Alerta: '+data.alert.title+'</span><p class="meos-recent-alert-description">'+data.alert.description+'</p></div>');
+    $(".meos-recent-alerts").html('<div class="meos-recent-alert" id="recent-alert-'+randId+'"><span class="meos-recent-alert-title">Alert: '+data.alert.title+'</span><p class="meos-recent-alert-description">'+data.alert.description+'</p></div>');
     if (data.alert.title == "Assistance colleague") {
         $(".meos-recent-alert").css({"background-color":"#d30404"}); 
         $(".meos-recent-alert").addClass("emergency button");
@@ -314,7 +314,7 @@ $(document).on('click', '.meos-recent-alert', function(e){
             alert: alertData,
         }));
     } else {
-        QB.Phone.Notifications.Add("politie", "CAD", "Este alerta não possui uma localização de GPS!");
+        QB.Phone.Notifications.Add("politie", "CAD", "This alert does not have a GPS location!");
     }
 });
 
@@ -328,6 +328,6 @@ $(document).on('click', '.meos-location-button', function(e){
 
 $(document).on('click', '.meos-clear-alerts', function(e){
     $(".meos-alerts").html("");
-    $(".meos-recent-alerts").html('<div class="meos-recent-alert"> <span class="meos-recent-alert-title">Não tens nenhum alerta!</span></div>');
-    QB.Phone.Notifications.Add("politie", "CAD", "Todos os alertas foram apagados!");
+    $(".meos-recent-alerts").html('<div class="meos-recent-alert"> <span class="meos-recent-alert-title">You have no alerts!</span></div>');
+    QB.Phone.Notifications.Add("politie", "CAD", "All the alerts were cleared!");
 });

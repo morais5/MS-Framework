@@ -81,7 +81,7 @@ function CreateJobBlip()
         if Chance == Odd then
             TriggerServerEvent('QBCore:Server:AddItem', 'phone', 1)
             TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["phone"], "add")
-            QBCore.Functions.Notify("Encontraste um telemovel..", "success")
+            QBCore.Functions.Notify("Encontraste um phone..", "success")
         end--]]
     end
 end

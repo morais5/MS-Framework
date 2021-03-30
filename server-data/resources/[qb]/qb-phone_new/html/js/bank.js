@@ -6,7 +6,7 @@ $(document).on('click', '.bank-app-account', function(e){
     copyText.setSelectionRange(0, 99999);
     document.execCommand("copy");
 
-    QB.Phone.Notifications.Add("fas fa-university", "LUNA-Banco", "Numero de conta copiado!", "#badc58", 1750);
+    QB.Phone.Notifications.Add("fas fa-university", "LUNA-Bank", "Copied number!", "#badc58", 1750);
 });
 
 var CurrentTab = "accounts";
@@ -49,7 +49,7 @@ $(document).on('click', '.bank-app-header-button', function(e){
 QB.Phone.Functions.DoBankOpen = function() {
     QB.Phone.Data.PlayerData.money.bank = (QB.Phone.Data.PlayerData.money.bank).toFixed();
     $(".bank-app-account-number").val(QB.Phone.Data.PlayerData.charinfo.account);
-    $(".bank-app-account-balance").html("&euro; "+QB.Phone.Data.PlayerData.money.bank);
+    $(".bank-app-account-balance").html("&dollar; "+QB.Phone.Data.PlayerData.money.bank);
     $(".bank-app-account-balance").data('balance', QB.Phone.Data.PlayerData.money.bank);
 
     $(".bank-app-loaded").css({"display":"none", "padding-left":"30vh"});
@@ -109,23 +109,23 @@ $(document).on('click', '#accept-transfer', function(e){
                     $("#bank-transfer-iban").val("");
                     $("#bank-transfer-amount").val("");
 
-                    $(".bank-app-account-balance").html("&euro; " + (data.NewBalance).toFixed(0));
+                    $(".bank-app-account-balance").html("&dollar; " + (data.NewBalance).toFixed(0));
                     $(".bank-app-account-balance").data('balance', (data.NewBalance).toFixed(0));
-                    QB.Phone.Notifications.Add("fas fa-university", "LUNA-Banco", "Transferiste &euro; "+amount+",-!", "#badc58", 1500);
+                    QB.Phone.Notifications.Add("fas fa-university", "LUNA-Bank", "Transfer &dollar; "+amount+",-!", "#badc58", 1500);
                 } else {
-                    QB.Phone.Notifications.Add("fas fa-university", "LUNA-Banco", "Não tens essa quantia de dinheiro!", "#badc58", 1500);
+                    QB.Phone.Notifications.Add("fas fa-university", "LUNA-Bank", "You do not have this amount of money!", "#badc58", 1500);
                 }
                 QB.Phone.Animations.TopSlideUp(".bank-app-transfer", 400, -100);
             });
     } else {
-        QB.Phone.Notifications.Add("fas fa-university", "LUNA-Banco", "Preenche todos os campos", "#badc58", 1750);
+        QB.Phone.Notifications.Add("fas fa-university", "LUNA-Bank", "Fill all the fields", "#badc58", 1750);
     }
 });
 
 GetInvoiceLabel = function(type) {
     retval = null;
     if (type == "request") {
-        retval = "Pedido de pagamento";
+        retval = "Request payment";
     }
 
     return retval
@@ -152,17 +152,17 @@ $(document).on('click', '.pay-invoice', function(event){
                         $("#"+InvoiceId).remove();
                     }, 100);
                 });
-                QB.Phone.Notifications.Add("fas fa-university", "LUNA-Banco", "You have paid &euro;"+InvoiceData.amount+"!", "#badc58", 1500);
+                QB.Phone.Notifications.Add("fas fa-university", "LUNA-Bank", "You have paid &dollar;"+InvoiceData.amount+"!", "#badc58", 1500);
                 var amountData = $(".bank-app-account-balance").data('balance');
                 var NewAmount = (amountData - InvoiceData.amount).toFixed();
                 $("#bank-transfer-amount").val(NewAmount);
                 $(".bank-app-account-balance").data('balance', NewAmount);
             } else {
-                QB.Phone.Notifications.Add("fas fa-university", "LUNA-Banco", "Não tens essa quantia de dinheiro!", "#badc58", 1500);
+                QB.Phone.Notifications.Add("fas fa-university", "LUNA-Bank", "You do not have this amount of money!", "#badc58", 1500);
             }
         });
     } else {
-        QB.Phone.Notifications.Add("fas fa-university", "LUNA-Banco", "Não tens essa quantia de dinheiro!", "#badc58", 1500);
+        QB.Phone.Notifications.Add("fas fa-university", "LUNA-Bank", "You do not have this amount of money!", "#badc58", 1500);
     }
 });
 
@@ -183,7 +183,7 @@ $(document).on('click', '.decline-invoice', function(event){
             $("#"+InvoiceId).remove();
         }, 100);
     });
-    QB.Phone.Notifications.Add("fas fa-university", "OFFS-Banco", "Pagaste &euro;"+InvoiceData.amount+"!", "#badc58", 1500);*/
+    QB.Phone.Notifications.Add("fas fa-university", "OFFS-Bank", "Pagaste &dollar;"+InvoiceData.amount+"!", "#badc58", 1500);*/
 });
 
 QB.Phone.Functions.LoadBankInvoices = function(invoices) {
@@ -191,7 +191,7 @@ QB.Phone.Functions.LoadBankInvoices = function(invoices) {
         $(".bank-app-invoices-list").html("");
 
         $.each(invoices, function(i, invoice){
-            var Elem = '<div class="bank-app-invoice" id="invoiceid-'+i+'"> <div class="bank-app-invoice-title">'+GetInvoiceLabel(invoice.type)+' <span style="font-size: 1vh; color: gray;">(Remetente: '+invoice.name+')</span></div> <div class="bank-app-invoice-amount">&euro; '+invoice.amount+',-</div> <div class="bank-app-invoice-buttons"> <i class="fas fa-check-circle pay-invoice"></i> <i class="fas fa-times-circle decline-invoice"></i> </div> </div>';
+            var Elem = '<div class="bank-app-invoice" id="invoiceid-'+i+'"> <div class="bank-app-invoice-title">'+GetInvoiceLabel(invoice.type)+' <span style="font-size: 1vh; color: gray;">(Sender: '+invoice.name+')</span></div> <div class="bank-app-invoice-amount">&dollar; '+invoice.amount+',-</div> <div class="bank-app-invoice-buttons"> <i class="fas fa-check-circle pay-invoice"></i> <i class="fas fa-times-circle decline-invoice"></i> </div> </div>';
 
             $(".bank-app-invoices-list").append(Elem);
             $("#invoiceid-"+i).data('invoicedata', invoice);
@@ -242,7 +242,7 @@ $(document).on('click', '.bank-app-my-contact', function(e){
     if (PressedContactData.iban !== "" && PressedContactData.iban !== undefined && PressedContactData.iban !== null) {
         $("#bank-transfer-iban").val(PressedContactData.iban);
     } else {
-        QB.Phone.Notifications.Add("fas fa-university", "LUNA-Banco", "Não existe nenhuma conta bancaria vinculado a este numero!", "#badc58", 2500);
+        QB.Phone.Notifications.Add("fas fa-university", "LUNA-Bank", "There is no bank account linked to this number!", "#badc58", 2500);
     }
     QB.Phone.Animations.TopSlideUp(".bank-app-my-contacts", 400, -100);
 });

@@ -19,11 +19,11 @@ AddEventHandler('bank:withdraw', function(amount)
     local bankamount = ply.PlayerData.money["bank"]
     local amount = tonumber(amount)
     if bankamount >= amount and amount > 0 then
-      ply.Functions.RemoveMoney('bank', amount, "Tirar Dinheiro Do Banco")
-      TriggerEvent("qb-log:server:CreateLog", "banking", "Retirar", "red", "**"..GetPlayerName(src) .. "** retirou €"..amount.." de sua conta bancária.")
-      ply.Functions.AddMoney('cash', amount, "Tirar Dinheiro Do Banco")
+      ply.Functions.RemoveMoney('bank', amount, "Tirar Dinheiro Do Bank")
+      TriggerEvent("qb-log:server:CreateLog", "banking", "Retirar", "red", "**"..GetPlayerName(src) .. "** retirou $"..amount.." de sua conta bancária.")
+      ply.Functions.AddMoney('cash', amount, "Tirar Dinheiro Do Bank")
     else
-      TriggerClientEvent('QBCore:Notify', src, 'Não tens dinheiro suficiente no banco :(', 'error')
+      TriggerClientEvent('QBCore:Notify', src, 'Não tens dinheiro suficiente no bank :(', 'error')
     end
 end)
 
@@ -35,7 +35,7 @@ AddEventHandler('bank:deposit', function(amount)
     local amount = tonumber(amount)
     if cashamount >= amount and amount > 0 then
       ply.Functions.RemoveMoney('cash', amount, "Depósito bancário")
-      TriggerEvent("qb-log:server:CreateLog", "banking", "Depositar", "green", "**"..GetPlayerName(src) .. "** depositou €"..amount.." na sua conta bancária.")
+      TriggerEvent("qb-log:server:CreateLog", "banking", "Depositar", "green", "**"..GetPlayerName(src) .. "** depositou $"..amount.." na sua conta bancária.")
       ply.Functions.AddMoney('bank', amount, "Depósito bancário")
     else
       TriggerClientEvent('QBCore:Notify', src, 'Não tens dinheiro suficiente para depositar :(', 'error')
@@ -84,10 +84,10 @@ AddEventHandler('banking:server:giveCash', function(trgtId, amount)
     Player.Functions.RemoveMoney('cash', amount, "Dinheiro dado a "..Player.PlayerData.citizenid)
     Target.Functions.AddMoney('cash', amount, "Dinheiro recebido de "..Target.PlayerData.citizenid)
 
-    TriggerEvent("qb-log:server:CreateLog", "banking", "Dê dinheiro", "blue", "**"..GetPlayerName(src) .. "** tem dado €"..amount.." para **" .. GetPlayerName(trgtId) .. "**")
+    TriggerEvent("qb-log:server:CreateLog", "banking", "Dê dinheiro", "blue", "**"..GetPlayerName(src) .. "** tem dado $"..amount.." para **" .. GetPlayerName(trgtId) .. "**")
     
-    TriggerClientEvent('QBCore:Notify', trgtId, "Você recebeu €"..amount.." from "..Player.PlayerData.charinfo.firstname.."!", 'success')
-    TriggerClientEvent('QBCore:Notify', src, "Você deu €"..amount.." para "..Target.PlayerData.charinfo.firstname.."!", 'success')
+    TriggerClientEvent('QBCore:Notify', trgtId, "Você recebeu $"..amount.." from "..Player.PlayerData.charinfo.firstname.."!", 'success')
+    TriggerClientEvent('QBCore:Notify', src, "Você deu $"..amount.." para "..Target.PlayerData.charinfo.firstname.."!", 'success')
   else
     TriggerEvent("qb-anticheat:server:banPlayer", "Cheating")
     TriggerEvent("qb-log:server:CreateLog", "anticheat", "Jogador banido! (Na verdade não é um teste, duhhhhh)", "red", "** @everyone " ..GetPlayerName(player).. "** tentei dar **"..amount.." para ele mesmo")  

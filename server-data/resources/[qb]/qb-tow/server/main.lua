@@ -54,7 +54,7 @@ AddEventHandler('qb-tow:server:11101110', function(drops)
 
     Player.Functions.AddJobReputation(1)
     Player.Functions.AddMoney("bank", payment, "tow-salary")
-    TriggerClientEvent('chatMessage', source, "BAAN", "warning", "Você recebeu seu salário de: €"..payment..", bruto: €"..price.." (de que €"..bonus.." bonus) e €"..taxAmount.." tax ("..PaymentTax.."%)")
+    TriggerClientEvent('chatMessage', source, "BAAN", "warning", "Você recebeu seu salário de: $"..payment..", bruto: $"..price.." (de que $"..bonus.." bonus) e $"..taxAmount.." tax ("..PaymentTax.."%)")
 end)
 
 QBCore.Commands.Add("npc", "Alternar opção de trabalho npc", {}, false, function(source, args)

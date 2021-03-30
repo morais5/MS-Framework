@@ -113,7 +113,7 @@ AddEventHandler('police:server:BillPlayer', function(playerId, price)
     if Player.PlayerData.job.name == "police" then
         if OtherPlayer ~= nil then
             OtherPlayer.Functions.RemoveMoney("bank", price, "paid-bills")
-            TriggerClientEvent('QBCore:Notify', OtherPlayer.PlayerData.source, "Você recebeu uma multa de €"..price)
+            TriggerClientEvent('QBCore:Notify', OtherPlayer.PlayerData.source, "Você recebeu uma multa de $"..price)
         end
     end
 end)
@@ -254,7 +254,7 @@ AddEventHandler('police:server:SearchPlayer', function(playerId)
     local src = source
     local SearchedPlayer = QBCore.Functions.GetPlayer(playerId)
     if SearchedPlayer ~= nil then 
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "warning", "Pessoa tem €"..SearchedPlayer.PlayerData.money["cash"]..",- nele..")
+        TriggerClientEvent('chatMessage', source, "SISTEMA", "warning", "Pessoa tem $"..SearchedPlayer.PlayerData.money["cash"]..",- nele..")
         TriggerClientEvent('QBCore:Notify', SearchedPlayer.PlayerData.source, "Você está sendo revistado...")
     end
 end)
@@ -305,7 +305,7 @@ AddEventHandler('police:server:RobPlayer', function(playerId)
         local money = SearchedPlayer.PlayerData.money["cash"]
         Player.Functions.AddMoney("cash", money, "police-player-robbed")
         SearchedPlayer.Functions.RemoveMoney("cash", money, "police-player-robbed")
-        TriggerClientEvent('QBCore:Notify', SearchedPlayer.PlayerData.source, "Você foi roubado de €"..money.."..")
+        TriggerClientEvent('QBCore:Notify', SearchedPlayer.PlayerData.source, "Você foi roubado de $"..money.."..")
     end
 end)
 
@@ -349,7 +349,7 @@ AddEventHandler('police:server:Impound', function(plate, fullImpound, price)
     if IsVehicleOwned(plate) then
         if not fullImpound then
             exports['ghmattimysql']:execute('UPDATE player_vehicles SET state = @state, depotprice = @depotprice WHERE plate = @plate', {['@state'] = 0, ['@depotprice'] = price, ['@plate'] = plate})
-            TriggerClientEvent('QBCore:Notify', src, "Veículo levado aos apreendidos para €"..price.."!")
+            TriggerClientEvent('QBCore:Notify', src, "Veículo levado aos apreendidos para $"..price.."!")
         else
             exports['ghmattimysql']:execute('UPDATE player_vehicles SET state = @state WHERE plate = @plate', {['@state'] = 2, ['@plate'] = plate})
             TriggerClientEvent('QBCore:Notify', src, "Veículo completamente apreendido!")
@@ -978,7 +978,7 @@ QBCore.Commands.Add("paytow", "Pay a bergnet worker", {{name="id", help="ID of t
         if OtherPlayer ~= nil then
             if OtherPlayer.PlayerData.job.name == "tow" then
                 OtherPlayer.Functions.AddMoney("bank", 500, "police-tow-paid")
-                TriggerClientEvent('chatMessage', OtherPlayer.PlayerData.source, "SISTEMA", "warning", "You received € 500 for your service!")
+                TriggerClientEvent('chatMessage', OtherPlayer.PlayerData.source, "SISTEMA", "warning", "You received $ 500 for your service!")
                 TriggerClientEvent('QBCore:Notify', source, 'You paid a bergnet worker')
             else
                 TriggerClientEvent('QBCore:Notify', source, 'Person is not a bergnet worker', "error")
@@ -997,7 +997,7 @@ QBCore.Commands.Add("paylaw", "Pay a lawyer", {{name="id", help="ID of the playe
         if OtherPlayer ~= nil then
             if OtherPlayer.PlayerData.job.name == "lawyer" then
                 OtherPlayer.Functions.AddMoney("bank", 500, "police-lawyer-paid")
-                TriggerClientEvent('chatMessage', OtherPlayer.PlayerData.source, "SISTEMA", "warning", "You received € 500 for your pro bono case!")
+                TriggerClientEvent('chatMessage', OtherPlayer.PlayerData.source, "SISTEMA", "warning", "You received $ 500 for your pro bono case!")
                 TriggerClientEvent('QBCore:Notify', source, 'You paid a lawyer')
             else
                 TriggerClientEvent('QBCore:Notify', source, 'Person is not a lawyer', "error")

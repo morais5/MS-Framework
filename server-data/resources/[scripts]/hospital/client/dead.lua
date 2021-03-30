@@ -55,7 +55,7 @@ Citizen.CreateThread(function()
                     if deathTime > 0 then
                         DrawTxt(0.93, 1.44, 1.0,1.0,0.6, "RESPAWN EM: ~r~" .. math.ceil(deathTime) .. "~w~ SEGUNDOS", 255, 255, 255, 255)
                     else
-                        DrawTxt(0.865, 1.44, 1.0, 1.0, 0.6, "~w~ PRESSIONA ~r~[E] ("..hold..")~w~ PARA RESPAWNAR ~r~(€"..Config.BillCost..")~w~", 255, 255, 255, 255)
+                        DrawTxt(0.865, 1.44, 1.0, 1.0, 0.6, "~w~ PRESSIONA ~r~[E] ("..hold..")~w~ PARA RESPAWNAR ~r~($"..Config.BillCost..")~w~", 255, 255, 255, 255)
                     end
                 end
 

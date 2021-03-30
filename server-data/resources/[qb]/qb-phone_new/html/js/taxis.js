@@ -8,7 +8,7 @@ SetupTaxis = function(data) {
             $("#lawyerid-"+i).data('LawyerData', lawyer);
         });
     } else {
-        var element = '<div class="taxi-list"><div class="no-taxis">Não existe taxistas disponiveis de momento.</div></div>'
+        var element = '<div class="taxi-list"><div class="no-taxis">There is no taxi drivers available at the moment.</div></div>'
         $(".taxis-list").append(element);
     }
 }
@@ -32,7 +32,7 @@ $(document).on('click', '.taxi-list-call', function(e){
                 if (status.CanCall) {
                     if (!status.InCall) {
                         if (QB.Phone.Data.AnonymousCall) {
-                            QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Iniciaste uma chamada em Anonimo!");
+                            QB.Phone.Notifications.Add("fas fa-phone", "Phone", "Start a call anonymous!");
                         }
                         $(".phone-call-outgoing").css({"display":"block"});
                         $(".phone-call-incoming").css({"display":"none"});
@@ -51,16 +51,16 @@ $(document).on('click', '.taxi-list-call', function(e){
                     
                         QB.Phone.Data.currentApplication = "phone-call";
                     } else {
-                        QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Ja estas numa chamada!");
+                        QB.Phone.Notifications.Add("fas fa-phone", "Phone", "You're already on a call!");
                     }
                 } else {
-                    QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Essa pessoa esta ocupada numa chamada");
+                    QB.Phone.Notifications.Add("fas fa-phone", "Phone", "That person is busy on a call");
                 }
             } else {
-                QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Essa pessoa não esta disponivel!");
+                QB.Phone.Notifications.Add("fas fa-phone", "Phone", "That person is not available!");
             }
         } else {
-            QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Não podes ligar a ti proprio!");
+            QB.Phone.Notifications.Add("fas fa-phone", "Phone", "You can't call yourself!");
         }
     });
 });

@@ -26,7 +26,7 @@ QBCore.Commands.Add("setcryptoworth", "Set crypto worth", {{name="crypto", help=
                     NewWorth = NewWorth
                 })
 
-                TriggerClientEvent('QBCore:Notify', src, "You set the worth of "..Crypto.Labels[crypto].." from: (€"..Crypto.Worth[crypto].." to: €"..NewWorth..") ("..ChangeLabel.." "..PercentageChange.."%)")
+                TriggerClientEvent('QBCore:Notify', src, "You set the worth of "..Crypto.Labels[crypto].." from: ($"..Crypto.Worth[crypto].." to: $"..NewWorth..") ("..ChangeLabel.." "..PercentageChange.."%)")
                 Crypto.Worth[crypto] = NewWorth
                 TriggerClientEvent('qb-crypto:client:UpdateCryptoWorth', -1, crypto, NewWorth)
                 QBCore.Functions.ExecuteSql(false, "UPDATE `crypto` SET `worth` = '"..NewWorth.."', `history` = '"..json.encode(Crypto.History[crypto]).."' WHERE `crypto` = '"..crypto.."'")
@@ -43,7 +43,7 @@ end, "admin")
 
 QBCore.Commands.Add("checkcryptoworth", "", {}, false, function(source, args)
     local src = source
-    TriggerClientEvent('QBCore:Notify', src, "The Qbit has a value of: €"..Crypto.Worth["qbit"])
+    TriggerClientEvent('QBCore:Notify', src, "The Qbit has a value of: $"..Crypto.Worth["qbit"])
 end, "admin")
 
 QBCore.Commands.Add("crypto", "", {}, false, function(source, args)
@@ -51,7 +51,7 @@ QBCore.Commands.Add("crypto", "", {}, false, function(source, args)
     local Player = QBCore.Functions.GetPlayer(src)
     local MyPocket = math.ceil(Player.PlayerData.money.crypto * Crypto.Worth["qbit"])
 
-    TriggerClientEvent('QBCore:Notify', src, "You have: "..Player.PlayerData.money.crypto.." QBit, with a worth of: €"..MyPocket..",-")
+    TriggerClientEvent('QBCore:Notify', src, "You have: "..Player.PlayerData.money.crypto.." QBit, with a worth of: $"..MyPocket..",-")
 end, "admin")
 
 RegisterServerEvent('qb-crypto:server:FetchWorth')

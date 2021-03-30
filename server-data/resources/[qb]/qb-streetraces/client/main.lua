@@ -55,7 +55,7 @@ Citizen.CreateThread(function()
                 for k, race in pairs(Races) do
                     if Races[k] ~= nil then
                         if GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Races[k].startx, Races[k].starty, Races[k].startz, true) < 15.0 and not Races[k].started then
-                            DrawText3Ds(Races[k].startx, Races[k].starty, Races[k].startz, "[~g~H~w~] To join the race (~g~€"..Races[k].amount..",-~w~)")
+                            DrawText3Ds(Races[k].startx, Races[k].starty, Races[k].startz, "[~g~H~w~] To join the race (~g~$"..Races[k].amount..",-~w~)")
                             if IsControlJustReleased(0, Keys["H"]) then
                                 TriggerServerEvent("qb-streetraces:JoinRace", k)
                             end
@@ -136,7 +136,7 @@ AddEventHandler('qb-streetraces:CreateRace', function(amount)
                 joined = {}
             }
             TriggerServerEvent("qb-streetraces:NewRace", race)
-            QBCore.Functions.Notify("Race gemaakt voor €"..amount..",-!", "success")
+            QBCore.Functions.Notify("Race gemaakt voor $"..amount..",-!", "success")
         else
             QBCore.Functions.Notify("end position to close!", "error")
         end

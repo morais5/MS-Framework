@@ -61,7 +61,7 @@ Citizen.CreateThread(function()
 			if dstCheck < 3.0 then
 				if JobBusy == true then
 					sleepThread = 5
-					local displayText = not IsEntityDead(cachedData["storeOwner"]) and "Carrega ~INPUT_CONTEXT~ vender seu peixe para o dono." or "O proprietário está morto e, portanto, não pode falar."
+					local displayText = not IsEntityDead(cachedData["storeOwner"]) and "Carrega ~INPUT_CONTEXT~ vender seu peixe para o owner." or "O proprietário está morto e, portanto, não pode falar."
 					if IsControlJustPressed(0, 38) then
 						DeleteBlips()
 						SellFish()

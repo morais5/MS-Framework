@@ -84,7 +84,7 @@ Config.PhoneApplications = {
         app = "bank",
         color = "#9c88ff",
         icon = "fas fa-university",
-        tooltipText = "Bank Morais",
+        tooltipText = "Bank",
         job = false,
         blockedjobs = {},
         slot = 8,
@@ -194,7 +194,7 @@ Config.StoreApps = {
         app = "territory",
         color = "#353b48",
         icon = "fas fa-globe-europe",
-        tooltipText = "Brevemente",
+        tooltipText = "Coming soon",
         tooltipPos = "right",
         style = "";
         job = false,
@@ -203,6 +203,6 @@ Config.StoreApps = {
         Alerts = 0,
         password = true,
         creator = "Lunatic Roleplay",
-        title = "Brevemente",
+        title = "Coming soon",
     },
 }

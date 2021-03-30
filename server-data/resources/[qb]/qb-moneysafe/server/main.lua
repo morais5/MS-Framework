@@ -22,14 +22,14 @@ Citizen.CreateThread(function()
     end)
 end)
 
-QBCore.Commands.Add("depositar", "Depositar dinheiro na empresa", {}, false, function(source, args)
+QBCore.Commands.Add("deposit", "Deposit money in the company", {}, false, function(source, args)
     local Player = QBCore.Functions.GetPlayer(source)
     local amount = tonumber(args[1]) or 0
 
     TriggerClientEvent('qb-moneysafe:client:DepositMoney', source, amount)
 end)
 
-QBCore.Commands.Add("tirar", "Tirar dinheiro da empresa", {}, false, function(source, args)
+QBCore.Commands.Add("whitdraw", "Whitdraw from the company", {}, false, function(source, args)
     local Player = QBCore.Functions.GetPlayer(source)
     local amount = tonumber(args[1]) or 0
 
@@ -47,8 +47,8 @@ function AddTransaction(safe, type, amount, Player, Automated)
         name = Player.PlayerData.name
         _source = Player.PlayerData.source
     else
-        cid = "Criminaç"
-        name = "Multas"
+        cid = "Criminal"
+        name = "Fines"
         _source = "Automatic"
     end
     table.insert(Config.Safes[safe].transactions, {
@@ -64,7 +64,7 @@ function AddTransaction(safe, type, amount, Player, Automated)
         label = "Deposited in"
         color = "green"
     end
-	TriggerEvent("qb-log:server:CreateLog", "moneysafes", type, color, "**" .. name .. "** (citizenid: *" .. cid .. "* | id: *(" .. _source .. ")* has **€" .. amount .. "** " .. label .. " the **" .. safe .. "** safe.")
+	TriggerEvent("qb-log:server:CreateLog", "moneysafes", type, color, "**" .. name .. "** (citizenid: *" .. cid .. "* | id: *(" .. _source .. ")* has **$" .. amount .. "** " .. label .. " the **" .. safe .. "** safe.")
 end
 
 RegisterServerEvent('qb-moneysafe:server:DepositMoney')
@@ -77,7 +77,7 @@ AddEventHandler('qb-moneysafe:server:DepositMoney', function(safe, amount, sende
     elseif Player.PlayerData.money.bank >= amount then
         Player.Functions.RemoveMoney('bank', amount)
     else
-        TriggerClientEvent('QBCore:Notify', src, "Não tens dinheiro", "error")
+        TriggerClientEvent('QBCore:Notify', src, "You do not have money", "error")
         return
     end
     if sender == nil then
@@ -94,7 +94,7 @@ AddEventHandler('qb-moneysafe:server:DepositMoney', function(safe, amount, sende
             QBCore.Functions.ExecuteSql(false, "INSERT INTO `moneysafes` (`safe`, `money`, `transactions`) VALUES ('"..safe.."', '"..Config.Safes[safe].money.."', '"..json.encode(Config.Safes[safe].transactions).."')")
         end
         TriggerClientEvent('qb-moneysafe:client:UpdateSafe', -1, Config.Safes[safe], safe)
-        TriggerClientEvent('QBCore:Notify', src, "Meteste €"..amount..",- no cofre da empresa", "success")
+        TriggerClientEvent('QBCore:Notify', src, "Deposited $"..amount..",- out of the safe", "success")
     end)
 end)
 
@@ -108,9 +108,9 @@ AddEventHandler('qb-moneysafe:server:WithdrawMoney', function(safe, amount)
         Config.Safes[safe].money = (Config.Safes[safe].money - amount)
         QBCore.Functions.ExecuteSql(false, "UPDATE `moneysafes` SET money = '"..Config.Safes[safe].money.."', transactions = '"..json.encode(Config.Safes[safe].transactions).."' WHERE `safe` = '"..safe.."'")
         TriggerClientEvent('qb-moneysafe:client:UpdateSafe', -1, Config.Safes[safe], safe)
-        TriggerClientEvent('QBCore:Notify', src, "Pegaste €"..amount..",- fora do cofre", "success")
+        TriggerClientEvent('QBCore:Notify', src, "Picked up $"..amount..",- out of the safe", "success")
         Player.Functions.AddMoney('cash', amount)
     else
-        TriggerClientEvent('QBCore:Notify', src, "Não há dinheiro suficiente no cofre.", "error")
+        TriggerClientEvent('QBCore:Notify', src, "There is not enough money in the safe.", "error")
     end
 end)

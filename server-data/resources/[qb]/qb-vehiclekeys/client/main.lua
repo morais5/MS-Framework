@@ -540,7 +540,7 @@ function PoliceCall()
                         Name = "Desconhecido"
                     end
                     local modelPlate = GetVehicleNumberPlateText(vehicle)
-                    local msg = "Tentativa de roubo a veiculo em " ..streetLabel.. ". Veiculo: " .. Name .. ", Matricula: " .. modelPlate
+                    local msg = "Tentativa de roubo a veiculo em " ..streetLabel.. ". Veiculo: " .. Name .. ", Registration: " .. modelPlate
                     local alertTitle = "Roubo a veiculo em"
                     TriggerServerEvent("police:server:VehicleCall", pos, msg, alertTitle, streetLabel, modelPlate, Name)
                 else
@@ -552,7 +552,7 @@ function PoliceCall()
                     else
                         Name = "Desconhecido"
                     end
-                    local msg = "Tentativa de roubo a veiculo em  " ..streetLabel.. ". Veiculo: " .. Name .. ", Matricula: " .. modelPlate
+                    local msg = "Tentativa de roubo a veiculo em  " ..streetLabel.. ". Veiculo: " .. Name .. ", Registration: " .. modelPlate
                     local alertTitle = "Roubo a veiculo em"
                     TriggerServerEvent("police:server:VehicleCall", pos, msg, alertTitle, streetLabel, modelPlate, Name)
                 end
