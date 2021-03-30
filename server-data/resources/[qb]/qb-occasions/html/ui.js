@@ -70,13 +70,13 @@ QBOccasions.setupBuyContract = function(data, vData) {
     $("#buy-seller-telnr").html(data.sellerData.charinfo.phone);
     $("#buy-vehicle-plate").html(vData.plate);
     $("#buy-vehicle-desc").html(vData.desc);
-    $("#buy-price").html("&euro;" + vData.price);
+    $("#buy-price").html("&dollar;" + vData.price);
 }
 
 function calculatePrice() {
     var priceVal = $('.vehicle-sell-price').val();
     
-    $('#tax').html("&euro; " + (priceVal / 100 * 19).toFixed(0));
-    $('#mosley-cut').html("&euro; " + (priceVal / 100 * 4).toFixed(0));
-    $('#total-money').html("&euro; " + (priceVal / 100 * 77).toFixed(0));
+    $('#tax').html("&dollar; " + (priceVal / 100 * 19).toFixed(0));
+    $('#mosley-cut').html("&dollar; " + (priceVal / 100 * 4).toFixed(0));
+    $('#total-money').html("&dollar; " + (priceVal / 100 * 77).toFixed(0));
 }

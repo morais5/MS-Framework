@@ -25,7 +25,7 @@ Config.Locations = {
         coords = {x = -598.25, y = -929.86, z = 23.86, h = 86.5},
     },
     ["vehicle"] = {
-        label = "Garagem de Viaturas",
+        label = "Vehicle Garage",
         coords = {x = -552.24, y = -925.61, z = 23.86, h = 242.5},
     },
 }

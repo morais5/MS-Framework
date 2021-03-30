@@ -174,7 +174,7 @@ AddEventHandler('qb-weed:server:harvestPlant', function(house, amount, plantName
                     end
                 end)
             else
-                TriggerClientEvent('QBCore:Notify', src, 'Casa não encontrada', 'error', 3500)
+                TriggerClientEvent('QBCore:Notify', src, 'House não encontrada', 'error', 3500)
             end
         else
             TriggerClientEvent('QBCore:Notify', src, 'Você não tem sacolas suficientes', 'error', 3500)

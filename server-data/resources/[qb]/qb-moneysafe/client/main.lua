@@ -84,9 +84,9 @@ Citizen.CreateThread(function()
                     if distance < 20 then
                         inRange = true
                         if distance < Config.MinimumSafeDistance then
-                            DrawText3Ds(data.coords.x, data.coords.y, data.coords.z, '~g~€'..data.money)
-                            DrawText3Ds(data.coords.x, data.coords.y, data.coords.z - 0.1, '~b~/depositar~w~ - Coloque dinheiro no cofre')
-                            DrawText3Ds(data.coords.x, data.coords.y, data.coords.z - 0.2, '~b~/tirar~w~ - Tire dinheiro do cofre')
+                            DrawText3Ds(data.coords.x, data.coords.y, data.coords.z, '~g~$'..data.money)
+                            DrawText3Ds(data.coords.x, data.coords.y, data.coords.z - 0.1, '~b~/deposit~w~ - Put money in the safe')
+                            DrawText3Ds(data.coords.x, data.coords.y, data.coords.z - 0.2, '~b~/whitdraw~w~ - Take money out of the safe')
                         end
                     end
                 else

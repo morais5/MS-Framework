@@ -71,14 +71,14 @@ $(document).ready(function(){
     var item = event.data;
     // Open & Close main bank window
     if(item.openBank == true) {
-      $('.currentBalance').html('&euro;'+addCommas(item.PlayerData.money.bank));
+      $('.currentBalance').html('&dollar;'+addCommas(item.PlayerData.money.bank));
       $('.username').html(item.PlayerData.charinfo.firstname + " " + item.PlayerData.charinfo.lastname);
       openContainer();
       openMain();
     }
 
     if(item.updateBalance) {
-      $('.currentBalance').html('&euro;'+addCommas(item.PlayerData.money.bank));
+      $('.currentBalance').html('&dollar;'+addCommas(item.PlayerData.money.bank));
       console.log(item.PlayerData.money.bank)
     }
 

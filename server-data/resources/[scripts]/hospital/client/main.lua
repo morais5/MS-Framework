@@ -419,7 +419,7 @@ AddEventHandler('hospital:client:SendBillEmail', function(amount)
         TriggerServerEvent('qb-phone:server:sendNewMail', {
             sender = "Hospital Pillbox",
             subject = "Custos de Hospital",
-            message = "Caro/a " .. gender .. " " .. charinfo.lastname .. ",<br /><br />Por meio deste EMail irás receber os custos da tua ultima visita ao hospital..<br />Os custos finais são: <strong>"..amount.."€</strong><br /><br />Cumprimentos.!",
+            message = "Caro/a " .. gender .. " " .. charinfo.lastname .. ",<br /><br />Por meio deste EMail irás receber os custos da tua ultima visita ao hospital..<br />Os custos finais são: <strong>"..amount.."$</strong><br /><br />Cumprimentos.!",
             button = {}
         })
     end)

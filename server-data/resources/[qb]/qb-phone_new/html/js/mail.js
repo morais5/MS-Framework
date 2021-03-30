@@ -72,8 +72,8 @@ QB.Phone.Functions.SetupMails = function(Mails) {
     }
     var MessageTime = Hourssssss + ":" + Minutessss;
 
-    $("#mail-header-mail").html(QB.Phone.Data.PlayerData.charinfo.firstname+"."+QB.Phone.Data.PlayerData.charinfo.lastname+"@discord.io/moraisscripts");
-    $("#mail-header-lastsync").html("Ultima Sincronização "+MessageTime);
+    $("#mail-header-mail").html(QB.Phone.Data.PlayerData.charinfo.firstname+"."+QB.Phone.Data.PlayerData.charinfo.lastname+"@mail.ls");
+    $("#mail-header-lastsync").html("Last synchronization "+MessageTime);
     if (Mails !== null && Mails !== undefined) {
         if (Mails.length > 0) {
             $(".mail-list").html("");
@@ -86,13 +86,13 @@ QB.Phone.Functions.SetupMails = function(Mails) {
                 $("#mail-"+mail.mailid).data('MailData', mail);
             });
         } else {
-            $(".mail-list").html('<p class="nomails">Não tens nenhum email..</p>');
+            $(".mail-list").html('<p class="nomails">You do not have any emails..</p>');
         }
 
     }
 }
 
-var MonthFormatting = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+var MonthFormatting = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 QB.Phone.Functions.SetupMail = function(MailData) {
     var date = new Date(MailData.date);
@@ -156,7 +156,7 @@ $(document).on('click', '#new-advert-submit', function(e){
             message: Advert,
         }));
     } else {
-        QB.Phone.Notifications.Add("fas fa-ad", "Anuncio", "Não consegues fazer um anuncio vazio!", "#ff8f1a", 2000);
+        QB.Phone.Notifications.Add("fas fa-ad", "Advertisement", "Can not make an empty ad!", "#ff8f1a", 2000);
     }
 });
 
@@ -171,7 +171,7 @@ QB.Phone.Functions.RefreshAdverts = function(Adverts) {
         });
     } else {
         $(".advert-list").html("");
-        var element = '<div class="advert"><span class="advert-sender">Não existe nenhum Anuncio!</span></div>';
+        var element = '<div class="advert"><span class="advert-sender">Theres no advertisement!</span></div>';
         $(".advert-list").append(element);
     }
 }

@@ -105,7 +105,7 @@ Citizen.CreateThread(function()
             if GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, true) < 1.5 or GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["inside"].coords.x, Config.Locations["inside"].coords.y, Config.Locations["inside"].coords.z, true) < 1.5 then
                 inRange = true
                 if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, true) < 1.5) then
-                    DrawText3D(Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, "~g~E~w~ - Om naar binnen te gaan")
+                    DrawText3D(Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, "~g~E~w~ -To enter")
                     if IsControlJustReleased(0, Keys["E"]) then
                         DoScreenFadeOut(500)
                         while not IsScreenFadedOut() do
@@ -120,7 +120,7 @@ Citizen.CreateThread(function()
                         DoScreenFadeIn(1000)
                     end
                 elseif (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["inside"].coords.x, Config.Locations["inside"].coords.y, Config.Locations["inside"].coords.z, true) < 1.5) then
-                    DrawText3D(Config.Locations["inside"].coords.x, Config.Locations["inside"].coords.y, Config.Locations["inside"].coords.z, "~g~E~w~ - Om naar buiten te gaan")
+                    DrawText3D(Config.Locations["inside"].coords.x, Config.Locations["inside"].coords.y, Config.Locations["inside"].coords.z, "~g~E~w~ - To go outside")
                     if IsControlJustReleased(0, Keys["E"]) then
                         DoScreenFadeOut(500)
                         while not IsScreenFadedOut() do

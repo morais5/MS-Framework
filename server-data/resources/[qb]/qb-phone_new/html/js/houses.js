@@ -149,7 +149,7 @@ $(document).on('click', '#myhouse-option-transfer-confirm', function(e){
                 });
             }, 100);
         } else {
-            QB.Phone.Notifications.Add("fas fa-home", "Casas", "Esse NIF é invalido", "#27ae60", 2500);
+            QB.Phone.Notifications.Add("fas fa-home", "Houses", "This ID is invalid", "#27ae60", 2500);
             shakeElement(".myhouse-option-transfer-container");
             $(".myhouse-option-transfer-container-citizenid").val("");
         }

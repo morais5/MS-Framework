@@ -35,7 +35,7 @@ Citizen.CreateThread(function()
 						sellPrice = GetSellingPrice()
 						sellItemsSet = true
 					elseif sellItemsSet and sellPrice ~= 0 then
-						DrawText3D(Config.PawnLocation.x, Config.PawnLocation.y, Config.PawnLocation.z, "~g~E~w~ - Sell Chain/Watch/Rings (€"..sellPrice..")")
+						DrawText3D(Config.PawnLocation.x, Config.PawnLocation.y, Config.PawnLocation.z, "~g~E~w~ - Sell Chain/Watch/Rings ($"..sellPrice..")")
 						if IsControlJustReleased(0, Keys["E"]) then
 							TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_STAND_IMPATIENT", 0, true)
                             QBCore.Functions.Progressbar("sell_pawn_items", "Selling stuff ..", math.random(15000, 25000), false, true, {}, {}, {}, {}, function() -- Done
@@ -86,7 +86,7 @@ Citizen.CreateThread(function()
 						sellHardwarePrice = GetSellingHardwarePrice()
 						sellHardwareItemsSet = true
 					elseif sellHardwareItemsSet and sellHardwarePrice ~= 0 then
-						DrawText3D(Config.PawnHardwareLocation.x, Config.PawnHardwareLocation.y, Config.PawnHardwareLocation.z, "~g~E~w~ -Sell Phone/Table's/Laptop's (€"..sellHardwarePrice..")")
+						DrawText3D(Config.PawnHardwareLocation.x, Config.PawnHardwareLocation.y, Config.PawnHardwareLocation.z, "~g~E~w~ -Sell Phone/Table's/Laptop's ($"..sellHardwarePrice..")")
 						if IsControlJustReleased(0, Keys["E"]) then
 							TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_STAND_IMPATIENT", 0, true)
                             QBCore.Functions.Progressbar("sell_pawn_items", "Selling ..", math.random(15000, 25000), false, true, {}, {}, {}, {}, function() -- Done

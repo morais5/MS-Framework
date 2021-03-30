@@ -774,7 +774,7 @@ RegisterNUICallback('PurchaseUpgrades', function(data, cb)
             QBCore.Functions.SetVehicleProperties(veh, CurrentVehicleData)
             if ShoppingCart.buttons ~= nil and next(ShoppingCart.buttons) ~= nil then
                 for k, v in pairs(ShoppingCart.buttons) do
-                    String = String .. "\n #" .. k .. " Upgrade: **" .. v.name .. "** Price: **€" .. v.originalprice .. "**" 
+                    String = String .. "\n #" .. k .. " Upgrade: **" .. v.name .. "** Price: **$" .. v.originalprice .. "**" 
                     if v.modtype ~= nil then
                         if v.modtype ~= "respray" and v.modtype ~= "wheels" and v.modtype ~= "wheelcolor" and v.modtype ~= "wheelaccessories" and v.modtype ~= "frontwheels" and v.modtype ~= "backwheels" and v.modtype ~= "liveries" then
                             if v.modtype == 18 or v.modtype == 22 then
@@ -839,7 +839,7 @@ RegisterNUICallback('PurchaseUpgrades', function(data, cb)
                 end
                 local PlayerData = QBCore.Functions.GetPlayerData()
                 TriggerServerEvent("qb-log:server:sendLog", PlayerData.citizenid, "buy", {upgrades = String, citizenid = PlayerData.citizenid})
-	            TriggerServerEvent("qb-log:server:CreateLog", "bennys", "buy", "green", "**" .. PlayerData.name .. "** (citizenid: *" .. PlayerData.citizenid .. "* | id: *(" .. PlayerData.source .. ")* has paid **€" .. TotalPrice .. "** for the following upgrade\'s: \n" .. String)
+	            TriggerServerEvent("qb-log:server:CreateLog", "bennys", "buy", "green", "**" .. PlayerData.name .. "** (citizenid: *" .. PlayerData.citizenid .. "* | id: *(" .. PlayerData.source .. ")* has paid **$" .. TotalPrice .. "** for the following upgrade\'s: \n" .. String)
             end
 
             CurrentShop = nil

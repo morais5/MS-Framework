@@ -71,7 +71,7 @@ QB.Phone.Functions.SetupRecentCalls = function(recentcalls) {
         }
         if (recentCall.anonymous) {
             FirstLetter = "A";
-            recentCall.name = "Anonimo";
+            recentCall.name = "Anonymous";
         }
         var elem = '<div class="phone-recent-call" id="recent-'+i+'"><div class="phone-recent-call-image">'+FirstLetter+'</div> <div class="phone-recent-call-name">'+recentCall.name+'</div> <div class="phone-recent-call-type"><i class="'+TypeIcon+'" style="'+IconStyle+'"></i></div> <div class="phone-recent-call-time">'+recentCall.time+'</div> </div>'
 
@@ -102,7 +102,7 @@ $(document).on('click', '.phone-recent-call', function(e){
                 if (status.CanCall) {
                     if (!status.InCall) {
                         if (QB.Phone.Data.AnonymousCall) {
-                            QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Começaste uma chamada em anonimo!");
+                            QB.Phone.Notifications.Add("fas fa-phone", "Phone", "You started an anonymous call!");
                         }
                         $(".phone-call-outgoing").css({"display":"block"});
                         $(".phone-call-incoming").css({"display":"none"});
@@ -121,16 +121,16 @@ $(document).on('click', '.phone-recent-call', function(e){
                     
                         QB.Phone.Data.currentApplication = "phone-call";
                     } else {
-                        QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Ja estas numa chamada!");
+                        QB.Phone.Notifications.Add("fas fa-phone", "Phone", "Youre already in a call!");
                     }
                 } else {
-                    QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Essa pessoa esta ocupada numa chamada!");
+                    QB.Phone.Notifications.Add("fas fa-phone", "Phone", "This person is in a call!");
                 }
             } else {
-                QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Essa pessoa nao esta disponivel!");
+                QB.Phone.Notifications.Add("fas fa-phone", "Phone", "This person is not available!");
             }
         } else {
-            QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Não podes ligar a ti proprio!");
+            QB.Phone.Notifications.Add("fas fa-phone", "Phone", "You can not call yourself!");
         }
     });
 });
@@ -170,16 +170,16 @@ $(document).on('click', ".phone-keypad-key-call", function(e){
                     
                         QB.Phone.Data.currentApplication = "phone-call";
                     } else {
-                        QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Ja estas numa chamada!");
+                        QB.Phone.Notifications.Add("fas fa-phone", "Phone", "Ja estas numa chamada!");
                     }
                 } else {
-                    QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Essa pessoa esta ocupada numa chamada!");
+                    QB.Phone.Notifications.Add("fas fa-phone", "Phone", "This person is in a call!");
                 }
             } else {
-                QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Essa pessoa nao esta disponivel!");
+                QB.Phone.Notifications.Add("fas fa-phone", "Phone", "This person is not available!");
             }
         } else {
-            QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Não podes ligar a ti proprio!");
+            QB.Phone.Notifications.Add("fas fa-phone", "Phone", "You can not call yourself!");
         }
     });
 });
@@ -214,7 +214,7 @@ QB.Phone.Functions.LoadContacts = function(myContacts) {
         });
         $("#total-contacts").text(TotalContacts+ " contacts");
     } else {
-        $("#total-contacts").text("0 contactos #TRISTE");
+        $("#total-contacts").text("0 contacts #SAD");
     }
 };
 
@@ -255,7 +255,7 @@ $(document).on('click', '#new-chat-phone', function(e){
             });
         }, 400)
     } else {
-        QB.Phone.Notifications.Add("fa fa-phone-alt", "Telemovel", "Não consegues enviar mensagem a ti proprio..", "default", 3500);
+        QB.Phone.Notifications.Add("fa fa-phone-alt", "Phone", "Can not send a message to yourself..", "default", 3500);
     }
 });
 
@@ -269,7 +269,7 @@ $(document).on('click', '#edit-contact', function(e){
     CurrentEditContactData.name = ContactData.name
     CurrentEditContactData.number = ContactData.number
 
-    $(".phone-edit-contact-header").text(ContactData.name+" - Alteração")
+    $(".phone-edit-contact-header").text(ContactData.name+" - Edit")
     $(".phone-edit-contact-name").val(ContactData.name);
     $(".phone-edit-contact-number").val(ContactData.number);
     if (ContactData.iban != null && ContactData.iban != undefined) {
@@ -307,7 +307,7 @@ $(document).on('click', '#edit-contact-save', function(e){
             $(".phone-edit-contact-name").val("");
         }, 250)
     } else {
-        QB.Phone.Notifications.Add("fas fa-exclamation-circle", "Edição de Contacto", "Preenche todos os campos!");
+        QB.Phone.Notifications.Add("fas fa-exclamation-circle", "Contact Editior", "Fill in all fields!");
     }
 });
 
@@ -440,10 +440,10 @@ $(document).on('click', '#add-contact-save', function(e){
             if ((amount - 1) === 0) {
                 amount = 0
             }
-            $(".amount-of-suggested-contacts").html(amount + " Contactos");
+            $(".amount-of-suggested-contacts").html(amount + " Contacts");
         }
     } else {
-        QB.Phone.Notifications.Add("fas fa-exclamation-circle", "Adicionar Contacto", "Preenche todos os campos!");
+        QB.Phone.Notifications.Add("fas fa-exclamation-circle", "Add contact", "Fill all the fields!");
     }
 });
 
@@ -493,16 +493,16 @@ SetupCall = function(cData) {
                     
                         QB.Phone.Data.currentApplication = "phone-call";
                     } else {
-                        QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Ja estas numa chamada!");
+                        QB.Phone.Notifications.Add("fas fa-phone", "Phone", "Already in a call!");
                     }
                 } else {
-                    QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Essa pessoa esta ocupada numa chamada!");
+                    QB.Phone.Notifications.Add("fas fa-phone", "Phone", "This person is busy on a call!");
                 }
             } else {
-                QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Essa pessoa nao esta disponivel!");
+                QB.Phone.Notifications.Add("fas fa-phone", "Phone", "This person is not available!");
             }
         } else {
-            QB.Phone.Notifications.Add("fas fa-phone", "Telemovel", "Não podes ligar a ti proprio!");
+            QB.Phone.Notifications.Add("fas fa-phone", "Phone", "You can not call yourself!");
         }
     });
 }
@@ -545,11 +545,11 @@ IncomingCallAlert = function(CallData, Canceled, AnonymousCall) {
             QB.Phone.Animations.TopSlideUp('.phone-application-container', 400, -160);
             QB.Phone.Animations.TopSlideUp('.'+QB.Phone.Data.currentApplication+"-app", 400, -160);
             setTimeout(function(){
-                var Label = "Estas a receber uma chamada de "+CallData.name
+                var Label = "Incoming call from "+CallData.name
                 if (AnonymousCall) {
-                    Label = "Estas a receber uma chamada em anonimo"
+                    Label = "You are receiving an anonymous call"
                 }
-                $(".call-notifications-title").html("A Receber Chamada");
+                $(".call-notifications-title").html("Incoming Call");
                 $(".call-notifications-content").html(Label);
                 $(".call-notifications").css({"display":"block"});
                 $(".call-notifications").animate({
@@ -652,11 +652,11 @@ QB.Phone.Functions.SetupCurrentCall = function(cData) {
         $(".phone-currentcall-container").css({"display":"block"});
 
         if (cData.CallType == "incoming") {
-            $(".phone-currentcall-title").html("A receber chamada");
+            $(".phone-currentcall-title").html("Incoming call");
         } else if (cData.CallType == "outgoing") {
-            $(".phone-currentcall-title").html("Chamada Recebida");
+            $(".phone-currentcall-title").html("Calling");
         } else if (cData.CallType == "ongoing") {
-            $(".phone-currentcall-title").html("Em Chamada ("+cData.CallTime+")");
+            $(".phone-currentcall-title").html("On Call ("+cData.CallTime+")");
         }
 
         $(".phone-currentcall-contact").html(""+cData.TargetData.name);//conaa tinha met naquelas aspas
@@ -718,7 +718,7 @@ QB.Phone.Functions.SetupSuggestedContacts = function(Suggested) {
             $("#suggest-"+index).data('SuggestionData', suggest);
         });
     } else {
-        $(".amount-of-suggested-contacts").html("0 contactos");
+        $(".amount-of-suggested-contacts").html("0 contacts");
     }
 }
 

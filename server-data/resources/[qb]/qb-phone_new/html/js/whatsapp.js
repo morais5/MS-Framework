@@ -140,7 +140,7 @@ QB.Phone.Functions.ReloadWhatsappAlerts = function(chats) {
     });
 }
 
-const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 FormatChatDate = function(date) {
     var TestDate = date.split("-");
@@ -192,7 +192,7 @@ $(document).on('click', '#whatsapp-openedchat-send', function(e){
         }));
         $("#whatsapp-openedchat-message").val("");
     } else {
-        QB.Phone.Notifications.Add("fab fa-whatsapp", "Whatsapp", "Não podes enviar mensagens vazias!", "#25D366", 1750);
+        QB.Phone.Notifications.Add("fab fa-whatsapp", "Whatsapp", "You cannot send empty messages!", "#25D366", 1750);
     }
 });
 
@@ -211,7 +211,7 @@ $(document).on('keypress', function (e) {
                 }));
                 $("#whatsapp-openedchat-message").val("");
             } else {
-                QB.Phone.Notifications.Add("fab fa-whatsapp", "Whatsapp", "Não podes enviar mensagens vazias!", "#25D366", 1750);
+                QB.Phone.Notifications.Add("fab fa-whatsapp", "Whatsapp", "You cannot send empty messages!", "#25D366", 1750);
             }
         }
     }
@@ -332,7 +332,7 @@ QB.Phone.Functions.SetupChatMessages = function(cData, NewChatData) {
                 if (message.type == "message") {
                     MessageElement = '<div class="whatsapp-openedchat-message whatsapp-openedchat-message-'+Sender+'">'+message.message+'<div class="whatsapp-openedchat-message-time">'+message.time+'</div></div><div class="clearfix"></div>'
                 } else if (message.type == "location") {
-                    MessageElement = '<div class="whatsapp-openedchat-message whatsapp-openedchat-message-'+Sender+' whatsapp-shared-location" data-x="'+message.data.x+'" data-y="'+message.data.y+'"><span style="font-size: 1.2vh;"><i class="fas fa-thumbtack" style="font-size: 1vh;"></i> Localização</span><div class="whatsapp-openedchat-message-time">'+message.time+'</div></div><div class="clearfix"></div>'
+                    MessageElement = '<div class="whatsapp-openedchat-message whatsapp-openedchat-message-'+Sender+' whatsapp-shared-location" data-x="'+message.data.x+'" data-y="'+message.data.y+'"><span style="font-size: 1.2vh;"><i class="fas fa-thumbtack" style="font-size: 1vh;"></i> Location</span><div class="whatsapp-openedchat-message-time">'+message.time+'</div></div><div class="clearfix"></div>'
                 }
                 $(".whatsapp-openedchat-messages-"+i).append(MessageElement);
             });
@@ -359,7 +359,7 @@ QB.Phone.Functions.SetupChatMessages = function(cData, NewChatData) {
         var NewDateDOM = NewDate.getDate();
         var NewDateYear = NewDate.getFullYear();
         var DateString = ""+NewDateDOM+"-"+(NewDateMonth+1)+"-"+NewDateYear;
-        var ChatDiv = '<div class="whatsapp-openedchat-messages-'+DateString+' unique-chat"><div class="whatsapp-openedchat-date">HOJE</div></div>';
+        var ChatDiv = '<div class="whatsapp-openedchat-messages-'+DateString+' unique-chat"><div class="whatsapp-openedchat-date">TODAY</div></div>';
 
         $(".whatsapp-openedchat-messages").append(ChatDiv);
     }

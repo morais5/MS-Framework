@@ -144,7 +144,7 @@ AddEventHandler('qb-cityhall:client:sendDriverEmail', function(charinfo)
         TriggerServerEvent('qb-phone:server:sendNewMail', {
             sender = "Governo",
             subject = "Aulas de Condução",
-            message = "Olá " .. gender .. " " .. charinfo.lastname .. ",<br /><br />Recebemos uma mensagem que alguem quer ter aulas de condução.<br />Se estas disposto a ensinar, contactem:<br />Nome: <strong>".. charinfo.firstname .. " " .. charinfo.lastname .. "</strong><br />Nº Telemovel: <strong>"..charinfo.phone.."</strong><br/><br/>Cumprimentos,<br />Governo Los Santos",
+            message = "Olá " .. gender .. " " .. charinfo.lastname .. ",<br /><br />Recebemos uma mensagem que alguem quer ter aulas de condução.<br />Se estas disposto a ensinar, contactem:<br />Name: <strong>".. charinfo.firstname .. " " .. charinfo.lastname .. "</strong><br />Nº Phone: <strong>"..charinfo.phone.."</strong><br/><br/>Cumprimentos,<br />Governo Los Santos",
             button = {}
         })
     end)

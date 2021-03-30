@@ -129,7 +129,7 @@ Config.MenuItems = {
         items = {
             {
                 id = 'house',
-                title = 'Interações de casa',
+                title = 'Interações de house',
                 icon = '#house',
                 items = {
                     {
@@ -160,7 +160,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'decoratehouse',
-                        title = 'Decorar casa',
+                        title = 'Decorar house',
                         icon = '#vehiclekey',
                         type = 'client',
                         event = 'qb-houses:client:decorate',
@@ -507,7 +507,7 @@ Config.JobInteractions = {
         },
         {
             id    = 'resethouse',
-            title = 'Resetar Lock da casa',
+            title = 'Resetar Lock da house',
             icon = '#vehiclekey',
             type = 'client',
             event = 'qb-houses:client:ResetHouse',

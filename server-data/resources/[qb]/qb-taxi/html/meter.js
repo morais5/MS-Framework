@@ -41,12 +41,12 @@ $(document).ready(function(){
 });
 
 function updateMeter(meterData) {
-    $("#total-price").html("€ "+ (meterData.currentFare).toFixed(2))
+    $("#total-price").html("$ "+ (meterData.currentFare).toFixed(2))
     $("#total-distance").html((meterData.distanceTraveled / 200).toFixed(1) + " KM")
 }
 
 function resetMeter() {
-    $("#total-price").html("€ 0.00")
+    $("#total-price").html("$ 0.00")
     $("#total-distance").html("0.0 KM")
 }
 
@@ -78,7 +78,7 @@ function toggleMeter(enabled) {
 
 function openMeter(meterData) {
     $('.container').fadeIn(150);
-    $('#total-price-per-100m').html("€ " + (meterData.defaultPrice).toFixed(2))
+    $('#total-price-per-100m').html("$ " + (meterData.defaultPrice).toFixed(2))
 }
 
 function closeMeter() {

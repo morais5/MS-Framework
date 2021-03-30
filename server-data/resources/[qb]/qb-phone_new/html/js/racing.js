@@ -33,7 +33,7 @@ $(document).on('click', '.racing-race', function(e){
             OpenedRaceElement = this;
         }
     } else {
-        QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "A corrida ja começou..", "#1DA1F2");
+        QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "The race has already begun..", "#1DA1F2");
     }
 });
 
@@ -68,31 +68,31 @@ function SetupRaces(Races) {
     if (Races.length > 0) {
         Races = (Races).reverse();
         $.each(Races, function(i, race){
-            var Locked = '<i class="fas fa-unlock"></i> Ainda não começou';
+            var Locked = '<i class="fas fa-unlock"></i> Has not begun';
             if (race.RaceData.Started) {
-                Locked = '<i class="fas fa-lock"></i> Começou';
+                Locked = '<i class="fas fa-lock"></i> Started';
             }
             var LapLabel = "";
             if (race.Laps == 0) {
                 LapLabel = "SPRINT"
             } else {
                 if (race.Laps == 1) {
-                    LapLabel = race.Laps + " Volta";
+                    LapLabel = race.Laps + " Time";
                 } else {
-                    LapLabel = race.Laps + " Voltas";
+                    LapLabel = race.Laps + " Turn";
                 }
             }
             var InRace = IsInRace(QB.Phone.Data.PlayerData.citizenid, race.RaceData.Racers);
             var Creator = IsCreator(QB.Phone.Data.PlayerData.citizenid, race);
-            var Buttons = '<div class="race-buttons"> <div class="race-button" id="join-race" data-toggle="racetooltip" data-placement="left" title="Entrar"><i class="fas fa-sign-in-alt"></i></div>';
+            var Buttons = '<div class="race-buttons"> <div class="race-button" id="join-race" data-toggle="racetooltip" data-placement="left" title="Enter"><i class="fas fa-sign-in-alt"></i></div>';
             if (InRace) {
                 if (!Creator) {
-                    Buttons = '<div class="race-buttons"> <div class="race-button" id="quit-race" data-toggle="racetooltip" data-placement="right" title="Sair"><i class="fas fa-sign-out-alt"></i></div>';
+                    Buttons = '<div class="race-buttons"> <div class="race-button" id="quit-race" data-toggle="racetooltip" data-placement="right" title="Leave"><i class="fas fa-sign-out-alt"></i></div>';
                 } else {
                     if (!race.RaceData.Started) {
-                        Buttons = '<div class="race-buttons"> <div class="race-button" id="start-race" data-toggle="racetooltip" data-placement="left" title="Começar"><i class="fas fa-flag-checkered"></i></div><div class="race-button" id="quit-race" data-toggle="racetooltip" data-placement="right" title="Sair"><i class="fas fa-sign-out-alt"></i></div>';
+                        Buttons = '<div class="race-buttons"> <div class="race-button" id="start-race" data-toggle="racetooltip" data-placement="left" title="Start"><i class="fas fa-flag-checkered"></i></div><div class="race-button" id="quit-race" data-toggle="racetooltip" data-placement="right" title="Sair"><i class="fas fa-sign-out-alt"></i></div>';
                     } else {
-                        Buttons = '<div class="race-buttons"> <div class="race-button" id="quit-race" data-toggle="racetooltip" data-placement="right" title="Sair"><i class="fas fa-sign-out-alt"></i></div>';
+                        Buttons = '<div class="race-buttons"> <div class="race-button" id="quit-race" data-toggle="racetooltip" data-placement="right" title="Leave"><i class="fas fa-sign-out-alt"></i></div>';
                     }
                 }
             }
@@ -138,13 +138,13 @@ $(document).on('click', '#join-race', function(e){
                                 SetupRaces(Races);
                             });
                         } else {
-                            QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Esta no modo editor..", "#1DA1F2");
+                            QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "This not editor mode..", "#1DA1F2");
                         }
                     });
                 }
             })
         } else {
-            QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Ja estas numa corrida..", "#1DA1F2");
+            QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "Already in a race..", "#1DA1F2");
         }
     });
 });
@@ -208,8 +208,8 @@ $(document).on('click', '.dropdown .dropdown-menu li', function(e) {
         }
         var CreatorTag = TrackData.CreatorData.charinfo.firstname.charAt(0).toUpperCase() + ". " + TrackData.CreatorData.charinfo.lastname;
 
-        $(".racing-setup-information-distance").html('Distancia: '+TrackData.Distance+' m');
-        $(".racing-setup-information-creator").html('Criador: ' + CreatorTag);
+        $(".racing-setup-information-distance").html('Distance: '+TrackData.Distance+' m');
+        $(".racing-setup-information-creator").html('Creator: ' + CreatorTag);
         if (TrackData.Records.Holder !== undefined) {
             if (TrackData.Records.Holder[1].length > 8) {
                 TrackData.Records.Holder[1] = TrackData.Records.Holder[1].substring(0, 8) + "..";
@@ -260,14 +260,14 @@ $(document).on('click', '#create-race', function(e){
                     if (!InRace) {
                         $(".racing-create").fadeIn(200);
                     } else {
-                        QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Ja estas numa corrida..", "#1DA1F2");
+                        QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "Already in a race..", "#1DA1F2");
                     }
                 });
             } else {
-                QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Ja estas a fazer uma pista..", "#1DA1F2");
+                QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "You are already making a track..", "#1DA1F2");
             }
         } else {
-            QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Não tens permissão para fazer corridas..", "#1DA1F2");
+            QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "You do not have permission to race..", "#1DA1F2");
         }
     });
 });
@@ -289,14 +289,14 @@ $(document).on('click', '#racing-create-accept', function(e){
                         $(".racing-create-trackname").val("");
                     });
                 } else {
-                    QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Esse nome não esta disponivel..", "#1DA1F2");
+                    QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "This name is not available..", "#1DA1F2");
                 }
             } else {
-                QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Não tens permissão para fazer corridas..", "#1DA1F2");
+                QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "You do not have permission to race..", "#1DA1F2");
             }
         });
     } else {
-        QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Tens que introduzir um nome..", "#1DA1F2");
+        QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "You have to enter a name..", "#1DA1F2");
     }
 });
 
@@ -334,27 +334,27 @@ $(document).on('click', '#setup-race-accept', function(e){
                                     $(".racing-setup").animate({
                                         left: -30+"vh"
                                     }, 300, function(){
-                                        $(".racing-setup-information-distance").html('Seleciona Pista');
-                                        $(".racing-setup-information-creator").html('Seleciona Pista');
-                                        $(".racing-setup-information-wr").html('Seleciona Pista');
+                                        $(".racing-setup-information-distance").html('Select Track');
+                                        $(".racing-setup-information-creator").html('Select Track');
+                                        $(".racing-setup-information-wr").html('Select Track');
                                         $(".racing-setup-laps").val("");
                                         $('.dropdown').find('input').removeAttr('value');
-                                        $('.dropdown').find('span').text("Seleciona Pista");
+                                        $('.dropdown').find('span').text("Select Track");
                                     });
                                 } else {
-                                    QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Não pode haver nenhuma ..", "#1DA1F2");
+                                    QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "There can be no ..", "#1DA1F2");
                                 }
                             });
                         } else {
-                            QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Introduz o numero de voltas..", "#1DA1F2");
+                            QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "Enter the number of laps..", "#1DA1F2");
                         }
                     } else {
-                        QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Não selecionaste uma pista..", "#1DA1F2");
+                        QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "You have not selected a track..", "#1DA1F2");
                     }
                 }
             })
         } else {
-            QB.Phone.Notifications.Add("fas fa-flag-checkered", "Corrida", "Ja tens uma corrida ativa..", "#1DA1F2");
+            QB.Phone.Notifications.Add("fas fa-flag-checkered", "Race", "You have an active run..", "#1DA1F2");
         }
     });
 });
@@ -368,12 +368,12 @@ $(document).on('click', '#setup-race-cancel', function(e){
     $(".racing-setup").animate({
         left: -30+"vh"
     }, 300, function(){
-       $(".racing-setup-information-distance").html('Seleciona Pista');
-       $(".racing-setup-information-creator").html('Seleciona Pista');
-       $(".racing-setup-information-wr").html('Seleciona Pista');
+       $(".racing-setup-information-distance").html('Select Track');
+       $(".racing-setup-information-creator").html('Select Track');
+       $(".racing-setup-information-wr").html('Select Track');
        $(".racing-setup-laps").val("");
        $('.dropdown').find('input').removeAttr('value');
-       $('.dropdown').find('span').text("Seleciona Pista");
+       $('.dropdown').find('span').text("Select Track");
    });
 });
 
@@ -427,7 +427,7 @@ $(document).on('click', '#leaderboards-race', function(e){
             $(".racing-leaderboards").html("");
             $.each(Races, function(i, race){
                 if (race.LastLeaderboard.length > 0) {
-                    var elem = '<div class="racing-leaderboard-item" id="leaderboard-item-'+i+'"> <span class="racing-leaderboard-item-name"><i class="fas fa-flag-checkered"></i> '+race.RaceName+'</span> <span class="racing-leaderboard-item-info">Clica para mais detalhes</span> </div>'
+                    var elem = '<div class="racing-leaderboard-item" id="leaderboard-item-'+i+'"> <span class="racing-leaderboard-item-name"><i class="fas fa-flag-checkered"></i> '+race.RaceName+'</span> <span class="racing-leaderboard-item-info">Click for more details</span> </div>'
                     $(".racing-leaderboards").append(elem);
                     $("#leaderboard-item-"+i).data('LeaderboardData', race);
                 }

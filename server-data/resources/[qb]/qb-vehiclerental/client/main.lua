@@ -145,7 +145,7 @@ end)
 RentVehicleMenu = function()
     ClearMenu()
     for k, v in pairs(Config.RentalVehicles) do
-        Menu.addButton(Config.RentalVehicles[k]["label"].." - Deposit Costs: €"..Config.RentalVehicles[k]["price"], "RentVehicle", k)
+        Menu.addButton(Config.RentalVehicles[k]["label"].." - Deposit Costs: $"..Config.RentalVehicles[k]["price"], "RentVehicle", k)
     end
     Menu.addButton("Terug", "RentalMenu", nil) 
 end
