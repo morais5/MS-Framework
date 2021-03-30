@@ -679,30 +679,6 @@ RegisterNUICallback('RemoveAttachment', function(data, cb)
     end, data.AttachmentData, data.WeaponData)
 end)
 
-RegisterNetEvent('ZyoCore-simcard:startNumChange')
-AddEventHandler('ZyoCore-simcard:startNumChange', function(newNum)
-
-    ZyoCore.Functions.Progressbar("number_change", "Change number...", 5000, false, true, {
-        disableMovement = false,
-        disableCarMovement = false,
-        disableMouse = false,
-        disableCombat = true,
-    }, {
-        animDict = "anim@amb@business@bgen@bgen_no_work@",
-        anim = "sit_phone_idle_01_nowork" ,
-        flags = 16,
-    }, {}, {}, function() -- Done
-        StopAnimTask(GetPlayerPed(-1), "anim@amb@business@bgen@bgen_no_work@", "sit_phone_idle_01_nowork", 1.0)
-        ZyoCore.Functions.Notify("Phone number updated to " .. newNum)
-        TriggerServerEvent('ZyoCore-simcard:changeNumber', newNum)        
-    end, function() -- Cancel
-        StopAnimTask(GetPlayerPed(-1), "anim@amb@business@bgen@bgen_no_work@", "sit_phone_idle_01_nowork", 1.0)
-        ZyoCore.Functions.Notify("Failed!", "error")
-    end)
-        TriggerServerEvent("ZyoCore:Server:RemoveItem", "sim_card", 1)
-        TriggerEvent('inventory:client:ItemBox', ZyoCore.Shared.Items["sim_card"], "remove")
-end)
-
 RegisterNetEvent("inventory:client:CheckWeapon")
 AddEventHandler("inventory:client:CheckWeapon", function(weaponName)
     if currentWeapon == weaponName then 
