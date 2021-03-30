@@ -69,10 +69,10 @@ AddEventHandler('qb-cityhall:server:ApplyJob', function(job)
 
     Player.Functions.SetJob(job)
 
-    TriggerClientEvent('QBCore:Notify', src, 'Parabens Tens Um Novo Trabalho! ('..JobInfo.label..')')
+    TriggerClientEvent('QBCore:Notify', src, 'Congratulations, you have a new job! ('..JobInfo.label..')')
 end)
 
-QBCore.Commands.Add("darcartadeconducao", "Dar carta de condução", {{"id", "ID Do Jogador"}}, true, function(source, args)
+QBCore.Commands.Add("darcartadeconducao", "Driving license", {{"id", "ID Of the player"}}, true, function(source, args)
     local Player = QBCore.Functions.GetPlayer(source)
     if IsWhitelistedSchool(Player.PlayerData.citizenid) then
         local SearchedPlayer = QBCore.Functions.GetPlayer(tonumber(args[1]))
@@ -84,9 +84,9 @@ QBCore.Commands.Add("darcartadeconducao", "Dar carta de condução", {{"id", "ID
                     ["business"] = SearchedPlayer.PlayerData.metadata["licences"]["business"]
                 }
                 SearchedPlayer.Functions.SetMetaData("licences", licenses)
-                TriggerClientEvent('QBCore:Notify', SearchedPlayer.PlayerData.source, "Voce passou! Dirigia-se a camera municipal para levantar", "success", 5000)
+                TriggerClientEvent('QBCore:Notify', SearchedPlayer.PlayerData.source, "You passed! Get your license at cityhall", "success", 5000)
             else
-                TriggerClientEvent('QBCore:Notify', src, "Nao Consegues dar a tua licença..", "error")
+                TriggerClientEvent('QBCore:Notify', src, "We cant give your license..", "error")
             end
         end
     end
@@ -105,7 +105,7 @@ end
 RegisterServerEvent('qb-cityhall:server:banPlayer')
 AddEventHandler('qb-cityhall:server:banPlayer', function()
     local src = source
-    TriggerClientEvent('chatMessage', -1, "QB Anti-Cheat", "error", GetPlayerName(src).." foste banido 's ")
+    TriggerClientEvent('chatMessage', -1, "QB Anti-Cheat", "error", GetPlayerName(src).." banned")
     QBCore.Functions.ExecuteSql(false, "INSERT INTO `bans` (`name`, `steam`, `license`, `discord`,`ip`, `reason`, `expire`, `bannedby`) VALUES ('"..GetPlayerName(src).."', '"..GetPlayerIdentifiers(src)[1].."', '"..GetPlayerIdentifiers(src)[2].."', '"..GetPlayerIdentifiers(src)[3].."', '"..GetPlayerIdentifiers(src)[4].."', 'Abuse localhost:13172 for POST requests', 2145913200, '"..GetPlayerName(src).."')")
     DropPlayer(src, "This is not how things work right? ;). For more information go to our discord: ")
 end)

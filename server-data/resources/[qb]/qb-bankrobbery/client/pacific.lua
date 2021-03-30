@@ -88,7 +88,7 @@ Citizen.CreateThread(function()
                                         if CurrentCops >= Config.MinimumPacificPolice then
                                             openLocker("pacific", k)
                                         else
-                                            QBCore.Functions.Notify("Não existe policias suficientes.. ", "error")
+                                            QBCore.Functions.Notify("There are not sufficient police.. ", "error")
                                         end
                                     end
                                 end
@@ -182,21 +182,21 @@ AddEventHandler('electronickit:UseElectronickit', function()
                                         end
                                     end, function() -- Cancel
                                         StopAnimTask(GetPlayerPed(-1), "anim@gangops@facility@servers@", "hotwire", 1.0)
-                                        QBCore.Functions.Notify("Cancelado..", "error")
+                                        QBCore.Functions.Notify("Called off..", "error")
                                     end)
                                 else
-                                    QBCore.Functions.Notify("Esta a faltar-te um item..", "error")
+                                    QBCore.Functions.Notify("This is missing an item..", "error")
                                 end
                             end, "trojan_usb")
                         else
-                            QBCore.Functions.Notify("Parece que o banco ja foi arrombado..", "error")
+                            QBCore.Functions.Notify("It looks like the bank was already broken into..", "error")
                         end
                     else
-                        QBCore.Functions.Notify("Não existe policias suficientes..", "error")
+                        QBCore.Functions.Notify("There are not sufficient police..", "error")
                     end
                 end
             else
-                QBCore.Functions.Notify("O codigo de segurança esta ativo,de momento não é possivel arrombar a porta..", "error", 5500)
+                QBCore.Functions.Notify("The security code is active, for the moment it is not possible to break the door..", "error", 5500)
             end
         end)
     end
@@ -216,7 +216,7 @@ AddEventHandler('qb-bankrobbery:UseBankcardB', function()
                 if CurrentCops >= Config.MinimumPacificPolice then
                     if not Config.BigBanks["pacific"]["isOpened"] then 
                         TriggerEvent('inventory:client:requiredItems', requiredItems2, false)
-                        QBCore.Functions.Progressbar("security_pass", "A digitar a Palavra-Passe..", math.random(5000, 10000), false, true, {
+                        QBCore.Functions.Progressbar("security_pass", "Typing the password..", math.random(5000, 10000), false, true, {
                             disableMovement = true,
                             disableCarMovement = true,
                             disableMouse = false,
@@ -244,16 +244,16 @@ AddEventHandler('qb-bankrobbery:UseBankcardB', function()
                             end
                         end, function() -- Cancel
                             StopAnimTask(GetPlayerPed(-1), "anim@gangops@facility@servers@", "hotwire", 1.0)
-                            QBCore.Functions.Notify("Cancelado..", "error")
+                            QBCore.Functions.Notify("Called off..", "error")
                         end)
                     else
-                        QBCore.Functions.Notify("Parece que o banco ja foi arrombado..", "error")
+                        QBCore.Functions.Notify("It looks like the bank was already broken into..", "error")
                     end
                 else
-                    QBCore.Functions.Notify("Não existe policias suficientes..", "error")
+                    QBCore.Functions.Notify("There are not sufficient police..", "error")
                 end
             else
-                QBCore.Functions.Notify("O codigo de segurança esta ativo,de momento não é possivel arrombar a porta..", "error", 5500)
+                QBCore.Functions.Notify("The security code is active, for the moment it is not possible to break the door..", "error", 5500)
             end
         end)
     end 

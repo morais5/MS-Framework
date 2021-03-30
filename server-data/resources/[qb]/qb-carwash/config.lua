@@ -14,7 +14,7 @@ Config = {}
 
 Config.Locations = {
     [1] = {
-        ["label"] = "Lavagem Automatica",
+        ["label"] = "Carwash",
         ["coords"] = {
             ["x"] = 29.63,
             ["y"] = -1391.92,

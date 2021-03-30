@@ -25,7 +25,7 @@ AddEventHandler("qb-justice:client:showLawyerLicense", function(sourceId, data)
     local pos = GetEntityCoords(GetPlayerPed(-1), false)
     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, sourcePos.x, sourcePos.y, sourcePos.z, true) < 2.0) then
         TriggerEvent('chat:addMessage', {
-            template = '<div class="chat-message advert"><div class="chat-message-body"><strong>{0}:</strong><br><br> <strong>ID-Passaporte:</strong> {1} <br><strong>Primeiro Nome:</strong> {2} <br><strong>Ultimo Nome:</strong> {3} <br><strong>NIF:</strong> {4} </div></div>',
+            template = '<div class="chat-message advert"><div class="chat-message-body"><strong>{0}:</strong><br><br> <strong>Passport ID:</strong> {1} <br><strong>First Name:</strong> {2} <br><strong>Last Name:</strong> {3} <br><strong>CID:</strong> {4} </div></div>',
             args = {'Passaporte de Advogado', data.id, data.firstname, data.lastname, data.citizenid}
         })
     end

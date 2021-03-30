@@ -26,14 +26,14 @@ AddEventHandler('qb-jewellery:server:vitrineReward', function()
         if Player.Functions.AddItem(Config.VitrineRewards[item]["item"], amount) then
             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.VitrineRewards[item]["item"]], 'add')
         else
-            TriggerClientEvent('QBCore:Notify', src, 'Você é ..', 'error')
+            TriggerClientEvent('QBCore:Notify', src, 'Youre ..', 'error')
         end
     else
         local amount = math.random(2, 4)
         if Player.Functions.AddItem("10kgoldchain", amount) then
             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["10kgoldchain"], 'add')
         else
-            TriggerClientEvent('QBCore:Notify', src, 'Você está carregando muito..', 'error')
+            TriggerClientEvent('QBCore:Notify', src, 'Youre loading a lot..', 'error')
         end
     end
 end)
@@ -64,7 +64,7 @@ AddEventHandler('qb-jewellery:server:PoliceAlertMessage', function(title, coords
     local alertData = {
         title = title,
         coords = {x = coords.x, y = coords.y, z = coords.z},
-        description = "Possível roubo ocorrendo na Joalheria Vangelico<br>Câmeras disponíveis: 31, 32, 33, 34",
+        description = "Possible theft occurring at Joalheria Vangelico <br> Cameras available: 31, 32, 33, 34",
     }
 
     for k, v in pairs(QBCore.Functions.GetPlayers()) do

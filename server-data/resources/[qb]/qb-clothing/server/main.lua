@@ -88,14 +88,14 @@ AddEventHandler('qb-clothing:print', function(data)
     print(data)
 end)
 
-QBCore.Commands.Add("chapeu", "Coloque ou tire o capacete / boné / chapéu..", {}, false, function(source, args)
+QBCore.Commands.Add("hat", "Put or take the helmet / cap / hat..", {}, false, function(source, args)
     TriggerClientEvent("qb-clothing:client:adjustfacewear", source, 1) -- Hat
 end)
 
-QBCore.Commands.Add("oculos", "Coloque ou tire os óculos..", {}, false, function(source, args)
+QBCore.Commands.Add("glasses", "Put or take off your glasses ..", {}, false, function(source, args)
 	TriggerClientEvent("qb-clothing:client:adjustfacewear", source, 2)
 end)
 
-QBCore.Commands.Add("mascara", "Coloque ou tire sua máscara..", {}, false, function(source, args)
+QBCore.Commands.Add("mask", "Put or take your mask ..", {}, false, function(source, args)
 	TriggerClientEvent("qb-clothing:client:adjustfacewear", source, 4)
 end)

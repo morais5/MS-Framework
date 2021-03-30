@@ -15,15 +15,15 @@ Config.BailPrice = 1000
 
 Config.Locations = {
     ["main"] = {
-        label = "Central dos Lixeiros",
+        label = "Central",
         coords = {x = -350.08, y = -1569.95, z = 25.22, h = 292.42},
     },
     ["vehicle"] = {
-        label = "Garagem dos Lixeiros",
+        label = "Vehicle",
         coords = {x = -340.74, y = -1561.82, z = 25.23, h = 58.0},
     },
     ["paycheck"] = {
-        label = "Mesa de Pagamentos",
+        label = "Paycheck",
         coords = {x = -346.68, y = -1572.39, z = 25.22, h = 163.5, r = 1.0}, 
     },
     ["vuilnisbakken"] ={
@@ -115,5 +115,5 @@ Config.Locations = {
 }
 
 Config.Vehicles = {
-    ["trash2"] = "Camião do Lixo",
+    ["trash2"] = "Garbagetruck",
 }

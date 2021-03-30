@@ -17,7 +17,7 @@ Config.Projects = {
         IsActive = false,
         ProjectLocations = {
             ["main"] = {
-                label = "Loc 1",
+                label = "Place 1",
                 coords = {x = -921.5, y = 378.31, z = 79.5, h = 92.5, r = 1.0},
             },
             ["tasks"] = {

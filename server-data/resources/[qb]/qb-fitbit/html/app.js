@@ -3,7 +3,7 @@ var openedApp = ".main-screen"
 qbFitbit = {}
 
 $(document).ready(function(){
-    console.log('Fitbit deu start..')
+    console.log('Fitbit start..')
 
     window.addEventListener('message', function(event){
         var eventData = event.data;

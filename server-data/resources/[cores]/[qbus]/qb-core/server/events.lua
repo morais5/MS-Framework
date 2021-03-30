@@ -22,17 +22,17 @@ AddEventHandler('playerConnecting', function(playerName, setKickReason, deferral
 	deferrals.update("\nChecking name...")
 	local name = GetPlayerName(src)
 	if name == nil then 
-		QBCore.Functions.Kick(src, 'Não use um nome de usuário Steam em branco.', setKickReason, deferrals)
+		QBCore.Functions.Kick(src, 'Do not use a blank steam user name.', setKickReason, deferrals)
         CancelEvent()
         return false
 	end
 	if(string.match(name, "[*%%'=`\"]")) then
-        QBCore.Functions.Kick(src, 'Você tem um caractere no seu nome de usuário ('..string.match(name, "[*%%'=`\"]")..') that is not allowed.\nPlease remove this out of your Steam username.', setKickReason, deferrals)
+        QBCore.Functions.Kick(src, 'You have a character in your username ('..string.match(name, "[*%%'=`\"]")..') that is not allowed.\nPlease remove this out of your Steam username.', setKickReason, deferrals)
         CancelEvent()
         return false
 	end
 	if (string.match(name, "drop") or string.match(name, "table") or string.match(name, "database")) then
-        QBCore.Functions.Kick(src, 'Seu nome de usuário contém uma palavra (drop / table / database) que não é permitida. Por favor, mude seu nome de usuário Steam.', setKickReason, deferrals)
+        QBCore.Functions.Kick(src, 'Your username contains a word (drop / table / database) which is not allowed.Please change your username on Steam.', setKickReason, deferrals)
         CancelEvent()
         return false
 	end
@@ -41,11 +41,11 @@ AddEventHandler('playerConnecting', function(playerName, setKickReason, deferral
 	local steamid = identifiers[1]
 	local license = identifiers[2]
     if (QBConfig.IdentifierType == "steam" and (steamid:sub(1,6) == "steam:") == false) then
-        QBCore.Functions.Kick(src, 'Você precisa abrir o Steam para jogar.', setKickReason, deferrals)
+        QBCore.Functions.Kick(src, 'You need to open Steam to play.', setKickReason, deferrals)
         CancelEvent()
 		return false
 	elseif (QBConfig.IdentifierType == "license" and (steamid:sub(1,6) == "license:") == false) then
-		QBCore.Functions.Kick(src, 'Nenhuma licença do Social Club encontrada.', setKickReason, deferrals)
+		QBCore.Functions.Kick(src, 'No license for Social Club found.', setKickReason, deferrals)
         CancelEvent()
 		return false
     end
@@ -58,13 +58,13 @@ AddEventHandler('playerConnecting', function(playerName, setKickReason, deferral
     end
 	deferrals.update("\nChecking whitelist status...")
     if(not QBCore.Functions.IsWhitelisted(src)) then
-        QBCore.Functions.Kick(src, 'Você não está na lista de permissões.', setKickReason, deferrals)
+        QBCore.Functions.Kick(src, 'You are not on the whitelist.', setKickReason, deferrals)
         CancelEvent()
         return false
     end
 	deferrals.update("\nChecking server status...")
     if(QBCore.Config.Server.closed and not IsPlayerAceAllowed(src, "qbadmin.join")) then
-		QBCore.Functions.Kick(_source, 'o servidor está fechado:\n'..QBCore.Config.Server.closedReason, setKickReason, deferrals)
+		QBCore.Functions.Kick(_source, 'The server is closed:\n'..QBCore.Config.Server.closedReason, setKickReason, deferrals)
         CancelEvent()
         return false
 	end
@@ -79,12 +79,12 @@ AddEventHandler('QBCore:server:CloseServer', function(reason)
     local Player = QBCore.Functions.GetPlayer(src)
 
     if QBCore.Functions.HasPermission(source, "admin") or QBCore.Functions.HasPermission(source, "god") then 
-        local reason = reason ~= nil and reason or "Nenhum motivo especificado..."
+        local reason = reason ~= nil and reason or "No specified motive..."
         QBCore.Config.Server.closed = true
         QBCore.Config.Server.closedReason = reason
         TriggerClientEvent("qbadmin:client:SetServerStatus", -1, true)
 	else
-		QBCore.Functions.Kick(src, "Você não tem permissão para isso..", nil, nil)
+		QBCore.Functions.Kick(src, "You are not allowed for this...", nil, nil)
     end
 end)
 
@@ -96,7 +96,7 @@ AddEventHandler('QBCore:server:OpenServer', function()
         QBCore.Config.Server.closed = false
         TriggerClientEvent("qbadmin:client:SetServerStatus", -1, false)
     else
-        QBCore.Functions.Kick(src, "Você não tem permissão para isso..", nil, nil)
+        QBCore.Functions.Kick(src, "You are not allowed for this...", nil, nil)
     end
 end)
 
@@ -116,7 +116,7 @@ AddEventHandler('QBCore:UpdatePlayer', function(data)
 		Player.Functions.SetMetaData("hunger", newHunger)
 
 		Player.Functions.AddMoney("bank", Player.PlayerData.job.payment)
-		TriggerClientEvent('QBCore:Notify', src, "Você recebeu seu salario de pagamento de €"..Player.PlayerData.job.payment)
+		TriggerClientEvent('QBCore:Notify', src, "You received your salary payment of $"..Player.PlayerData.job.payment)
 		TriggerClientEvent("hud:client:UpdateNeeds", src, newHunger, newThirst)
 
 		Player.Functions.Save()
@@ -201,7 +201,7 @@ AddEventHandler('chatMessage', function(source, n, message)
 						QBCore.Commands.List[command].callback(source, args)
 					end
 				else
-					TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Sem acesso a este comando!")
+					TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "No access to this command!")
 				end
 			end
 		end
@@ -215,7 +215,7 @@ AddEventHandler('QBCore:CallCommand', function(command, args)
 		if Player ~= nil then
 			if (QBCore.Functions.HasPermission(source, "god")) or (QBCore.Functions.HasPermission(source, QBCore.Commands.List[command].permission)) or (QBCore.Commands.List[command].permission == Player.PlayerData.job.name) then
 				if (QBCore.Commands.List[command].argsrequired and #QBCore.Commands.List[command].arguments ~= 0 and args[#QBCore.Commands.List[command].arguments] == nil) then
-					TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Todos os argumentos devem ser preenchidos!")
+					TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "All arguments must be filled!")
 					local agus = ""
 					for name, help in pairs(QBCore.Commands.List[command].arguments) do
 						agus = agus .. " ["..help.name.."]"
@@ -225,7 +225,7 @@ AddEventHandler('QBCore:CallCommand', function(command, args)
 					QBCore.Commands.List[command].callback(source, args)
 				end
 			else
-				TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Sem acesso a este comando!")
+				TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "No access to this command!")
 			end
 		end
 	end
@@ -242,10 +242,10 @@ AddEventHandler('QBCore:ToggleDuty', function()
 	local Player = QBCore.Functions.GetPlayer(src)
 	if Player.PlayerData.job.onduty then
 		Player.Functions.SetJobDuty(false)
-		TriggerClientEvent('QBCore:Notify', src, "Você agora está fora de serviço!")
+		TriggerClientEvent('QBCore:Notify', src, "You are now off duty!")
 	else
 		Player.Functions.SetJobDuty(true)
-		TriggerClientEvent('QBCore:Notify', src, "Você agora está a trabalhar!")
+		TriggerClientEvent('QBCore:Notify', src, "You are now working.!")
 	end
 	TriggerClientEvent("QBCore:Client:SetDuty", src, Player.PlayerData.job.onduty)
 end)

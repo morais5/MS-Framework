@@ -83,10 +83,10 @@ Citizen.CreateThread(function()
                             TriggerServerEvent('QBCore:CallCommand', keyMeta[v]["command"], args)
                             keyPressed = true
                         else
-                            QBCore.Functions.Notify('Ainda não tens nada bindado ao ['..v..'] , /binds para bindares um comando', 'primary', 4000)
+                            QBCore.Functions.Notify('You do not have anything bound to ['..v..'] , /binds for binds a command', 'primary', 4000)
                         end
                     else
-                        QBCore.Functions.Notify('Indica um comando, /binds para bindares', 'primary', 4000)
+                        QBCore.Functions.Notify('Indicates a command, /binds for binde', 'primary', 4000)
                     end
                 end
             end
@@ -114,7 +114,7 @@ RegisterNUICallback('save', function(data)
         ["F10"] = {["command"] = data.keyData["F10"][1], ["argument"] = data.keyData["F10"][2]},
     }
 
-    QBCore.Functions.Notify('Salvaste as tuas binds!', 'success')
+    QBCore.Functions.Notify('Saved your binds!', 'success')
 
     TriggerServerEvent('qb-commandbinding:server:setKeyMeta', keyData)
 end)

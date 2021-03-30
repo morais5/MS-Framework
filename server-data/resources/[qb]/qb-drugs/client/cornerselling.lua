@@ -26,22 +26,22 @@ AddEventHandler('qb-drugs:client:cornerselling', function(data)
 
             if not cornerselling then
                 cornerselling = true
-                QBCore.Functions.Notify('Estas agora a vender droga.. yeet')
+                QBCore.Functions.Notify('You are now selling drugs...')
                 startLocation = GetEntityCoords(GetPlayerPed(-1))
                 -- TaskStartScenarioInPlace(GetPlayerPed(-1), "CODE_HUMAN_CROSS_ROAD_WAIT", 0, false)
             else
                 cornerselling = false
-                QBCore.Functions.Notify('Paraste de vender droga.. yeet')
+                QBCore.Functions.Notify('You stopped selling drugs...')
                 -- ClearPedTasks(GetPlayerPed(-1))
             end
         else
-            QBCore.Functions.Notify('Não tens droga contigo..', 'error')
+            QBCore.Functions.Notify('You dont have drugs with you...', 'error')
         end
     end)
 end)
 
 function toFarAway()
-    QBCore.Functions.Notify('Saiste do local, recomeça!', 'error')
+    QBCore.Functions.Notify('Leave the place, start over!', 'error')
     cornerselling = false
     hasTarget = false
     busySelling = false
@@ -73,7 +73,7 @@ Citizen.CreateThread(function()
                 local pos = GetEntityCoords(GetPlayerPed(-1))
                 local pedpos = GetEntityCoords(stealingPed)
                 if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, pedpos.x, pedpos.y, pedpos.z, true) < 1.5) then
-                    DrawText3D(pedpos.x, pedpos.y, pedpos.z, "[E] Apanhar")
+                    DrawText3D(pedpos.x, pedpos.y, pedpos.z, "[E] Take")
                     if IsControlJustReleased(0, Keys["E"]) then
                         RequestAnimDict("pickup_object")
                         while not HasAnimDictLoaded("pickup_object") do
@@ -214,7 +214,7 @@ function SellToPed(ped)
 
             if getRobbed == 18 or getRobbed == 9 then
                 TriggerServerEvent('qb-drugs:server:robCornerDrugs', availableDrugs[drugType].item, bagAmount)
-                QBCore.Functions.Notify('Foste roubado e perdeste '..bagAmount..' sacos(\'s) '..availableDrugs[drugType].label, 'error')
+                QBCore.Functions.Notify('You were robbed and you lost '..bagAmount..' bag(\'s) '..availableDrugs[drugType].label, 'error')
                 stealingPed = ped
                 stealData = {
                     item = availableDrugs[drugType].item,
@@ -242,7 +242,7 @@ function SellToPed(ped)
                 break
             else
                 if pedDist < 1.5 then
-                    QBCore.Functions.DrawText3D(pedCoords.x, pedCoords.y, pedCoords.z, '~g~E~w~ '..bagAmount..'x '..currentOfferDrug.label..' for €'..randomPrice..'? / ~g~G~w~ Decline offer')
+                    QBCore.Functions.DrawText3D(pedCoords.x, pedCoords.y, pedCoords.z, '~g~E~w~ '..bagAmount..'x '..currentOfferDrug.label..' for $'..randomPrice..'? / ~g~G~w~ Decline offer')
                     if IsControlJustPressed(0, Keys["E"]) then
                         QBCore.Functions.Notify('Oferta aceite!', 'success')
                         TriggerServerEvent('qb-drugs:server:sellCornerDrugs', availableDrugs[drugType].item, bagAmount, randomPrice)
@@ -261,7 +261,7 @@ function SellToPed(ped)
                     end
 
                     if IsControlJustPressed(0, Keys["G"]) then
-                        QBCore.Functions.Notify('Oferta cancelada!', 'error')
+                        QBCore.Functions.Notify('Canceled offer!', 'error')
                         hasTarget = false
 
                         SetPedKeepTask(ped, false)

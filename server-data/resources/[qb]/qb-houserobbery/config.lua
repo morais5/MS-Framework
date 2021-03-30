@@ -60,7 +60,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -71,7 +71,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -82,7 +82,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -93,7 +93,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -104,7 +104,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -127,7 +127,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -138,7 +138,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -149,7 +149,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -160,7 +160,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -171,7 +171,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -194,7 +194,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -205,7 +205,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -216,7 +216,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -227,7 +227,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -238,7 +238,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -261,7 +261,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -272,7 +272,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -283,7 +283,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -294,7 +294,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -305,7 +305,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -328,7 +328,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -339,7 +339,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -350,7 +350,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -361,7 +361,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -372,7 +372,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -395,7 +395,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -406,7 +406,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -417,7 +417,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -428,7 +428,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -439,7 +439,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -462,7 +462,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -473,7 +473,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -484,7 +484,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -495,7 +495,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -506,7 +506,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -529,7 +529,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -540,7 +540,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -551,7 +551,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -562,7 +562,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -573,7 +573,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -596,7 +596,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -607,7 +607,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -618,7 +618,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -629,7 +629,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -640,7 +640,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -663,7 +663,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -674,7 +674,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -685,7 +685,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -696,7 +696,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -707,7 +707,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -730,7 +730,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -741,7 +741,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -752,7 +752,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -763,7 +763,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -774,7 +774,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -797,7 +797,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -808,7 +808,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -819,7 +819,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -830,7 +830,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -841,7 +841,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -864,7 +864,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -875,7 +875,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -886,7 +886,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -897,7 +897,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -908,7 +908,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -931,7 +931,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -942,7 +942,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -953,7 +953,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -964,7 +964,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -975,7 +975,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -998,7 +998,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -1009,7 +1009,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -1020,7 +1020,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -1031,7 +1031,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -1042,7 +1042,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -1065,7 +1065,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -1076,7 +1076,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -1087,7 +1087,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -1098,7 +1098,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -1109,7 +1109,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -1132,7 +1132,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -1143,7 +1143,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -1154,7 +1154,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -1165,7 +1165,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -1176,7 +1176,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },
@@ -1199,7 +1199,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [2] = {
                 ["type"] = "cabin",
@@ -1210,7 +1210,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario"
+                ["text"] = "Search"
             },
             [3] = {
                 ["type"] = "kitchen",
@@ -1221,7 +1221,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar armario da cozinha"
+                ["text"] = "Search"
             },
             [4] = {
                 ["type"] = "chest",
@@ -1232,7 +1232,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar baú"
+                ["text"] = "Search"
             },
             [5] = {
                 ["type"] = "cabin",
@@ -1243,7 +1243,7 @@ Config.Houses = {
                 },
                 ["searched"] = false,
                 ["isBusy"] = false,
-                ["text"] = "Vasculhar mesinha"
+                ["text"] = "Search"
             },
         }
     },

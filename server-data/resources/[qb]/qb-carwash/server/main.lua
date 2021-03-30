@@ -13,6 +13,6 @@ AddEventHandler('qb-carwash:server:washCar', function()
     elseif Player.Functions.RemoveMoney('bank', Config.DefaultPrice, "car-washed") then
         TriggerClientEvent('qb-carwash:client:washCar', src)
     else
-        TriggerClientEvent('QBCore:Notify', src, 'Não tens dinheiro para lavar o carro..', 'error')
+        TriggerClientEvent('QBCore:Notify', src, 'You have no money to wash the car..', 'error')
     end
 end)

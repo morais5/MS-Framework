@@ -99,7 +99,7 @@ Citizen.CreateThread(function()
             if Distance < 20 then
                 inRange = true
                 if Distance < 1.5 then
-                    DrawText3Ds(VendingPos.x, VendingPos.y, VendingPos.z, '~g~E~w~ - Comprar bebidas')
+                    DrawText3Ds(VendingPos.x, VendingPos.y, VendingPos.z, '~g~E~w~ - Buy drinks')
                     if IsControlJustPressed(0, Keys["E"]) then
                         local ShopItems = {}
                         ShopItems.label = "Maquinas"
@@ -149,8 +149,8 @@ end)
 
 RegisterCommand("rato", function(source, args, rawCommand)
     SetNuiFocus(true, true)
-    QBCore.Functions.Notify("INFO: Carrega [ESC]", "success")
-    QBCore.Functions.Notify("Faz novamente /rato e clica no [ESC] caso ainda estejas bugado", "success")
+    QBCore.Functions.Notify("INFO: Loads [ESC]", "success")
+    QBCore.Functions.Notify("Try /rato again and click on [ESC] if you are still buggy", "success")
 end)
 
 Citizen.CreateThread(function()
@@ -185,7 +185,7 @@ Citizen.CreateThread(function()
                                     curVeh = vehicle
                                     CurrentGlovebox = nil
                                 else
-                                    QBCore.Functions.Notify("O veiculo esta trancado..", "error")
+                                    QBCore.Functions.Notify("The vehicle is locked..", "error")
                                     return
                                 end
                             else
@@ -442,7 +442,7 @@ AddEventHandler("inventory:client:CraftItems", function(itemName, itemCosts, amo
         action = "close",
     })
     isCrafting = true
-    QBCore.Functions.Progressbar("repair_vehicle", "Craftas-te com Sucesso..", (math.random(2000, 5000) * amount), false, true, {
+    QBCore.Functions.Progressbar("repair_vehicle", "Craft Successful..", (math.random(2000, 5000) * amount), false, true, {
 		disableMovement = true,
 		disableCarMovement = true,
 		disableMouse = false,
@@ -458,7 +458,7 @@ AddEventHandler("inventory:client:CraftItems", function(itemName, itemCosts, amo
         isCrafting = false
 	end, function() -- Cancel
 		StopAnimTask(GetPlayerPed(-1), "mini@repair", "fixing_a_player", 1.0)
-        QBCore.Functions.Notify("Falhou!", "error")
+        QBCore.Functions.Notify("Failed!", "error")
         isCrafting = false
 	end)
 end)
@@ -485,7 +485,7 @@ AddEventHandler('inventory:client:CraftAttachment', function(itemName, itemCosts
         isCrafting = false
 	end, function() -- Cancel
 		StopAnimTask(GetPlayerPed(-1), "mini@repair", "fixing_a_player", 1.0)
-        QBCore.Functions.Notify("Falhou!", "error")
+        QBCore.Functions.Notify("Failed!", "error")
         isCrafting = false
 	end)
 end)
@@ -494,7 +494,7 @@ RegisterNetEvent("inventory:client:PickupSnowballs")
 AddEventHandler("inventory:client:PickupSnowballs", function()
     LoadAnimDict('anim@mp_snowball')
     TaskPlayAnim(GetPlayerPed(-1), 'anim@mp_snowball', 'pickup_snowball', 3.0, 3.0, -1, 0, 1, 0, 0, 0)
-    QBCore.Functions.Progressbar("pickupsnowball", "A apanhar bolas..", 1500, false, true, {
+    QBCore.Functions.Progressbar("pickupsnowball", "Picking up balls..", 1500, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -505,7 +505,7 @@ AddEventHandler("inventory:client:PickupSnowballs", function()
         TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["snowball"], "add")
     end, function() -- Cancel
         ClearPedTasks(GetPlayerPed(-1))
-        QBCore.Functions.Notify("Cancelado..", "error")
+        QBCore.Functions.Notify("Called off..", "error")
     end)
 end)
 
@@ -562,7 +562,7 @@ WeaponAttachments = {
     ["WEAPON_SNSPISTOL"] = {
         ["extendedclip"] = {
             component = "COMPONENT_SNSPISTOL_CLIP_02",
-            label = "Carregador extendido",
+            label = "Extended Clip",
             item = "pistol_extendedclip",
         },
     },
@@ -574,7 +574,7 @@ WeaponAttachments = {
         },
         ["extendedclip"] = {
             component = "COMPONENT_VINTAGEPISTOL_CLIP_02",
-            label = "Carregador extendido",
+            label = "Extended Clip",
             item = "pistol_extendedclip",
         },
     },
@@ -586,7 +586,7 @@ WeaponAttachments = {
         },
         ["extendedclip"] = {
             component = "COMPONENT_MICROSMG_CLIP_02",
-            label = "Carregador extendido",
+            label = "Extended Clip",
             item = "smg_extendedclip",
         },
         ["flashlight"] = {
@@ -603,19 +603,19 @@ WeaponAttachments = {
     ["WEAPON_MINISMG"] = {
         ["extendedclip"] = {
             component = "COMPONENT_MINISMG_CLIP_02",
-            label = "Carregador extendido",
+            label = "Extended Clip",
             item = "smg_extendedclip",
         },
     },
     ["WEAPON_COMPACTRIFLE"] = {
         ["extendedclip"] = {
             component = "COMPONENT_COMPACTRIFLE_CLIP_02",
-            label = "Carregador extendido",
+            label = "Extended Clip",
             item = "rifle_extendedclip",
         },
         ["drummag"] = {
             component = "COMPONENT_COMPACTRIFLE_CLIP_03",
-            label = "Carregador Drum",
+            label = "Drum Magazine",
             item = "rifle_drummag",
         },
     },
@@ -752,12 +752,12 @@ AddEventHandler("inventory:client:ShowId", function(sourceId, citizenid, charact
     local sourcePos = GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(sourceId)), false)
     local pos = GetEntityCoords(GetPlayerPed(-1), false)
     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, sourcePos.x, sourcePos.y, sourcePos.z, true) < 2.0) then
-        local gender = "Masculino"
+        local gender = "Male"
         if character.gender == 1 then
-            gender = "Feminino"
+            gender = "Female"
         end
         TriggerEvent('chat:addMessage', {
-            template = '<div class="chat-message advert"><div class="chat-message-body"><strong>{0}:</strong><br><br> <strong>NIF:</strong> {1} <br><strong>Primeiro Nome:</strong> {2} <br><strong>Ultimo Nome:</strong> {3} <br><strong>Data de Nascimento:</strong> {4} <br><strong>Genero:</strong> {5} <br><strong>Nacionalidade:</strong> {6}</div></div>',
+            template = '<div class="chat-message advert"><div class="chat-message-body"><strong>{0}:</strong><br><br> <strong>CID:</strong> {1} <br><strong>First Name:</strong> {2} <br><strong>LastName:</strong> {3} <br><strong>Birthday:</strong> {4} <br><strong>Gender:</strong> {5} <br><strong>Nationality:</strong> {6}</div></div>',
             args = {'Cartão de Cidadão', character.citizenid, character.firstname, character.lastname, character.birthdate, gender, character.nationality}
         })
     end
@@ -769,8 +769,8 @@ AddEventHandler("inventory:client:ShowDriverLicense", function(sourceId, citizen
     local pos = GetEntityCoords(GetPlayerPed(-1), false)
     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, sourcePos.x, sourcePos.y, sourcePos.z, true) < 2.0) then
         TriggerEvent('chat:addMessage', {
-            template = '<div class="chat-message advert"><div class="chat-message-body"><strong>{0}:</strong><br><br> <strong>Primeiro Nome:</strong> {1} <br><strong>Ultimo Nome:</strong> {2} <br><strong>Data de Nascimento:</strong> {3} <br><strong>Cartas:</strong> {4}</div></div>',
-            args = {'Carta de Condução', character.firstname, character.lastname, character.birthdate, character.type}
+            template = '<div class="chat-message advert"><div class="chat-message-body"><strong>{0}:</strong><br><br> <strong>First Name:</strong> {1} <br><strong>LastName:</strong> {2} <br><strong>Birthday:</strong> {3} <br><strong>Type:</strong> {4}</div></div>',
+            args = {'Driving license', character.firstname, character.lastname, character.birthdate, character.type}
         })
     end
 end)

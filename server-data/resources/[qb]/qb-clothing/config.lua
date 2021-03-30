@@ -51,7 +51,7 @@ Config.Outfits = {
     ["police"] = {
         ["male"] = {
             [1] = {
-                outfitLabel = "PSP Cadete",
+                outfitLabel = "Police 1",
                 outfitData = {
                     ["pants"]       = { item = 59, texture = 0},  -- Broek
                     ["arms"]        = { item = 19, texture = 0},  -- Armen
@@ -69,7 +69,7 @@ Config.Outfits = {
                 },
             },
             [2] = {
-                outfitLabel = "PSP Agente",
+                outfitLabel = "Police 2",
                 outfitData = {
                     ["pants"]       = { item = 59, texture = 0},  -- Broek
                     ["arms"]        = { item = 19, texture = 0},  -- Armen
@@ -87,7 +87,7 @@ Config.Outfits = {
                 },
             },
             [3] = {
-                outfitLabel = "PSP Agente Casaco",
+                outfitLabel = "Police 3",
                 outfitData = {
                     ["pants"]       = { item = 59, texture = 0},  -- Broek
                     ["arms"]        = { item = 20, texture = 0},  -- Armen
@@ -105,7 +105,7 @@ Config.Outfits = {
                 },
             },
             [4] = {
-                outfitLabel = "PSP Agente Casco Inverno",
+                outfitLabel = "Police 4",
                 outfitData = {
                     ["pants"]       = { item = 59, texture = 0},  -- Broek
                     ["arms"]        = { item = 20, texture = 0},  -- Armen
@@ -123,7 +123,7 @@ Config.Outfits = {
                 },
             },
             [5] = {
-                outfitLabel = "PSP Agente Cerimonias",
+                outfitLabel = "Police Cermonial",
                 outfitData = {
                     ["pants"]       = { item = 35, texture = 0},  -- Broek
                     ["arms"]        = { item = 20, texture = 0},  -- Armen
@@ -141,7 +141,7 @@ Config.Outfits = {
                 },
             },
             [6] = {
-                outfitLabel = "PSP Chefe",
+                outfitLabel = "Police Chief",
                 outfitData = {
                     ["pants"]       = { item = 59, texture = 0},  -- Broek
                     ["arms"]        = { item = 20, texture = 0},  -- Armen
@@ -159,7 +159,7 @@ Config.Outfits = {
                 },
             },
             [7] = {
-                outfitLabel = "PSP Comissario",
+                outfitLabel = "Police Commissioner",
                 outfitData = {
                     ["pants"]       = { item = 59, texture = 0},  -- Broek
                     ["arms"]        = { item = 19, texture = 0},  -- Armen
@@ -201,7 +201,7 @@ Config.Outfits = {
     ["ambulance"] = {
         ["male"] = {
             [1] = {
-                outfitLabel = "Inem",
+                outfitLabel = "EMS 1",
                 outfitData = {
                     ["pants"]       = { item = 49,texture = 0},  -- Broek
                     ["arms"]        = { item = 85, texture = 0},  -- Armen
@@ -219,7 +219,7 @@ Config.Outfits = {
                 },
             },
             [2] = {
-                outfitLabel = "Inem Enfermeiro",
+                outfitLabel = "EMS 2",
                 outfitData = {
                     ["pants"]       = { item = 49,texture = 0},  -- Broek
                     ["arms"]        = { item = 85, texture = 0},  -- Armen
@@ -237,7 +237,7 @@ Config.Outfits = {
                 },
             },
 			[3] = {
-                outfitLabel = "Inem Medico",
+                outfitLabel = "EMS 3",
                 outfitData = {
                     ["pants"]       = { item = 59,texture = 5},  -- Broek
                     ["arms"]        = { item = 86, texture = 0},  -- Armen
@@ -255,7 +255,7 @@ Config.Outfits = {
 				},
 			},
 			[4] = {
-                outfitLabel = "Inem Casaco",
+                outfitLabel = "EMS 4",
                 outfitData = {
                     ["pants"]       = { item = 49,texture = 0},  -- Broek
                     ["arms"]        = { item = 88, texture = 0},  -- Armen
@@ -273,7 +273,7 @@ Config.Outfits = {
 				},
 			},
 			[5] = {
-                outfitLabel = "Inem Hoodie",
+                outfitLabel = "EMS 5",
                 outfitData = {
                     ["pants"]       = { item = 49,texture = 0},  -- Broek
                     ["arms"]        = { item = 90, texture = 0},  -- Armen
@@ -291,7 +291,7 @@ Config.Outfits = {
                 },
             },
             [6] = {
-                outfitLabel = "Inem Mota",
+                outfitLabel = "EMS 6",
                 outfitData = {
                     ["pants"]       = { item = 49,texture = 0},  -- Broek
                     ["arms"]        = { item = 90, texture = 0},  -- Armen
@@ -314,7 +314,7 @@ Config.Outfits = {
     ["doctor"] = {
         ["male"] = {
             [1] = {
-                outfitLabel = "Coat For Doctors",
+                outfitLabel = "Doctor 1",
                 outfitData = {
                     ["pants"]       = { item = 49,texture = 0},  -- Broek
                     ["arms"]        = { item = 86, texture = 0},  -- Armen
@@ -332,7 +332,7 @@ Config.Outfits = {
 				},
 			},
 			[2] = {
-                outfitLabel = "T-Shirt Heavy Vest",
+                outfitLabel = "Doctor 2",
                 outfitData = {
                     ["pants"]       = { item = 49,texture = 0},  -- Broek
                     ["arms"]        = { item = 85, texture = 0},  -- Armen
@@ -350,7 +350,7 @@ Config.Outfits = {
 				},
 			},			
 			[3] = {
-                outfitLabel = "OVD-G",
+                outfitLabel = "Doctor 3",
                 outfitData = {
                     ["pants"]       = { item = 49,texture = 4},  -- Broek
                     ["arms"]        = { item = 86, texture = 0},  -- Armen
@@ -368,7 +368,7 @@ Config.Outfits = {
 				},
 			},
 			[4] = {
-                outfitLabel = "MMT Pilot",
+                outfitLabel = "Pilot",
                 outfitData = {
                     ["pants"]       = { item = 59,texture = 5},  -- Broek
                     ["arms"]        = { item = 86, texture = 0},  -- Armen
@@ -386,7 +386,7 @@ Config.Outfits = {
 				},
 			},
 			[5] = {
-                outfitLabel = "MMT Doctor",
+                outfitLabel = "Doctor 4",
                 outfitData = {
                     ["pants"]       = { item = 59,texture = 5},  -- Broek
                     ["arms"]        = { item = 86, texture = 0},  -- Armen
@@ -404,7 +404,7 @@ Config.Outfits = {
 				},
 			},
 			[6] = {
-                outfitLabel = "MMT Nurse",
+                outfitLabel = "Nurse",
                 outfitData = {
                     ["pants"]       = { item = 59,texture = 5},  -- Broek
                     ["arms"]        = { item = 86, texture = 0},  -- Armen

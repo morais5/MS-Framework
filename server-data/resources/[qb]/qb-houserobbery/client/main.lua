@@ -114,7 +114,7 @@ Citizen.CreateThread(function()
 
         if inside then
             if(GetDistanceBetweenCoords(pos, Config.Houses[currentHouse]["coords"]["x"] + POIOffsets.exit.x, Config.Houses[currentHouse]["coords"]["y"] + POIOffsets.exit.y, Config.Houses[currentHouse]["coords"]["z"] - Config.MinZOffset + POIOffsets.exit.z, true) < 1.5)then
-                DrawText3Ds(Config.Houses[currentHouse]["coords"]["x"] + POIOffsets.exit.x, Config.Houses[currentHouse]["coords"]["y"] + POIOffsets.exit.y, Config.Houses[currentHouse]["coords"]["z"] - Config.MinZOffset + POIOffsets.exit.z, '~g~E~w~ - Para sair da casa')
+                DrawText3Ds(Config.Houses[currentHouse]["coords"]["x"] + POIOffsets.exit.x, Config.Houses[currentHouse]["coords"]["y"] + POIOffsets.exit.y, Config.Houses[currentHouse]["coords"]["z"] - Config.MinZOffset + POIOffsets.exit.z, '~g~E~w~ - To leave the house')
                 if IsControlJustPressed(0, Keys["E"]) then
                     leaveRobberyHouse(currentHouse)
                 end
@@ -131,10 +131,10 @@ Citizen.CreateThread(function()
                                 end
                             end
                         else
-                            DrawText3Ds(Config.Houses[currentHouse]["coords"]["x"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["x"], Config.Houses[currentHouse]["coords"]["y"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["y"], Config.Houses[currentHouse]["coords"]["z"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["z"] - Config.MinZOffset, 'A fazer lockpick..')
+                            DrawText3Ds(Config.Houses[currentHouse]["coords"]["x"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["x"], Config.Houses[currentHouse]["coords"]["y"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["y"], Config.Houses[currentHouse]["coords"]["z"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["z"] - Config.MinZOffset, 'Lockpick..')
                         end
                     else
-                        DrawText3Ds(Config.Houses[currentHouse]["coords"]["x"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["x"], Config.Houses[currentHouse]["coords"]["y"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["y"], Config.Houses[currentHouse]["coords"]["z"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["z"] - Config.MinZOffset, 'Isto esta vazio..')
+                        DrawText3Ds(Config.Houses[currentHouse]["coords"]["x"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["x"], Config.Houses[currentHouse]["coords"]["y"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["y"], Config.Houses[currentHouse]["coords"]["z"] + Config.Houses[currentHouse]["furniture"][k]["coords"]["z"] - Config.MinZOffset, 'This is empty..')
                     end
                 end
             end
@@ -236,10 +236,10 @@ AddEventHandler('lockpicks:UseLockpick', function(isAdvanced)
                             TriggerServerEvent("evidence:server:CreateFingerDrop", pos)
                         end
                     else
-                        QBCore.Functions.Notify('A porta ja esta aberta..', 'error', 3500)
+                        QBCore.Functions.Notify('The door is already open..', 'error', 3500)
                     end
                 else
-                    QBCore.Functions.Notify('Não existe policias suficientes..', 'error', 3500)
+                    QBCore.Functions.Notify('There are not enough police..', 'error', 3500)
                 end
             end
         else
@@ -255,13 +255,13 @@ AddEventHandler('lockpicks:UseLockpick', function(isAdvanced)
                                     TriggerServerEvent("evidence:server:CreateFingerDrop", pos)
                                 end
                             else
-                                QBCore.Functions.Notify('A porta ja esta aberta..', 'error', 3500)
+                                QBCore.Functions.Notify('The door is already open..', 'error', 3500)
                             end
                         else
-                            QBCore.Functions.Notify('Não existe policias suficientes..', 'error', 3500)
+                            QBCore.Functions.Notify('There are not enough police..', 'error', 3500)
                         end
                     else
-                        QBCore.Functions.Notify('Parece que te falta uma caixa de ferramentas para isto...', 'error', 3500)
+                        QBCore.Functions.Notify('It looks like you lack a toolbox for this...', 'error', 3500)
                     end
                 end
             end, "screwdriverset")
@@ -284,11 +284,11 @@ function PoliceCall()
             if street2 ~= nil and street2 ~= "" then 
                 streetLabel = streetLabel .. " " .. street2
             end
-            local gender = "Homem"
+            local gender = "Male"
             if QBCore.Functions.GetPlayerData().charinfo.gender == 1 then
-                gender = "Mulher"
+                gender = "Female"
             end
-            local msg = "Tentativa de roubo a casa por um/a " .. gender .." em " .. streetLabel
+            local msg = "Attempted robbery of a home by a " .. gender .." on " .. streetLabel
             TriggerServerEvent("police:server:HouseRobberyCall", pos, msg, gender, streetLabel)
         end
     end
@@ -313,7 +313,7 @@ end
 function lockpickFinish(success)
     if success then
         TriggerServerEvent('qb-houserobbery:server:enterHouse', closestHouse)
-        QBCore.Functions.Notify('Conseguiste!', 'success', 2500)
+        QBCore.Functions.Notify('You got it!', 'success', 2500)
     else
         if usingAdvanced then
             local itemInfo = QBCore.Shared.Items["advancedlockpick"]
@@ -388,7 +388,7 @@ function searchCabin(cabin)
         openingDoor = false
         ClearPedTasks(GetPlayerPed(-1))
         TriggerServerEvent('qb-houserobbery:server:SetBusyState', cabin, currentHouse, false)
-        QBCore.Functions.Notify("Processo cancelado..", "error")
+        QBCore.Functions.Notify("Process canceled..", "error")
         SucceededAttempts = 0
         FreezeEntityPosition(ped, false)
         SetTimeout(500, function()

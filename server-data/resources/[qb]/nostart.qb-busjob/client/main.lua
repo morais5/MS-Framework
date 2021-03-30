@@ -71,16 +71,16 @@ SetupAnimations()
 -- function lijn(nummer)
 
 JobsClientCore.Menus["Bus_DressingRoom"]= {
-	Title="Bus Kleedruimte",
-	Holder="Bus_Kleedruimte",
+	Title="Bus Dressingroom",
+	Holder="Bus_DressingRoom",
 	item={
-		["Burger Kleding"]={cb=function(name, item, menu) 
+		["Citizen clothes"]={cb=function(name, item, menu) 
 			JobsClientCore.NaarBurgerKledingFromDuty()
 			-- JobsClientCore.DisplayNotification("Je kan je spullen verkopen bij de 24/7.")
 			JobsClientCore.RunningRoute = false
 			IsWorking_Bus = false
 		end},
-		["Bus Chauffeur"]={cb=
+		["Bus driver"]={cb=
 			function(name, item, menu) 
 				--JobsClientCore.SetClientModel("a_m_m_farmer_01")
 				JobsClientCore.NaarJobKleding()
@@ -94,21 +94,21 @@ local i = 1
 local Lijnen = 3
 local items = {}
 for i=1,Lijnen,1 do
-	items["Buslijn "..i]={cb=function(name, item, menu) 
+	items["busline "..i]={cb=function(name, item, menu) 
 		Citizen.CreateThread(function() 
 			if (IsWorking_Bus ~= true) then
 				JobsClientCore.DisplayNotification("You have to take on the right outfit!")
 				return false
 			end
 			if SpawningBus then
-				JobsClientCore.DisplayNotification("Your bus is on their way!")
+				JobsClientCore.DisplayNotification("Your bus is on the way!")
 				return false
 			end
 			SpawningBus = true
 			for ListID,ped in pairs(Peds) do
 				if DoesEntityExist(ped) then
 					SetEntityAsMissionEntity(ped, false, true)
-					-- TriggerServerEvent("Job_Bus:BetaalPassenger", GetPedMoney(ped))
+					-- TriggerServerEvent("Job_Bus:GetPayment", GetPedMoney(ped))
 					-- TotalEarnd = TotalEarnd + GetPedMoney(ped)
 					-- geld(TotalEarnd)
 					SetPedAsNoLongerNeeded(ped)
@@ -129,9 +129,9 @@ for i=1,Lijnen,1 do
 	end}
 end
 
-JobsClientCore.Menus["Bus_SelectLijn"]= {
+JobsClientCore.Menus["Bus_SelectLine"]= {
 	Title="Select Bus Line",
-	Holder="Bus_SelectLijn",
+	Holder="Bus_SelectLine",
 	item=items,
 }
 
@@ -146,13 +146,13 @@ JobsClientCore.Menus["Bus_SelectLijn"]= {
 Citizen.CreateThread(function() 
 	table.insert(JobsClientCore.jobs, "bus")
 	table.insert(JobsClientCore.MarkerList, 
-		{name="Bus_Kleedkamer",
+		{name="Bus_DressingRoom",
 			Job="bus",
 			x=731.87,y=659.41,z=128.15,a=167.99, 
 			r=50,g=50,b=204,
 			MSizex=1.5,MSizey=1.5,MSizez=10,
 			MarkerHelpTekst="",
-			onClick=function(marker) print("Pressed E") end,
+			onClick=function(marker) print("Press E") end,
 			onExit=function(marker) JobsClientCore.CloseMenus() end,
 			onEnter=function(marker) JobsClientCore.CreateMenu(JobsClientCore.Menus["Bus_DressingRoom"]) end,
 		}
@@ -165,7 +165,7 @@ Citizen.CreateThread(function()
 			r=50,g=204,b=50,
 			MSizex=1.5,MSizey=1.5,MSizez=10,
 			MarkerHelpTekst="",
-			onClick=function(marker) print("Pressed E") end,
+			onClick=function(marker) print("Press E") end,
 			-- onClick=function(marker) 
 				-- if(GetVehiclePedIsIn(GetPlayerPed(-1), false) ~= Bus) then
 					-- SpawnBus(marker)
@@ -175,7 +175,7 @@ Citizen.CreateThread(function()
 			onExit=function(marker) JobsClientCore.CloseMenus() end,
 			onEnter=function(marker) 
 				LastMarker = marker
-				JobsClientCore.CreateMenu(JobsClientCore.Menus["Bus_SelectLijn"])
+				JobsClientCore.CreateMenu(JobsClientCore.Menus["Bus_SelectLine"])
 			end,
 		}
 	)
@@ -310,7 +310,7 @@ function RunRoute(Route)
 								Citizen.Wait(100)
 								Timer = Timer +1
 							end
-							TriggerServerEvent("Job_Bus:BetaalPassenger", GetPedMoney(ped))
+							TriggerServerEvent("Job_Bus:GetPayment", GetPedMoney(ped))
 							TotalEarnd = TotalEarnd + GetPedMoney(ped)
 							geld(TotalEarnd)
 							Citizen.Wait(math.random(750,4000))
@@ -404,7 +404,7 @@ function RunRoute(Route)
 						-- DeletePed(ped)
 					else
 						-- DeletePed(ped)
-						-- TriggerServerEvent("Job_Bus:BetaalPassenger", GetPedMoney(ped))
+						-- TriggerServerEvent("Job_Bus:GetPayment", GetPedMoney(ped))
 						-- TotalEarnd = TotalEarnd + GetPedMoney(ped)
 						-- geld(TotalEarnd)
 						SetPedAsNoLongerNeeded(ped)
@@ -557,7 +557,7 @@ AddEventHandler('JobsCoreO:UserPressedKey', function(KeyId, KeyName)
 				local PedsInBus = GetPedsInBus()
 				for ListID=#PedsInBus,1,-1 do
 					ped = PedsInBus[ListID]
-					-- TriggerServerEvent("Job_Bus:BetaalPassenger", (GetPedMoney(ped)/2))
+					-- TriggerServerEvent("Job_Bus:GetPayment", (GetPedMoney(ped)/2))
 					-- TotalEarnd = TotalEarnd + (GetPedMoney(ped)/2)
 					-- geld(TotalEarnd)
 					TaskLeaveVehicle(ped, Bus, 256)
@@ -651,7 +651,7 @@ function RemoveVehicle()
 	for ListID,ped in pairs(Peds) do
 		if DoesEntityExist(ped) then
 			SetEntityAsMissionEntity(ped, false, true)
-			-- TriggerServerEvent("Job_Bus:BetaalPassenger", GetPedMoney(ped))
+			-- TriggerServerEvent("Job_Bus:GetPayment", GetPedMoney(ped))
 			-- TotalEarnd = TotalEarnd + GetPedMoney(ped)
 			-- geld(TotalEarnd)
 			SetPedAsNoLongerNeeded(ped)

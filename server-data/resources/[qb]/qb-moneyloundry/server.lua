@@ -19,7 +19,7 @@ AddEventHandler('pulisci:moneblak', function()
     
    
     if Item == nil then
-        TriggerClientEvent('QBCore:Notify', source, 'Não tens dinheiro sujo para lavar, burro do crh :/!', "error", 8000)  
+        TriggerClientEvent('QBCore:Notify', source, 'You dont have dirty money to clean :/!', "error", 8000)  
     else
         if Item.amount >= Item.amount then
 
@@ -30,7 +30,7 @@ AddEventHandler('pulisci:moneblak', function()
        
            
         else
-            TriggerClientEvent('QBCore:Notify', _source, 'Não tens dinheiro sujo para lavar, burro do crh :/!', "error", 10000)  
+            TriggerClientEvent('QBCore:Notify', _source, 'You dont have dirty money to clean :/!', "error", 10000)  
            
         end
     end

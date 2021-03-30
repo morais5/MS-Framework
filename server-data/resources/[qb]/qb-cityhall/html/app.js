@@ -72,10 +72,10 @@ hoverDescription = function(type) {
     if (!mouseOver) {
         if (type == "id-kaart") {
             $(".hover-description").fadeIn(10);
-            $(".hover-description").html('<p>Precisas de um cartão de cidadão. <br>Para que te possam identificar.</p>');
+            $(".hover-description").html('<p>You need a citizen card. <br>So they can identify you.</p>');
         } else if (type == "rijbewijs") {
             $(".hover-description").fadeIn(10);
-            $(".hover-description").html('<p>Se você dirige um veículo, é necessário ter uma carteira de motorista<br> ser capaz de mostrar quando for solicitado.</p>');
+            $(".hover-description").html('<p>If you drive a vehicle, you need to have a drivers license<br> to show when requested.</p>');
         }
     } else {
         if(selectedIdentity == null) {
@@ -100,10 +100,10 @@ $(document).on("click", ".identity-page-block", function(e){
         selectedIdentity = this;
         if (idType== "id-kaart") {
             $(".request-identity-button").fadeIn(100);
-            $(".request-identity-button").html("<p>Pedir cartão de cidadão (€450)</p>")
+            $(".request-identity-button").html("<p>Request citizen card ($450)</p>")
         } else {
             $(".request-identity-button").fadeIn(100);
-            $(".request-identity-button").html("<p>Pedir carta de condução (€450)</p>")
+            $(".request-identity-button").html("<p>Request driving license ($450)</p>")
         }
     } else if (selectedIdentity == this) {
         $(this).removeClass("identity-selected");
@@ -114,9 +114,9 @@ $(document).on("click", ".identity-page-block", function(e){
         $(this).addClass("identity-selected");
         selectedIdentity = this;
         if($(this).data('type') == "id-kaart") {
-            $(".request-identity-button").html("<p>Pedir cartão de cidadão (€450)</p>")
+            $(".request-identity-button").html("<p>Request citizen card ($450)</p>")
         } else {
-            $(".request-identity-button").html("<p>Pedir carta de condução (€450)</p>")
+            $(".request-identity-button").html("<p>Request driving license ($450)</p>")
         }
     }
 });

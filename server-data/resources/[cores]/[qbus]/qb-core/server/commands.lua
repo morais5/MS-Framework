@@ -45,30 +45,30 @@ QBCore.Commands.Add("tp", "Teleport to a player or location", {{name="id/x", hel
     end
 end, "admin") 
 
-QBCore.Commands.Add("darperms", "Conceda permissões a alguém (god/admin)", {{name="id", help="ID of player"}, {name="permission", help="Permission level"}}, true, function(source, args)
+QBCore.Commands.Add("giveperms", "Grant permissions to someone (god/admin)", {{name="id", help="ID of player"}, {name="permission", help="Permission level"}}, true, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
 	local permission = tostring(args[2]):lower()
 	if Player ~= nil then
 		QBCore.Functions.AddPermission(Player.PlayerData.source, permission)
 	else
-		TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "O jogador não está online!")	
+		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "The player is not online!")	
 	end
 end, "god")
 
-QBCore.Commands.Add("tirarperms", "Remover permissões de alguém", {{name="id", help="ID of player"}}, true, function(source, args)
+QBCore.Commands.Add("removeperms", "Remove someone's permissions", {{name="id", help="ID of player"}}, true, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
 	if Player ~= nil then
 		QBCore.Functions.RemovePermission(Player.PlayerData.source)
 	else
-		TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "O jogador não está online|")	
+		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "The player is not online!")	
 	end
 end, "god")
 
-QBCore.Commands.Add("car", "Spawn a um carro", {{name="model", help="Modelo do carro"}}, true, function(source, args)
+QBCore.Commands.Add("car", "Spawn a car", {{name="model", help="Car model"}}, true, function(source, args)
 	TriggerClientEvent('QBCore:Command:SpawnVehicle', source, args[1])
 end, "admin")
 
-QBCore.Commands.Add("debug", "Ativar / desativar o modo de depuração", {}, false, function(source, args)
+QBCore.Commands.Add("debug", "Enable / disable debug mode", {}, false, function(source, args)
 	TriggerClientEvent('koil-debug:toggle', source)
 end, "admin")
 
@@ -76,16 +76,16 @@ QBCore.Commands.Add("dv", "Despawn a vehicle", {}, false, function(source, args)
 	TriggerClientEvent('QBCore:Command:DeleteVehicle', source)
 end, "admin")
 
-QBCore.Commands.Add("tpm", "Teleporte para o seu waypoint", {}, false, function(source, args)
+QBCore.Commands.Add("tpm", "Teleport to marker", {}, false, function(source, args)
 	TriggerClientEvent('QBCore:Command:GoToMarker', source)
 end, "admin")
 
-QBCore.Commands.Add("givemoney", "Dê dinheiro a um jogador", {{name="id", help="Player ID"},{name="moneytype", help="Type of money (cash, bank, crypto)"}, {name="amount", help="Amount of money"}}, true, function(source, args)
+QBCore.Commands.Add("givemoney", "Give money to a player", {{name="id", help="Player ID"},{name="moneytype", help="Type of money (cash, bank, crypto)"}, {name="amount", help="Amount of money"}}, true, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
 	if Player ~= nil then
 		Player.Functions.AddMoney(tostring(args[2]), tonumber(args[3]))
 	else
-		TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "O jogador não está online!")
+		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "The player is not online!")
 	end
 end, "admin")
 
@@ -107,12 +107,12 @@ QBCore.Commands.Add("setjob", "Assign a job to a player", {{name="id", help="Spe
 	end
 end, "admin")
 
-QBCore.Commands.Add("trabalho", "Veja que trabalho você tem", {}, false, function(source, args)
+QBCore.Commands.Add("work", "See what work do you have", {}, false, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(source)
-	TriggerClientEvent('chatMessage', source, "SITEMA", "warning", "Trabalho: "..Player.PlayerData.job.label)
+	TriggerClientEvent('chatMessage', source, "SYSTEM", "warning", "Work: "..Player.PlayerData.job.label)
 end)
 
-QBCore.Commands.Add("setgang", "Atribuir um jogador a uma gangue", {{name="id", help="Player ID"}, {name="job", help="Name of a gang"}}, true, function(source, args)
+QBCore.Commands.Add("setgang", "Assign a player to a gang", {{name="id", help="Player ID"}, {name="job", help="Name of a gang"}}, true, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
 	if Player ~= nil then
 		Player.Functions.SetGang(tostring(args[2]))
@@ -121,13 +121,13 @@ QBCore.Commands.Add("setgang", "Atribuir um jogador a uma gangue", {{name="id", 
 	end
 end, "admin")
 
-QBCore.Commands.Add("gang", "Veja em qual gangue você está", {}, false, function(source, args)
+QBCore.Commands.Add("gang", "See in which gang you are", {}, false, function(source, args)
 	local Player = QBCore.Functions.GetPlayer(source)
 
 	if Player.PlayerData.gang.name ~= "geen" then
-		TriggerClientEvent('chatMessage', source, "SISTEMA", "warning", "Gang: "..Player.PlayerData.gang.label)
+		TriggerClientEvent('chatMessage', source, "SYSTEM", "warning", "Gang: "..Player.PlayerData.gang.label)
 	else
-		TriggerClientEvent('QBCore:Notify', source, "Você não está em uma gangue!", "error")
+		TriggerClientEvent('QBCore:Notify', source, "You're not in a gang!", "error")
 	end
 end)
 
@@ -135,7 +135,7 @@ QBCore.Commands.Add("testnotify", "test notify", {{name="text", help="Tekst enzo
 	TriggerClientEvent('QBCore:Notify', source, table.concat(args, " "), "success")
 end, "god")
 
-QBCore.Commands.Add("clearinv", "Limpe o inventário de um jogador", {{name="id", help="Player ID"}}, false, function(source, args)
+QBCore.Commands.Add("clearinv", "Clean a player's inventory", {{name="id", help="Player ID"}}, false, function(source, args)
 	local playerId = args[1] ~= nil and args[1] or source 
 	local Player = QBCore.Functions.GetPlayer(tonumber(playerId))
 	if Player ~= nil then
@@ -145,7 +145,7 @@ QBCore.Commands.Add("clearinv", "Limpe o inventário de um jogador", {{name="id"
 	end
 end, "admin")
 
-QBCore.Commands.Add("ooc", "Mensagem fora do personagem", {}, false, function(source, args)
+QBCore.Commands.Add("ooc", "Message Out Of Character", {}, false, function(source, args)
 	local message = table.concat(args, " ")
 	TriggerClientEvent("QBCore:Client:LocalOutOfCharacter", -1, source, GetPlayerName(source), message)
 	local Players = QBCore.Functions.GetPlayers()

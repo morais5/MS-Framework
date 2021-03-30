@@ -134,7 +134,7 @@ function CreatorLoop()
                     if CreatorData.Checkpoints ~= nil and next(CreatorData.Checkpoints) ~= nil then
                         DeleteCheckpoint()
                     else
-                        QBCore.Functions.Notify('Ainda não definiste um checkpoint ..', 'error')
+                        QBCore.Functions.Notify('You have not yet set a checkpoint ..', 'error')
                     end
                 end
 
@@ -142,15 +142,15 @@ function CreatorLoop()
                     if CreatorData.Checkpoints ~= nil and #CreatorData.Checkpoints >= 2 then
                         SaveRace()
                     else
-                        QBCore.Functions.Notify('O minimo de checkpoints é 10', 'error')
+                        QBCore.Functions.Notify('The minimum of Checkpoints is 10', 'error')
                     end
                 end
 
                 if IsControlJustPressed(0, Keys["]"]) or IsDisabledControlJustPressed(0, Keys["]"]) then
-                    if CreatorData.TireDistance + 1.0 ~= 16.0 then
+                    if CreatorData.TireDistance + 1.0 ~= 51.0 then
                         CreatorData.TireDistance = CreatorData.TireDistance + 1.0
                     else
-                        QBCore.Functions.Notify('Não podes fazer mais que 15')
+                        QBCore.Functions.Notify('You can not do more than 50')
                     end
                 end
 
@@ -158,7 +158,7 @@ function CreatorLoop()
                     if CreatorData.TireDistance - 1.0 ~= 1.0 then
                         CreatorData.TireDistance = CreatorData.TireDistance - 1.0
                     else
-                        QBCore.Functions.Notify('Tens que ter no minimo 2')
+                        QBCore.Functions.Notify('You have to have at least 2')
                     end
                 end
             else
@@ -169,7 +169,7 @@ function CreatorLoop()
             if IsControlJustPressed(0, Keys["9"]) or IsDisabledControlJustPressed(0, Keys["9"]) then
                 if not CreatorData.ConfirmDelete then
                     CreatorData.ConfirmDelete = true
-                    QBCore.Functions.Notify('Clica outra vez no [9] para confirmar', 'error', 5000)
+                    QBCore.Functions.Notify('Click [9] again to confirm', 'error', 5000)
                 else
                     for id, CheckpointData in pairs(CreatorData.Checkpoints) do
                         if CheckpointData.blip ~= nil then
@@ -198,7 +198,7 @@ function CreatorLoop()
                     RaceData.InCreator = false
                     CreatorData.RaceName = nil
                     CreatorData.Checkpoints = {}
-                    QBCore.Functions.Notify('Editor-Corrida Cancelado!', 'error')
+                    QBCore.Functions.Notify('Race Edit Canceled!', 'error')
                     CreatorData.ConfirmDelete = false
                 end
             end
@@ -221,7 +221,7 @@ function SaveRace()
 
     TriggerServerEvent('qb-lapraces:server:SaveRace', CreatorData)
 
-    QBCore.Functions.Notify('Corrida: '..CreatorData.RaceName..' salva!', 'success')
+    QBCore.Functions.Notify('Race: '..CreatorData.RaceName..' save!', 'success')
 
     for id,_ in pairs(CreatorData.Checkpoints) do
         if CreatorData.Checkpoints[id].blip ~= nil then
@@ -328,10 +328,10 @@ function DeleteCheckpoint()
             end
             CreatorData.Checkpoints = NewCheckpoints
         else
-            QBCore.Functions.Notify('Não podes ir tão rapido..', 'error')
+            QBCore.Functions.Notify('You can not go so fast...', 'error')
         end
     else
-        QBCore.Functions.Notify('Não podes ir tão rapido..', 'error')
+        QBCore.Functions.Notify('You can not go so fast...', 'error')
     end
 end
 

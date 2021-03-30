@@ -242,14 +242,14 @@ AddEventHandler('qb-bankrobbery:server:callCops', function(type, bank, streetLab
     if type == "small" then
         cameraId = Config.SmallBanks[bank]["camId"]
         bankLabel = "Fleeca"
-        msg = "Tentativa de assalto a banco em "..bankLabel.. " " ..streetLabel.." (CAMERA ID: "..cameraId..")"
+        msg = "Bank robbery in progress "..bankLabel.. " " ..streetLabel.." (CAMERA ID: "..cameraId..")"
     elseif type == "paleto" then
         cameraId = Config.BigBanks["paleto"]["camId"]
         bankLabel = "Blaine County Savings"
-        msg = "Grande alarme! Tentativa de assalto a banco em "..bankLabel.. " Paleto Bay (CAMERA ID: "..cameraId..")"
+        msg = "Alarm! Bank robbery in progress "..bankLabel.. " Paleto Bay (CAMERA ID: "..cameraId..")"
     elseif type == "pacific" then
         bankLabel = "Pacific Standard Bank"
-        msg = "Grande alarme! Tentativa de assalto a banco em "..bankLabel.. " Alta St (CAMERA ID: 1/2/3)"
+        msg = "Alarm! Bank robbery in progress "..bankLabel.. " Alta St (CAMERA ID: 1/2/3)"
     end
     local alertData = {
         title = "Bank robbery",
@@ -357,7 +357,7 @@ QBCore.Functions.CreateUseableItem("thermite", function(source, item)
 	if Player.Functions.GetItemByName('lighter') ~= nil then
         TriggerClientEvent("thermite:UseThermite", source)
     else
-        TriggerClientEvent('QBCore:Notify', source, "Você está faltando algo para acender a termite..", "error")
+        TriggerClientEvent('QBCore:Notify', source, "You're missing something to light the termite..", "error")
     end
 end)
 

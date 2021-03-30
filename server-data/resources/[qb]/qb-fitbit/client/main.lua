@@ -63,7 +63,7 @@ RegisterNUICallback('setFoodWarning', function(data)
 
     TriggerServerEvent('qb-fitbit:server:setValue', 'food', foodValue)
 
-    QBCore.Functions.Notify('Fitbit: Aviso de comida definido para '..foodValue..'%')
+    QBCore.Functions.Notify('Fitbit: Hunger notice activated at '..foodValue..'%')
 end)
 
 RegisterNUICallback('setThirstWarning', function(data)
@@ -71,7 +71,7 @@ RegisterNUICallback('setThirstWarning', function(data)
 
     TriggerServerEvent('qb-fitbit:server:setValue', 'thirst', thirstValue)
 
-    QBCore.Functions.Notify('Fitbit: aviso de sede definido como'..thirstValue..'%')
+    QBCore.Functions.Notify('Fitbit: Water notice activated at '..thirstValue..'%')
 end)
 
 Citizen.CreateThread(function()
@@ -85,14 +85,14 @@ Citizen.CreateThread(function()
                     local PlayerData = QBCore.Functions.GetPlayerData()
                     if PlayerData.metadata["fitbit"].food ~= nil then
                         if PlayerData.metadata["hunger"] < PlayerData.metadata["fitbit"].food then
-                            TriggerEvent("chatMessage", "FITBIT ", "warning", "sua comida é "..round(PlayerData.metadata["hunger"], 2).."%")
+                            TriggerEvent("chatMessage", "FITBIT ", "warning", "Your hunger is at "..round(PlayerData.metadata["hunger"], 2).."%")
                             PlaySound(-1, "Event_Start_Text", "GTAO_FM_Events_Soundset", 0, 0, 1)
                         end
                     end
         
                     if PlayerData.metadata["fitbit"].thirst ~= nil then
                         if PlayerData.metadata["thirst"] < PlayerData.metadata["fitbit"].thirst  then
-                            TriggerEvent("chatMessage", "FITBIT ", "warning", "Sua sede é "..round(PlayerData.metadata["thirst"], 2).."%")
+                            TriggerEvent("chatMessage", "FITBIT ", "warning", "Your thirst is at "..round(PlayerData.metadata["thirst"], 2).."%")
                             PlaySound(-1, "Event_Start_Text", "GTAO_FM_Events_Soundset", 0, 0, 1)
                         end
                     end

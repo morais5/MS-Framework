@@ -204,16 +204,16 @@ Citizen.CreateThread(function()
     }
 
     local bans = {
-        "1 Hora",
-        "6 Hora",
-        "12 Hora",
-        "1 Dia",
-        "3 Dias",
-        "1 Semana",
-        "1 Mês",
-        "3 Mêses",
-        "6 Mêses",
-        "1 Ano",
+        "1 Hour",
+        "6 Hour",
+        "12 Hour",
+        "1 Day",
+        "3 Days",
+        "1 Week",
+        "1 Month",
+        "3 Months",
+        "6 Months",
+        "1 Year",
         "Perm",
         "Self",
     }

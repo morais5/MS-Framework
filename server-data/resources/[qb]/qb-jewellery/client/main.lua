@@ -59,17 +59,17 @@ Citizen.CreateThread(function()
 
                             if dist < 0.6 then
                                 if not Config.Locations[case]["isBusy"] and not Config.Locations[case]["isOpened"] then
-                                    DrawText3Ds(Config.Locations[case]["coords"]["x"], Config.Locations[case]["coords"]["y"], Config.Locations[case]["coords"]["z"], '[E] Partir Vitrine')
+                                    DrawText3Ds(Config.Locations[case]["coords"]["x"], Config.Locations[case]["coords"]["y"], Config.Locations[case]["coords"]["z"], '[E] Showcase')
                                     if IsControlJustPressed(0, Keys["E"]) then
                                         QBCore.Functions.TriggerCallback('qb-jewellery:server:getCops', function(cops)
                                             if cops >= Config.RequiredCops then
                                                 if validWeapon() then
                                                     smashVitrine(case)
                                                 else
-                                                    QBCore.Functions.Notify('Esta arma não serve para isto..', 'error')
+                                                    QBCore.Functions.Notify('This weapon is not for this..', 'error')
                                                 end
                                             else
-                                                QBCore.Functions.Notify('Não existe policia suficiente...', 'error')
+                                                QBCore.Functions.Notify('There is not enough police...', 'error')
                                             end                
                                         end)
                                     end
@@ -79,7 +79,7 @@ Citizen.CreateThread(function()
                             if storeDist < 2 then
                                 if not firstAlarm then
                                     if validWeapon() then
-                                        TriggerServerEvent('qb-jewellery:server:PoliceAlertMessage', "Ocorrencia Suspeita", pos, true)
+                                        TriggerServerEvent('qb-jewellery:server:PoliceAlertMessage', "Suspicion", pos, true)
                                         firstAlarm = true
                                     end
                                 end
@@ -140,12 +140,12 @@ function smashVitrine(k)
         TriggerServerEvent("evidence:server:CreateFingerDrop", plyCoords)
     elseif math.random(1, 100) <= 5 and IsWearingHandshoes() then
         TriggerServerEvent("evidence:server:CreateFingerDrop", plyCoords)
-        QBCore.Functions.Notify("Cortaste-te no vidro da vitrine..", "error")
+        QBCore.Functions.Notify("You cut yourself in the glass of the showcase..", "error")
     end
 
     smashing = true
 
-    QBCore.Functions.Progressbar("smash_vitrine", "A partir a vitrine..", Config.WhitelistedWeapons[pedWeapon]["timeOut"], false, true, {
+    QBCore.Functions.Progressbar("smash_vitrine", "From the showcase..", Config.WhitelistedWeapons[pedWeapon]["timeOut"], false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -196,7 +196,7 @@ AddEventHandler('qb-jewellery:client:PoliceAlertMessage', function(title, coords
             details = {
                 [1] = {
                     icon = '<i class="fas fa-gem"></i>',
-                    detail = "Joalharia Vangelico",
+                    detail = "Vangelico Jewelery",
                 },
                 [2] = {
                     icon = '<i class="fas fa-video"></i>',
@@ -221,7 +221,7 @@ AddEventHandler('qb-jewellery:client:PoliceAlertMessage', function(title, coords
         SetBlipAlpha(blip, transG)
         SetBlipAsShortRange(blip, false)
         BeginTextCommandSetBlipName('STRING')
-        AddTextComponentString("112 - Ocorrencia Suspeita na Joalharia")
+        AddTextComponentString("911 - Suspected activity in Jewelery Store")
         EndTextCommandSetBlipName(blip)
         while transG ~= 0 do
             Wait(180 * 4)
@@ -242,7 +242,7 @@ AddEventHandler('qb-jewellery:client:PoliceAlertMessage', function(title, coords
                 details = {
                     [1] = {
                         icon = '<i class="fas fa-gem"></i>',
-                        detail = "Joalharia Vangelico",
+                        detail = "Vangelico Jewelery",
                     },
                     [2] = {
                         icon = '<i class="fas fa-video"></i>',
@@ -286,6 +286,6 @@ Citizen.CreateThread(function()
     SetBlipColour(Dealer, 3)
 
     BeginTextCommandSetBlipName("STRING")
-    AddTextComponentSubstringPlayerName("Joalharia Vangelico")
+    AddTextComponentSubstringPlayerName("Vangelico Jewelery")
     EndTextCommandSetBlipName(Dealer)
 end)
