@@ -234,7 +234,7 @@ AddEventHandler('qb-houses:server:removeHouseKey', function(house, citizenData)
 		end
 	end
 	housekeyholders[house] = newHolders
-	TriggerClientEvent('QBCore:Notify', src, citizenData.firstname .. " " .. citizenData.lastname .. "'s sleutels zijn verwijderd..", 'error', 3500)
+	TriggerClientEvent('QBCore:Notify', src, citizenData.firstname .. " " .. citizenData.lastname .. "'S keys have been removed..", 'error', 3500)
 	QBCore.Functions.ExecuteSql(false, "UPDATE `player_houses` SET `keyholders` = '"..json.encode(housekeyholders[house]).."' WHERE `house` = '"..house.."'")
 end)
 

@@ -9,7 +9,7 @@ AddEventHandler('qb-drugs:server:updateDealerItems', function(itemData, amount, 
         Player.Functions.RemoveItem(itemData.name, amount)
         Player.Functions.AddMoney('cash', amount * Config.Dealers[dealer]["products"][itemData.slot].price)
 
-        TriggerClientEvent("QBCore:Notify", _src, "Este item não está disponível .. Você tem um reembolso.", "error")
+        TriggerClientEvent("QBCore:Notify", _src, "This item is not available. You have a refund.", "error")
     end
 end)
 
@@ -57,7 +57,7 @@ AddEventHandler('qb-drugs:server:succesDelivery', function(deliveryData, inTime)
             end
 
             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["weed_brick"], "remove")
-            TriggerClientEvent('QBCore:Notify', src, 'O pedido foi entregue completamente', 'success')
+            TriggerClientEvent('QBCore:Notify', src, 'The request was delivered completely', 'success')
 
             SetTimeout(math.random(5000, 10000), function()
                 TriggerClientEvent('qb-drugs:client:sendDeliveryMail', src, 'perfect', deliveryData)
@@ -65,7 +65,7 @@ AddEventHandler('qb-drugs:server:succesDelivery', function(deliveryData, inTime)
                 Player.Functions.SetMetaData('dealerrep', (curRep + 1))
             end)
         else
-            TriggerClientEvent('QBCore:Notify', src, 'Isso não atende o pedido ...', 'error')
+            TriggerClientEvent('QBCore:Notify', src, 'This does not answer the request ...', 'error')
 
             if Player.Functions.GetItemByName('weed_brick').amount >= 0 then
                 Player.Functions.RemoveItem('weed_brick', Player.Functions.GetItemByName('weed_brick').amount)
@@ -85,7 +85,7 @@ AddEventHandler('qb-drugs:server:succesDelivery', function(deliveryData, inTime)
             end)
         end
     else
-        TriggerClientEvent('QBCore:Notify', src, 'Você está muito atrasado...', 'error')
+        TriggerClientEvent('QBCore:Notify', src, 'You are very late...', 'error')
 
         Player.Functions.RemoveItem('weed_brick', deliveryData["amount"])
         Player.Functions.AddMoney('cash', (deliveryData["amount"] * 6000 / 100 * 4), "dilvery-drugs-too-late")
@@ -106,7 +106,7 @@ end)
 
 RegisterServerEvent('qb-drugs:server:callCops')
 AddEventHandler('qb-drugs:server:callCops', function(streetLabel, coords)
-    local msg = "Uma situação suspeita foi localizada em "..streetLabel..", possivelmente tráfico de drogas."
+    local msg = "A suspected situation was located in "..streetLabel..", possibly drug trafficking."
     local alertData = {
         title = "Drug Dealing",
         coords = {x = coords.x, y = coords.y, z = coords.z},
@@ -141,24 +141,24 @@ QBCore.Commands.Add("dealers", "Get an overview of all Dealers", {}, false, func
     local DealersText = ""
     if Config.Dealers ~= nil and next(Config.Dealers) ~= nil then
         for k, v in pairs(Config.Dealers) do
-            DealersText = DealersText .. "Nome: " .. v["name"] .. "<br>"
+            DealersText = DealersText .. "Name: " .. v["name"] .. "<br>"
         end
         TriggerClientEvent('chat:addMessage', source, {
-            template = '<div class="chat-message advert"><div class="chat-message-body"><strong>Lista de todos os revendedores: </strong><br><br> '..DealersText..'</div></div>',
+            template = '<div class="chat-message advert"><div class="chat-message-body"><strong>List of all dealers: </strong><br><br> '..DealersText..'</div></div>',
             args = {}
         })
     else
-        TriggerClientEvent('QBCore:Notify', source, 'Nenhum revendedor foi colocado.', 'error')
+        TriggerClientEvent('QBCore:Notify', source, 'No dealer was placed.', 'error')
     end
 end, "admin")
 
-QBCore.Commands.Add("dealergoto", "Teleportar para o local do revendedor", {{name = "name", help = "Nome do vendedor"}}, true, function(source, args)
+QBCore.Commands.Add("dealergoto", "Teleport for the dealer", {{name = "name", help = "Name of dealer"}}, true, function(source, args)
     local DealerName = tostring(args[1])
 
     if Config.Dealers[DealerName] ~= nil then
         TriggerClientEvent('qb-drugs:client:GotoDealer', source, Config.Dealers[DealerName])
     else
-        TriggerClientEvent('QBCore:Notify', source, 'Este negociante não existe.', 'error')
+        TriggerClientEvent('QBCore:Notify', source, 'This dealer does not exist.', 'error')
     end
 end, "admin")
 
@@ -196,7 +196,7 @@ AddEventHandler('qb-drugs:server:CreateDealer', function(DealerData)
 
     QBCore.Functions.ExecuteSql(false, "SELECT * FROM `dealers` WHERE `name` = '"..DealerData.name.."'", function(result)
         if result[1] ~= nil then
-            TriggerClientEvent('QBCore:Notify', src, "Já existe um concessionário com este nome..", "error")
+            TriggerClientEvent('QBCore:Notify', src, "There is already a dealer with this name..", "error")
         else
             QBCore.Functions.ExecuteSql(false, "INSERT INTO `dealers` (`name`, `coords`, `time`, `createdby`) VALUES ('"..DealerData.name.."', '"..json.encode(DealerData.pos).."', '"..json.encode(DealerData.time).."', '"..Player.PlayerData.citizenid.."')", function()
                 Config.Dealers[DealerData.name] = {

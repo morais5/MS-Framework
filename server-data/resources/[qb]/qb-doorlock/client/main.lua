@@ -92,23 +92,23 @@ Citizen.CreateThread(function()
 
 				if isAuthorized then
 					if doorID.locked then
-						displayText = "~g~E~w~ - Fechado"
+						displayText = "~g~E~w~ - Lock"
 					elseif not doorID.locked then
-						displayText = "~g~E~w~ - Aberto"
+						displayText = "~g~E~w~ - Open"
 					end
 				elseif not isAuthorized then
 					if doorID.locked then
-						displayText = "Fechado"
+						displayText = "Closed"
 					elseif not doorID.locked then
-						displayText = "Aberto"
+						displayText = "Open"
 					end
 				end
 
 				if doorID.locking then
 					if doorID.locked then
-						displayText = "A Abrir.."
+						displayText = "To open.."
 					else
-						displayText = "A Fechar.."
+						displayText = "Close.."
 					end
 				end
 
@@ -176,13 +176,13 @@ AddEventHandler('lockpicks:UseLockpick', function()
 							closestDoorKey, closestDoorValue = k, v
 							TriggerEvent('qb-lockpick:client:openLockpick', lockpickFinish)
 						else
-							QBCore.Functions.Notify("Está faltando um kit de ferramentas...", "error")
+							QBCore.Functions.Notify("A toolkit is missing...", "error")
 						end
 					else
-						QBCore.Functions.Notify('A porta já está destrancada ??', 'error', 2500)
+						QBCore.Functions.Notify('The door is already unlocked ??', 'error', 2500)
 					end
 				else
-					QBCore.Functions.Notify('A fechadura da porta é muito forte', 'error', 2500)
+					QBCore.Functions.Notify('The door lock is very strong.', 'error', 2500)
 				end
 			end
 		end
@@ -191,10 +191,10 @@ end)
 
 function lockpickFinish(success)
     if success then
-		QBCore.Functions.Notify('Sucesso!', 'success', 2500)
+		QBCore.Functions.Notify('Success!', 'success', 2500)
 		setDoorLocking(closestDoorValue, closestDoorKey)
     else
-        QBCore.Functions.Notify('Falhou..', 'error', 2500)
+        QBCore.Functions.Notify('Failed..', 'error', 2500)
     end
 end
 

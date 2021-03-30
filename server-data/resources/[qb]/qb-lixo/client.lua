@@ -39,16 +39,16 @@ Citizen.CreateThread(function(time)
 
 
                 if dist < 1.8 then
-                    DrawText3Ds(dumpPos.x, dumpPos.y, dumpPos.z + 1.0, 'Pressiona [~g~E~w~] Para vasculhar o Caixote do Lixo')
+                    DrawText3Ds(dumpPos.x, dumpPos.y, dumpPos.z + 1.0, 'Press [~g~E~w~] to search trash')
                     if IsControlJustReleased(0, 54) then
                         for i = 1, #searched do
                             if searched[i] == dumpster then
                                 dumpsterFound = true
                             end
                             if i == #searched and dumpsterFound then
-                                QBCore.Functions.Notify('Este Caixote do Lixo ja foi vasculhado', 'error')
+                                QBCore.Functions.Notify('This waste bin has already been searched', 'error')
                             elseif i == #searched and not dumpsterFound then
-                                QBCore.Functions.Notify('Começas-te a vasculhar o Caixote do Lixo')
+                                QBCore.Functions.Notify('You start to search the Trash Can')
                                    startSearching(searchTime, 'amb@prop_human_bum_bin@base', 'base', 'sbop:server:rewarditem')
                                 TriggerServerEvent('Og:startdumpsterTimer', dumpster)
                                 table.insert(searched, dumpster)

@@ -165,13 +165,13 @@ function PayCheckLoop(location)
             if distance < 20 then
                 DrawMarker(2, coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 233, 55, 22, 222, false, false, false, true, false, false, false)
                 if distance < 1.5 then
-                    DrawText3D(coords.x, coords.y, coords.z, "~g~E~w~ - Receber pagamento")
+                    DrawText3D(coords.x, coords.y, coords.z, "~g~E~w~ - Receive payment")
                     if IsControlJustPressed(0, Keys["E"]) then
                         TriggerServerEvent('qb-garbagejob:server:PayShit', Earnings, location)
                         Earnings = 0
                     end
                 elseif distance < 5 then
-                    DrawText3D(coords.x, coords.y, coords.z, "Receber pagamento")
+                    DrawText3D(coords.x, coords.y, coords.z, "Receive payment")
                 end
             end
 
@@ -194,19 +194,19 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 233, 55, 22, 222, false, false, false, true, false, false, false)
                     if distance < 1.5 then
                         if InVehicle then
-                            DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, "~g~E~w~ -  Entregar veiculo")
+                            DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, "~g~E~w~ -  Deliver vehicle")
                             if IsControlJustReleased(0, Keys["E"]) then
                                 QBCore.Functions.TriggerCallback('qb-garbagejob:server:CheckBail', function(DidBail)
                                     if DidBail then
                                         BringBackCar()
-                                        QBCore.Functions.Notify("Recebeste de volta os teus 1000€!")
+                                        QBCore.Functions.Notify("You have received your $1000!")
                                     else
-                                        QBCore.Functions.Notify("Não pagaste nenhuma caução neste veiculo..")
+                                        QBCore.Functions.Notify("You have not paid any deposit on this vehicle..")
                                     end
                                 end)
                             end
                         else
-                            DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, "~g~E~w~ - Requesitar veiculo")
+                            DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, "~g~E~w~ - Require vehicle")
                             if IsControlJustReleased(0, Keys["E"]) then
                                 QBCore.Functions.TriggerCallback('qb-garbagejob:server:HasMoney', function(HasMoney)
                                     if HasMoney then
@@ -224,11 +224,11 @@ Citizen.CreateThread(function()
                                             GarbageLocation = 1
                                             IsWorking = true
                                             SetGarbageRoute()
-                                            QBCore.Functions.Notify("Pagaste 1000€ como caução do veiculo!")
-                                            QBCore.Functions.Notify("Começaste a tua rota, foi definida uma localização no teu GPS!")
+                                            QBCore.Functions.Notify("You paid $1000 as a deposit for the vehicle!")
+                                            QBCore.Functions.Notify("You started your route, a location was set on your GPS!")
                                         end, coords, true)
                                     else
-                                        QBCore.Functions.Notify("Não tens dinheiro suficiente para a caução... A caução custa "..Config.BailPrice)
+                                        QBCore.Functions.Notify("You don't have enough money for the deposit ... The deposit costs "..Config.BailPrice)
                                     end
                                 end)
                             end
@@ -263,7 +263,7 @@ Citizen.CreateThread(function()
                                 if not hasZak then
                                     if CanTakeBag then
                                         if Distance < 1.5 then
-                                            DrawText3D2(DeliveryData.coords, "~g~E~w~ - Pegar no saco de lixo")
+                                            DrawText3D2(DeliveryData.coords, "~g~E~w~ - Pick up the trash")
                                             if IsControlJustPressed(0, 51) then
                                                 if AmountOfBags == 0 then
                                                     -- Hier zet ie hoeveel zakken er moeten worden afgeleverd als het nog niet bepaald is
@@ -273,20 +273,20 @@ Citizen.CreateThread(function()
                                                 TakeAnim()
                                             end
                                         elseif Distance < 10 then
-                                            DrawText3D2(DeliveryData.coords, "Aproxima-te para pegar no saco de lixo.")
+                                            DrawText3D2(DeliveryData.coords, "Approach to pick up the trash.")
                                         end
                                     end
                                 else
                                     if DoesEntityExist(GarbageVehicle) then
                                         if Distance < 10 then
-                                            DrawText3D2(DeliveryData.coords, "Coloca o saco no camião do lixo...")
+                                            DrawText3D2(DeliveryData.coords, "Put the trash in the garbage truck...")
                                         end
 
                                         local Coords = GetOffsetFromEntityInWorldCoords(GarbageVehicle, 0.0, -4.5, 0.0)
                                         local TruckDist = GetDistanceBetweenCoords(pos, Coords.x, Coords.y, Coords.z, true)
 
                                         if TruckDist < 2 then
-                                            DrawText3D(Coords.x, Coords.y, Coords.z, "~g~E~w~ - Atirar o saco do lixo")
+                                            DrawText3D(Coords.x, Coords.y, Coords.z, "~g~E~w~ - Throwing the trash bag")
                                             if IsControlJustPressed(0, 51) then
                                                 hasZak = false
                                                 local AmountOfLocations = #Config.Locations["vuilnisbakken"]
@@ -298,10 +298,10 @@ Citizen.CreateThread(function()
                                                         -- Hier zet ie je volgende locatie en ben je nog niet klaar met werken.
                                                         GarbageLocation = GarbageLocation + 1
                                                         SetGarbageRoute()
-                                                        QBCore.Functions.Notify("O contentor foi limpo, avança para a proxima localização!")
+                                                        QBCore.Functions.Notify("The container has been cleaned, move on to the next location!")
                                                     else
                                                         -- Hier ben je klaar met werken.
-                                                        QBCore.Functions.Notify("Acabaste o turno, volta para a tua central.")
+                                                        QBCore.Functions.Notify("You finished the shift, go back to central.")
                                                         IsWorking = false
                                                         RemoveBlip(DeliveryBlip)
                                                         SetRouteBack()
@@ -312,19 +312,19 @@ Citizen.CreateThread(function()
                                                     -- Hier heb je nog niet alle zakken afgeleverd
                                                     AmountOfBags = AmountOfBags - 1
                                                     if AmountOfBags > 1 then
-                                                        QBCore.Functions.Notify("Ainda faltam "..AmountOfBags.." sacos!")
+                                                        QBCore.Functions.Notify("There are still"..AmountOfBags.." bags left!")
                                                     else
-                                                        QBCore.Functions.Notify("Ainda falta "..AmountOfBags.." saco!")
+                                                        QBCore.Functions.Notify("Still missing "..AmountOfBags.." bag!")
                                                     end
                                                     hasZak = false
                                                 end
                                                 DeliverAnim()
                                             end
                                         elseif TruckDist < 10 then
-                                            DrawText3D(Coords.x, Coords.y, Coords.z, "Aproxima-te aqui..")
+                                            DrawText3D(Coords.x, Coords.y, Coords.z, "Come here..")
                                         end
                                     else
-                                        DrawText3D2(DeliveryData.coords, "Não tens um camião..")
+                                        DrawText3D2(DeliveryData.coords, "You don't have a truck..")
                                     end
                                 end
                             end

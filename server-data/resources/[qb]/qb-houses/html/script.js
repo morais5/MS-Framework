@@ -41,7 +41,7 @@ $('document').ready(function() {
 
         if (item.type == "buyOption") {
             $(".decorate-confirm").css("display", "block");
-            $(".decorate-confirm").find("p").html("Weet je zeker dat je het object wilt kopen voor €"+selectedObjectData.price+"?");
+            $(".decorate-confirm").find("p").html("Are you sure you want to buy the object for $"+selectedObjectData.price+"?");
         }
 
         if (item.type == "objectLoaded") {
@@ -73,7 +73,7 @@ $('document').ready(function() {
                 $.post('http://qb-houses/setupMyObjects', JSON.stringify({}), function(myObjects){
                     $('.decorate-items').html("");
                     $.each(myObjects, function(i, object){
-                        var elem = '<div class="decorate-item" id="myobject-'+i+'" data-type="myObject"><span id="decorate-item-name"><b>Object: </b>'+object.hashname+'</span><span id="decorate-item-category"><strong>Prijs: </strong><span id="item-price" style="color: green;">OWNED</span></span></div>';
+                        var elem = '<div class="decorate-item" id="myobject-'+i+'" data-type="myObject"><span id="decorate-item-name"><b>Object: </b>'+object.hashname+'</span><span id="decorate-item-category"><strong>Price: </strong><span id="item-price" style="color: green;">OWNED</span></span></div>';
                         $('.decorate-items').append(elem);
                         $('#myobject-'+i).removeData('myObjectData');
                         $('#myobject-'+i).data('myObjectData', object);
@@ -143,7 +143,7 @@ $(document).on('click', '.header-btn', function(){
             $.post('http://qb-houses/setupMyObjects', JSON.stringify({}), function(myObjects){
                 $('.decorate-items').html("");
                 $.each(myObjects, function(i, object){
-                    var elem = '<div class="decorate-item" id="myobject-'+i+'" data-type="myObject"><span id="decorate-item-name"><b>Object: </b>'+object.hashname+'</span><span id="decorate-item-category"><strong>Prijs: </strong><span id="item-price" style="color: green;">OWNED</span></span></div>';
+                    var elem = '<div class="decorate-item" id="myobject-'+i+'" data-type="myObject"><span id="decorate-item-name"><b>Object: </b>'+object.hashname+'</span><span id="decorate-item-category"><strong>Price: </strong><span id="item-price" style="color: green;">OWNED</span></span></div>';
                     $('.decorate-items').append(elem);
                     $('#myobject-'+i).data('myObjectData', object);
                 });
@@ -162,7 +162,7 @@ $(document).on('click', '.footer-btn', function(){
     if (selectedCategory != "remove-owned-obj") {
         $('.decorate-items').html("");
         $.each(houseCategorys[selectedCategory].items, function(i, item){
-            var elem = '<div class="decorate-item" id="object-'+i+'" data-type="newObject"><span id="decorate-item-name"><b>Object: </b>'+(item.label).charAt(0).toUpperCase() +''+(item.label).substr(1).toLowerCase()+'</span><span id="decorate-item-category"><strong>Prijs: </strong><span id="item-price" style="color: green;">€'+item.price+'</span></span></div>';
+            var elem = '<div class="decorate-item" id="object-'+i+'" data-type="newObject"><span id="decorate-item-name"><b>Object: </b>'+(item.label).charAt(0).toUpperCase() +''+(item.label).substr(1).toLowerCase()+'</span><span id="decorate-item-category"><strong>Price: </strong><span id="item-price" style="color: green;">$'+item.price+'</span></span></div>';
             $('.decorate-items').append(elem);
             $('#object-'+i).data('objectData', item);
         });
@@ -224,7 +224,7 @@ $(document).on('click', '.decorate-item', function(){
                 objectData: myObjectData
             }))
             $(".decorate-footer-buttons").html("");
-            var elem = '<div class="footer-btn" id="remove-owned-obj"><p>Verwijderen</p></div>';
+            var elem = '<div class="footer-btn" id="remove-owned-obj"><p>Remove</p></div>';
             $(".decorate-footer-buttons").append(elem);
             $(".decorate-footer-buttons").fadeIn(150);
         }

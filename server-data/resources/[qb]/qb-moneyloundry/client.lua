@@ -134,7 +134,7 @@ Citizen.CreateThread(function()
                 ----se sono a piedi eseguo il codice---------------------------------------
 
                 -------------creo il testo-------------------------------------------------
-                DrawText3Ds(sellX4, sellY4, sellZ4+0.1,'~g~[E]~w~ Para lavar dinheiro sujo')
+                DrawText3Ds(sellX4, sellY4, sellZ4+0.1,'~g~[E]~w~To launder dirty money')
                 ---------------------------------------------------------------------------
                 
                 -----------pressione tasto E-----------------------------------------------
@@ -161,7 +161,7 @@ Citizen.CreateThread(function()
                                                           procOn()
                                   
                                                     else
-                                                      QBCore.Functions.Notify('Não tens dinheiro sujo', 'error')
+                                                      QBCore.Functions.Notify('You do not have dirty money', 'error')
                                                     end
                       
                         
@@ -189,7 +189,7 @@ function procOn()
     local count = 0
     ----
     if(count == 0) then
-    QBCore.Functions.Progressbar("search_register", "A lavar..", 20000, false, true, {disableMovement = true,
+    QBCore.Functions.Progressbar("search_register", "Cleaning..", 20000, false, true, {disableMovement = true,
                         disableCarMovement = true,
                         disableMouse = false,
                         disableCombat = true,
