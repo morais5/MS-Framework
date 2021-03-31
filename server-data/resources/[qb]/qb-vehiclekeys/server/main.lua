@@ -44,21 +44,21 @@ AddEventHandler('vehiclekeys:server:GiveVehicleKeys', function(plate, target)
     if CheckOwner(plate, Player.PlayerData.citizenid) then
         if QBCore.Functions.GetPlayer(target) ~= nil then
             TriggerClientEvent('vehiclekeys:client:SetOwner', target, plate)
-            TriggerClientEvent('QBCore:Notify', src, "Você deu as chaves!")
-            TriggerClientEvent('QBCore:Notify', target, "Voce tem as chaves!")
+            TriggerClientEvent('QBCore:Notify', src, "You gave the keys!")
+            TriggerClientEvent('QBCore:Notify', target, "You have the keys!")
         else
-            TriggerClientEvent('chatMessage', src, "SISTEMA", "error", "O jogador não está online!")
+            TriggerClientEvent('chatMessage', src, "SYSTEM", "error", "The player is not online!")
         end
     else
-        TriggerClientEvent('chatMessage', src, "SISTEMA", "error", "Você não tem as chaves do veículo!")
+        TriggerClientEvent('chatMessage', src, "SYSTEM", "error", "You don't have your vehicle keys!")
     end
 end)
 
-QBCore.Commands.Add("motor", "Ligue / desligue o motor do veículo", {}, false, function(source, args)
+QBCore.Commands.Add("engine", "Start / stop the engine", {}, false, function(source, args)
 	TriggerClientEvent('vehiclekeys:client:ToggleEngine', source)
 end)
 
-QBCore.Commands.Add("darchave", "Dê as chaves do veículo", {{name = "id", help = "ID do jogador"}}, true, function(source, args)
+QBCore.Commands.Add("givekeys", "Give the vehicle keys", {{name = "id", help = "Player ID"}}, true, function(source, args)
 	local src = source
     local target = tonumber(args[1])
     TriggerClientEvent('vehiclekeys:client:GiveKeys', src, target)

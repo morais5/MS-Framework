@@ -373,7 +373,7 @@ function ImpoundVehicleList()
                 bodyPercent = round(v.body / 10, 0)
                 currentFuel = v.fuel
 
-                Menu.addButton(QBCore.Shared.Vehicles[v.vehicle]["name"], "TakeOutImpound", v, "Apreendido", " Motor: " .. enginePercent .. "%", " Chassi: " .. bodyPercent.. "%", " Gasolina: "..currentFuel.. "%")
+                Menu.addButton(QBCore.Shared.Vehicles[v.vehicle]["name"], "TakeOutImpound", v, "Apreendido", " Motor: " .. enginePercent .. "%", " Body: " .. bodyPercent.. "%", " Gasolina: "..currentFuel.. "%")
             end
         end
             
@@ -471,11 +471,11 @@ function VehicleList(isDown)
     MenuTitle = "Vehicles:"
     ClearMenu()
     for k, v in pairs(Config.Vehicles) do
-        Menu.addButton(Config.Vehicles[k], "TakeOutVehicle", k, "Garagm", " Motor: 100%", " Chassi: 100%", " Comb.: 100%")
+        Menu.addButton(Config.Vehicles[k], "TakeOutVehicle", k, "Garagm", " Motor: 100%", " Body: 100%", " Comb.: 100%")
     end
     if IsArmoryWhitelist() then
         for veh, label in pairs(Config.WhitelistedVehicles) do
-            Menu.addButton(label, "TakeOutVehicle", veh, "Garagem", " Motor: 100%", " Chassi: 100%", " Comb.: 100%")
+            Menu.addButton(label, "TakeOutVehicle", veh, "Garagem", " Motor: 100%", " Body: 100%", " Comb.: 100%")
         end
     end
         

@@ -9,7 +9,7 @@ QB.Spawns = {
             h = 144.5 
         },
         location = "legion",
-        label = "Praça",
+        label = "Legion",
     },
 
     ["policedp"] = {
@@ -20,7 +20,7 @@ QB.Spawns = {
             h = 3.5 
         },
         location = "policedp",
-        label = "Esquadra da PSP",
+        label = "Police Department",
     },
 
     ["paleto"] = {

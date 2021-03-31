@@ -30,12 +30,12 @@ Config.MaxStatusValues = {
 
 Config.ValuesLabels = {
     ["engine"] = "Motor",
-    ["body"] = "Chassi",
+    ["body"] = "Body",
     ["radiator"] = "Radiador",
-    ["axle"] = "Eixo de Transmissão",
-    ["brakes"] = "Travões",
-    ["clutch"] = "Transmissão",
-    ["fuel"] = "Tanque de Combustivel",
+    ["axle"] = "Axle",
+    ["brakes"] = "Breaks",
+    ["clutch"] = "Clutch",
+    ["fuel"] = "Fuel",
 }
 
 Config.RepairCost = {
@@ -109,9 +109,9 @@ Config.Locations = {
 }
 
 Config.Vehicles = {
-    ["flatbed"] = "Reboque :)",
-    ["minivan"] = "Minivan (Carro de Emprestimo)",
-    ["m3f80"] = "BMW M3 (Carro de Emprestimo)",
+    ["flatbed"] = "Flatbed",
+    ["minivan"] = "Minivan (Loan Car)",
+    ["m3f80"] = "BMW M3 (Loan Car)",
 }
 
 Config.MinimalMetersForDamage = {
@@ -143,8 +143,8 @@ Config.MinimalMetersForDamage = {
 
 Config.Damages = {
     ["radiator"] = "Radiador",
-    ["axle"] = "Eixo de Transmissão",
-    ["brakes"] = "Travões",
-    ["clutch"] = "Transmissão",
-    ["fuel"] = "Tanque de Combustivel",
+    ["axle"] = "Axle",
+    ["brakes"] = "Breaks",
+    ["clutch"] = "Clutch",
+    ["fuel"] = "Fuel",
 }

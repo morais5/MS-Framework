@@ -13,21 +13,21 @@ AddEventHandler('qb-tow:server:DoBail', function(bool, vehInfo)
         if Player.PlayerData.money.cash >= Config.BailPrice then
             Bail[Player.PlayerData.citizenid] = Config.BailPrice
             Player.Functions.RemoveMoney('cash', Config.BailPrice, "tow-paid-bail")
-            TriggerClientEvent('QBCore:Notify', src, 'Você pagou seu depósito de 1000,', 'success')
+            TriggerClientEvent('QBCore:Notify', src, 'You have paid your deposit of $1000,', 'success')
             TriggerClientEvent('qb-tow:client:SpawnVehicle', src, vehInfo)
         elseif Player.PlayerData.money.bank >= Config.BailPrice then
             Bail[Player.PlayerData.citizenid] = Config.BailPrice
             Player.Functions.RemoveMoney('bank', Config.BailPrice, "tow-paid-bail")
-            TriggerClientEvent('QBCore:Notify', src, 'Você pagou seu depósito de 1000,', 'success')
+            TriggerClientEvent('QBCore:Notify', src, 'You have paid your deposit of $1000,', 'success')
             TriggerClientEvent('qb-tow:client:SpawnVehicle', src, vehInfo)
         else
-            TriggerClientEvent('QBCore:Notify', src, 'Você não tem dinheiro suficiente, o depósito é de 1000,', 'error')
+            TriggerClientEvent('QBCore:Notify', src, 'You dont have enough money, the deposit is $1000', 'error')
         end
     else
         if Bail[Player.PlayerData.citizenid] ~= nil then
             Player.Functions.AddMoney('cash', Bail[Player.PlayerData.citizenid], "tow-bail-paid")
             Bail[Player.PlayerData.citizenid] = nil
-            TriggerClientEvent('QBCore:Notify', src, 'Você recebeu seu depósito de 1000, de volta', 'success')
+            TriggerClientEvent('QBCore:Notify', src, 'You have received your deposit of $1000', 'success')
         end
     end
 end)
@@ -54,14 +54,14 @@ AddEventHandler('qb-tow:server:11101110', function(drops)
 
     Player.Functions.AddJobReputation(1)
     Player.Functions.AddMoney("bank", payment, "tow-salary")
-    TriggerClientEvent('chatMessage', source, "BAAN", "warning", "Você recebeu seu salário de: $"..payment..", bruto: $"..price.." (de que $"..bonus.." bonus) e $"..taxAmount.." tax ("..PaymentTax.."%)")
+    TriggerClientEvent('chatMessage', source, "JOB", "warning", "You received your salary : $"..payment..", gross: $"..price.." (with a $"..bonus.." bonus) and $"..taxAmount.." tax ("..PaymentTax.."%)")
 end)
 
-QBCore.Commands.Add("npc", "Alternar opção de trabalho npc", {}, false, function(source, args)
+QBCore.Commands.Add("npc", "Toggle npc job option", {}, false, function(source, args)
 	TriggerClientEvent("jobs:client:ToggleNpc", source)
 end)
 
-QBCore.Commands.Add("tow", "Coloque o carro na parte traseira do caminhão de reboque", {}, false, function(source, args)
+QBCore.Commands.Add("tow", "Place the car in the rear of the tow truck", {}, false, function(source, args)
     local Player = QBCore.Functions.GetPlayer(source)
     if Player.PlayerData.job.name == "tow" then
         TriggerClientEvent("qb-tow:client:TowVehicle", source)

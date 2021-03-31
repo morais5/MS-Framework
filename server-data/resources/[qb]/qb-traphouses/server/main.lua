@@ -94,7 +94,7 @@ function HasTraphouseAndOwner(CitizenId)
     return retval
 end
 
-QBCore.Commands.Add("entertraphouse", "Betreed traphouse", {}, false, function(source, args)
+QBCore.Commands.Add("entertraphouse", "Enter Trap house", {}, false, function(source, args)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
  

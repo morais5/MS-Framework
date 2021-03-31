@@ -67,7 +67,7 @@ Citizen.CreateThread(function()--weed
 		if nearbyObject and IsPedOnFoot(playerPed) then
 
 			if not isPickingUp then
-				QBCore.Functions.Draw2DText(0.5, 0.88, 'Carrega ~g~[E]~w~ para pegar Cannabis', 0.5)
+				QBCore.Functions.Draw2DText(0.5, 0.88, 'Press ~g~[E]~w~ to pick up', 0.5)
 			end
 
 			if IsControlJustReleased(0, 38) and not isPickingUp then
@@ -75,7 +75,7 @@ Citizen.CreateThread(function()--weed
 				TaskStartScenarioInPlace(playerPed, 'world_human_gardener_plant', 0, false)
 				--PROP_HUMAN_BUM_BIN animazione
 				--prop_cs_cardbox_01 oggetto di spawn
-				QBCore.Functions.Progressbar("search_register", "A pegar Cannabis..", 7500, false, true, {
+				QBCore.Functions.Progressbar("search_register", "Picking up..", 7500, false, true, {
 					disableMovement = true,
 					disableCarMovement = true,
 					disableMouse = false,
@@ -231,11 +231,11 @@ Citizen.CreateThread(function() --- check that makes sure you have the materials
 				if (hasWeed and hasBag) then
 					Processweed()
 				elseif (hasWeed) then
-					QBCore.Functions.Notify('Você não tem sacolas plásticas suficientes.', 'error')
+					QBCore.Functions.Notify('You dont have enough plastic bags.', 'error')
 				elseif (hasBag) then
-					QBCore.Functions.Notify('Você não tem cannabis suficiente.', 'error')
+					QBCore.Functions.Notify('You dont have enough cannabis.', 'error')
 				else
-					QBCore.Functions.Notify('Você não tem cannabis ou sacolas plásticas suficientes.', 'error')
+					QBCore.Functions.Notify('You dont have enough cannabis or plastic bags.', 'error')
 				end
 			end
 		else
@@ -254,7 +254,7 @@ function Processweed()  -- simple animations to loop while process is taking pla
 	TaskStartScenarioInPlace(playerPed, "PROP_HUMAN_PARKING_METER", 0, true)
 	SetEntityHeading(PlayerPedId(), 108.06254)
 
-	QBCore.Functions.Progressbar("search_register", "Tentando processar..", 15000, false, true, {
+	QBCore.Functions.Progressbar("search_register", "Trying to process..", 15000, false, true, {
 		disableMovement = true,
 		disableCarMovement = true,
 		disableMouse = false,
@@ -298,7 +298,7 @@ Citizen.CreateThread(function() --- check that makes sure you have the materials
 
 			
 			if not isProcessing2 then
-				QBCore.Functions.DrawText3D(Config.CircleZones.DrugDealer.coords.x, Config.CircleZones.DrugDealer.coords.y, Config.CircleZones.DrugDealer.coords.z, 'Carrega ~g~[ E ]~w~ para vender')
+				QBCore.Functions.DrawText3D(Config.CircleZones.DrugDealer.coords.x, Config.CircleZones.DrugDealer.coords.y, Config.CircleZones.DrugDealer.coords.z, 'Press ~g~[ E ]~w~ to sell')
 			end
 
 			if IsControlJustReleased(0, 38) and not isProcessing2 then
@@ -323,11 +323,11 @@ Citizen.CreateThread(function() --- check that makes sure you have the materials
 				if (hasWeed2) then
 					SellDrug()
 				elseif (hasWeed2) then
-					QBCore.Functions.Notify('Você não tem sacolas plásticas suficientes.', 'error')
+					QBCore.Functions.Notify('You dont have enough plastic bags.', 'error')
 				elseif (hasBag2) then
-					QBCore.Functions.Notify('Você não tem cannabis suficiente.', 'error')
+					QBCore.Functions.Notify('You dont have enough cannabis.', 'error')
 				else
-					QBCore.Functions.Notify('Você não tem cannabis ou sacolas plásticas suficientes.', 'error')
+					QBCore.Functions.Notify('You dont have enough cannabis or plastic bags.', 'error')
 				end
 			end
 		else
@@ -344,7 +344,7 @@ function SellDrug()  -- simple animations to loop while process is taking place
 	TaskStartScenarioInPlace(playerPed, "PROP_HUMAN_PARKING_METER", 0, true)
 	SetEntityHeading(PlayerPedId(), 108.06254)
 
-	QBCore.Functions.Progressbar("search_register", "Tentando processar..", 15000, false, true, {
+	QBCore.Functions.Progressbar("search_register", "Trying to process..", 15000, false, true, {
 		disableMovement = true,
 		disableCarMovement = true,
 		disableMouse = false,

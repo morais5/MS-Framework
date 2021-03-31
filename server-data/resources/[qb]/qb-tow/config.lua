@@ -15,7 +15,7 @@ Config.BailPrice = 1000
 
 Config.Locations = {
     ["main"] = {
-        label = "Reboques Serafim",
+        label = "Seraph Trailers",
         coords = {x = 471.39, y = -1311.03, z = 29.21, h = 114.5},
     },
     ["vehicle"] = {

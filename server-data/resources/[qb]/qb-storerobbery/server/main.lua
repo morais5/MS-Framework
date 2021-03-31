@@ -101,9 +101,9 @@ AddEventHandler('qb-storerobbery:server:callCops', function(type, safe, streetLa
         cameraId = Config.Registers[safe].camId
     end
     local alertData = {
-        title = "Assalto a loja",
+        title = "Shop robbery",
         coords = {x = coords.x, y = coords.y, z = coords.z},
-        description = "Iemand probeert een winkel te overvallen bij "..streetLabel.." (CAMERA ID: "..cameraId..")"
+        description = "Someone is trying to rob a store at "..streetLabel.." (CAMERA ID: "..cameraId..")"
     }
     TriggerClientEvent("qb-storerobbery:client:robberyCall", -1, type, safe, streetLabel, coords)
     TriggerClientEvent("qb-phone:client:addPoliceAlert", -1, alertData)

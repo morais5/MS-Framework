@@ -15,11 +15,11 @@ Config.BailPrice = 1000
 
 Config.Locations = {
     ["main"] = {
-        label = "Central Fornecedores Herbalife",
+        label = "Herbalife Central Suppliers",
         coords = {x = 153.68, y = -3211.88, z = 5.91, h = 274.5},
     },
     ["vehicle"] = {
-        label = "Central Fornecedores Herbalife Garagem",
+        label = "Herbalife Central Suppliers Garage",
         coords = {x = 141.12, y = -3204.31, z = 5.85, h = 267.5},
     },
     ["stores"] ={
@@ -111,5 +111,5 @@ Config.Locations = {
 }
 
 Config.Vehicles = {
-    ["benson"] = "Camião",
+    ["benson"] = "Benson",
 }

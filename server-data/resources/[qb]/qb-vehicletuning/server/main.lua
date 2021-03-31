@@ -143,7 +143,7 @@ function GetVehicleStatus(plate)
     return retval
 end
 
-QBCore.Commands.Add("setvehiclestatus", "Zet vehicle status", {{name="part", help="Type status dat je wilt bewerken"}, {name="amount", help="Level van de status"}}, true, function(source, args)
+QBCore.Commands.Add("setvehiclestatus", "Set vehicle status", {{name="part", help="Part"}, {name="amount", help="Amount"}}, true, function(source, args)
     local part = args[1]:lower()
     local level = tonumber(args[2])
     TriggerClientEvent("vehiclemod:client:setPartLevel", source, part, level)
@@ -193,10 +193,10 @@ AddEventHandler('qb-vehicletuning:server:CheckForItems', function(part)
                 Citizen.Wait(500)
             end
         else
-            TriggerClientEvent('QBCore:Notify', src, "Você não tem o suficiente "..QBCore.Shared.Items[Config.RepairCostAmount[part].item]["label"].." (min. "..Config.RepairCostAmount[part].costs.."x)", "error")
+            TriggerClientEvent('QBCore:Notify', src, "You don't have enough "..QBCore.Shared.Items[Config.RepairCostAmount[part].item]["label"].." (min. "..Config.RepairCostAmount[part].costs.."x)", "error")
         end
     else
-        TriggerClientEvent('QBCore:Notify', src, "Você não tem "..QBCore.Shared.Items[Config.RepairCostAmount[part].item]["label"].." contigo!", "error")
+        TriggerClientEvent('QBCore:Notify', src, "You do not have "..QBCore.Shared.Items[Config.RepairCostAmount[part].item]["label"].." with you!", "error")
     end
 end)
 
@@ -211,7 +211,7 @@ function IsAuthorized(CitizenId)
     return retval
 end
 
-QBCore.Commands.Add("contratarmecanico", "Dê a alguém um emprego de mecânico", {{name="id", help="ID Do Jogador"}}, false, function(source, args)
+QBCore.Commands.Add("contractmechanic", "Give someone a job as a mechanic", {{name="id", help="Player ID"}}, false, function(source, args)
     local Player = QBCore.Functions.GetPlayer(source)
 
     if IsAuthorized(Player.PlayerData.citizenid) then
@@ -220,18 +220,18 @@ QBCore.Commands.Add("contratarmecanico", "Dê a alguém um emprego de mecânico"
             local TargetData = QBCore.Functions.GetPlayer(TargetId)
             if TargetData ~= nil then
                 TargetData.Functions.SetJob("mechanic")
-                TriggerClientEvent('QBCore:Notify', TargetData.PlayerData.source, "Você contratou como funcionário da Auto Care!")
-                TriggerClientEvent('QBCore:Notify', source, "Você tem ("..TargetData.PlayerData.charinfo.firstname..") contratado como funcionário da Auto Care!")
+                TriggerClientEvent('QBCore:Notify', TargetData.PlayerData.source, "You hired as a mechanic!")
+                TriggerClientEvent('QBCore:Notify', source, "You have hired ("..TargetData.PlayerData.charinfo.firstname..") as a mechanic")
             end
         else
-            TriggerClientEvent('QBCore:Notify', source, "Você deve fornecer um ID de jogador!")
+            TriggerClientEvent('QBCore:Notify', source, "You must provide a player ID!")
         end
     else
-        TriggerClientEvent('QBCore:Notify', source, "Você não pode fazer isso!", "error") 
+        TriggerClientEvent('QBCore:Notify', source, "You can not do that!", "error") 
     end
 end)
 
-QBCore.Commands.Add("despedirmecanico", "Tirar o emprego de mecânico de alguém", {{name="id", help="ID Do Jogador"}}, false, function(source, args)
+QBCore.Commands.Add("firemechanic", "Fire someone from their mechanic job", {{name="id", help="Player ID"}}, false, function(source, args)
     local Player = QBCore.Functions.GetPlayer(source)
 
     if IsAuthorized(Player.PlayerData.citizenid) then
@@ -241,17 +241,17 @@ QBCore.Commands.Add("despedirmecanico", "Tirar o emprego de mecânico de alguém
             if TargetData ~= nil then
                 if TargetData.PlayerData.job.name == "mechanic" then
                     TargetData.Functions.SetJob("unemployed")
-                    TriggerClientEvent('QBCore:Notify', TargetData.PlayerData.source, "Você foi demitido como funcionário da Auto Care!")
-                    TriggerClientEvent('QBCore:Notify', source, "Você foi ("..TargetData.PlayerData.charinfo.firstname..") despedido como funcionário da Auto Care!")
+                    TriggerClientEvent('QBCore:Notify', TargetData.PlayerData.source, "You were fired as a mechanic!")
+                    TriggerClientEvent('QBCore:Notify', source, "You have fired ("..TargetData.PlayerData.charinfo.firstname..") from the job as a mechanic")
                 else
-                    TriggerClientEvent('QBCore:Notify', source, "Este não é um funcionário da Autocare!", "error")
+                    TriggerClientEvent('QBCore:Notify', source, "This is not an employee!", "error")
                 end
             end
         else
-            TriggerClientEvent('QBCore:Notify', source, "Você deve fornecer um ID de jogador!", "error")
+            TriggerClientEvent('QBCore:Notify', source, "You should provide a player ID!", "error")
         end
     else
-        TriggerClientEvent('QBCore:Notify', source, "Você não pode fazer isso!", "error")
+        TriggerClientEvent('QBCore:Notify', source, "You can not do that!", "error")
     end
 end)
 

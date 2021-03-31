@@ -235,7 +235,7 @@ Citizen.CreateThread(function()
         SetBlipColour(Dealer, 3)
 
         BeginTextCommandSetBlipName("STRING")
-        AddTextComponentSubstringPlayerName("Stand de Veiculos")
+        AddTextComponentSubstringPlayerName("Vehicle Stand")
         EndTextCommandSetBlipName(Dealer)
     end
 end)
@@ -250,6 +250,6 @@ Citizen.CreateThread(function()
     SetBlipColour(QuickSell, 3)
 
     BeginTextCommandSetBlipName("STRING")
-    AddTextComponentSubstringPlayerName("Venda Rapida de Veiculos")
+    AddTextComponentSubstringPlayerName("Quick Sale of Vehicles")
     EndTextCommandSetBlipName(QuickSell)
 end)

@@ -58,7 +58,7 @@ Citizen.CreateThread(function()
 	                    DrawMarker(2, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.3, 0.15, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
 
 	                    if dist < 1 then
-	                        DrawText3Ds(v.x, v.y, v.z, '[E] Usar')
+	                        DrawText3Ds(v.x, v.y, v.z, '[E] Use')
 	                        if IsControlJustReleased(0, 51) then
 	                            if k == 1 then
 	                                SetEntityCoords(ped, Teleports.Locations[loc][2].x, Teleports.Locations[loc][2].y, Teleports.Locations[loc][2].z)
@@ -77,7 +77,7 @@ Citizen.CreateThread(function()
 			                    DrawMarker(2, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.3, 0.15, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
 
 			                    if dist < 1 then
-			                        DrawText3Ds(v.x, v.y, v.z, '[E] Entrar/Sair Balcão')
+			                        DrawText3Ds(v.x, v.y, v.z, '[E] Enter / Exit Balcony')
 			                        if IsControlJustReleased(0, 51) then
 			                            if k == 1 then
 			                                SetEntityCoords(ped, Teleports.Locations[loc][2].x, Teleports.Locations[loc][2].y, Teleports.Locations[loc][2].z)
@@ -98,7 +98,7 @@ Citizen.CreateThread(function()
 			                    DrawMarker(2, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.3, 0.15, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
 
 			                    if dist < 1 then
-			                        DrawText3Ds(v.x, v.y, v.z, '[E] Entrar/Sair Balcão')
+			                        DrawText3Ds(v.x, v.y, v.z, '[E] Enter / Exit Balcony')
 			                        if IsControlJustReleased(0, 51) then
 			                            if k == 1 then
 			                                SetEntityCoords(ped, Teleports.Locations[loc][2].x, Teleports.Locations[loc][2].y, Teleports.Locations[loc][2].z)
@@ -119,7 +119,7 @@ Citizen.CreateThread(function()
 			                    DrawMarker(2, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.3, 0.15, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
 
 			                    if dist < 1 then
-			                        DrawText3Ds(v.x, v.y, v.z, '[E] Entrar/Sair Balcão')
+			                        DrawText3Ds(v.x, v.y, v.z, '[E] Enter / Exit Balcony')
 			                        if IsControlJustReleased(0, 51) then
 			                            if k == 1 then
 			                                SetEntityCoords(ped, Teleports.Locations[loc][2].x, Teleports.Locations[loc][2].y, Teleports.Locations[loc][2].z)

@@ -76,7 +76,7 @@ function setupVehicles(vehicles) {
     $('.vehicles').html("");
     $.each(vehicles, function(index, vehicle){
         // console.log(vehicle)
-        $('.vehicles').append('<div class="vehicle" id='+index+'><div class="car-image" style="background-image: url('+vehicle.image+')"><span id="vehicle-name">'+vehicle.name+' - '+(vehicle.category)+'</span><span id="vehicle-price">$ '+vehicle.price+'</span><div class="vehicle-buy-btn" data-vehicle="'+vehicle+'"><p>Koop Voertuig</p></div></div>');
+        $('.vehicles').append('<div class="vehicle" id='+index+'><div class="car-image" style="background-image: url('+vehicle.image+')"><span id="vehicle-name">'+vehicle.name+' - '+(vehicle.category)+'</span><span id="vehicle-price">$ '+vehicle.price+'</span><div class="vehicle-buy-btn" data-vehicle="'+vehicle+'"><p>Buy vehicle</p></div></div>');
         $('#'+index).data('vehicleData', "");
         $('#'+index).data('vehicleData', vehicle);
     })

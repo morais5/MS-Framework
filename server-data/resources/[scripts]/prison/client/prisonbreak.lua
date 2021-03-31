@@ -43,9 +43,9 @@ Citizen.CreateThread(function()
                         currentGate = k
                         inRange = true
                         if securityLockdown then
-                            QBCore.Functions.DrawText3D(Gates[k].coords.x, Gates[k].coords.y, Gates[k].coords.z, "~r~BLOQUEIO DE SISTEMA")
+                            QBCore.Functions.DrawText3D(Gates[k].coords.x, Gates[k].coords.y, Gates[k].coords.z, "~r~BLOQUEIO DE SYSTEM")
                         elseif Gates[k].hit then
-                            QBCore.Functions.DrawText3D(Gates[k].coords.x, Gates[k].coords.y, Gates[k].coords.z, "BRECHA NO SISTEMA")
+                            QBCore.Functions.DrawText3D(Gates[k].coords.x, Gates[k].coords.y, Gates[k].coords.z, "BRECHA NO SYSTEM")
                         elseif not requiredItemsShowed then
                             requiredItemsShowed = true
                             TriggerEvent('inventory:client:requiredItems', requiredItems, true)

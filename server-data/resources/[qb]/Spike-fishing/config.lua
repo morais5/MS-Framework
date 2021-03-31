@@ -10,7 +10,7 @@ Config.MarkerData = {
 }
 
 Config.FishingRestaurant = {
-    ["name"] = "Restaurante de peixe - La Spada",
+    ["name"] = "Fish restaurant - La Spada",
     ["blip"] = {
         ["sprite"] = 628,
         ["color"] = 3
@@ -25,11 +25,11 @@ Config.FishingRestaurant = {
 Config.FishingItems = {
     ["rod"] = {
         ["name"] = "fishingrod",
-        ["label"] = "Cana de pesca"
+        ["label"] = "Fishing rod"
     },
     ["bait"] = {
         ["name"] = "fishingbait",
-        ["label"] = "Isca de pesca"
+        ["label"] = "Fishing bait"
     },
     ["fish"] = {
         ["price"] = 25 
@@ -71,47 +71,47 @@ Config.FishingItems = {
 
 Config.FishingZones = {
     {
-        ["name"] = "Pesca na praia",
+        ["name"] = "Fishing on the beach",
         ["coords"] = vector3(-1948.1279296875, -749.79125976563, 2.5400819778442),
         ["radius"] = 50.0,
     },
     {
-        ["name"] = "Pesca de areia 1",
+        ["name"] = "Sand fishing 1",
         ["coords"] = vector3(1311.5769042969, 4228.833984375, 33.915531158447),
         ["radius"] = 50.0,
     },
     {
-        ["name"] = "Pesca de areia 2",
+        ["name"] = "Sand fishing 2",
         ["coords"] = vector3(1525.0518798828, 3908.9050292969, 30.799766540527),
         ["radius"] = 50.0,
     },
     {
-        ["name"] = "Pesca de areia 3",
+        ["name"] = "Sand fishing 3",
         ["coords"] = vector3(2223.6940917969, 4575.70703125, 31.233570098877),
         ["radius"] = 50.0,
     },
     {
-        ["name"] = "Pesca de areia 4",
+        ["name"] = "Sand fishing 4",
         ["coords"] = vector3(31.989250183105, 4294.7797851563, 31.231893539429),
         ["radius"] = 50.0,
     },
     {
-        ["name"] = "Pesca oceânica 1",
+        ["name"] = "Ocean fishing 1",
         ["coords"] = vector3(-1835.0385742188, -1820.4168701172, 3.6758048534393),
         ["radius"] = 200.0,
     },
     {
-        ["name"] = "Pesca oceânica 2",
+        ["name"] = "Ocean fishing 2",
         ["coords"] = vector3(-722.52124023438, 7188.6108398438, 1.8514842987061),
         ["radius"] = 200.0,
     },
     {
-        ["name"] = "Pesca oceânica 3",
+        ["name"] = "Ocean fishing 3",
         ["coords"] = vector3(3469.1770019531, 1271.2962646484, 1.366447687149),
         ["radius"] = 200.0,
     },
     {
-        ["name"] = "Pesca oceânica 4",
+        ["name"] = "Ocean fishing 4",
         ["coords"] = vector3(-3277.4191894531, 2613.3405761719, 1.6248697042465),
         ["radius"] = 200.0,
     },

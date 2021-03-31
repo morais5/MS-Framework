@@ -6,6 +6,6 @@ QBCore.Commands.Add("radar", "Alternar radar de velocidade :)", {}, false, funct
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("wk:toggleRadar", source)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)

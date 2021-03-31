@@ -55,7 +55,7 @@ RegisterNUICallback('save', function(data)
             local ped = GetPlayerPed(-1)
             local veh = GetVehiclePedIsUsing(ped)
             setVehData(veh, data)
-            QBCore.Functions.Notify('TunerJN v1.05: mudança de veículo!', 'error')
+            QBCore.Functions.Notify('TunerJN v1.05: vehicle change!', 'error')
 
             TriggerServerEvent('qb-tunerchip:server:TuneStatus', GetVehicleNumberPlateText(veh), true)
         end
@@ -75,7 +75,7 @@ AddEventHandler('qb-tunerchip:server:TuneStatus', function()
         if status then
             TriggerEvent("chatMessage", "VEHICLE STATUS", "warning", displayName..": CLIPTuner: Yes")
         else
-            TriggerEvent("chatMessage", "VEHICLE STATUS", "warning", displayName..": CLIPTuner: Não")
+            TriggerEvent("chatMessage", "VEHICLE STATUS", "warning", displayName..": CLIPTuner: No")
         end
     end, plate)
 end)
@@ -94,7 +94,7 @@ RegisterNUICallback('reset', function(data)
     local ped = GetPlayerPed(-1)
     local veh = GetVehiclePedIsUsing(ped)
     resetVeh(veh)
-    QBCore.Functions.Notify('TunerJN v1.05: Veículo reiniciado!', 'error')
+    QBCore.Functions.Notify('TunerJN v1.05: Vehicle restarted!', 'error')
 end)
 
 RegisterNetEvent('qb-tunerchip:client:openChip')
@@ -103,7 +103,7 @@ AddEventHandler('qb-tunerchip:client:openChip', function()
     local inVehicle = IsPedInAnyVehicle(ped)
 
     if inVehicle then
-        QBCore.Functions.Progressbar("connect_laptop", "TunerJN está conectando..", 2000, false, true, {
+        QBCore.Functions.Progressbar("connect_laptop", "TunerJN is connecting..", 2000, false, true, {
             disableMovement = true,
             disableCarMovement = true,
             disableMouse = false,
@@ -117,10 +117,10 @@ AddEventHandler('qb-tunerchip:client:openChip', function()
             openTunerLaptop(true)
         end, function() -- Cancel
             StopAnimTask(GetPlayerPed(-1), "anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 1.0)
-            QBCore.Functions.Notify("Geannuleerd..", "error")
+            QBCore.Functions.Notify("Canceled..", "error")
         end)
     else
-        QBCore.Functions.Notify("Você não está em um veículo..", "error")
+        QBCore.Functions.Notify("You are not in a vehicle..", "error")
     end
 end)
 

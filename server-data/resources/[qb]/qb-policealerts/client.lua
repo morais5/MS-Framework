@@ -113,7 +113,7 @@ RegisterNUICallback('SetWaypoint', function(data)
     local coords = data.coords
 
     SetNewWaypoint(coords.x, coords.y)
-    QBCore.Functions.Notify('GPS ingesteld!')
+    QBCore.Functions.Notify('GPS set!')
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false, false)
     MouseActive = false

@@ -27,14 +27,14 @@ Citizen.CreateThread(function ()
     SetBlipScale(RecycleBlip, 0.8)
     SetBlipAsShortRange(RecycleBlip, true)
     BeginTextCommandSetBlipName("STRING")
-    AddTextComponentString("Centro de Reciclagem")
+    AddTextComponentString("Recycling Center")
     EndTextCommandSetBlipName(RecycleBlip)
     while true do
         Citizen.Wait(7)
         local pos = GetEntityCoords(GetPlayerPed(-1), true)
         ---- BUITEN
         if GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config['delivery'].outsideLocation.x, Config['delivery'].outsideLocation.y, Config['delivery'].outsideLocation.z, true) < 1.3 then
-            DrawText3D(Config['delivery'].outsideLocation.x, Config['delivery'].outsideLocation.y, Config['delivery'].outsideLocation.z + 1, "~g~E~w~ - Entrar no armazém")
+            DrawText3D(Config['delivery'].outsideLocation.x, Config['delivery'].outsideLocation.y, Config['delivery'].outsideLocation.z + 1, "~g~E~w~ - Enter the warehouse")
             if IsControlJustReleased(0, Keys["E"]) then
                 DoScreenFadeOut(500)
                 while not IsScreenFadedOut() do
@@ -48,7 +48,7 @@ Citizen.CreateThread(function ()
         if GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config['delivery'].insideLocation.x, Config['delivery'].insideLocation.y, Config['delivery'].insideLocation.z, true) < 15 and not IsPedInAnyVehicle(GetPlayerPed(-1), false) and not onDuty then
             DrawMarker(25, Config['delivery'].insideLocation.x, Config['delivery'].insideLocation.y, Config['delivery'].insideLocation.z, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 0.5001, 98, 102, 185,100, 0, 0, 0,0)
             if GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config['delivery'].insideLocation.x, Config['delivery'].insideLocation.y, Config['delivery'].insideLocation.z, true) < 1.3 then
-                DrawText3D(Config['delivery'].insideLocation.x, Config['delivery'].insideLocation.y, Config['delivery'].insideLocation.z + 1, "~g~E~w~ - Sair do armazém")
+                DrawText3D(Config['delivery'].insideLocation.x, Config['delivery'].insideLocation.y, Config['delivery'].insideLocation.z + 1, "~g~E~w~ - Exit the warehouse")
                 if IsControlJustReleased(0, Keys["E"]) then
                     DoScreenFadeOut(500)
                     while not IsScreenFadedOut() do
@@ -64,16 +64,16 @@ Citizen.CreateThread(function ()
             DrawMarker(25, 1049.15,-3100.63,-39.95, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 0.5001, 255, 0, 0,100, 0, 0, 0,0)
             if GetDistanceBetweenCoords(pos.x, pos.y, pos.z, 1049.15,-3100.63,-39.95, true) < 1.3 then
                 if onDuty then
-                    DrawText3D(1049.15,-3100.63,-39.95 + 1, "~g~E~w~ - Sair de serviço")
+                    DrawText3D(1049.15,-3100.63,-39.95 + 1, "~g~E~w~ - Exit service")
                 else
-                    DrawText3D(1049.15,-3100.63,-39.95 + 1, "~g~E~w~ - Entrar de serviço")
+                    DrawText3D(1049.15,-3100.63,-39.95 + 1, "~g~E~w~ - Sign in service")
                 end
                 if IsControlJustReleased(0, Keys["E"]) then
                     onDuty = not onDuty
                     if onDuty then
-                        QBCore.Functions.Notify("Entraste de serviço")
+                        QBCore.Functions.Notify("Service input")
                     else
-                        QBCore.Functions.Notify("Saiste de serviço!", "error")
+                        QBCore.Functions.Notify("You left service!", "error")
                     end
                 end
             end
@@ -98,10 +98,10 @@ Citizen.CreateThread(function ()
                 local pos = GetEntityCoords(GetPlayerPed(-1), true)
                 if carryPackage == nil then
                     if GetDistanceBetweenCoords(pos.x, pos.y, pos.z, packagePos.x,packagePos.y,packagePos.z, true) < 2.3 then
-                        DrawText3D(packagePos.x,packagePos.y,packagePos.z+ 1, "~g~E~w~ - Pegar na caixa")
+                        DrawText3D(packagePos.x,packagePos.y,packagePos.z+ 1, "~g~E~w~ - Pick up the box")
                         if IsControlJustReleased(0, Keys["E"]) then
                             TaskStartScenarioInPlace(GetPlayerPed(-1), "PROP_HUMAN_BUM_BIN", 0, true)
-                            QBCore.Functions.Progressbar("pickup_reycle_package", "A pegar na caixa..", 5000, false, true, {}, {}, {}, {}, function() -- Done
+                            QBCore.Functions.Progressbar("pickup_reycle_package", "Picking up the box..", 5000, false, true, {}, {}, {}, {}, function() -- Done
                                 ClearPedTasks(GetPlayerPed(-1))
                                 PickupPackage()
                             end)
@@ -111,11 +111,11 @@ Citizen.CreateThread(function ()
                     end
                 else
                     if GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config['delivery'].dropLocation.x, Config['delivery'].dropLocation.y, Config['delivery'].dropLocation.z, true) < 2.0 then
-                        DrawText3D(Config['delivery'].dropLocation.x, Config['delivery'].dropLocation.y, Config['delivery'].dropLocation.z, "~g~E~w~ - Entregar Caixa")
+                        DrawText3D(Config['delivery'].dropLocation.x, Config['delivery'].dropLocation.y, Config['delivery'].dropLocation.z, "~g~E~w~ - Deliver Box")
                         if IsControlJustReleased(0, Keys["E"]) then
                             DropPackage()
                             ScrapAnim()
-                            QBCore.Functions.Progressbar("deliver_reycle_package", "A entregar a caixa..", 5000, false, true, {
+                            QBCore.Functions.Progressbar("deliver_reycle_package", "Delivering the box..", 5000, false, true, {
                                 disableMovement = true,
                                 disableCarMovement = true,
                                 disableMouse = false,
@@ -127,7 +127,7 @@ Citizen.CreateThread(function ()
                             end)
                         end
                     else
-                        DrawText3D(Config['delivery'].dropLocation.x, Config['delivery'].dropLocation.y, Config['delivery'].dropLocation.z, "Entregar")
+                        DrawText3D(Config['delivery'].dropLocation.x, Config['delivery'].dropLocation.y, Config['delivery'].dropLocation.z, "Deliver")
                     end
                 end
             else

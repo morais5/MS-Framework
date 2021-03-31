@@ -32,7 +32,7 @@ Citizen.CreateThread(function()
                         DrawMarker(2, bringcoords.x, bringcoords.y, bringcoords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.3, 0.1, 255, 0, 0, 155, false, false, false, false, false, false, false)
 
                         if dist < 2 then
-                            DrawText3Ds(bringcoords.x, bringcoords.y, bringcoords.z, '~g~E~w~ - Depositar veiculo')
+                            DrawText3Ds(bringcoords.x, bringcoords.y, bringcoords.z, '~g~E~w~ - Deposit vehicle')
                             if IsControlJustPressed(0, Keys["E"]) then
                                 QBCore.Functions.DeleteVehicle(veh)
                             end
@@ -519,7 +519,7 @@ function CustomButtonSelected(button)
     local btn = button.name
     
 	if this == "main" then
-		if btn == "Voertuigen" then
+		if btn == "Vehicles" then
 			OpenCustomMenu('coupes')
 		end
 	end

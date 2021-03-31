@@ -40,10 +40,10 @@ AddEventHandler('hospital:client:TakeBrancard', function()
                 IsAttached = true
             end)
         else
-            QBCore.Functions.Notify("Algo deu errado meu amigo..", 'error')
+            QBCore.Functions.Notify("Something went wrong...", 'error')
         end
     else
-        QBCore.Functions.Notify("Você não está perto de uma ambulância..", 'error')
+        QBCore.Functions.Notify("You are not close to an ambulance..", 'error')
     end
 end)
 
@@ -67,7 +67,7 @@ AddEventHandler('hospital:client:RemoveBrancard', function()
                 IsLayingOnBed = false
             end
         else
-            QBCore.Functions.Notify('Estas muito longe!', 'error')
+            QBCore.Functions.Notify('You are too far!', 'error')
         end
     end
 end)
@@ -102,7 +102,7 @@ Citizen.CreateThread(function()
 
             if Distance <= 1.0 then
                 if not IsAttached then
-                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, '~g~E~w~ -Pegar na Maca / ~g~H~w~ Travar')
+                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, '~g~E~w~ -Pick up the stretcher / ~g~H~w~ Lock')
                     if IsControlJustPressed(0, 51) then
                         AttachToBrancard()
                         IsAttached = true
@@ -111,7 +111,7 @@ Citizen.CreateThread(function()
                         FreezeEntityPosition(BrancardObject, true)
                     end
                 else
-                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, '~g~E~w~ - Largar Maca')
+                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, '~g~E~w~ - Drop Stretcher')
                     if IsControlJustPressed(0, 51) then
                         DetachBrancard()
                         IsAttached = false
@@ -120,7 +120,7 @@ Citizen.CreateThread(function()
 
                 if not IsLayingOnBed then
                     if not IsAttached then
-                        DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z + 0.2, '~g~G~w~ - Deitar na maca')
+                        DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z + 0.2, '~g~G~w~ - Lying on a stretcher')
                         if IsControlJustPressed(0, Keys["G"]) or IsDisabledControlJustPressed(0, Keys["G"]) then
                             LayOnBrancard()
                         end
@@ -128,10 +128,10 @@ Citizen.CreateThread(function()
                 end
             elseif Distance <= 2 then
                 if not IsLayingOnBed then
-                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, 'Aproxima-te')
+                    DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z, 'Get closer')
                 else
                     if not IsAttached then
-                        DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z + 0.2, '~g~G~w~ - Sair da Maca')
+                        DrawText3Ds(OffsetCoords.x, OffsetCoords.y, OffsetCoords.z + 0.2, '~g~G~w~ - Get of Stretcher')
                         if IsControlJustPressed(0, Keys["G"]) or IsDisabledControlJustPressed(0, Keys["G"]) then
                             GetOffBrancard()
                         end
@@ -262,7 +262,7 @@ AddEventHandler('qb-radialmenu:client:Result', function(IsBusy, type)
             AttachEntityToEntity(PlayerPed, Object, 0, 0, 0.0, 1.6, 0.0, 0.0, 360.0, 0.0, false, false, false, false, 2, true)
             IsLayingOnBed = true
         else
-            QBCore.Functions.Notify("Esta maca ja esta em uso!", "error")
+            QBCore.Functions.Notify("This stretcher is already in use!", "error")
             IsLayingOnBed = false
         end
     else
@@ -276,7 +276,7 @@ AddEventHandler('qb-radialmenu:client:Result', function(IsBusy, type)
             FreezeEntityPosition(Obj, false)
             IsAttached = true
         else
-            QBCore.Functions.Notify("Esta maca ja esta em uso!", "error")
+            QBCore.Functions.Notify("This stretcher is already in use!", "error")
             IsAttached = false
         end
     end

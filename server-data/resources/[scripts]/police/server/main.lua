@@ -57,7 +57,7 @@ AddEventHandler('police:server:EscortPlayer', function(playerId)
         if (Player.PlayerData.job.name == "police" or Player.PlayerData.job.name == "ambulance" or Player.PlayerData.job.name == "doctor") or (EscortPlayer.PlayerData.metadata["ishandcuffed"] or EscortPlayer.PlayerData.metadata["isdead"] or EscortPlayer.PlayerData.metadata["inlaststand"]) then
             TriggerClientEvent("police:client:GetEscorted", EscortPlayer.PlayerData.source, Player.PlayerData.source)
         else
-            TriggerClientEvent('chatMessage', src, "SISTEMA", "error", "A pessoa está morta ou algemada!")
+            TriggerClientEvent('chatMessage', src, "SYSTEM", "error", "A pessoa está morta ou algemada!")
         end
     end
 end)
@@ -72,7 +72,7 @@ AddEventHandler('police:server:KidnapPlayer', function(playerId)
             TriggerClientEvent("police:client:GetKidnappedTarget", EscortPlayer.PlayerData.source, Player.PlayerData.source)
             TriggerClientEvent("police:client:GetKidnappedDragger", Player.PlayerData.source, EscortPlayer.PlayerData.source)
         else
-            TriggerClientEvent('chatMessage', src, "SISTEMA", "error", "A pessoa está morta ou algemada!")
+            TriggerClientEvent('chatMessage', src, "SYSTEM", "error", "A pessoa está morta ou algemada!")
         end
     end
 end)
@@ -86,7 +86,7 @@ AddEventHandler('police:server:SetPlayerOutVehicle', function(playerId)
         if EscortPlayer.PlayerData.metadata["ishandcuffed"] or EscortPlayer.PlayerData.metadata["isdead"] then
             TriggerClientEvent("police:client:SetOutVehicle", EscortPlayer.PlayerData.source)
         else
-            TriggerClientEvent('chatMessage', src, "SISTEMA", "error", "A pessoa está morta ou algemada!")
+            TriggerClientEvent('chatMessage', src, "SYSTEM", "error", "A pessoa está morta ou algemada!")
         end
     end
 end)
@@ -100,7 +100,7 @@ AddEventHandler('police:server:PutPlayerInVehicle', function(playerId)
         if EscortPlayer.PlayerData.metadata["ishandcuffed"] or EscortPlayer.PlayerData.metadata["isdead"] then
             TriggerClientEvent("police:client:PutInVehicle", EscortPlayer.PlayerData.source)
         else
-            TriggerClientEvent('chatMessage', src, "SISTEMA", "error", "A pessoa está morta ou algemada!")
+            TriggerClientEvent('chatMessage', src, "SYSTEM", "error", "A pessoa está morta ou algemada!")
         end
     end
 end)
@@ -254,7 +254,7 @@ AddEventHandler('police:server:SearchPlayer', function(playerId)
     local src = source
     local SearchedPlayer = QBCore.Functions.GetPlayer(playerId)
     if SearchedPlayer ~= nil then 
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "warning", "Pessoa tem $"..SearchedPlayer.PlayerData.money["cash"]..",- nele..")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "warning", "Pessoa tem $"..SearchedPlayer.PlayerData.money["cash"]..",- nele..")
         TriggerClientEvent('QBCore:Notify', SearchedPlayer.PlayerData.source, "Você está sendo revistado...")
     end
 end)
@@ -750,7 +750,7 @@ QBCore.Commands.Add("pobject", "Place/Delete an object", {{name="type", help="Ty
             TriggerClientEvent("police:client:deleteObject", source)
         end
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -759,7 +759,7 @@ QBCore.Commands.Add("algemar", "Algemar um jogador", {}, false, function(source,
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("police:client:CuffPlayer", source)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -773,10 +773,10 @@ QBCore.Commands.Add("palert", "Faça um alerta policial", {{name="alert", help="
             TriggerEvent("qb-log:server:CreateLog", "palert", "Police alert", "blue", "**"..GetPlayerName(source).."** (CitizenID: "..Player.PlayerData.citizenid.." | ID: "..source..") **Alert:** " ..msg, false)
             TriggerClientEvent('police:PlaySound', -1)
         else
-            TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Você deve inserir a mensagem!")
+            TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Você deve inserir a mensagem!")
         end
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -790,7 +790,7 @@ QBCore.Commands.Add("mdt", "Toggle police mdt", {}, false, function(source, args
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("police:client:toggleDatabank", source)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -804,7 +804,7 @@ QBCore.Commands.Add("clearcasings", "Take away bullet casings in the area (make 
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("evidence:client:ClearCasingsInArea", source)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -816,10 +816,10 @@ QBCore.Commands.Add("jail", "Prender uma pessoa", {{name="id", help="ID do jogad
         if time > 0 then
             TriggerClientEvent("police:client:JailCommand", source, playerId, time)
         else
-            TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "O tempo deve ser superior a 0")
+            TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "O tempo deve ser superior a 0")
         end
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -829,7 +829,7 @@ QBCore.Commands.Add("unjail", "Libertar uma pessoa.", {{name="id", help="Player 
         local playerId = tonumber(args[1])
         TriggerClientEvent("prison:client:UnjailPerson", playerId)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -868,7 +868,7 @@ QBCore.Commands.Add("clearblood", "Take away nearby blood (make sure you've pick
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("evidence:client:ClearBlooddropsInArea", source)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -877,7 +877,7 @@ QBCore.Commands.Add("seizecash", "Take cash from the nearest person", {}, false,
     if Player.PlayerData.job.name == "police" and Player.PlayerData.job.onduty then
         TriggerClientEvent("police:client:SeizeCash", source)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -886,7 +886,7 @@ QBCore.Commands.Add("sc", "Algema alguém, mas ele pode andar", {}, false, funct
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("police:client:CuffPlayerSoft", source)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -895,7 +895,7 @@ QBCore.Commands.Add("vercameras", "Ver câmera de segurança", {{name="camid", h
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("police:client:ActiveCamera", source, tonumber(args[1]))
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -913,7 +913,7 @@ QBCore.Commands.Add("sinalizarveiculo", "Sinalizar um veículo", {{name="plate",
         }
         TriggerClientEvent('QBCore:Notify', source, "Veiculo ("..args[1]:upper()..") está sinalizado por: "..table.concat(reason, " "))
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -928,10 +928,10 @@ QBCore.Commands.Add("unflagplate", "Unflag a vehicle", {{name="plate", help="Lic
                 TriggerClientEvent('chatMessage', source, "REPORTING ROOM", "error", "Vehicle is not flagged!")
             end
         else
-            TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Vehicle is not flagged!")
+            TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Vehicle is not flagged!")
         end
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -942,13 +942,13 @@ QBCore.Commands.Add("plateinfo", "Flag a vehicle", {{name="plate", help="License
             if Plates[args[1]:upper()].isflagged then
                 TriggerClientEvent('chatMessage', source, "REPORTING ROOM", "normal", "Vehicle ("..args[1]:upper()..") has been flagged for: "..Plates[args[1]:upper()].reason)
             else
-                TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Vehicle is not flagged!")
+                TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Vehicle is not flagged!")
             end
         else
-            TriggerClientEvent('chatMessage', source,   "SISTEMA", "error", "Vehicle is not flagged!")
+            TriggerClientEvent('chatMessage', source,   "SYSTEM", "error", "Vehicle is not flagged!")
         end
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -957,7 +957,7 @@ QBCore.Commands.Add("apreender", "Mandar carro para os apreendidos", {{name="pri
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("police:client:ImpoundVehicle", source, false, tonumber(args[1]))
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -966,7 +966,7 @@ QBCore.Commands.Add("impound", "Impound a vehicle", {}, false, function(source, 
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("police:client:ImpoundVehicle", source, true)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -978,14 +978,14 @@ QBCore.Commands.Add("paytow", "Pay a bergnet worker", {{name="id", help="ID of t
         if OtherPlayer ~= nil then
             if OtherPlayer.PlayerData.job.name == "tow" then
                 OtherPlayer.Functions.AddMoney("bank", 500, "police-tow-paid")
-                TriggerClientEvent('chatMessage', OtherPlayer.PlayerData.source, "SISTEMA", "warning", "You received $ 500 for your service!")
+                TriggerClientEvent('chatMessage', OtherPlayer.PlayerData.source, "SYSTEM", "warning", "You received $ 500 for your service!")
                 TriggerClientEvent('QBCore:Notify', source, 'You paid a bergnet worker')
             else
                 TriggerClientEvent('QBCore:Notify', source, 'Person is not a bergnet worker', "error")
             end
         end
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -997,14 +997,14 @@ QBCore.Commands.Add("paylaw", "Pay a lawyer", {{name="id", help="ID of the playe
         if OtherPlayer ~= nil then
             if OtherPlayer.PlayerData.job.name == "lawyer" then
                 OtherPlayer.Functions.AddMoney("bank", 500, "police-lawyer-paid")
-                TriggerClientEvent('chatMessage', OtherPlayer.PlayerData.source, "SISTEMA", "warning", "You received $ 500 for your pro bono case!")
+                TriggerClientEvent('chatMessage', OtherPlayer.PlayerData.source, "SYSTEM", "warning", "You received $ 500 for your pro bono case!")
                 TriggerClientEvent('QBCore:Notify', source, 'You paid a lawyer')
             else
                 TriggerClientEvent('QBCore:Notify', source, 'Person is not a lawyer', "error")
             end
         end
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -1013,7 +1013,7 @@ QBCore.Commands.Add("radar", "Ligar radar :)", {}, false, function(source, args)
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("wk:toggleRadar", source)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -1070,7 +1070,7 @@ QBCore.Commands.Add("tornozeleira", "Coloque uma tornozeleira na pessoa mais pr�
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("police:client:CheckDistance", source)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 
@@ -1091,7 +1091,7 @@ QBCore.Commands.Add("tirartornozeleira", "retire uma tornozeleira da pessoa mais
             end
         end
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
     end
 end)
 

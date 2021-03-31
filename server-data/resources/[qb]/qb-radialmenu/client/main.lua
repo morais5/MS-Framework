@@ -19,7 +19,7 @@ function setupSubItems()
                 Config.MenuItems[4].items = {
                     [1] = {
                         id = 'emergencybutton2',
-                        title = 'BotaoDeEmergencia',
+                        title = 'Emergency button',
                         icon = '#general',
                         type = 'client',
                         event = 'police:client:SendPoliceEmergencyAlert',
@@ -45,7 +45,7 @@ function setupSubItems()
             Config.MenuItems[3].items[3].items = {
                 [1] = {
                     id    = -1,
-                    title = 'Condutor',
+                    title = 'Driver',
                     icon = '#vehicleseat',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -53,7 +53,7 @@ function setupSubItems()
                 },
                 [2] = {
                     id    = 0,
-                    title = 'Co-Piloto',
+                    title = 'Passenger',
                     icon = '#vehicleseat',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -64,7 +64,7 @@ function setupSubItems()
             Config.MenuItems[3].items[3].items = {
                 [4] = {
                     id    = -1,
-                    title = 'Condutor',
+                    title = 'Driver',
                     icon = '#vehicleseat',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -72,7 +72,7 @@ function setupSubItems()
                 },
                 [1] = {
                     id    = 0,
-                    title = 'Co-Piloto',
+                    title = 'Passenger',
                     icon = '#vehicleseat',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -80,7 +80,7 @@ function setupSubItems()
                 },
                 [3] = {
                     id    = 1,
-                    title = 'Outras',
+                    title = 'Other',
                     icon = '#vehicleseat',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -91,7 +91,7 @@ function setupSubItems()
             Config.MenuItems[3].items[3].items = {
                 [4] = {
                     id    = -1,
-                    title = 'Condutor',
+                    title = 'Driver',
                     icon = '#vehicleseat',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -99,7 +99,7 @@ function setupSubItems()
                 },
                 [1] = {
                     id    = 0,
-                    title = 'Co-Piloto',
+                    title = 'Passenger',
                     icon = '#vehicleseat',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -107,7 +107,7 @@ function setupSubItems()
                 },
                 [3] = {
                     id    = 1,
-                    title = 'Traseiro Esquerdo',
+                    title = 'Left Rear',
                     icon = '#vehicleseat',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -115,7 +115,7 @@ function setupSubItems()
                 },
                 [2] = {
                     id    = 2,
-                    title = 'Traseiro Direito',
+                    title = 'Right Rear',
                     icon = '#vehicleseat',
                     type = 'client',
                     event = 'qb-radialmenu:client:ChangeSeat',
@@ -179,7 +179,7 @@ end)
 
 RegisterNetEvent('qb-radialmenu:client:noPlayers')
 AddEventHandler('qb-radialmenu:client:noPlayers', function(data)
-    QBCore.Functions.Notify('Ninguem por perto', 'error', 2500)
+    QBCore.Functions.Notify('No one around', 'error', 2500)
 end)
 
 RegisterNetEvent('qb-radialmenu:client:giveidkaart')
@@ -225,7 +225,7 @@ AddEventHandler('qb-radialmenu:client:openDoor', function(data)
             end
         end
     else
-        QBCore.Functions.Notify('Nenhum veiculo por perto...', 'error', 2500)
+        QBCore.Functions.Notify('No vehicles nearby...', 'error', 2500)
     end
 end)
 
@@ -250,20 +250,20 @@ AddEventHandler('qb-radialmenu:client:setExtra', function(data)
                     SetVehicleExtra(veh, extra, 1)
                     SetVehicleEngineHealth(veh, enginehealth)
                     SetVehicleBodyHealth(veh, bodydamage)
-                    QBCore.Functions.Notify('Extra ' .. extra .. ' Desativado', 'error', 2500)
+                    QBCore.Functions.Notify('Extra ' .. extra .. ' Disabled', 'error', 2500)
                 else
                     enginehealth = GetVehicleEngineHealth(veh)
                     bodydamage = GetVehicleBodyHealth(veh)
                     SetVehicleExtra(veh, extra, 0)
                     SetVehicleEngineHealth(veh, enginehealth)
                     SetVehicleBodyHealth(veh, bodydamage)
-                    QBCore.Functions.Notify('Extra ' .. extra .. ' Ativado', 'success', 2500)
+                    QBCore.Functions.Notify('Extra ' .. extra .. ' Activated', 'success', 2500)
                 end    
             else
-                QBCore.Functions.Notify('Extra ' .. extra .. ' Não existe neste veiculo ', 'error', 2500)
+                QBCore.Functions.Notify('Extra ' .. extra .. ' Does not exist in this vehicle ', 'error', 2500)
             end
         else
-            QBCore.Functions.Notify('Não és o condutor do veiculo !', 'error', 2500)
+            QBCore.Functions.Notify('You are not the driver of the vehicle!', 'error', 2500)
         end
     end
 end)
@@ -286,10 +286,10 @@ AddEventHandler('qb-radialmenu:trunk:client:Door', function(plate, door, open)
 end)
 
 local Seats = {
-    ["-1"] = "Condutor",
-    ["0"] = "Passageiro",
-    ["1"] = "Traseiro Esquerdo",
-    ["2"] = "Traseiro Direito",
+    ["-1"] = "Driver",
+    ["0"] = "Passenger",
+    ["1"] = "Left Rear",
+    ["2"] = "Right Rear",
 }
 
 RegisterNetEvent('qb-radialmenu:client:ChangeSeat')
@@ -304,15 +304,15 @@ AddEventHandler('qb-radialmenu:client:ChangeSeat', function(data)
         if IsSeatFree then
             if kmh <= 100.0 then
                 SetPedIntoVehicle(GetPlayerPed(-1), Veh, data.id)
-                QBCore.Functions.Notify('Mudas-te de assento para  '..data.title..'!')
+                QBCore.Functions.Notify('You move from seat to  '..data.title..'!')
             else
-                QBCore.Functions.Notify('Diminui a velocidade para alterares de assento..')
+                QBCore.Functions.Notify('Decrease speed to change seat..')
             end
         else
-            QBCore.Functions.Notify('Esse lugar esta ocupado..')
+            QBCore.Functions.Notify('This place is occupied..')
         end
     else
-        QBCore.Functions.Notify('Tens um cinto de 3 pontas, não consegues alterar o lugar...', 'error')
+        QBCore.Functions.Notify('You have a 3-point belt, you can't change the seat...', 'error')
     end
 end)
 

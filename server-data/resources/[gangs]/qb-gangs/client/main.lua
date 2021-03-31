@@ -511,7 +511,7 @@ function ogVehicleSpawnBloods()
     MenuTitle = "Garagem"
     ClearMenu()
     Menu.addButton("Veiculos", "VehicleListBloods", nil)
-    Menu.addButton("Fechar Menu", "closeMenuFull", nil) 
+    Menu.addButton("Close", "closeMenuFull", nil) 
 end
 
 -- Hyper
@@ -520,7 +520,7 @@ function ogVehicleSpawnHyper()
     MenuTitle = "Garagem"
     ClearMenu()
     Menu.addButton("Veiculos", "VehicleListHyper", nil)
-    Menu.addButton("Fechar Menu", "closeMenuFull", nil) 
+    Menu.addButton("Close", "closeMenuFull", nil) 
 end
 
 -- Bahamas
@@ -529,7 +529,7 @@ function ogVehicleSpawnBahamas()
     MenuTitle = "Garagem"
     ClearMenu()
     Menu.addButton("Veiculos", "VehicleListBahamas", nil)
-    Menu.addButton("Fechar Menu", "closeMenuFull", nil) 
+    Menu.addButton("Close", "closeMenuFull", nil) 
 end
 
 -- Vanilla
@@ -538,7 +538,7 @@ function ogVehicleSpawnVanilla()
     MenuTitle = "Garagem"
     ClearMenu()
     Menu.addButton("Veiculos", "VehicleListVanilla", nil)
-    Menu.addButton("Fechar Menu", "closeMenuFull", nil) 
+    Menu.addButton("Close", "closeMenuFull", nil) 
 end
 
 -- Cartel
@@ -547,7 +547,7 @@ function ogVehicleSpawnCartel()
     MenuTitle = "Garagem"
     ClearMenu()
     Menu.addButton("Veiculos", "VehicleListCartel", nil)
-    Menu.addButton("Fechar Menu", "closeMenuFull", nil) 
+    Menu.addButton("Close", "closeMenuFull", nil) 
 end
 
 -- Mafia 
@@ -556,7 +556,7 @@ function ogVehicleSpawnMafia()
     MenuTitle = "Garagem"
     ClearMenu()
     Menu.addButton("Veiculos", "VehicleListMafia", nil)
-    Menu.addButton("Fechar Menu", "closeMenuFull", nil) 
+    Menu.addButton("Close", "closeMenuFull", nil) 
 end
 
 -- Groove
@@ -565,7 +565,7 @@ function ogVehicleSpawnGroove()
     MenuTitle = "Garagem"
     ClearMenu()
     Menu.addButton("Veiculos", "VehicleListGroove", nil)
-    Menu.addButton("Fechar Menu", "closeMenuFull", nil) 
+    Menu.addButton("Close", "closeMenuFull", nil) 
 end
 
 -- Bloods
@@ -574,7 +574,7 @@ function VehicleListBloods(isDown)
     MenuTitle = "Veiculos:"
     ClearMenu()
     for k, v in pairs(Config.Vehicles) do
-        Menu.addButton(Config.Vehicles[k], "TakeOutVehicleBloods", k, "Garagem", " Motor: 100%", " Chassi: 100%", " Gasol: 100%")
+        Menu.addButton(Config.Vehicles[k], "TakeOutVehicleBloods", k, "Garagem", " Motor: 100%", " Body: 100%", " Gasol: 100%")
     end
         
     Menu.addButton("Voltar", "ogVehicleSpawnBloods",nil)
@@ -586,7 +586,7 @@ function VehicleListHyper(isDown)
     MenuTitle = "Veiculos:"
     ClearMenu()
     for k, v in pairs(Config.Vehicles) do
-        Menu.addButton(Config.Vehicles[k], "TakeOutVehicleHyper", k, "Garagem", " Motor: 100%", " Chassi: 100%", " Gasol: 100%")
+        Menu.addButton(Config.Vehicles[k], "TakeOutVehicleHyper", k, "Garagem", " Motor: 100%", " Body: 100%", " Gasol: 100%")
     end
         
     Menu.addButton("Voltar", "ogVehicleSpawnHyper",nil)
@@ -598,7 +598,7 @@ function VehicleListBahamas(isDown)
     MenuTitle = "Veiculos:"
     ClearMenu()
     for k, v in pairs(Config.Vehicles) do
-        Menu.addButton(Config.Vehicles[k], "TakeOutVehicleBahamas", k, "Garagem", " Motor: 100%", " Chassi: 100%", " Gasol: 100%")
+        Menu.addButton(Config.Vehicles[k], "TakeOutVehicleBahamas", k, "Garagem", " Motor: 100%", " Body: 100%", " Gasol: 100%")
     end
         
     Menu.addButton("Voltar", "ogVehicleSpawnBahamas",nil)
@@ -610,7 +610,7 @@ function VehicleListVanilla(isDown)
     MenuTitle = "Veiculos:"
     ClearMenu()
     for k, v in pairs(Config.Vehicles) do
-        Menu.addButton(Config.Vehicles[k], "TakeOutVehicleVanilla", k, "Garagem", " Motor: 100%", " Chassi: 100%", " Gasol: 100%")
+        Menu.addButton(Config.Vehicles[k], "TakeOutVehicleVanilla", k, "Garagem", " Motor: 100%", " Body: 100%", " Gasol: 100%")
     end
         
     Menu.addButton("Voltar", "ogVehicleSpawnVanilla",nil)
@@ -622,7 +622,7 @@ function VehicleListCartel(isDown)
     MenuTitle = "Veiculos:"
     ClearMenu()
     for k, v in pairs(Config.VehiclesCartel) do
-        Menu.addButton(Config.VehiclesCartel[k], "TakeOutVehicleCartel", k, "Garagem", " Motor: 100%", " Chassi: 100%", " Gasol: 100%")
+        Menu.addButton(Config.VehiclesCartel[k], "TakeOutVehicleCartel", k, "Garagem", " Motor: 100%", " Body: 100%", " Gasol: 100%")
     end
         
     Menu.addButton("Voltar", "ogVehicleSpawnCartel",nil)
@@ -634,7 +634,7 @@ function VehicleListMafia(isDown)
     MenuTitle = "Veiculos:"
     ClearMenu()
     for k, v in pairs(Config.VehiclesMafia) do
-        Menu.addButton(Config.VehiclesMafia[k], "TakeOutVehicleMafia", k, "Garagem", " Motor: 100%", " Chassi: 100%", " Gasol: 100%")
+        Menu.addButton(Config.VehiclesMafia[k], "TakeOutVehicleMafia", k, "Garagem", " Motor: 100%", " Body: 100%", " Gasol: 100%")
     end
         
     Menu.addButton("Voltar", "ogVehicleSpawnMafia",nil)
@@ -646,7 +646,7 @@ function VehicleListGroove(isDown)
     MenuTitle = "Vehicle:"
     ClearMenu()
     for k, v in pairs(Config.Vehicles) do
-        Menu.addButton(Config.Vehicles[k], "TakeOutVehicleGroove", k, "Garagem", " Motor: 100%", " Chassi: 100%", " Gasol: 100%")
+        Menu.addButton(Config.Vehicles[k], "TakeOutVehicleGroove", k, "Garagem", " Motor: 100%", " Body: 100%", " Gasol: 100%")
     end
         
     Menu.addButton("Return", "ogVehicleSpawnGroove",nil)
