@@ -1,4 +1,4 @@
-# <img src="https://i.imgur.com/RxoQ2SU.png" width="32" height="32"> Morais Scripts v5
+# <img src="https://i.imgur.com/RxoQ2SU.png" width="32" height="32"> Morais Scripts v5.1
 
 ### 📚 Documentation
 Take a look at [Wiki](https://github.com/morais5/QBCore-Morais/wiki)
