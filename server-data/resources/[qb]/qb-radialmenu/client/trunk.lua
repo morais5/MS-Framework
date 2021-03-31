@@ -133,7 +133,7 @@ AddEventHandler('qb-trunk:client:KidnapTrunk', function()
                 TriggerServerEvent("qb-trunk:server:KidnapTrunk", GetPlayerServerId(closestPlayer), closestVehicle)
             end
         else
-            QBCore.Functions.Notify('Essa pessoa não esta a ser raptada!', 'error')
+            QBCore.Functions.Notify('That person is not being kidnapped!', 'error')
         end
     end
 end)
@@ -165,7 +165,7 @@ AddEventHandler('qb-trunk:client:KidnapGetIn', function(veh)
                                 inTrunk = true
                                 Citizen.Wait(500)
                                 SetVehicleDoorShut(closestVehicle, 5, false)
-                                QBCore.Functions.Notify('Entras-te na bagageira.', 'success', 4000)
+                                QBCore.Functions.Notify('You get into the trunk.', 'success', 4000)
                                 TrunkCam(true)
 
                                 isKidnapped = true
@@ -187,21 +187,21 @@ AddEventHandler('qb-trunk:client:KidnapGetIn', function(veh)
                                 SetEntityCollision(PlayerPedId(), true, true)
                                 TrunkCam(false)
                             else
-                                QBCore.Functions.Notify('A bagageira secalhar esta fechada', 'error', 2500)
+                                QBCore.Functions.Notify('The trunk is closed', 'error', 2500)
                             end
                         end
                     else
-                        QBCore.Functions.Notify('Será que ainda tem alguem na mala?', 'error', 2500)
+                        QBCore.Functions.Notify('Do you still have someone in the trunk?', 'error', 2500)
                     end 
                 else
-                    QBCore.Functions.Notify('Ja estas na Bagageira', 'error', 2500)
+                    QBCore.Functions.Notify('You are already in the trunk', 'error', 2500)
                 end 
             else
-                QBCore.Functions.Notify('Não consegues entrar nesta bagageira..', 'error', 2500)
+                QBCore.Functions.Notify('You cant get into this trunk..', 'error', 2500)
             end
         end, plate)
     else
-        QBCore.Functions.Notify('Não consegues entrar nesta bagageira..', 'error', 2500)
+        QBCore.Functions.Notify('You cant get into this trunk..', 'error', 2500)
     end
 end)
 
@@ -232,26 +232,26 @@ AddEventHandler('qb-trunk:client:GetIn', function(isKidnapped)
                                 inTrunk = true
                                 Citizen.Wait(500)
                                 SetVehicleDoorShut(closestVehicle, 5, false)
-                                QBCore.Functions.Notify('Ja estas na bagageira.', 'Goodluck', 4000)
+                                QBCore.Functions.Notify('You are already in the trunk.', 'Goodluck', 4000)
                                 TrunkCam(true)
                             else
-                                QBCore.Functions.Notify('A bagageira secalhar esta fechada', 'error', 2500)
+                                QBCore.Functions.Notify('The trunk is closed', 'error', 2500)
                             end
                         else
-                            QBCore.Functions.Notify('Será que ainda tem alguem na mala?', 'error', 2500)
+                            QBCore.Functions.Notify('Do you still have someone in the trunk?', 'error', 2500)
                         end 
                     else
-                        QBCore.Functions.Notify('Ja estas na Bagageira', 'error', 2500)
+                        QBCore.Functions.Notify('You are already in the trunk', 'error', 2500)
                     end 
                 else
-                    QBCore.Functions.Notify('Não consegues entrar nesta bagageira..', 'error', 2500)
+                    QBCore.Functions.Notify('You cant get into this trunk..', 'error', 2500)
                 end
             end, plate)
         else
-            QBCore.Functions.Notify('Não consegues entrar nesta bagageira..', 'error', 2500)
+            QBCore.Functions.Notify('You cant get into this trunk..', 'error', 2500)
         end
     else
-        QBCore.Functions.Notify('Não consegues entrar nesta bagageira..', 'error', 2500)
+        QBCore.Functions.Notify('You cant get into this trunk..', 'error', 2500)
     end
 end)
 
@@ -266,7 +266,7 @@ Citizen.CreateThread(function()
                 local plate = GetVehicleNumberPlateText(vehicle)
 
                 if DoesEntityExist(vehicle) then
-                    DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.75, '[E] Sair da bagageira')
+                    DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.75, '[E] Exit trunk')
 
                     if IsControlJustPressed(0, Keys["E"]) then
                         if GetVehicleDoorAngleRatio(vehicle, 5) > 0 then
@@ -279,12 +279,12 @@ Citizen.CreateThread(function()
                             SetEntityCollision(PlayerPedId(), true, true)
                             TrunkCam(false)
                         else
-                            QBCore.Functions.Notify('Será que a bagageira esta trancada?', 'error', 2500)
+                            QBCore.Functions.Notify('Is the trunk locked?', 'error', 2500)
                         end
                     end
 
                     if GetVehicleDoorAngleRatio(vehicle, 5) > 0 then
-                        DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.5, '[G] Fechar Bagageira')
+                        DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.5, '[G] Close trunk')
                         if IsControlJustPressed(0, Keys["G"]) then
                             if not IsVehicleSeatFree(vehicle, -1) then
                                 TriggerServerEvent('qb-radialmenu:trunk:server:Door', false, plate, 5)
@@ -293,7 +293,7 @@ Citizen.CreateThread(function()
                             end
                         end
                     else
-                        DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.5, '[G] Abrir Bagageira')
+                        DrawText3Ds(drawPos.x, drawPos.y, drawPos.z + 0.5, '[G] Open trunk')
                         if IsControlJustPressed(0, Keys["G"]) then
                             if not IsVehicleSeatFree(vehicle, -1) then
                                 TriggerServerEvent('qb-radialmenu:trunk:server:Door', true, plate, 5)

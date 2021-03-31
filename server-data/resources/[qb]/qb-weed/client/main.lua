@@ -91,7 +91,7 @@ Citizen.CreateThread(function()
                 local ped = GetPlayerPed(-1)
                 for k, v in pairs(housePlants[currentHouse]) do
                     local gender = "M"
-                    if housePlants[currentHouse][k].gender == "woman" then gender = "V" end
+                    if housePlants[currentHouse][k].gender == "woman" then gender = "F" end
 
                     local plantData = {
                         ["plantCoords"] = {["x"] = json.decode(housePlants[currentHouse][k].coords).x, ["y"] = json.decode(housePlants[currentHouse][k].coords).y, ["z"] = json.decode(housePlants[currentHouse][k].coords).z},
@@ -119,12 +119,12 @@ Citizen.CreateThread(function()
                         ClosestTarget = k
                         if plantData["plantStats"]["health"] > 0 then
                             if plantData["plantStage"] ~= plantData["plantStats"]["highestStage"] then
-                                QBWeed.DrawText3Ds(plantData["plantCoords"]["x"], plantData["plantCoords"]["y"], plantData["plantCoords"]["z"], 'Genero: '..plantData["plantSort"]["label"]..'~w~ ['..plantData["plantStats"]["gender"]..'] | INFO: ~b~'..plantData["plantStats"]["food"]..'% ~w~ | Saúde: ~b~'..plantData["plantStats"]["health"]..'%')
+                                QBWeed.DrawText3Ds(plantData["plantCoords"]["x"], plantData["plantCoords"]["y"], plantData["plantCoords"]["z"], 'Gender: '..plantData["plantSort"]["label"]..'~w~ ['..plantData["plantStats"]["gender"]..'] | INFO: ~b~'..plantData["plantStats"]["food"]..'% ~w~ | Health: ~b~'..plantData["plantStats"]["health"]..'%')
                             else
-                                QBWeed.DrawText3Ds(plantData["plantCoords"]["x"], plantData["plantCoords"]["y"], plantData["plantCoords"]["z"] + 0.2, 'A planta esta pronta ~g~E~w~ para colher..')
-                                QBWeed.DrawText3Ds(plantData["plantCoords"]["x"], plantData["plantCoords"]["y"], plantData["plantCoords"]["z"], 'Genero: ~g~'..plantData["plantSort"]["label"]..'~w~ ['..plantData["plantStats"]["gender"]..'] | INFO: ~b~'..plantData["plantStats"]["food"]..'% ~w~ | Saúde: ~b~'..plantData["plantStats"]["health"]..'%')
+                                QBWeed.DrawText3Ds(plantData["plantCoords"]["x"], plantData["plantCoords"]["y"], plantData["plantCoords"]["z"] + 0.2, 'The plant is ready ~g~E~w~ to harvest..')
+                                QBWeed.DrawText3Ds(plantData["plantCoords"]["x"], plantData["plantCoords"]["y"], plantData["plantCoords"]["z"], 'Gender: ~g~'..plantData["plantSort"]["label"]..'~w~ ['..plantData["plantStats"]["gender"]..'] | INFO: ~b~'..plantData["plantStats"]["food"]..'% ~w~ | Health: ~b~'..plantData["plantStats"]["health"]..'%')
                                 if IsControlJustPressed(0, QBWeed.Keys["E"]) then
-                                    QBCore.Functions.Progressbar("remove_weed_plant", "A iniciar o cultivo", 8000, false, true, {
+                                    QBCore.Functions.Progressbar("remove_weed_plant", "Starting cultivation", 8000, false, true, {
                                         disableMovement = true,
                                         disableCarMovement = true,
                                         disableMouse = false,
@@ -143,14 +143,14 @@ Citizen.CreateThread(function()
                                         TriggerServerEvent('qb-weed:server:harvestPlant', currentHouse, amount, plantData["plantSort"]["name"], plantData["plantStats"]["plantId"])
                                     end, function() -- Cancel
                                         ClearPedTasks(ped)
-                                        QBCore.Functions.Notify("Processo Cancelado", "error")
+                                        QBCore.Functions.Notify("Process canceled", "error")
                                     end)
                                 end
                             end
                         elseif plantData["plantStats"]["health"] == 0 then
-                            QBWeed.DrawText3Ds(plantData["plantCoords"]["x"], plantData["plantCoords"]["y"], plantData["plantCoords"]["z"], 'A planta secou, ~r~E~w~ - Para remover.')
+                            QBWeed.DrawText3Ds(plantData["plantCoords"]["x"], plantData["plantCoords"]["y"], plantData["plantCoords"]["z"], 'The plant has dried up, ~r~E~w~ - To remove.')
                             if IsControlJustPressed(0, QBWeed.Keys["E"]) then
-                                QBCore.Functions.Progressbar("remove_weed_plant", "Remover planta", 8000, false, true, {
+                                QBCore.Functions.Progressbar("remove_weed_plant", "Remove plant", 8000, false, true, {
                                     disableMovement = true,
                                     disableCarMovement = true,
                                     disableMouse = false,
@@ -164,7 +164,7 @@ Citizen.CreateThread(function()
                                     TriggerServerEvent('qb-weed:server:removeDeathPlant', currentHouse, plantData["plantStats"]["plantId"])
                                 end, function() -- Cancel
                                     ClearPedTasks(ped)
-                                    QBCore.Functions.Notify("Processo cancelado", "error")
+                                    QBCore.Functions.Notify("Process canceled", "error")
                                 end)
                             end
                         end
@@ -263,13 +263,13 @@ AddEventHandler('qb-weed:client:placePlant', function(type, item)
                 TriggerServerEvent('qb-weed:server:removeSeed', item.slot, type)
             end, function() -- Cancel
                 ClearPedTasks(ped)
-                QBCore.Functions.Notify("Processo cancelado.", "error")
+                QBCore.Functions.Notify("Process canceled.", "error")
             end)
         else
-            QBCore.Functions.Notify('Não tens espaço para a planta.', 'error', 3500)
+            QBCore.Functions.Notify('You have no space for the plant.', 'error', 3500)
         end
     else
-        QBCore.Functions.Notify("Não é seguro fazeres isso aqui.", 'error', 3500)
+        QBCore.Functions.Notify("It is not safe to do this here.", 'error', 3500)
     end
 end)
 
@@ -281,7 +281,7 @@ AddEventHandler('qb-weed:client:foodPlant', function(item)
             local ped = GetPlayerPed(-1)
             local gender = "M"
             if housePlants[currentHouse][ClosestTarget].gender == "woman" then 
-                gender = "V" 
+                gender = "F" 
             end
 
             plantData = {
@@ -306,9 +306,9 @@ AddEventHandler('qb-weed:client:foodPlant', function(item)
 
             if plyDistance < 1.0 then
                 if plantData["plantStats"]["food"] == 100 then
-                    QBCore.Functions.Notify('A planta não precisa de ser regada.', 'error', 3500)
+                    QBCore.Functions.Notify('The plant does not need to be watered.', 'error', 3500)
                 else
-                    QBCore.Functions.Progressbar("plant_weed_plant", "'A regar a planta.", math.random(4000, 8000), false, true, {
+                    QBCore.Functions.Progressbar("plant_weed_plant", "'To water the plant.", math.random(4000, 8000), false, true, {
                         disableMovement = true,
                         disableCarMovement = true,
                         disableMouse = false,
@@ -323,14 +323,14 @@ AddEventHandler('qb-weed:client:foodPlant', function(item)
                         TriggerServerEvent('qb-weed:server:foodPlant', currentHouse, newFood, plantData["plantSort"]["name"], plantData["plantStats"]["plantId"])
                     end, function() -- Cancel
                         ClearPedTasks(ped)
-                        QBCore.Functions.Notify("Processo cancelado", "error")
+                        QBCore.Functions.Notify("Process canceled", "error")
                     end)
                 end
             else
-                QBCore.Functions.Notify("Sem espaço para a planta.", "error")
+                QBCore.Functions.Notify("No space for the plant.", "error")
             end
         else
-            QBCore.Functions.Notify("Sem espaço para a planta.", "error")
+            QBCore.Functions.Notify("No space for the plant.", "error")
         end
     end
 end)

@@ -3,7 +3,7 @@ local carryAnimNamePlaying = ""
 local carryAnimDictPlaying = ""
 local carryControlFlagPlaying = 0
 
-RegisterCommand("pegar",function(source, args)
+RegisterCommand("carry",function(source, args)
 	if not carryingBackInProgress then
 		local player = PlayerPedId()	
 		lib = 'missfinale_c2mcs_1'
@@ -24,7 +24,7 @@ RegisterCommand("pegar",function(source, args)
 			carryingBackInProgress = true
 			TriggerServerEvent('CarryPeople:sync', closestPlayer, lib,lib2, anim1, anim2, distans, distans2, height,target,length,spin,controlFlagMe,controlFlagTarget,animFlagTarget)
 		else
-			drawNativeNotification("Ninguém por perto para carregar!")
+			drawNativeNotification("No one around to carry!")
 		end
 	else
 		carryingBackInProgress = false

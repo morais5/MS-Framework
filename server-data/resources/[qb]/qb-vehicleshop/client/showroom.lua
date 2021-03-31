@@ -6,7 +6,7 @@ local fakecar = {model = '', car = nil}
 
 vehshop = {
 	opened = false,
-	title = "Loja de Veiculos",
+	title = "Vehicle Shop",
 	currentmenu = "main",
 	lastmenu = nil,
 	currentpos = nil,
@@ -23,14 +23,14 @@ vehshop = {
 		scale = 0.29,
 		font = 0,
 		["main"] = {
-			title = "CATEGORIAS",
+			title = "CATEGORIES",
 			name = "main",
 			buttons = {
-				{name = "Veiculo", description = ""},
+				{name = "Vehicle", description = ""},
 			}
 		},
 		["vehicles"] = {
-			title = "VEICULOS",
+			title = "Vehicles",
 			name = "vehicles",
 			buttons = {}
 		},	
@@ -148,7 +148,7 @@ function ButtonSelected(button)
     local btn = button.name
 
 	if this == "main" then
-		if btn == "Veiculo" then
+		if btn == "Vehicle" then
 			OpenMenu('vehicles')
 		end
 	elseif this == "vehicles" then
@@ -268,30 +268,30 @@ end
 
 function MenuVehicleList()
     ped = GetPlayerPed(-1);
-    MenuTitle = "Vendedor"
+    MenuTitle = "Seller"
     ClearMenu()
-    Menu.addButton("Ver veiculos", "VehicleCategories", nil)
-    Menu.addButton("Fechar Menu", "close", nil) 
+    Menu.addButton("View vehicles", "VehicleCategories", nil)
+    Menu.addButton("Close", "close", nil) 
 end
 
 function VehicleCategories()
     ped = GetPlayerPed(-1);
-    MenuTitle = "Categorias de Veiculos"
+    MenuTitle = "Vehicle Categories"
     ClearMenu()
     for k, v in pairs(QB.VehicleMenuCategories) do
         Menu.addButton(QB.VehicleMenuCategories[k].label, "GetCatVehicles", k)
     end
     
-    Menu.addButton("Fechar Menu", "close", nil) 
+    Menu.addButton("Close", "close", nil) 
 end
 
 function GetCatVehicles(catergory)
     ped = GetPlayerPed(-1)
-    MenuTitle = "Categorias de Veiculos"
+    MenuTitle = "Vehicle Categories"
     ClearMenu()
-    Menu.addButton("Fechar Menu", "close", nil) 
+    Menu.addButton("Close", "close", nil) 
     for k, v in pairs(shopVehicles[catergory]) do
-        Menu.addButton(shopVehicles[catergory][k].name, "Selecionar Veiculo", v, catergory, "$"..shopVehicles[catergory][k]["price"])
+        Menu.addButton(shopVehicles[catergory][k].name, "Select vehicle", v, catergory, "$"..shopVehicles[catergory][k]["price"])
     end
 end
 
@@ -387,21 +387,21 @@ Citizen.CreateThread(function()
                     inRange = true
                     if SellDistance < 1 then
                         if not SellStarted then
-                            DrawText3Ds(QB.QuickSell.x, QB.QuickSell.y, QB.QuickSell.z, '~b~E~w~ - Vender veiculo por ~g~$'..math.ceil(VehicleData["price"] / 100 * 60))
+                            DrawText3Ds(QB.QuickSell.x, QB.QuickSell.y, QB.QuickSell.z, '~b~E~w~ - Sell vehicle for ~g~$'..math.ceil(VehicleData["price"] / 100 * 60))
                             if IsControlJustPressed(0, Keys["E"]) then
                                 SellStarted = true
                             end
                         else
-                            DrawText3Ds(QB.QuickSell.x, QB.QuickSell.y, QB.QuickSell.z, '~b~7~w~ - Confirmar / ~b~8~w~ - Cancelar')
+                            DrawText3Ds(QB.QuickSell.x, QB.QuickSell.y, QB.QuickSell.z, '~b~7~w~ - Confirm / ~b~8~w~ - Cancel')
                             if IsControlJustPressed(0, Keys["7"]) or IsDisabledControlJustPressed(0, Keys["7"]) then
                                 SellStarted = false
                                 QBCore.Functions.TriggerCallback('qb-vehicleshop:server:SellVehicle', function(SoldVehicle)
                                     if SoldVehicle then
-                                        TriggerEvent("qb-phone-new:client:BankNotify", "Recebeste "..math.ceil(VehicleData["price"] / 100 * 60).." $")
+                                        TriggerEvent("qb-phone-new:client:BankNotify", "Received "..math.ceil(VehicleData["price"] / 100 * 60).." $")
                                         local veh = GetVehiclePedIsIn(ped)
                                         QBCore.Functions.DeleteVehicle(veh)
                                     else
-                                        QBCore.Functions.Notify('Este veiculo não te pertence..', 'error')
+                                        QBCore.Functions.Notify('This vehicle does not belong to you..', 'error')
                                     end
                                 end, GetEntityModel(GetVehiclePedIsIn(ped)), GetVehicleNumberPlateText(GetVehiclePedIsIn(ped)))
                             end
@@ -445,22 +445,22 @@ Citizen.CreateThread(function()
                     if not QB.ShowroomVehicles[ClosestVehicle].inUse then
                         if not vehshop.opened then
                             if not buySure then
-                                DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.8, '~g~G~w~ - Alterar Veiculo  (~g~'..displayName..'~w~)')
+                                DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.8, '~g~G~w~ - Change Vehicle  (~g~'..displayName..'~w~)')
                             end
                             if not buySure then
-                                DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.70, '~g~E~w~ - Comprar Veiculo (~g~$'..vehPrice..'~w~)')
+                                DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.70, '~g~E~w~ - Buy Vehicle (~g~$'..vehPrice..'~w~)')
                             elseif buySure then
-                                DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.65, 'Tens a certeza? | ~g~[7]~w~ Yes -/- ~r~[8]~w~ Não')
+                                DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.65, 'You are sure? | ~g~[7]~w~ Yes -/- ~r~[8]~w~ No')
                             end
                         elseif vehshop.opened then
                             if modelLoaded then
-                                DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.65, 'A escolher o veiculo')
+                                DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.65, 'Choosing the vehicle')
                             else
-                                DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.65, 'O  veiculo esta a ser transferido..')
+                                DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.65, 'The vehicle is being transferred..')
                             end
                         end
                     else
-                        DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.65, 'O veiculo esta a ser utilizado por um cliente...')
+                        DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 1.65, 'The vehicle is being used by a customer...')
                     end
 
                     if not vehshop.opened then
@@ -563,13 +563,13 @@ Citizen.CreateThread(function()
                         end
                     end
                     if IsDisabledControlJustPressed(0, Keys["8"]) then
-                        QBCore.Functions.Notify('Cancelaste a compra do veiculo', 'error', 3500)
+                        QBCore.Functions.Notify('You canceled the purchase of the vehicle', 'error', 3500)
                         buySure = false
                     end
                     DisableControlAction(0, Keys["7"], true)
                     DisableControlAction(0, Keys["8"], true)
                 elseif QB.ShowroomVehicles[ClosestVehicle].inUse then
-                    DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 0.5, 'Veiculo a ser utilizado')
+                    DrawText3Ds(QB.ShowroomVehicles[ClosestVehicle].coords.x, QB.ShowroomVehicles[ClosestVehicle].coords.y, QB.ShowroomVehicles[ClosestVehicle].coords.z + 0.5, 'Vehicle to be used')
                 end
             elseif dist > 1.5 then
                 if vehshop.opened then

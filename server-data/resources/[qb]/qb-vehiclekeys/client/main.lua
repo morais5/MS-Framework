@@ -92,7 +92,7 @@ Citizen.CreateThread(function()
                 if driver ~= 0 and not IsPedAPlayer(driver) then
                     if IsEntityDead(driver) then
                         IsRobbing = true
-                        QBCore.Functions.Progressbar("rob_keys", "A pegar nas chaves do veiculo..", 3000, false, true, {}, {}, {}, {}, function() -- Done
+                        QBCore.Functions.Progressbar("rob_keys", "Picking up vehicle keys..", 3000, false, true, {}, {}, {}, {}, function() -- Done
                             TriggerEvent("vehiclekeys:client:SetOwner", GetVehicleNumberPlateText(vehicle))
                             HasKey = true
                             IsRobbing = false
@@ -223,9 +223,9 @@ function LockVehicle()
                         TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 5, "lock", 0.3)
                         SetVehicleDoorsLocked(veh, 2)
                         if(GetVehicleDoorLockStatus(veh) == 2)then
-                            QBCore.Functions.Notify("Trancaste o veiculo!")
+                            QBCore.Functions.Notify("Lock the vehicle!")
                         else
-                            QBCore.Functions.Notify("Ocorreu um erro com o sistema de tranque!")
+                            QBCore.Functions.Notify("There was an error with the locking system!")
                         end
                     else
                         Citizen.Wait(750)
@@ -233,9 +233,9 @@ function LockVehicle()
                         TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 5, "unlock", 0.3)
                         SetVehicleDoorsLocked(veh, 1)
                         if(GetVehicleDoorLockStatus(veh) == 1)then
-                            QBCore.Functions.Notify("Destrancaste o veiculo!")
+                            QBCore.Functions.Notify("Unlock the vehicle")
                         else
-                            QBCore.Functions.Notify("Ocorreu um erro com o sistema de tranque!")
+                            QBCore.Functions.Notify("There was an error with the locking system!")
                         end
                     end
         
@@ -257,11 +257,11 @@ function LockVehicle()
                     end
                 end
             else
-                QBCore.Functions.Notify('Não tens as chaves deste veiculo..', 'error')
+                QBCore.Functions.Notify('You dont have the keys to this vehicle..', 'error')
             end
         end, plate)
     else
-    	print("TRANCAR: NENHUM VEICULO À TUA FRENTE")
+    	print("BRAKE: NO VEHICLE IN YOUR FRONT")
     end
 end
 
@@ -283,7 +283,7 @@ function LockpickDoor(isAdvanced)
                 IsHotwiring = true
                 SetVehicleAlarm(vehicle, true)
                 SetVehicleAlarmTimeLeft(vehicle, lockpickTime)
-                QBCore.Functions.Progressbar("lockpick_vehicledoor", "A arrombar a porta..", lockpickTime, false, true, {
+                QBCore.Functions.Progressbar("lockpick_vehicledoor", "Breaking down the door..", lockpickTime, false, true, {
                     disableMovement = true,
                     disableCarMovement = true,
                     disableMouse = false,
@@ -298,12 +298,12 @@ function LockpickDoor(isAdvanced)
                         SetVehicleDoorsLocked(vehicle, 0)
                         SetVehicleDoorsLockedForAllPlayers(vehicle, false)
                     else
-                        QBCore.Functions.Notify("Falhou!", "error")
+                        QBCore.Functions.Notify("Failed!", "error")
                     end
                 end, function() -- Cancel
                     openingDoor = false
                     StopAnimTask(GetPlayerPed(-1), "veh@break_in@0h@p_m_one@", "low_force_entry_ds", 1.0)
-                    QBCore.Functions.Notify("Falhou!", "error")
+                    QBCore.Functions.Notify("Failed!", "error")
                     IsHotwiring = false
                 end)
             end
@@ -391,7 +391,7 @@ function LockpickIgnition(isAdvanced)
                     if IsHotwiring then
                         if SucceededAttempts + 1 >= NeededAttempts then
                             StopAnimTask(GetPlayerPed(-1), "anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 1.0)
-                            QBCore.Functions.Notify("Fizeste o lockpick com sucesso!")
+                            QBCore.Functions.Notify("You have successfully done the lockpick!")
                             HasKey = true
                             TriggerEvent("vehiclekeys:client:SetOwner", GetVehicleNumberPlateText(vehicle))
                             IsHotwiring = false
@@ -444,7 +444,7 @@ function LockpickIgnition(isAdvanced)
                                 ClearPedTasksImmediately(GetPlayerPed(-1))
                                 HasKey = false
                                 SetVehicleEngineOn(vehicle, false, false, true)
-                                QBCore.Functions.Notify("Tens que estar dentro de um veiculo", "error")
+                                QBCore.Functions.Notify("You have to be inside a vehicle", "error")
                                 IsHotwiring = false
                                 FailedAttemps = FailedAttemps + 1
                                 local c = math.random(2)
@@ -460,7 +460,7 @@ function LockpickIgnition(isAdvanced)
                         StopAnimTask(GetPlayerPed(-1), "anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 1.0)
                         HasKey = false
                         SetVehicleEngineOn(vehicle, false, false, true)
-                        QBCore.Functions.Notify("Não conseguiste fazer o lockpick!", "error")
+                        QBCore.Functions.Notify("You couldn't lockpick!", "error")
                         IsHotwiring = false
                         FailedAttemps = FailedAttemps + 1
                         local c = math.random(2)
@@ -483,7 +483,7 @@ function Hotwire()
         SetVehicleAlarm(vehicle, true)
         SetVehicleAlarmTimeLeft(vehicle, hotwireTime)
         PoliceCall()
-        QBCore.Functions.Progressbar("hotwire_vehicle", "A fazer ligação direta", hotwireTime, false, true, {
+        QBCore.Functions.Progressbar("hotwire_vehicle", "Trying to hotwire", hotwireTime, false, true, {
             disableMovement = true,
             disableCarMovement = true,
             disableMouse = false,
@@ -496,18 +496,18 @@ function Hotwire()
             StopAnimTask(GetPlayerPed(-1), "anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 1.0)
             if (math.random(0, 100) < 10) then
                 HasKey = true
-                QBCore.Functions.Notify("Conseguiste fazer ligação direta!")
+                QBCore.Functions.Notify("You hotwired the vehicle")
             else
                 HasKey = false
                 SetVehicleEngineOn(veh, false, false, true)
-                QBCore.Functions.Notify("Não conseguiste fazer ligação direta!", "error")
+                QBCore.Functions.Notify("You failed the hotwire", "error")
             end
             IsHotwiring = false
         end, function() -- Cancel
             StopAnimTask(GetPlayerPed(-1), "anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 1.0)
             HasKey = false
             SetVehicleEngineOn(veh, false, false, true)
-            QBCore.Functions.Notify("Falhaste a ligação direta!", "error")
+            QBCore.Functions.Notify("You missed the hotwire", "error")
             IsHotwiring = false
         end)
     end
@@ -537,11 +537,11 @@ function PoliceCall()
                     if QBCore.Shared.VehicleModels[modelName] ~= nil then
                         Name = QBCore.Shared.Vehicles[QBCore.Shared.VehicleModels[modelName]["model"]]["brand"] .. ' ' .. QBCore.Shared.Vehicles[QBCore.Shared.VehicleModels[modelName]["model"]]["name"]
                     else
-                        Name = "Desconhecido"
+                        Name = "Unknown"
                     end
                     local modelPlate = GetVehicleNumberPlateText(vehicle)
-                    local msg = "Tentativa de roubo a veiculo em " ..streetLabel.. ". Veiculo: " .. Name .. ", Registration: " .. modelPlate
-                    local alertTitle = "Roubo a veiculo em"
+                    local msg = "Attempted theft of vehicle in" ..streetLabel.. ". Vehicle: " .. Name .. ", Registration: " .. modelPlate
+                    local alertTitle = "Theft of vehicle"
                     TriggerServerEvent("police:server:VehicleCall", pos, msg, alertTitle, streetLabel, modelPlate, Name)
                 else
                     local vehicle = QBCore.Functions.GetClosestVehicle()
@@ -550,10 +550,10 @@ function PoliceCall()
                     if QBCore.Shared.VehicleModels[modelName] ~= nil then
                         Name = QBCore.Shared.Vehicles[QBCore.Shared.VehicleModels[modelName]["model"]]["brand"] .. ' ' .. QBCore.Shared.Vehicles[QBCore.Shared.VehicleModels[modelName]["model"]]["name"]
                     else
-                        Name = "Desconhecido"
+                        Name = "Unknown"
                     end
-                    local msg = "Tentativa de roubo a veiculo em  " ..streetLabel.. ". Veiculo: " .. Name .. ", Registration: " .. modelPlate
-                    local alertTitle = "Roubo a veiculo em"
+                    local msg = "Attempted theft of vehicle in " ..streetLabel.. ". Vehicle: " .. Name .. ", Registration: " .. modelPlate
+                    local alertTitle = "Theft of vehocle"
                     TriggerServerEvent("police:server:VehicleCall", pos, msg, alertTitle, streetLabel, modelPlate, Name)
                 end
             end

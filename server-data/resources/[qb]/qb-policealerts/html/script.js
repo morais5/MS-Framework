@@ -14,10 +14,10 @@ $(document).ready(function(){
 });
 
 function AddPoliceAlert(data) {
-    data.alertTitle != null ? data.alertTitle : "Geen title :(";
+    data.alertTitle != null ? data.alertTitle : "No title :(";
     if (data.callSign === "NO CALLSIGN") {
         data.callSign = "xx-xx";
-    } else if (data.callSign === "UITDIENST") {
+    } else if (data.callSign === "OUT OF SERVICE") {
         data.callSign = "xx-xx";
     } else {
         var temp = data.callSign.split("|");

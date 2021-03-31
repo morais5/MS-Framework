@@ -1,10 +1,10 @@
 TryToFish = function()
     QBCore.Functions.TriggerCallback('qb-fishing:GetItemData', function(count)
-        if IsPedSwimming(cachedData["ped"]) then return QBCore.Functions.Notify("Você não pode nadar e pescar ao mesmo tempo.", "error") end 
-        if IsPedInAnyVehicle(cachedData["ped"]) then return QBCore.Functions.Notify("Você precisa sair do veículo para começar a pescar.", "error") end 
+        if IsPedSwimming(cachedData["ped"]) then return QBCore.Functions.Notify("You cannot swim and fish at the same time.", "error") end 
+        if IsPedInAnyVehicle(cachedData["ped"]) then return QBCore.Functions.Notify("You need to get out of the vehicle to start fishing.", "error") end 
         if count ~= nil then
             if count == 0 then
-                QBCore.Functions.Notify("Você precisa de uma vara de pescar e isca para pescar.", "primary")
+                QBCore.Functions.Notify("You need a fishing rod and bait to fish.", "primary")
             else
                 local waterValidated, castLocation = IsInWater()
 
@@ -13,7 +13,7 @@ TryToFish = function()
 
                     CastBait(fishingRod, castLocation)
                 else
-                    QBCore.Functions.Notify("Você precisa mirar na água para pescar", "primary")
+                    QBCore.Functions.Notify("You need to aim in the water to fish", "primary")
                 end
             end
         end
@@ -28,7 +28,7 @@ CastBait = function(rodHandle, castLocation)
     local startedCasting = GetGameTimer()
 
     if not HasFishingBait() then
-        QBCore.Functions.Notify('Você não tem nenhuma isca!', 'error')
+        QBCore.Functions.Notify('You have no bait!', 'error')
 
         isFishing = false
         return DeleteEntity(rodHandle)
@@ -37,7 +37,7 @@ CastBait = function(rodHandle, castLocation)
     while not IsControlJustPressed(0, 47) do
         Citizen.Wait(5)
 
-        ShowHelpNotification("Lance sua linha pressionando ~INPUT_DETONATE~")
+        ShowHelpNotification("Launch your line by pressing ~INPUT_DETONATE~")
 
         if GetGameTimer() - startedCasting > 5000 then
             QBCore.Functions.Notify("Você precisa lançar a isca.", "primary")
@@ -63,7 +63,7 @@ CastBait = function(rodHandle, castLocation)
     local randomBait = math.random(10000, 30000)
 
     -- DrawBusySpinner("Waiting for a fish that is biting..")
-    QBCore.Functions.Notify("Esperando um peixe morder...", "success", "10000")
+    QBCore.Functions.Notify("Waiting for a fish to bite...", "success", "10000")
     TriggerServerEvent('QBCore:Server:RemoveItem', "fishingbait", 1)
 	TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["fishingbait"], "remove")
 
@@ -99,7 +99,7 @@ CastBait = function(rodHandle, castLocation)
         TriggerServerEvent("qb-fishing:receiveFish", castLocation, function(received) end)
         TriggerServerEvent('qb-hud:Server:RelieveStress', 1)
     else
-        QBCore.Functions.Notify("O peixe se soltou.", "error")
+        QBCore.Functions.Notify("The fish broke free.", "error")
     end
     
     isFishing = false
@@ -133,7 +133,7 @@ TryToCatchFish = function()
     while true do
         Citizen.Wait(5)
 
-        ShowHelpNotification("Carrega ~INPUT_CONTEXT~ na área verde.")
+        ShowHelpNotification("Press ~INPUT_CONTEXT~ in the green area.")
 
         DrawSprite(minigameSprites["powerDict"], minigameSprites["powerName"], 0.5, 0.4, 0.01, 0.2, 0.0, 255, 0, 0, 255)
 
@@ -193,7 +193,7 @@ IsInWater = function()
     SetEntityAlpha(fishHandle, 0, true) -- makes the fish invisible.
 
     -- DrawBusySpinner("Checking fishing location....")
-    QBCore.Functions.Notify("Verificando o local de pesca...", "success", "3000")
+    QBCore.Functions.Notify("Checking the fishing spot...", "success", "3000")
 
     while GetGameTimer() - startedCheck < 3000 do
         Citizen.Wait(0)

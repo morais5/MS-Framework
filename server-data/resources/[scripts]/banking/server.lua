@@ -55,19 +55,19 @@ QBCore.Commands.Add("dardinheiro", "Dê algum dinheiro a um jogador", {{name="id
           if TargetId ~= source then
             TriggerClientEvent('banking:client:CheckDistance', source, TargetId, amount)
           else
-            TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Não podes dar dinheiro para ti mesmo.")     
+            TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Não podes dar dinheiro para ti mesmo.")     
           end
         else
-          TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Não tens dinheiro suficiente.")
+          TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Não tens dinheiro suficiente.")
         end
       else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "O valor deve ser maior que 0.")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "O valor deve ser maior que 0.")
       end
     else
-      TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Insira um valor.")
+      TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Insira um valor.")
     end
   else
-    TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "O jogador não está online.")
+    TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "O jogador não está online.")
   end    
 end)
 

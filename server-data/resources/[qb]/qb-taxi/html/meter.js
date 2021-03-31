@@ -68,10 +68,10 @@ function meterToggle() {
 
 function toggleMeter(enabled) {
     if (enabled) {
-        $(".toggle-meter-btn").html("<p>A contar</p>");
+        $(".toggle-meter-btn").html("<p>Start</p>");
         $(".toggle-meter-btn p").css({"color": "rgb(51, 160, 37)"});
     } else {
-        $(".toggle-meter-btn").html("<p>Parado</p>");
+        $(".toggle-meter-btn").html("<p>Stop</p>");
         $(".toggle-meter-btn p").css({"color": "rgb(231, 30, 37)"});
     }
 }

@@ -8,7 +8,7 @@ QB.VehicleShops = {
 
 QB.GarageLabel = {
     ["motelgarage"] = "Motel Garage",
-    ["sapcounsel"]  = "San Andreas Parking Counsel",
+    ["sapcounsel"]  = "San Andreas Parking",
 }
 
 QB.SpawnPoint = {x = -59.18, y = -1109.71, z = 25.45, h = 68.5}

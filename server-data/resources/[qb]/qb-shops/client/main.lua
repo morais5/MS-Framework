@@ -41,7 +41,7 @@ Citizen.CreateThread(function()
                     InRange = true
                     DrawMarker(2, loc["x"], loc["y"], loc["z"], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.2, 0.1, 255, 255, 255, 155, 0, 0, 0, 1, 0, 0, 0)
                     if dist < 1 then
-                        DrawText3Ds(loc["x"], loc["y"], loc["z"] + 0.15, '~g~E~w~ - Loja')
+                        DrawText3Ds(loc["x"], loc["y"], loc["z"] + 0.15, '~g~E~w~ - Store')
                         if IsControlJustPressed(0, Config.Keys["E"]) then
                             local ShopItems = {}
                             ShopItems.label = Config.Locations[shop]["label"]

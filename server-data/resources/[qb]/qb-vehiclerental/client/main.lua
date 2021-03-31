@@ -63,7 +63,7 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.RentalPoints[k]["coords"][1]["x"], Config.RentalPoints[k]["coords"][1]["y"], Config.RentalPoints[k]["coords"][1]["z"], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.3, 0.2, 155, 22, 22, 155, 0, 0, 0, 1, 0, 0, 0)
 
                     if dist < 1 then
-                        DrawText3Ds(Config.RentalPoints[k]["coords"][1]["x"], Config.RentalPoints[k]["coords"][1]["y"], Config.RentalPoints[k]["coords"][1]["z"] + 0.35, '~g~E~w~ - Om voertuig te huren')
+                        DrawText3Ds(Config.RentalPoints[k]["coords"][1]["x"], Config.RentalPoints[k]["coords"][1]["y"], Config.RentalPoints[k]["coords"][1]["z"] + 0.35, '~g~E~w~ - To rent vehicle')
                         if IsControlJustPressed(0, Keys["E"]) then
                             RentalMenu()
                             Menu.hidden = not Menu.hidden
@@ -86,7 +86,7 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.DeliveryPoints[k]["coords"]["x"], Config.DeliveryPoints[k]["coords"]["y"], Config.DeliveryPoints[k]["coords"]["z"], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6, 0.6, 0.4, 155, 22, 22, 255, 0, 0, 0, 1, 0, 0, 0)
 
                     if dist < 1 then
-                        DrawText3Ds(Config.DeliveryPoints[k]["coords"]["x"], Config.DeliveryPoints[k]["coords"]["y"], Config.DeliveryPoints[k]["coords"]["z"] + 0.35, '~g~E~w~ - Voertuig inleveren')
+                        DrawText3Ds(Config.DeliveryPoints[k]["coords"]["x"], Config.DeliveryPoints[k]["coords"]["y"], Config.DeliveryPoints[k]["coords"]["z"] + 0.35, '~g~E~w~ - Return the vehicle')
                         if IsControlJustPressed(0, Keys["E"]) then
                             ReturnVehicle()
                             Menu.hidden = not Menu.hidden

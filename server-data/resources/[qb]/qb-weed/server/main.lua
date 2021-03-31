@@ -167,20 +167,20 @@ AddEventHandler('qb-weed:server:harvestPlant', function(house, amount, plantName
                         Player.Functions.AddItem('weed_'..plantName, sndAmount)
                         Player.Functions.RemoveItem('empty_weed_bag', 1)
                         QBCore.Functions.ExecuteSql(true, "DELETE FROM `house_plants` WHERE plantid = '"..plantId.."' AND building = '"..house.."'")
-                        TriggerClientEvent('QBCore:Notify', src, 'A planta é colhida', 'success', 3500)
+                        TriggerClientEvent('QBCore:Notify', src, 'The plant is harvested', 'success', 3500)
                         TriggerClientEvent('qb-weed:client:refreshHousePlants', -1, house)
                     else
-                        TriggerClientEvent('QBCore:Notify', src, 'Esta planta não existe mais', 'error', 3500)
+                        TriggerClientEvent('QBCore:Notify', src, 'This plant no longer exists', 'error', 3500)
                     end
                 end)
             else
-                TriggerClientEvent('QBCore:Notify', src, 'House não encontrada', 'error', 3500)
+                TriggerClientEvent('QBCore:Notify', src, 'House not found', 'error', 3500)
             end
         else
-            TriggerClientEvent('QBCore:Notify', src, 'Você não tem sacolas suficientes', 'error', 3500)
+            TriggerClientEvent('QBCore:Notify', src, 'You dont have enough bags', 'error', 3500)
         end
     else
-        TriggerClientEvent('QBCore:Notify', src, 'Você não tem bolsas', 'error', 3500)
+        TriggerClientEvent('QBCore:Notify', src, 'You have no bags', 'error', 3500)
     end
 end)
 

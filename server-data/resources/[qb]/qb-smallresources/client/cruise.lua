@@ -13,9 +13,9 @@ Citizen.CreateThread(function()
                 if IsPedInAnyVehicle(GetPlayerPed(-1)) then
                     cruiseSpeed = Speed
                     if cruiseOn then
-                        QBCore.Functions.Notify("CruiseControl desativado!")
+                        QBCore.Functions.Notify("CruiseControl disabled!")
                     else
-                        QBCore.Functions.Notify("Velocidade limitada a "..tostring(math.floor(cruiseSpeed * 3.6)).."km/h")
+                        QBCore.Functions.Notify("Speed limited to "..tostring(math.floor(cruiseSpeed * 3.6)).."km/h")
                     end
                     TriggerEvent("seatbelt:client:ToggleCruise")
                 end

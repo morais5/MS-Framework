@@ -257,7 +257,7 @@ QBCore.Commands.Add("status", "Check a person his health", {}, false, function(s
 	if Player.PlayerData.job.name == "doctor" or Player.PlayerData.job.name == "ambulance" then
 		TriggerClientEvent("hospital:client:CheckStatus", source)
 	else
-		TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
 	end
 end)
 
@@ -266,7 +266,7 @@ QBCore.Commands.Add("heal", "Help a person his injuries", {}, false, function(so
 	if Player.PlayerData.job.name == "doctor" or Player.PlayerData.job.name == "ambulance" then
 		TriggerClientEvent("hospital:client:TreatWounds", source)
 	else
-		TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
 	end
 end)
 
@@ -275,7 +275,7 @@ QBCore.Commands.Add("revivep", "Revive a person", {}, false, function(source, ar
 	if Player.PlayerData.job.name == "doctor" then
 		TriggerClientEvent("hospital:client:RevivePlayer", source)
 	else
-		TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Este comando é para serviços de emergência!")
 	end
 end)
 
@@ -285,7 +285,7 @@ QBCore.Commands.Add("revive", "Reviva um jogador ou você mesmo", {{name="id", h
 		if Player ~= nil then
 			TriggerClientEvent('hospital:client:Revive', Player.PlayerData.source)
 		else
-			TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "O jogador não está online!")
+			TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "O jogador não está online!")
 		end
 	else
 		TriggerClientEvent('hospital:client:Revive', source)
@@ -298,7 +298,7 @@ QBCore.Commands.Add("setpain", "Defina a dor para um jogador ou para você", {{n
 		if Player ~= nil then
 			TriggerClientEvent('hospital:client:SetPain', Player.PlayerData.source)
 		else
-			TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "O jogador não está online!")
+			TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "O jogador não está online!")
 		end
 	else
 		TriggerClientEvent('hospital:client:SetPain', source)

@@ -153,11 +153,11 @@ QBCore.Functions.CreateUseableItem("firework4", function(source, item)
     TriggerClientEvent("fireworks:client:UseFirework", source, item.name, "scr_indep_fireworks")
 end)
 
-QBCore.Commands.Add("vestuit", "Tire seu colete da cabeça", {}, false, function(source, args)
+QBCore.Commands.Add("vestoff", "Take your vest off", {}, false, function(source, args)
     local Player = QBCore.Functions.GetPlayer(source)
     if Player.PlayerData.job.name == "police" then
         TriggerClientEvent("consumables:client:ResetArmor", source)
     else
-        TriggerClientEvent('chatMessage', source, "SISTEMA", "error", "Este comando é para serviços de emergência!")
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "This command is for emergency services!")
     end
 end)

@@ -136,7 +136,7 @@ AddEventHandler('qb-streetraces:CreateRace', function(amount)
                 joined = {}
             }
             TriggerServerEvent("qb-streetraces:NewRace", race)
-            QBCore.Functions.Notify("Race gemaakt voor $"..amount..",-!", "success")
+            QBCore.Functions.Notify("Race made for $"..amount..",-!", "success")
         else
             QBCore.Functions.Notify("end position to close!", "error")
         end

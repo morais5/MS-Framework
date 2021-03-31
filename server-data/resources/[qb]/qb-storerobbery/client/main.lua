@@ -60,7 +60,7 @@ Citizen.CreateThread(function()
 
             if dist <= 1 and Config.Registers[k].robbed then
                 inRange = true
-                DrawText3Ds(Config.Registers[k].x, Config.Registers[k].y, Config.Registers[k].z, 'Esta caixa registadora esta vazia...')
+                DrawText3Ds(Config.Registers[k].x, Config.Registers[k].y, Config.Registers[k].z, 'This cash register is empty...')
             end
         end
         if not inRange then 
@@ -82,7 +82,7 @@ Citizen.CreateThread(function()
                     inRange = true
                     if dist < 1.0 then
                         if not Config.Safes[safe].robbed then
-                            DrawText3Ds(Config.Safes[safe].x, Config.Safes[safe].y, Config.Safes[safe].z, '~g~E~w~ - Tentar abrir o cofre')
+                            DrawText3Ds(Config.Safes[safe].x, Config.Safes[safe].y, Config.Safes[safe].z, '~g~E~w~ - Try to open the safe')
                             if IsControlJustPressed(0, Keys["E"]) then
                                 if CurrentCops >= Config.MinimumStoreRobberyPolice then
                                     currentSafe = safe
@@ -120,7 +120,7 @@ Citizen.CreateThread(function()
                                 end
                             end
                         else
-                            DrawText3Ds(Config.Safes[safe].x, Config.Safes[safe].y, Config.Safes[safe].z, 'Cofre aberto..')
+                            DrawText3Ds(Config.Safes[safe].x, Config.Safes[safe].y, Config.Safes[safe].z, 'Open safe..')
                         end
                     end
                 end
@@ -203,13 +203,13 @@ AddEventHandler('lockpicks:UseLockpick', function(isAdvanced)
                                 copsCalled = true
                             end
                         else
-                            QBCore.Functions.Notify("Precisas duma caixa de ferramentas..", "error")
+                            QBCore.Functions.Notify("You need a toolbox..", "error")
                         end
                     end, "screwdriverset")
                 end
                 
             else
-                QBCore.Functions.Notify("Não existe policia suficiente", "error")
+                QBCore.Functions.Notify("There is not enough police", "error")
             end
         end
     end
@@ -298,7 +298,7 @@ RegisterNUICallback('success', function()
         TriggerServerEvent('qb-storerobbery:server:setRegisterStatus', currentRegister)
         local lockpickTime = 30000
         LockpickDoorAnim(lockpickTime)
-        QBCore.Functions.Progressbar("search_register", "A esvaziar a registadora..", lockpickTime, false, true, {
+        QBCore.Functions.Progressbar("search_register", "Emptying the register..", lockpickTime, false, true, {
             disableMovement = true,
             disableCarMovement = true,
             disableMouse = false,
@@ -315,7 +315,7 @@ RegisterNUICallback('success', function()
         end, function() -- Cancel
             openingDoor = false
             ClearPedTasks(GetPlayerPed(-1))
-            QBCore.Functions.Notify("Cancelado..", "error")
+            QBCore.Functions.Notify("Cancel..", "error")
             currentRegister = 0
         end)
         Citizen.CreateThread(function()
@@ -414,7 +414,7 @@ RegisterNUICallback('fail', function()
     if (IsWearingHandshoes() and math.random(1, 100) <= 25) then
         local pos = GetEntityCoords(GetPlayerPed(-1))
         TriggerServerEvent("evidence:server:CreateFingerDrop", pos)
-        QBCore.Functions.Notify("Cortas-te a tua mão com o lockpick..")
+        QBCore.Functions.Notify("You cut your hand with the lockpick..")
     end
     lockpick(false)
 end)
@@ -471,7 +471,7 @@ AddEventHandler('qb-storerobbery:client:robberyCall', function(type, key, street
         PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
         TriggerEvent('qb-policealerts:client:AddPoliceAlert', {
             timeOut = 5000,
-            alertTitle = "Roubo a Loja",
+            alertTitle = "Shop Robbery",
             coords = {
                 x = coords.x,
                 y = coords.y,
@@ -498,7 +498,7 @@ AddEventHandler('qb-storerobbery:client:robberyCall', function(type, key, street
         SetBlipAlpha(blip, transG)
         SetBlipScale(blip, 1.0)
         BeginTextCommandSetBlipName('STRING')
-        AddTextComponentString("112: Roubo a Loja")
+        AddTextComponentString("911 - Shop Robbery")
         EndTextCommandSetBlipName(blip)
         while transG ~= 0 do
             Wait(180 * 4)

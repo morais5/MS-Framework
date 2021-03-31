@@ -65,14 +65,14 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)
         if fireworkTime > 0 and fireworkLoc ~= nil then
-            DrawText3Ds(fireworkLoc.x, fireworkLoc.y, fireworkLoc.z, "Fim do fogo de artifício ~r~"..fireworkTime)
+            DrawText3Ds(fireworkLoc.x, fireworkLoc.y, fireworkLoc.z, "End of firework ~r~"..fireworkTime)
         end
     end
 end)
 
 RegisterNetEvent("fireworks:client:UseFirework")
 AddEventHandler("fireworks:client:UseFirework", function(itemName, assetName)
-    QBCore.Functions.Progressbar("spawn_object", "Colocando objeto..", 3000, false, true, {
+    QBCore.Functions.Progressbar("spawn_object", "Placing object..", 3000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -89,7 +89,7 @@ AddEventHandler("fireworks:client:UseFirework", function(itemName, assetName)
         DoFireWork(assetName, pos)
     end, function() -- Cancel
         StopAnimTask(GetPlayerPed(-1), "anim@narcotics@trash", "drop_front", 1.0)
-        QBCore.Functions.Notify("Cancelado..", "error")
+        QBCore.Functions.Notify("Cancel..", "error")
     end)
 end)
 

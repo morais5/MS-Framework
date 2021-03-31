@@ -79,7 +79,7 @@ AddEventHandler('qb-garages:client:takeOutDepot', function(vehicle)
                         SetEntityAsMissionEntity(veh, true, true)
                         doCarDamage(veh, vehicle)
                         TriggerServerEvent('qb-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
-                        QBCore.Functions.Notify("Remove the vehicle: Engine: " .. enginePercent .. "% Chassi: " .. bodyPercent.. "% Fuel.: "..currentFuel.. "%", "primary", 4500)
+                        QBCore.Functions.Notify("Remove the vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel.: "..currentFuel.. "%", "primary", 4500)
                         closeMenuFull()
                         SetVehicleEngineOn(veh, true, true)
                     	TriggerEvent('persistent-vehicles/register-vehicle', veh)
@@ -119,7 +119,7 @@ AddEventHandler('qb-garages:client:takeOutDepot', function(vehicle)
                             SetEntityAsMissionEntity(veh, true, true)
                             doCarDamage(veh, vehicle)
                             TriggerServerEvent('qb-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
-                            QBCore.Functions.Notify("Vehicle: Engine: " .. enginePercent .. "% Chassi: " .. bodyPercent.. "% Fuel.: "..currentFuel.. "%", "primary", 4500)
+                            QBCore.Functions.Notify("Vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel.: "..currentFuel.. "%", "primary", 4500)
                             closeMenuFull()
                             SetVehicleEngineOn(veh, true, true)
                             TriggerEvent('persistent-vehicles/register-vehicle', veh)
@@ -155,7 +155,7 @@ AddEventHandler('qb-garages:client:takeOutDepot', function(vehicle)
                     SetEntityAsMissionEntity(veh, true, true)
                     doCarDamage(veh, vehicle)
                     TriggerServerEvent('qb-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
-                    QBCore.Functions.Notify("You removed the vehicle: Engine: " .. enginePercent .. "% Chassi: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
+                    QBCore.Functions.Notify("You removed the vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
                     closeMenuFull()
                     SetVehicleEngineOn(veh, true, true)
                     TriggerEvent('persistent-vehicles/register-vehicle', veh)
@@ -193,7 +193,7 @@ AddEventHandler('qb-garages:client:takeOutDepot', function(vehicle)
                 SetEntityAsMissionEntity(veh, true, true)
                 doCarDamage(veh, vehicle)
                 TriggerServerEvent('qb-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
-                QBCore.Functions.Notify("You removed the vehicle: Engine: " .. enginePercent .. "% Chassi: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
+                QBCore.Functions.Notify("You removed the vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
                 closeMenuFull()
                 SetVehicleEngineOn(veh, true, true)
                 TriggerEvent('persistent-vehicles/register-vehicle', veh)
@@ -330,7 +330,7 @@ function HouseGarage(house)
                 if QBCore.Shared.Vehicles[v.vehicle]["brand"] ~= nil then
                     label = QBCore.Shared.Vehicles[v.vehicle]["brand"].." "..QBCore.Shared.Vehicles[v.vehicle]["name"]
                 end
-                Menu.addButton(label, "TakeOutGarageVehicle", v, v.state, " Engine: " .. enginePercent.."%", " Chassi: " .. bodyPercent.."%", " Fuel: "..currentFuel.."%")
+                Menu.addButton(label, "TakeOutGarageVehicle", v, v.state, " Engine: " .. enginePercent.."%", " Body: " .. bodyPercent.."%", " Fuel: "..currentFuel.."%")
             end
         end
             
@@ -370,7 +370,7 @@ function DepotLijst()
                 if QBCore.Shared.Vehicles[v.vehicle]["brand"] ~= nil then
                     label = QBCore.Shared.Vehicles[v.vehicle]["brand"].." "..QBCore.Shared.Vehicles[v.vehicle]["name"]
                 end
-                Menu.addButton(label, "TakeOutDepotVehicle", v, v.state .. " ($"..v.depotprice..",-)", " Engine: " .. enginePercent.."%", " Chassi: " .. bodyPercent.."%", " Fuel: "..currentFuel.."%")
+                Menu.addButton(label, "TakeOutDepotVehicle", v, v.state .. " ($"..v.depotprice..",-)", " Engine: " .. enginePercent.."%", " Body: " .. bodyPercent.."%", " Fuel: "..currentFuel.."%")
             end
         end
             
@@ -409,7 +409,7 @@ function VoertuigLijst()
                 if QBCore.Shared.Vehicles[v.vehicle]["brand"] ~= nil then
                     label = QBCore.Shared.Vehicles[v.vehicle]["brand"].." "..QBCore.Shared.Vehicles[v.vehicle]["name"]
                 end
-                Menu.addButton(label, "TakeOutVehicle", v, v.state, " Engine: " .. enginePercent .. "%", " Chassi: " .. bodyPercent.. "%", " Fuel: "..currentFuel.. "%")
+                Menu.addButton(label, "TakeOutVehicle", v, v.state, " Engine: " .. enginePercent .. "%", " Body: " .. bodyPercent.. "%", " Fuel: "..currentFuel.. "%")
             end
         end
             
@@ -472,7 +472,7 @@ function TakeOutVehicle(vehicle)
 	                doCarDamage(veh, vehicle)
 	                SetEntityAsMissionEntity(veh, true, true)
 	                TriggerServerEvent('qb-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
-	                QBCore.Functions.Notify("You picked up a vehicle: Engine: " .. enginePercent .. "% Chassi: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
+	                QBCore.Functions.Notify("You picked up a vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
 	                closeMenuFull()
 	                jaTaSpawnadinho = false
 	                TaskWarpPedIntoVehicle(GetPlayerPed(-1), veh, -1)
@@ -534,7 +534,7 @@ function TakeOutGarageVehicle(vehicle)
                 SetEntityAsMissionEntity(veh, true, true)
                 doCarDamage(veh, vehicle)
                 TriggerServerEvent('qb-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
-                QBCore.Functions.Notify("You picked up a vehicle: Engine: " .. enginePercent .. "% Chassi: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
+                QBCore.Functions.Notify("You picked up a vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
                 closeMenuFull()
                 TriggerEvent("vehiclekeys:client:SetOwner", GetVehicleNumberPlateText(veh))
                 TriggerEvent('persistent-vehicles/register-vehicle', veh)

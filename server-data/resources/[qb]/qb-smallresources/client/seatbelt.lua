@@ -24,7 +24,7 @@ Citizen.CreateThread(function()
                     TriggerEvent("seatbelt:client:ToggleSeatbelt")
                 end
             else
-                QBCore.Functions.Progressbar("harness_equip", "A desapertar o Cinto 3 pontas..", 5000, false, true, {
+                QBCore.Functions.Progressbar("harness_equip", "Unscrewing the 3-point belt..", 5000, false, true, {
                     disableMovement = false,
                     disableCarMovement = false,
                     disableMouse = false,
@@ -253,7 +253,7 @@ AddEventHandler('seatbelt:client:UseHarness', function(ItemData)
     local inveh = IsPedInAnyVehicle(GetPlayerPed(-1))
     if inveh and not IsThisModelABike(GetEntityModel(GetVehiclePedIsIn(ped))) then
         if not harnessOn then
-            QBCore.Functions.Progressbar("harness_equip", "A apertar o Cinto 3 pontas..", 5000, false, true, {
+            QBCore.Functions.Progressbar("harness_equip", "Tightening the 3-point Belt..", 5000, false, true, {
                 disableMovement = false,
                 disableCarMovement = false,
                 disableMouse = false,
@@ -266,7 +266,7 @@ AddEventHandler('seatbelt:client:UseHarness', function(ItemData)
             harnessData = ItemData
         end
     else
-        QBCore.Functions.Notify('Não estas dentro de um carro.', 'error', 3500)
+        QBCore.Functions.Notify('You are not in a car.', 'error', 3500)
     end
 end)
 

@@ -22,10 +22,10 @@ AddEventHandler('qb-trunk:server:KidnapTrunk', function(targetId, closestVehicle
     TriggerClientEvent('qb-trunk:client:KidnapGetIn', targetId, closestVehicle)
 end)
 
-QBCore.Commands.Add("getintrunk", "Entre no porta-malas", {}, false, function(source, args)
+QBCore.Commands.Add("getintrunk", "Enter the trunk", {}, false, function(source, args)
     TriggerClientEvent('qb-trunk:client:GetIn', source)
 end)
 
-QBCore.Commands.Add("kidnaptrunk", "Entre no porta-malas", {}, false, function(source, args)
+QBCore.Commands.Add("kidnaptrunk", "Enter the trunk", {}, false, function(source, args)
     TriggerClientEvent('qb-trunk:server:KidnapTrunk', source)
 end)

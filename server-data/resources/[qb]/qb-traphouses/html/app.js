@@ -118,7 +118,7 @@ function clearForm(e){
 function submitForm(e) {
 	if (e.value == "") {
 		$.post('http://qb-traphouses/ErrorMessage', JSON.stringify({
-            message: "Vul een code in!"
+            message: "Enter code!"
         }))
 	} else {
         $.post('http://qb-traphouses/EnterPincode', JSON.stringify({

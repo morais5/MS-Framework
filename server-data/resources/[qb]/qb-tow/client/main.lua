@@ -66,7 +66,7 @@ RegisterNetEvent('jobs:client:ToggleNpc')
 AddEventHandler('jobs:client:ToggleNpc', function()
     if QBCore.Functions.GetPlayerData().job.name == "tow" then
         if CurrentTow ~= nil then 
-            QBCore.Functions.Notify("Termina o teu trabalho primeiro!", "error")
+            QBCore.Functions.Notify("Finish your job first!", "error")
             return
         end
         NpcOn = not NpcOn
@@ -107,7 +107,7 @@ AddEventHandler('qb-tow:client:TowVehicle', function()
 
             if NpcOn and CurrentLocation ~= nil then
                 if GetEntityModel(targetVehicle) ~= GetHashKey(CurrentLocation.model) then
-                    QBCore.Functions.Notify("Não podes usar este veículo..", "error")
+                    QBCore.Functions.Notify("You cannot use this vehicle..", "error")
                     return
                 end
             end
@@ -116,7 +116,7 @@ AddEventHandler('qb-tow:client:TowVehicle', function()
                     local towPos = GetEntityCoords(vehicle)
                     local targetPos = GetEntityCoords(targetVehicle)
                     if GetDistanceBetweenCoords(towPos.x, towPos.y, towPos.z, targetPos.x, targetPos.y, targetPos.z, true) < 11.0 then
-                        QBCore.Functions.Progressbar("towing_vehicle", "A rebocar o veículo..", 5000, false, true, {
+                        QBCore.Functions.Progressbar("towing_vehicle", "Towing the vehicle..", 5000, false, true, {
                             disableMovement = true,
                             disableCarMovement = true,
                             disableMouse = false,
@@ -132,18 +132,18 @@ AddEventHandler('qb-tow:client:TowVehicle', function()
                             CurrentTow = targetVehicle
                             if NpcOn then
                                 RemoveBlip(CurrentBlip)
-                                QBCore.Functions.Notify("Leva o veículo para Garagem de Rebocados!", "success", 5000)
+                                QBCore.Functions.Notify("Take the vehicle to the impound!", "success", 5000)
                             end
-                            QBCore.Functions.Notify("Veículo rebocado!")
+                            QBCore.Functions.Notify("Towed vehicle!")
                         end, function() -- Cancel
                             StopAnimTask(GetPlayerPed(-1), "mini@repair", "fixing_a_ped", 1.0)
-                            QBCore.Functions.Notify("Falhaste!", "error")
+                            QBCore.Functions.Notify("You failed!", "error")
                         end)
                     end
                 end
             end
         else
-            QBCore.Functions.Progressbar("untowing_vehicle", "A retirar o veículo...", 5000, false, true, {
+            QBCore.Functions.Progressbar("untowing_vehicle", "Removing the vehicle...", 5000, false, true, {
                 disableMovement = true,
                 disableCarMovement = true,
                 disableMouse = false,
@@ -165,14 +165,14 @@ AddEventHandler('qb-tow:client:TowVehicle', function()
                     end
                 end
                 CurrentTow = nil
-                QBCore.Functions.Notify("Veículo retirado!")
+                QBCore.Functions.Notify("Vehicle removed!")
             end, function() -- Cancel
                 StopAnimTask(GetPlayerPed(-1), "mini@repair", "fixing_a_ped", 1.0)
-                QBCore.Functions.Notify("Falhaste!", "error")
+                QBCore.Functions.Notify("You failed!", "error")
             end)
         end
     else
-        QBCore.Functions.Notify("Deves estar num reboque primeiro..", "error")
+        QBCore.Functions.Notify("You must be in a truck first..", "error")
     end
 end)
 
@@ -195,9 +195,9 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, true) < 1.5) then
                         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                            DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, "~g~E~w~ - Guardar viatura")
+                            DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, "~g~E~w~ - Save vehicle")
                         else
-                            DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, "~g~E~w~ - Viaturas")
+                            DrawText3D(Config.Locations["vehicle"].coords.x, Config.Locations["vehicle"].coords.y, Config.Locations["vehicle"].coords.z, "~g~E~w~ - Vehicles")
                         end
                         if IsControlJustReleased(0, Keys["E"]) then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
@@ -214,7 +214,7 @@ Citizen.CreateThread(function()
     
                 if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, true) < 4.5) then
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, true) < 1.5) then
-                        DrawText3D(Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, "~g~E~w~ - Pagamento")
+                        DrawText3D(Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, "~g~E~w~ - Payment")
                         if IsControlJustReleased(0, Keys["E"]) then
                             if JobsDone > 0 then
                                 RemoveBlip(CurrentBlip)
@@ -222,11 +222,11 @@ Citizen.CreateThread(function()
                                 JobsDone = 0
                                 NpcOn = false
                             else
-                                QBCore.Functions.Notify("Ainda não fizeste nenhum trabalho..", "error")
+                                QBCore.Functions.Notify("You haven't done any work yet..", "error")
                             end
                         end
                     elseif (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, true) < 2.5) then
-                        DrawText3D(Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, "Pagamento")
+                        DrawText3D(Config.Locations["main"].coords.x, Config.Locations["main"].coords.y, Config.Locations["main"].coords.z, "Payment")
                     end  
                 end
 
@@ -254,8 +254,8 @@ function deliverVehicle(vehicle)
     DeleteVehicle(vehicle)
     JobsDone = JobsDone + 1
     VehicleSpawned = false
-    QBCore.Functions.Notify("Entregaste o veículo!", "success")
-    QBCore.Functions.Notify("Podes retirar o veículo")
+    QBCore.Functions.Notify("You delivered the vehicle!", "success")
+    QBCore.Functions.Notify("You can pick up the vehicle")
 
     local randomLocation = getRandomVehicleLocation()
     CurrentLocation.x = Config.Locations["towspots"][randomLocation].coords.x
@@ -297,21 +297,21 @@ end
 
 function MenuGarage()
     ped = GetPlayerPed(-1);
-    MenuTitle = "Garagem Rebocadores"
+    MenuTitle = "Garag"
     ClearMenu()
-    Menu.addButton("Veículos", "VehicleList", nil)
-    Menu.addButton("Fechar", "closeMenuFull", nil) 
+    Menu.addButton("Vehicles", "VehicleList", nil)
+    Menu.addButton("Close", "closeMenuFull", nil) 
 end
 
 function VehicleList(isDown)
     ped = GetPlayerPed(-1);
-    MenuTitle = "Veículos:"
+    MenuTitle = "Vehicles:"
     ClearMenu()
     for k, v in pairs(Config.Vehicles) do
-        Menu.addButton(Config.Vehicles[k], "TakeOutVehicle", k, "Garagem", " Motor: 100%", " Carroçaria: 100%", " Combustível: 100%")
+        Menu.addButton(Config.Vehicles[k], "TakeOutVehicle", k, "Garage", " Engine: 100%", " Body: 100%", " Fuel: 100%")
     end
         
-    Menu.addButton("Voltar", "MenuGarage",nil)
+    Menu.addButton("Back", "MenuGarage",nil)
 end
 
 function TakeOutVehicle(vehicleInfo)

@@ -713,7 +713,7 @@ function MenuOutfits()
     MenuTitle = "Fardas"
     ClearMenu()
     Menu.addButton("Fardas", "OutfitsList", nil)
-    Menu.addButton("Fechar Menu", "closeMenuFull", nil) 
+    Menu.addButton("Close", "closeMenuFull", nil) 
 end
 
 function changeOutfit()

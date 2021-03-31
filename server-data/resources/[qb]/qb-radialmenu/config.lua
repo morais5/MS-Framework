@@ -14,12 +14,12 @@ Config = {}
 Config.MenuItems = {
     [1] = {
         id = 'citizen',
-        title = 'Cidadão',
+        title = 'Citizen',
         icon = '#citizen',
         items = {
             {
                 id    = 'givenum',
-                title = 'Dar cartão de contacto',
+                title = 'Give Contact Details',
                 icon = '#nummer',
                 type = 'client',
                 event = 'qb-phone_new:client:GiveContactDetails',
@@ -27,7 +27,7 @@ Config.MenuItems = {
             },
             {
                 id    = 'billplayer',
-                title = 'Passar Multa',
+                title = 'Bill Player',
                 icon = '#general',
                 type = 'client',
                 event = 'police:client:BillPlayer',
@@ -35,7 +35,7 @@ Config.MenuItems = {
             },
             {
                 id    = 'getintrunk',
-                title = 'Entrar na mala',
+                title = 'Get In',
                 icon = '#vehiclekey',
                 type = 'client',
                 event = 'qb-trunk:client:GetIn',
@@ -43,7 +43,7 @@ Config.MenuItems = {
             },
             {
                 id    = 'cornerselling',
-                title = 'Vender Ervas',
+                title = 'Sell Herbs',
                 icon = '#cornerselling',
                 type = 'client',
                 event = 'qb-drugs:client:cornerselling',
@@ -51,7 +51,7 @@ Config.MenuItems = {
             },
             {
                 id    = 'togglehotdogsell',
-                title = 'Vender cachorro-quente',
+                title = 'Sell hot dogs',
                 icon = '#cornerselling',
                 type = 'client',
                 event = 'qb-hotdogjob:client:ToggleSell',
@@ -59,12 +59,12 @@ Config.MenuItems = {
             },
             {
                 id = 'interactions',
-                title = 'Interações',
+                title = 'Interactions',
                 icon = '#illegal',
                 items = {
                     {
                         id    = 'handcuff',
-                        title = 'Algemar',
+                        title = 'Handcuff',
                         icon = '#general',
                         type = 'client',
                         event = 'police:client:CuffPlayerSoft',
@@ -72,7 +72,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'playerinvehicle',
-                        title = 'Colocar no veículo',
+                        title = 'Place in vehicle',
                         icon = '#general',
                         type = 'client',
                         event = 'police:client:PutPlayerInVehicle',
@@ -80,7 +80,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'playerinvehicle',
-                        title = 'Colocar no veículo',
+                        title = 'Place in vehicle',
                         icon = '#general',
                         type = 'client',
                         event = 'police:client:PutPlayerInVehicle',
@@ -88,7 +88,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'stealplayer',
-                        title = 'Roubar Jogador',
+                        title = 'Rob',
                         icon = '#general',
                         type = 'client',
                         event = 'police:client:RobPlayer',
@@ -96,7 +96,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'escort',
-                        title = 'Raptar jogador',
+                        title = 'Kidnap',
                         icon = '#general',
                         type = 'client',
                         event = 'police:client:KidnapPlayer',
@@ -104,7 +104,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'escort2',
-                        title = 'Escoltar',
+                        title = 'Escort',
                         icon = '#general',
                         type = 'client',
                         event = 'police:client:EscortPlayer',
@@ -112,7 +112,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'escort554',
-                        title = 'Fazer refém',
+                        title = 'Take Hostage',
                         icon = '#general',
                         type = 'client',
                         event = 'A5:Client:TakeHostage',
@@ -129,12 +129,12 @@ Config.MenuItems = {
         items = {
             {
                 id = 'house',
-                title = 'Interações de house',
+                title = 'House',
                 icon = '#house',
                 items = {
                     {
                         id    = 'givehousekey',
-                        title = 'Dar chaves',
+                        title = 'Give Keys',
                         icon = '#vehiclekey',
                         type = 'client',
                         event = 'qb-houses:client:giveHouseKey',
@@ -143,7 +143,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'removehousekey',
-                        title = 'Remover chaves',
+                        title = 'Remove Keys',
                         icon = '#vehiclekey',
                         type = 'client',
                         event = 'qb-houses:client:removeHouseKey',
@@ -152,7 +152,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'togglelock',
-                        title = 'Trancar/Destrancar',
+                        title = 'Lock/Unlock',
                         icon = '#vehiclekey',
                         type = 'client',
                         event = 'qb-houses:client:toggleDoorlock',
@@ -160,7 +160,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'decoratehouse',
-                        title = 'Decorar house',
+                        title = 'Decorate',
                         icon = '#vehiclekey',
                         type = 'client',
                         event = 'qb-houses:client:decorate',
@@ -168,7 +168,7 @@ Config.MenuItems = {
                     },            
                     {
                         id = 'houseLocations',
-                        title = 'Definir lugar dos objetos',
+                        title = 'Place Objects',
                         icon = '#house',
                         items = {
                             {
@@ -181,7 +181,7 @@ Config.MenuItems = {
                             },
                             {
                                 id    = 'setoutift',
-                                title = 'Definir Guarda-roupa',
+                                title = 'Set Outfit',
                                 icon = '#vehiclekey',
                                 type = 'client',
                                 event = 'qb-houses:client:setLocation',
@@ -189,7 +189,7 @@ Config.MenuItems = {
                             },
                             {
                                 id    = 'setlogout',
-                                title = 'Definir porta',
+                                title = 'Set Logout',
                                 icon = '#vehiclekey',
                                 type = 'client',
                                 event = 'qb-houses:client:setLocation',
@@ -208,12 +208,12 @@ Config.MenuItems = {
         items = {
             {
                 id    = 'vehicledoors',
-                title = 'Porta do veiculo',
+                title = 'Doors',
                 icon = '#vehicledoors',
                 items = {
                     {
                         id    = 'door0',
-                        title = 'Porta do condutor',
+                        title = 'Driver',
                         icon = '#leftdoor',
                         type = 'client',
                         event = 'qb-radialmenu:client:openDoor',
@@ -221,7 +221,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'door4',
-                        title = 'Capô',
+                        title = 'Hood',
                         icon = '#idkaart',
                         type = 'client',
                         event = 'qb-radialmenu:client:openDoor',
@@ -229,7 +229,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'door1',
-                        title = 'Porta do passageiro',
+                        title = 'Passenger',
                         icon = '#rightdoor',
                         type = 'client',
                         event = 'qb-radialmenu:client:openDoor',
@@ -237,7 +237,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'door3',
-                        title = 'Porta traseira direita',
+                        title = 'Right rear',
                         icon = '#rightdoor',
                         type = 'client',
                         event = 'qb-radialmenu:client:openDoor',
@@ -245,7 +245,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'door5',
-                        title = 'Mala',
+                        title = 'Trunk',
                         icon = '#idkaart',
                         type = 'client',
                         event = 'qb-radialmenu:client:openDoor',
@@ -253,7 +253,7 @@ Config.MenuItems = {
                     },
                     {
                         id    = 'door2',
-                        title = 'Porta traseira esqueda',
+                        title = 'Left rear',
                         icon = '#leftdoor',
                         type = 'client',
                         event = 'qb-radialmenu:client:openDoor',
@@ -263,7 +263,7 @@ Config.MenuItems = {
             },
             {
                 id    = 'vehicleextras',
-                title = 'Extras do Veiculo',
+                title = 'Extra',
                 icon = '#plus',
                 items = {
                     {
@@ -342,7 +342,7 @@ Config.MenuItems = {
             },
             {
                 id    = 'vehicleseats',
-                title = 'Assentos do Veiculo',
+                title = 'Vehicle Seats',
                 icon = '#vehicledoors',
                 items = {
                     {
@@ -359,18 +359,18 @@ Config.MenuItems = {
     },
     [4] = {
         id = 'jobinteractions',
-        title = 'Trabalho',
+        title = 'Work',
         icon = '#vehicle',
         items = {},
     },
     [5] = {
         id = 'acessoriosroupainteragir',
-        title = 'Acessorios',
+        title = 'Accessories',
         icon = '#vehicleseat',
         items = {
             {
                 id    = 'mascara',
-                title = 'Mascara',
+                title = 'Mask',
                 icon = '#leftdoor',
                 type = 'server',
                 event = 'qb-clothing:delbes:radialmenu:mascara',
@@ -378,7 +378,7 @@ Config.MenuItems = {
             },
             {
                 id    = 'oculos',
-                title = 'Óculos',
+                title = 'Glasses',
                 icon = '#leftdoor',
                 type = 'server',
                 event = 'qb-clothing:delbes:radialmenu:oculos',
@@ -386,7 +386,7 @@ Config.MenuItems = {
             },
             {
                 id    = 'chapeu',
-                title = 'Chapéu',
+                title = 'Hat',
                 icon = '#leftdoor',
                 type = 'server',
                 event = 'qb-clothing:delbes:radialmenu:chapeu',
@@ -400,7 +400,7 @@ Config.JobInteractions = {
     ["ambulance"] = {
         {
             id    = 'statuscheck',
-            title = 'Verificar Sujeito',
+            title = 'Check Status',
             icon = '#general',
             type = 'client',
             event = 'hospital:client:CheckStatus',
@@ -408,7 +408,7 @@ Config.JobInteractions = {
         },
         {
             id    = 'reviveplayer',
-            title = 'Reviver',
+            title = 'Revive',
             icon = '#general',
             type = 'client',
             event = 'hospital:client:RevivePlayer',
@@ -416,7 +416,7 @@ Config.JobInteractions = {
         },
         {
             id    = 'treatwounds',
-            title = 'Curar Feridas',
+            title = 'Treat',
             icon = '#general',
             type = 'client',
             event = 'hospital:client:TreatWounds',
@@ -424,7 +424,7 @@ Config.JobInteractions = {
         },
         {
             id    = 'emergencybutton2',
-            title = 'Botão de Emergencia',
+            title = 'Police Emergency',
             icon = '#general',
             type = 'client',
             event = 'police:client:SendPoliceEmergencyAlert',
@@ -432,7 +432,7 @@ Config.JobInteractions = {
         },
         {
             id    = 'escort',
-            title = 'Escoltar',
+            title = 'Escort',
             icon = '#general',
             type = 'client',
             event = 'police:client:EscortPlayer',
@@ -440,12 +440,12 @@ Config.JobInteractions = {
         },
         {
             id = 'brancardoptions',
-            title = 'Maca',
+            title = 'Stretcher',
             icon = '#vehicle',
             items = {
                 {
                     id    = 'spawnbrancard',
-                    title = 'Spawnar Maca',
+                    title = 'Use Stretcher',
                     icon = '#general',
                     type = 'client',
                     event = 'hospital:client:TakeBrancard',
@@ -453,7 +453,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'despawnbrancard',
-                    title = 'Remover Maca',
+                    title = 'Remove Stretcher',
                     icon = '#general',
                     type = 'client',
                     event = 'hospital:client:RemoveBrancard',
@@ -465,7 +465,7 @@ Config.JobInteractions = {
     ["taxi"] = {
         {
             id    = 'togglemeter',
-            title = 'Mostrar/Esconder taximetro',
+            title = 'Show/Hide Meter',
             icon = '#general',
             type = 'client',
             event = 'qb-taxi:client:toggleMeter',
@@ -473,7 +473,7 @@ Config.JobInteractions = {
         },
         {
             id    = 'togglemouse',
-            title = 'Inciar/Parar taximetro',
+            title = 'Start/Stop Meter',
             icon = '#general',
             type = 'client',
             event = 'qb-taxi:client:enableMeter',
@@ -481,7 +481,7 @@ Config.JobInteractions = {
         },
         {
             id    = 'npc_mission',
-            title = 'Missão NPC',
+            title = 'NPC Taxi',
             icon = '#general',
             type = 'client',
             event = 'qb-taxi:client:DoTaxiNpc',
@@ -491,7 +491,7 @@ Config.JobInteractions = {
     ["police"] = {
         {
             id    = 'emergencybutton',
-            title = 'Botão de Emergencia',
+            title = 'Police Emergency',
             icon = '#general',
             type = 'client',
             event = 'police:client:SendPoliceEmergencyAlert',
@@ -499,7 +499,7 @@ Config.JobInteractions = {
         },
         {
             id    = 'checkvehstatus',
-            title = 'Verificar estado TUNE',
+            title = 'Check Veh.Status',
             icon = '#vehiclekey',
             type = 'client',
             event = 'qb-tunerchip:server:TuneStatus',
@@ -507,7 +507,7 @@ Config.JobInteractions = {
         },
         {
             id    = 'resethouse',
-            title = 'Resetar Lock da house',
+            title = 'Reset House Lock',
             icon = '#vehiclekey',
             type = 'client',
             event = 'qb-houses:client:ResetHouse',
@@ -515,7 +515,7 @@ Config.JobInteractions = {
         },
         {
             id    = 'takedriverlicense',
-            title = 'Revogar carta do sujeito',
+            title = 'Take Driver License',
             icon = '#vehicle',
             type = 'client',
             event = 'police:client:SeizeDriverLicense',
@@ -523,12 +523,12 @@ Config.JobInteractions = {
         },
         {
             id = 'policeinteraction',
-            title = 'Interação de Policia',
+            title = 'Police',
             icon = '#house',
             items = {
                 {
                     id    = 'statuscheck',
-                    title = 'Verificar Sujeito',
+                    title = 'Check Status',
                     icon = '#general',
                     type = 'client',
                     event = 'hospital:client:CheckStatus',
@@ -536,7 +536,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'escort',
-                    title = 'Escoltar',
+                    title = 'Escort',
                     icon = '#general',
                     type = 'client',
                     event = 'police:client:EscortPlayer',
@@ -544,7 +544,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'searchplayer',
-                    title = 'Revistar Sujeito',
+                    title = 'Search Player',
                     icon = '#general',
                     type = 'client',
                     event = 'police:client:SearchPlayer',
@@ -552,7 +552,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'jailplayer',
-                    title = 'Prender Sujeito',
+                    title = 'Jail Player',
                     icon = '#general',
                     type = 'client',
                     event = 'police:client:JailPlayer',
@@ -575,7 +575,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'spawnhek',
-                    title = 'Barreira',
+                    title = 'Barier',
                     icon = '#vehiclekey',
                     type = 'client',
                     event = 'police:client:spawnBarier',
@@ -591,7 +591,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'spawntent',
-                    title = 'Tenda',
+                    title = 'Tent',
                     icon = '#vehiclekey',
                     type = 'client',
                     event = 'police:client:spawnTent',
@@ -599,7 +599,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'spawnverlichting',
-                    title = 'Luz',
+                    title = 'Light',
                     icon = '#vehiclekey',
                     type = 'client',
                     event = 'police:client:spawnLight',
@@ -607,7 +607,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'spikestrip',
-                    title = 'Spikes',
+                    title = 'Spikestrip',
                     icon = '#vehiclekey',
                     type = 'client',
                     event = 'police:client:SpawnSpikeStrip',
@@ -615,7 +615,7 @@ Config.JobInteractions = {
                 },
                 {
                     id    = 'deleteobject',
-                    title = 'Remover object',
+                    title = 'Remove object',
                     icon = '#vehiclekey',
                     type = 'client',
                     event = 'police:client:deleteObject',

@@ -72,10 +72,10 @@ AddEventHandler('xd_drugs_weed:selld', function()
 			--TriggerClientEvent('QBCore:Notify', src, 'You messed up and got nothing', "error") 
 		end 
 	else
-		TriggerClientEvent('QBCore:Notify', src, 'Você não tem os itens certos', "error") 
+		TriggerClientEvent('QBCore:Notify', src, 'You dont have the right items', "error") 
 	end
 else
-	TriggerClientEvent('QBCore:Notify', src, 'Você não tem os itens certos', "error") 
+	TriggerClientEvent('QBCore:Notify', src, 'You dont have the right items', "error") 
 	
 end
 end)
@@ -114,7 +114,7 @@ QBCore.Functions.CreateCallback('poppy:process', function(source, cb)
 				if Player.Playerdata.items[k].name == "cannabis" then
 					cb(true)
 			    else
-					TriggerClientEvent("QBCore:Notify", src, "Você não tem Cannabis", "error", 10000)
+					TriggerClientEvent("QBCore:Notify", src, "You dont have Cannabis", "error", 10000)
 					cb(false)
 				end
 	        end

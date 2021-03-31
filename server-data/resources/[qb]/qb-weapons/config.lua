@@ -132,7 +132,7 @@ Config.WeaponAttachments = {
     ["WEAPON_VINTAGEPISTOL"] = {
         ["suppressor"] = {
             component = "COMPONENT_AT_PI_SUPP",
-            label = "Demper",
+            label = "Suppressor",
             item = "pistol_suppressor",
         },
         ["extendedclip"] = {
@@ -144,14 +144,14 @@ Config.WeaponAttachments = {
     ["WEAPON_PISTOL"] = {
         ["suppressor"] = {
             component = "COMPONENT_AT_PI_SUPP_02",
-            label = "Demper",
+            label = "Suppressor",
             item = "pistol_suppressor",
         },                                                     
     },
     ["WEAPON_MICROSMG"] = {
         ["suppressor"] = {
             component = "COMPONENT_AT_AR_SUPP_02",
-            label = "Demper",
+            label = "Suppressor",
             item = "smg_suppressor",
         },
         ["extendedclip"] = {
