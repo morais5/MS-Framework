@@ -37,7 +37,7 @@ CastBait = function(rodHandle, castLocation)
     while not IsControlJustPressed(0, 47) do
         Citizen.Wait(5)
 
-        ShowHelpNotification("Launch your line by pressing ~INPUT~")
+        ShowHelpNotification("Launch your line by pressing ~INPUT_DETONATE~")
 
         if GetGameTimer() - startedCasting > 5000 then
             QBCore.Functions.Notify("Você precisa lançar a isca.", "primary")

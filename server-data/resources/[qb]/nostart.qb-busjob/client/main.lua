@@ -278,7 +278,7 @@ function RunRoute(Route)
 			local posx2,posy2,posz2 = table.unpack(GetEntityCoords(GetPlayerPed(-1),false))
 			LastLocation = location
 			SetTextComponentFormat('STRING')
-			AddTextComponentString("~INPUT~ Open doors")
+			AddTextComponentString("~INPUT_DETONATE~ Open doors")
 			DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 			stop('hidden')
 			while (IsControlPressed(0,  JobsClientCore.Keys['G']) ~= true) and (Dooropent ~= true) and CheckDistance(location) do
@@ -385,7 +385,7 @@ function RunRoute(Route)
 					end
 				end
 				SetTextComponentFormat('STRING')
-				AddTextComponentString("~INPUT~ Close doors")
+				AddTextComponentString("~INPUT_DETONATE~ Close doors")
 				DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 				while (IsControlPressed(0,  JobsClientCore.Keys['G']) ~= true) and (Dooropent) and CheckDistance(location) do
 					Citizen.Wait(7)
