@@ -457,6 +457,7 @@ AddEventHandler('inventory:server:SetInventoryData', function(fromInventory, toI
 					local toAmount = tonumber(toAmount) ~= nil and tonumber(toAmount) or toItemData.amount
 					if toItemData.name ~= fromItemData.name then
 						RemoveFromStash(stashId, fromSlot, itemInfo["name"], toAmount)
+						SaveStashItems(stashId, Stashes[stashId].items)
 						Player.Functions.AddItem(toItemData.name, toAmount, fromSlot, toItemData.info)
 						TriggerEvent("qb-log:server:sendLog", Player.PlayerData.citizenid, "itemswapped", {type="stash1", toName=toItemData.name, toAmount=toAmount, fromName=fromItemData.name, fromAmount=fromAmount, target=stashId})
 						TriggerEvent("qb-log:server:CreateLog", "stash", "Swapped Item", "orange", "**".. GetPlayerName(src) .. "** (citizenid: *"..Player.PlayerData.citizenid.."* | id: *"..src.."*) swapped item; name: **"..itemInfo["name"].."**, amount: **" .. toAmount .. "** with name: **" .. fromItemData.name .. "**, amount: **" .. fromAmount .. "** - stash: *" .. stashId .. "*")
