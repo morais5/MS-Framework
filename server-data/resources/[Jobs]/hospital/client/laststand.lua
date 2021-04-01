@@ -76,7 +76,7 @@ function SetLaststand(bool, spawn)
                     CanBePickuped = true
                     Config.DeathTime = LaststandTime
                 elseif LaststandTime - 1 <= 0 then
-                    QBCore.Functions.Notify("Sangras-te até à morte..", "error")
+                    QBCore.Functions.Notify("You bleed to death..", "error")
                     SetLaststand(false)
                     local killer_2, killerWeapon = NetworkGetEntityKillerOfPlayer(player)
                     local killer = GetPedSourceOfDeath(playerPed)
@@ -86,9 +86,9 @@ function SetLaststand(bool, spawn)
                     end
     
                     local killerId = NetworkGetPlayerIndexFromPed(killer)
-                    local killerName = killerId ~= -1 and GetPlayerName(killerId) .. " " .. "("..GetPlayerServerId(killerId)..")" or "Ele proprio ou NPC"
-                    local weaponLabel = QBCore.Shared.Weapons[killerWeapon] ~= nil and QBCore.Shared.Weapons[killerWeapon]["label"] or "Desconhecido"
-                    local weaponName = QBCore.Shared.Weapons[killerWeapon] ~= nil and QBCore.Shared.Weapons[killerWeapon]["name"] or "Arma_Desconhecida"
+                    local killerName = killerId ~= -1 and GetPlayerName(killerId) .. " " .. "("..GetPlayerServerId(killerId)..")" or "He owns or NPC"
+                    local weaponLabel = QBCore.Shared.Weapons[killerWeapon] ~= nil and QBCore.Shared.Weapons[killerWeapon]["label"] or "Unknown"
+                    local weaponName = QBCore.Shared.Weapons[killerWeapon] ~= nil and QBCore.Shared.Weapons[killerWeapon]["name"] or "Unknown weapon"
                     --TriggerServerEvent("qb-log:server:CreateLog", "death", GetPlayerName(player) .. " ("..GetPlayerServerId(player)..") morreu", "red", "**".. killerName .. "** matou  ".. GetPlayerName(player) .." com **".. weaponLabel .. "** (" .. weaponName .. ")")
                     deathTime = 0
                     OnDeath()
@@ -122,7 +122,7 @@ AddEventHandler('hospital:client:UseFirstAid', function()
             TriggerServerEvent('hospital:server:UseFirstAid', playerId)
         end
     else
-        QBCore.Functions.Notify('Ação impossivel!', 'error')
+        QBCore.Functions.Notify('Impossible Action!', 'error')
     end
 end)
 
@@ -143,7 +143,7 @@ RegisterNetEvent('hospital:client:HelpPerson')
 AddEventHandler('hospital:client:HelpPerson', function(targetId)
     local ped = GetPlayerPed(-1)
     isHealingPerson = true
-    QBCore.Functions.Progressbar("hospital_revive", "A reanimar civil..", math.random(30000, 60000), false, true, {
+    QBCore.Functions.Progressbar("hospital_revive", "To revive civilian...", math.random(30000, 60000), false, true, {
         disableMovement = false,
         disableCarMovement = false,
         disableMouse = false,
@@ -160,6 +160,6 @@ AddEventHandler('hospital:client:HelpPerson', function(targetId)
     end, function() -- Cancel
         isHealingPerson = false
         ClearPedTasks(ped)
-        QBCore.Functions.Notify("Cancelado!", "error")
+        QBCore.Functions.Notify("Canceled!", "error")
     end)
 end)

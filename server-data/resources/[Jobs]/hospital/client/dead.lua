@@ -24,9 +24,9 @@ Citizen.CreateThread(function()
                 end
 
                 local killerId = NetworkGetPlayerIndexFromPed(killer)
-                local killerName = killerId ~= -1 and GetPlayerName(killerId) .. " " .. "("..GetPlayerServerId(killerId)..")" or "Ele proprio ou NPC"
-                local weaponLabel = QBCore.Shared.Weapons[killerWeapon] ~= nil and QBCore.Shared.Weapons[killerWeapon]["label"] or "Desconhecido"
-                local weaponName = QBCore.Shared.Weapons[killerWeapon] ~= nil and QBCore.Shared.Weapons[killerWeapon]["name"] or "Arma_Desconhecida"
+                local killerName = killerId ~= -1 and GetPlayerName(killerId) .. " " .. "("..GetPlayerServerId(killerId)..")" or "He owns or NPC"
+                local weaponLabel = QBCore.Shared.Weapons[killerWeapon] ~= nil and QBCore.Shared.Weapons[killerWeapon]["label"] or "Unknown"
+                local weaponName = QBCore.Shared.Weapons[killerWeapon] ~= nil and QBCore.Shared.Weapons[killerWeapon]["name"] or "Unknown weapon"
                 --TriggerServerEvent("qb-log:server:CreateLog", "death", GetPlayerName(player) .. " ("..GetPlayerServerId(player)..") morreu", "red", "**".. killerName .. "** matou ".. GetPlayerName(player) .." com **".. weaponLabel .. "** (" .. weaponName .. ")")
                 deathTime = Config.DeathTime
                 OnDeath()
@@ -53,9 +53,9 @@ Citizen.CreateThread(function()
             if isDead then
                 if not isInHospitalBed then 
                     if deathTime > 0 then
-                        DrawTxt(0.93, 1.44, 1.0,1.0,0.6, "RESPAWN EM: ~r~" .. math.ceil(deathTime) .. "~w~ SEGUNDOS", 255, 255, 255, 255)
+                        DrawTxt(0.93, 1.44, 1.0,1.0,0.6, "RESPAWN AT: ~r~" .. math.ceil(deathTime) .. "~w~ SECONDS", 255, 255, 255, 255)
                     else
-                        DrawTxt(0.865, 1.44, 1.0, 1.0, 0.6, "~w~ PRESSIONA ~r~[E] ("..hold..")~w~ PARA RESPAWNAR ~r~($"..Config.BillCost..")~w~", 255, 255, 255, 255)
+                        DrawTxt(0.865, 1.44, 1.0, 1.0, 0.6, "~w~ PRESS ~r~[E] ("..hold..")~w~ TO RESPAWNAR ~r~($"..Config.BillCost..")~w~", 255, 255, 255, 255)
                     end
                 end
 
@@ -91,9 +91,9 @@ Citizen.CreateThread(function()
                 EnableControlAction(0, Keys['HOME'], true)
 
                 if LaststandTime > Laststand.MinimumRevive then
-                    DrawTxt(0.94, 1.44, 1.0, 1.0, 0.6, "VAIS MORRER EM: ~r~" .. math.ceil(LaststandTime) .. "~w~ SEGUNDOS", 255, 255, 255, 255)
+                    DrawTxt(0.94, 1.44, 1.0, 1.0, 0.6, "YOU WILL DIE IN: ~r~" .. math.ceil(LaststandTime) .. "~w~ SECONDS", 255, 255, 255, 255)
                 else
-                    DrawTxt(0.845, 1.44, 1.0, 1.0, 0.6, "VAIS MORRER EM: ~r~" .. math.ceil(LaststandTime) .. "~w~ SEGUNDOS, AINDA PODES SER AJUDADO", 255, 255, 255, 255)
+                    DrawTxt(0.845, 1.44, 1.0, 1.0, 0.6, "YOU WILL DIE IN: ~r~" .. math.ceil(LaststandTime) .. "~w~ SECONDS, YOU CAN STILL BE HELPED", 255, 255, 255, 255)
                 end
 
                 if not isEscorted then

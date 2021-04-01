@@ -25,9 +25,9 @@ Citizen.CreateThread(function()
                     if (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 5) then
                         if (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 1.5) then
                             if onDuty then
-                                DrawText3D(v.x, v.y, v.z, "~r~E~w~ - Sair em serviço")
+                                DrawText3D(v.x, v.y, v.z, "~r~E~w~ - Go out of service")
                             else
-                                DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Entrar de Serviço")
+                                DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Enter Service")
                             end
                             if IsControlJustReleased(0, Keys["E"]) then
                                 onDuty = not onDuty
@@ -41,7 +41,7 @@ Citizen.CreateThread(function()
                                 Wait(500)
                             end
                         elseif (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 4.5) then
-                            DrawText3D(v.x, v.y, v.z, "Entrar/Sair de serviço")
+                            DrawText3D(v.x, v.y, v.z, "Enter/Ot of service")
                         end  
                     end
                 end
@@ -50,12 +50,12 @@ Citizen.CreateThread(function()
                     if (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 4.5) then
                         if onDuty then
                             if (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 1.5) then
-                                DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Armario")
+                                DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Closet")
                                 if IsControlJustReleased(0, Keys["E"]) then
                                     TriggerServerEvent("inventory:server:OpenInventory", "shop", "hospital", Config.Items)
                                 end
                             elseif (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 2.5) then
-                                DrawText3D(v.x, v.y, v.z, "Armario")
+                                DrawText3D(v.x, v.y, v.z, "Closet")
                             end  
                         end
                     end
@@ -66,9 +66,9 @@ Citizen.CreateThread(function()
                         DrawMarker(2, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 0, 0, 222, false, false, false, true, false, false, false)
                         if (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 1.5) then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                                DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Guardar veiculo")
+                                DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Save vehicle")
                             else
-                                DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Requisitar veiculo")
+                                DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Require vehicle")
                             end
                             if IsControlJustReleased(0, Keys["E"]) then
                                 if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
@@ -90,9 +90,9 @@ Citizen.CreateThread(function()
                             DrawMarker(2, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 0, 0, 222, false, false, false, true, false, false, false)
                             if (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 1.5) then
                                 if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                                    DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Guardar Helicoptero")
+                                    DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Save Helicoptero.")
                                 else
-                                    DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Requisitar Helicoptero")
+                                    DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Request Helicopter")
                                 end
                                 if IsControlJustReleased(0, Keys["E"]) then
                                     if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
@@ -121,7 +121,7 @@ Citizen.CreateThread(function()
 
             for k, v in pairs(Config.Locations["main"]) do
                 if (GetDistanceBetweenCoords(pos,v.x,v.y,v.z, true) < 1.5) then
-                    DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Subir para o telhado no elevador")
+                    DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Climb to the roof in the elevator")
                     if IsControlJustReleased(0, Keys["E"]) then
                         DoScreenFadeOut(500)
                         while not IsScreenFadedOut() do
@@ -143,7 +143,7 @@ Citizen.CreateThread(function()
 
             for k, v in pairs(Config.Locations["roof"]) do
                 if (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 1.5) then
-                    DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Descer pelo elevador")
+                    DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Off the elevator")
                     if IsControlJustReleased(0, Keys["E"]) then
                         DoScreenFadeOut(500)
                         while not IsScreenFadedOut() do
@@ -306,7 +306,7 @@ AddEventHandler('hospital:client:RevivePlayer', function()
             if player ~= -1 and distance < 5.0 then
                 local playerId = GetPlayerServerId(player)
                 isHealingPerson = true
-                QBCore.Functions.Progressbar("hospital_revive", "A reanimar civil..", 5000, false, true, {
+                QBCore.Functions.Progressbar("hospital_revive", "To revive civilian...", 5000, false, true, {
                     disableMovement = false,
                     disableCarMovement = false,
                     disableMouse = false,
@@ -318,12 +318,12 @@ AddEventHandler('hospital:client:RevivePlayer', function()
                 }, {}, {}, function() -- Done
                     isHealingPerson = false
                     StopAnimTask(GetPlayerPed(-1), healAnimDict, "exit", 1.0)
-                    QBCore.Functions.Notify("Reanimaste o civil!")
+                    QBCore.Functions.Notify("You revived the civilian!")
                     TriggerServerEvent("hospital:server:RevivePlayer", playerId)
                 end, function() -- Cancel
                     isHealingPerson = false
                     StopAnimTask(GetPlayerPed(-1), healAnimDict, "exit", 1.0)
-                    QBCore.Functions.Notify("Falhaste!", "error")
+                    QBCore.Functions.Notify("Faulty!", "error")
                 end)
             end
         end
@@ -345,10 +345,10 @@ AddEventHandler('hospital:client:CheckStatus', function()
                                 table.insert(statusChecks, {bone = Config.BoneIndexes[k], label = v.label .." (".. Config.WoundStates[v.severity] ..")"})
                             elseif result["WEAPONWOUNDS"] ~= nil then 
                                 for k, v in pairs(result["WEAPONWOUNDS"]) do
-                                    TriggerEvent("chatMessage", "ESTADO DA VERIFICAÇÃO", "error", WeaponDamageList[v])
+                                    TriggerEvent("chatMessage", "Verification status", "error", WeaponDamageList[v])
                                 end
                             elseif result["BLEED"] > 0 then
-                                TriggerEvent("chatMessage", "ESTADO DA VERIFICAÇÃO", "error", ": "..Config.BleedingStates[v].label)
+                                TriggerEvent("chatMessage", "Verification status", "error", ": "..Config.BleedingStates[v].label)
                             end
                         end
                         isStatusChecking = true
@@ -368,7 +368,7 @@ AddEventHandler('hospital:client:TreatWounds', function()
             if player ~= -1 and distance < 5.0 then
                 local playerId = GetPlayerServerId(player)
                 isHealingPerson = true
-                QBCore.Functions.Progressbar("hospital_healwounds", "A curar ferimentos..", 5000, false, true, {
+                QBCore.Functions.Progressbar("hospital_healwounds", "Cure injuries..", 5000, false, true, {
                     disableMovement = false,
                     disableCarMovement = false,
                     disableMouse = false,
@@ -380,12 +380,12 @@ AddEventHandler('hospital:client:TreatWounds', function()
                 }, {}, {}, function() -- Done
                     isHealingPerson = false
                     StopAnimTask(GetPlayerPed(-1), healAnimDict, "exit", 1.0)
-                    QBCore.Functions.Notify("Ajudas-te o civil!")
+                    QBCore.Functions.Notify("You helped the civilian!")
                     TriggerServerEvent("hospital:server:TreatWounds", playerId)
                 end, function() -- Cancel
                     isHealingPerson = false
                     StopAnimTask(GetPlayerPed(-1), healAnimDict, "exit", 1.0)
-                    QBCore.Functions.Notify("Falhaste!", "error")
+                    QBCore.Functions.Notify("Faulty!", "error")
                 end)
             end
         end
@@ -394,18 +394,18 @@ end)
 
 function MenuGarage(isDown)
     ped = GetPlayerPed(-1);
-    MenuTitle = "Garagem"
+    MenuTitle = "Garage"
     ClearMenu()
-    Menu.addButton("Veiculos", "VehicleList", isDown)
+    Menu.addButton("Vehicle", "VehicleList", isDown)
     Menu.addButton("Close", "closeMenuFull", nil) 
 end
 
 function VehicleList(isDown)
     ped = GetPlayerPed(-1);
-    MenuTitle = "Veiculos:"
+    MenuTitle = "Vehicle:"
     ClearMenu()
     for k, v in pairs(Config.Vehicles) do
-        Menu.addButton(Config.Vehicles[k], "TakeOutVehicle", {k, isDown}, "Garagem", " Motor: 100%", " Body: 100%", " Comb.: 100%")
+        Menu.addButton(Config.Vehicles[k], "TakeOutVehicle", {k, isDown}, "Garage", " Motor: 100%", " Body: 100%", " Comb.: 100%")
     end
         
     Menu.addButton("Voltar", "MenuGarage",nil)
