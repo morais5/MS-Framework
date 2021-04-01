@@ -21,72 +21,72 @@ Config.Locations = {
     -- Bloods
 
     ["ogcarspawnbloods"] = {
-        label = "Gagarem Spawn",
+        label = "Garage Spawn",
         coords = {x =-179.09, y =-1623.75, z =33.31, h =4.39},
     },
     ["stashbloods"] = {
-        label = "Bloods Armario",
+        label = "Bloods Closet",
         coords = {x =-161.15, y =-1638.55, z =34.03},
     },
 
     -- Vanilla
 
     ["ogcarspawnvanilla"] = {
-        label = "Gagarem Spawn",
+        label = "Garage Spawn",
         coords = {x =137.2, y =-1306.94, z =28.92, h =311.44},
     },
     ["stashvanilla"] = {
-        label = "Vanilla Armario",
+        label = "Vanilla Closet",
         coords = {x =93.48, y =-1288.32, z =29.26},
     },
 
     -- Bahamas
     ["ogcarspawnvbahamas"] = {
-        label = "Gagarem Spawn",
+        label = "Garage Spawn",
         coords = {x =-1402.6, y =-586.45, z =30.28, h =124.04},
     },
     ["stashbahamas"] = {
-        label = "Bahamas Armario",
+        label = "Bahamas Closet",
         coords = {x =1386.22, y =-627.45, z =30.82},
     },
 
     -- Hyper
     ["ogcarspawnhyper"] = {
-        label = "Gagarem Spawn",
+        label = "Garage Spawn",
         coords = {x =-30.95, y =-1382.81, z =29.3, h =354.19},
     },
     ["stashhyper"] = {
-        label = "Hyper Armario",
+        label = "Hyper Closet",
         coords = {x =-31.3, y =-1395.71, z =29.51},
     },
 
     -- Groove
     ["ogcarspawnGroove"] = {
-        label = "Gagarem Spawn",
+        label = "Garage Spawn",
         coords = {x =88.33, y =-1968.8, z =20.75, h =136.05},
     },
     ["stashGroove"] = {
-        label = "Groove Armario",
+        label = "Groove Closet",
         coords = {x =84.92, y =-1967.06, z =20.75, h =75.97},
     },
 
     -- Mafia 
     ["ogcarspawnMafia"] = {
-        label = "Gagarem Spawn",
+        label = "Garage Spawn",
         coords = {x =-1893.24, y =2033.98, z =140.74, h =147.25},
     },
     ["stashMafia"] = {
-        label = "Mafia Armario",
+        label = "Mafia Closet",
         coords = {x =-1869.8, y =2059.57, z =135.43, h =70.47},
     },
 
     -- Cartel
     ["ogcarspawnCartel"] = {
-        label = "Gagarem Spawn",
+        label = "Garage Spawn",
         coords = {x =1370.48, y =1146.75, z =113.76, h =350.6},
     },
     ["stashCartel"] = {
-        label = "Cartel Armario",
+        label = "Cartel Closet",
         coords = {x =1392.55, y =1139.09, z =114.44, h =268.95},
     },
 }

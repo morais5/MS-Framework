@@ -58,9 +58,9 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.Locations["ogcarspawnbloods"].coords.x, Config.Locations["ogcarspawnbloods"].coords.y, Config.Locations["ogcarspawnbloods"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["ogcarspawnbloods"].coords.x, Config.Locations["ogcarspawnbloods"].coords.y, Config.Locations["ogcarspawnbloods"].coords.z, true) < 1.5) then
                         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                            DrawText3D(Config.Locations["ogcarspawnbloods"].coords.x, Config.Locations["ogcarspawnbloods"].coords.y, Config.Locations["ogcarspawnbloods"].coords.z, "~g~E~w~ - Guardar Veiculo")
+                            DrawText3D(Config.Locations["ogcarspawnbloods"].coords.x, Config.Locations["ogcarspawnbloods"].coords.y, Config.Locations["ogcarspawnbloods"].coords.z, "~g~E~w~ - Save vehicle")
                         else
-                            DrawText3D(Config.Locations["ogcarspawnbloods"].coords.x, Config.Locations["ogcarspawnbloods"].coords.y, Config.Locations["ogcarspawnbloods"].coords.z, "~g~E~w~ - Garagem")
+                            DrawText3D(Config.Locations["ogcarspawnbloods"].coords.x, Config.Locations["ogcarspawnbloods"].coords.y, Config.Locations["ogcarspawnbloods"].coords.z, "~g~E~w~ - Garage")
                         end
                         if IsControlJustReleased(0, Keys["E"]) then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
@@ -92,7 +92,7 @@ Citizen.CreateThread(function()
                 if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashbloods"].coords.x, Config.Locations["stashbloods"].coords.y, Config.Locations["stashbloods"].coords.z, true) < 10.0) then
                     DrawMarker(2, Config.Locations["stashbloods"].coords.x, Config.Locations["stashbloods"].coords.y, Config.Locations["stashbloods"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashbloods"].coords.x, Config.Locations["stashbloods"].coords.y, Config.Locations["stashbloods"].coords.z, true) < 1.5) then
-                            DrawText3D(Config.Locations["stashbloods"].coords.x, Config.Locations["stashbloods"].coords.y, Config.Locations["stashbloods"].coords.z, "~g~E~w~ - Armario ")
+                            DrawText3D(Config.Locations["stashbloods"].coords.x, Config.Locations["stashbloods"].coords.y, Config.Locations["stashbloods"].coords.z, "~g~E~w~ - Closet ")
                         if IsControlJustReleased(0, Keys["E"]) then
                             print('nonce')
                             TriggerServerEvent("inventory:server:OpenInventory", "stash", "bloodstash", {
@@ -124,9 +124,9 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.Locations["ogcarspawnhyper"].coords.x, Config.Locations["ogcarspawnhyper"].coords.y, Config.Locations["ogcarspawnhyper"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["ogcarspawnhyper"].coords.x, Config.Locations["ogcarspawnhyper"].coords.y, Config.Locations["ogcarspawnhyper"].coords.z, true) < 1.5) then
                         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                            DrawText3D(Config.Locations["ogcarspawnhyper"].coords.x, Config.Locations["ogcarspawnhyper"].coords.y, Config.Locations["ogcarspawnhyper"].coords.z, "~g~E~w~ - Guardar Veiculo")
+                            DrawText3D(Config.Locations["ogcarspawnhyper"].coords.x, Config.Locations["ogcarspawnhyper"].coords.y, Config.Locations["ogcarspawnhyper"].coords.z, "~g~E~w~ - Save vehicle")
                         else
-                            DrawText3D(Config.Locations["ogcarspawnhyper"].coords.x, Config.Locations["ogcarspawnhyper"].coords.y, Config.Locations["ogcarspawnhyper"].coords.z, "~g~E~w~ - Garagem")
+                            DrawText3D(Config.Locations["ogcarspawnhyper"].coords.x, Config.Locations["ogcarspawnhyper"].coords.y, Config.Locations["ogcarspawnhyper"].coords.z, "~g~E~w~ - Garage")
                         end
                         if IsControlJustReleased(0, Keys["E"]) then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
@@ -158,7 +158,7 @@ Citizen.CreateThread(function()
                 if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashhyper"].coords.x, Config.Locations["stashhyper"].coords.y, Config.Locations["stashhyper"].coords.z, true) < 10.0) then
                     DrawMarker(2, Config.Locations["stashhyper"].coords.x, Config.Locations["stashhyper"].coords.y, Config.Locations["stashhyper"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashhyper"].coords.x, Config.Locations["stashhyper"].coords.y, Config.Locations["stashhyper"].coords.z, true) < 1.5) then
-                            DrawText3D(Config.Locations["stashhyper"].coords.x, Config.Locations["stashhyper"].coords.y, Config.Locations["stashhyper"].coords.z, "~g~E~w~ - Armario ")
+                            DrawText3D(Config.Locations["stashhyper"].coords.x, Config.Locations["stashhyper"].coords.y, Config.Locations["stashhyper"].coords.z, "~g~E~w~ - Closet ")
                         if IsControlJustReleased(0, Keys["E"]) then
                             print('nonce')
                             TriggerServerEvent("inventory:server:OpenInventory", "stash", "stashhyper", {
@@ -190,9 +190,9 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.Locations["ogcarspawnbahamas"].coords.x, Config.Locations["ogcarspawnbahamas"].coords.y, Config.Locations["ogcarspawnbahamas"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["ogcarspawnbahamas"].coords.x, Config.Locations["ogcarspawnbahamas"].coords.y, Config.Locations["ogcarspawnbahamas"].coords.z, true) < 1.5) then
                         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                            DrawText3D(Config.Locations["ogcarspawnbahamas"].coords.x, Config.Locations["ogcarspawnbahamas"].coords.y, Config.Locations["ogcarspawnbahamas"].coords.z, "~g~E~w~ - Guardar Veiculo")
+                            DrawText3D(Config.Locations["ogcarspawnbahamas"].coords.x, Config.Locations["ogcarspawnbahamas"].coords.y, Config.Locations["ogcarspawnbahamas"].coords.z, "~g~E~w~ - Save vehicle")
                         else
-                            DrawText3D(Config.Locations["ogcarspawnbahamas"].coords.x, Config.Locations["ogcarspawnbahamas"].coords.y, Config.Locations["ogcarspawnbahamas"].coords.z, "~g~E~w~ - Garagem")
+                            DrawText3D(Config.Locations["ogcarspawnbahamas"].coords.x, Config.Locations["ogcarspawnbahamas"].coords.y, Config.Locations["ogcarspawnbahamas"].coords.z, "~g~E~w~ - Garage")
                         end
                         if IsControlJustReleased(0, Keys["E"]) then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
@@ -224,7 +224,7 @@ Citizen.CreateThread(function()
                 if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashbahamas"].coords.x, Config.Locations["stashbahamas"].coords.y, Config.Locations["stashbahamas"].coords.z, true) < 10.0) then
                     DrawMarker(2, Config.Locations["stashbahamas"].coords.x, Config.Locations["stashbahamas"].coords.y, Config.Locations["stashbahamas"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashbahamas"].coords.x, Config.Locations["stashbahamas"].coords.y, Config.Locations["stashbahamas"].coords.z, true) < 1.5) then
-                            DrawText3D(Config.Locations["stashbahamas"].coords.x, Config.Locations["stashbahamas"].coords.y, Config.Locations["stashbahamas"].coords.z, "~g~E~w~ - Armario ")
+                            DrawText3D(Config.Locations["stashbahamas"].coords.x, Config.Locations["stashbahamas"].coords.y, Config.Locations["stashbahamas"].coords.z, "~g~E~w~ - Closet ")
                         if IsControlJustReleased(0, Keys["E"]) then
                             print('nonce')
                             TriggerServerEvent("inventory:server:OpenInventory", "stash", "bahamasstash", {
@@ -256,9 +256,9 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.Locations["ogcarspawnvanilla"].coords.x, Config.Locations["ogcarspawnvanilla"].coords.y, Config.Locations["ogcarspawnvanilla"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["ogcarspawnvanilla"].coords.x, Config.Locations["ogcarspawnvanilla"].coords.y, Config.Locations["ogcarspawnvanilla"].coords.z, true) < 1.5) then
                         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                            DrawText3D(Config.Locations["ogcarspawnvanilla"].coords.x, Config.Locations["ogcarspawnvanilla"].coords.y, Config.Locations["ogcarspawnvanilla"].coords.z, "~g~E~w~ - Guardar Veiculo")
+                            DrawText3D(Config.Locations["ogcarspawnvanilla"].coords.x, Config.Locations["ogcarspawnvanilla"].coords.y, Config.Locations["ogcarspawnvanilla"].coords.z, "~g~E~w~ - Save vehicle")
                         else
-                            DrawText3D(Config.Locations["ogcarspawnvanilla"].coords.x, Config.Locations["ogcarspawnvanilla"].coords.y, Config.Locations["ogcarspawnvanilla"].coords.z, "~g~E~w~ - Garagem")
+                            DrawText3D(Config.Locations["ogcarspawnvanilla"].coords.x, Config.Locations["ogcarspawnvanilla"].coords.y, Config.Locations["ogcarspawnvanilla"].coords.z, "~g~E~w~ - Garage")
                         end
                         if IsControlJustReleased(0, Keys["E"]) then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
@@ -290,7 +290,7 @@ Citizen.CreateThread(function()
                 if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashvanilla"].coords.x, Config.Locations["stashvanilla"].coords.y, Config.Locations["stashvanilla"].coords.z, true) < 10.0) then
                     DrawMarker(2, Config.Locations["stashvanilla"].coords.x, Config.Locations["stashvanilla"].coords.y, Config.Locations["stashvanilla"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashvanilla"].coords.x, Config.Locations["stashvanilla"].coords.y, Config.Locations["stashvanilla"].coords.z, true) < 1.5) then
-                            DrawText3D(Config.Locations["stashvanilla"].coords.x, Config.Locations["stashvanilla"].coords.y, Config.Locations["stashvanilla"].coords.z, "~g~E~w~ - Armario ")
+                            DrawText3D(Config.Locations["stashvanilla"].coords.x, Config.Locations["stashvanilla"].coords.y, Config.Locations["stashvanilla"].coords.z, "~g~E~w~ - Closet ")
                         if IsControlJustReleased(0, Keys["E"]) then
                             print('nonce')
                             TriggerServerEvent("inventory:server:OpenInventory", "stash", "vanillastash", {
@@ -322,9 +322,9 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.Locations["ogcarspawnGroove"].coords.x, Config.Locations["ogcarspawnGroove"].coords.y, Config.Locations["ogcarspawnGroove"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["ogcarspawnGroove"].coords.x, Config.Locations["ogcarspawnGroove"].coords.y, Config.Locations["ogcarspawnGroove"].coords.z, true) < 1.5) then
                         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                            DrawText3D(Config.Locations["ogcarspawnGroove"].coords.x, Config.Locations["ogcarspawnGroove"].coords.y, Config.Locations["ogcarspawnGroove"].coords.z, "~g~E~w~ - Guardar Veiculo")
+                            DrawText3D(Config.Locations["ogcarspawnGroove"].coords.x, Config.Locations["ogcarspawnGroove"].coords.y, Config.Locations["ogcarspawnGroove"].coords.z, "~g~E~w~ - Save vehicle")
                         else
-                            DrawText3D(Config.Locations["ogcarspawnGroove"].coords.x, Config.Locations["ogcarspawnGroove"].coords.y, Config.Locations["ogcarspawnGroove"].coords.z, "~g~E~w~ - Garagem")
+                            DrawText3D(Config.Locations["ogcarspawnGroove"].coords.x, Config.Locations["ogcarspawnGroove"].coords.y, Config.Locations["ogcarspawnGroove"].coords.z, "~g~E~w~ - Garage")
                         end
                         if IsControlJustReleased(0, Keys["E"]) then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
@@ -356,7 +356,7 @@ Citizen.CreateThread(function()
                 if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashGroove"].coords.x, Config.Locations["stashGroove"].coords.y, Config.Locations["stashGroove"].coords.z, true) < 10.0) then
                     DrawMarker(2, Config.Locations["stashGroove"].coords.x, Config.Locations["stashGroove"].coords.y, Config.Locations["stashGroove"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashGroove"].coords.x, Config.Locations["stashGroove"].coords.y, Config.Locations["stashGroove"].coords.z, true) < 1.5) then
-                            DrawText3D(Config.Locations["stashGroove"].coords.x, Config.Locations["stashGroove"].coords.y, Config.Locations["stashGroove"].coords.z, "~g~E~w~ - Armario ")
+                            DrawText3D(Config.Locations["stashGroove"].coords.x, Config.Locations["stashGroove"].coords.y, Config.Locations["stashGroove"].coords.z, "~g~E~w~ - Closet ")
                         if IsControlJustReleased(0, Keys["E"]) then
                             TriggerServerEvent("inventory:server:OpenInventory", "stash", "Groovestash", {
                                 maxweight = 4000000,
@@ -387,9 +387,9 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.Locations["ogcarspawnCartel"].coords.x, Config.Locations["ogcarspawnCartel"].coords.y, Config.Locations["ogcarspawnCartel"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["ogcarspawnCartel"].coords.x, Config.Locations["ogcarspawnCartel"].coords.y, Config.Locations["ogcarspawnCartel"].coords.z, true) < 1.5) then
                         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                            DrawText3D(Config.Locations["ogcarspawnCartel"].coords.x, Config.Locations["ogcarspawnCartel"].coords.y, Config.Locations["ogcarspawnCartel"].coords.z, "~g~E~w~ - Guardar Veiculo")
+                            DrawText3D(Config.Locations["ogcarspawnCartel"].coords.x, Config.Locations["ogcarspawnCartel"].coords.y, Config.Locations["ogcarspawnCartel"].coords.z, "~g~E~w~ - Save vehicle")
                         else
-                            DrawText3D(Config.Locations["ogcarspawnCartel"].coords.x, Config.Locations["ogcarspawnCartel"].coords.y, Config.Locations["ogcarspawnCartel"].coords.z, "~g~E~w~ - Garagem")
+                            DrawText3D(Config.Locations["ogcarspawnCartel"].coords.x, Config.Locations["ogcarspawnCartel"].coords.y, Config.Locations["ogcarspawnCartel"].coords.z, "~g~E~w~ - Garage")
                         end
                         if IsControlJustReleased(0, Keys["E"]) then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
@@ -421,7 +421,7 @@ Citizen.CreateThread(function()
                 if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashCartel"].coords.x, Config.Locations["stashCartel"].coords.y, Config.Locations["stashCartel"].coords.z, true) < 10.0) then
                     DrawMarker(2, Config.Locations["stashCartel"].coords.x, Config.Locations["stashCartel"].coords.y, Config.Locations["stashCartel"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashCartel"].coords.x, Config.Locations["stashCartel"].coords.y, Config.Locations["stashCartel"].coords.z, true) < 1.5) then
-                            DrawText3D(Config.Locations["stashCartel"].coords.x, Config.Locations["stashCartel"].coords.y, Config.Locations["stashCartel"].coords.z, "~g~E~w~ - Armario ")
+                            DrawText3D(Config.Locations["stashCartel"].coords.x, Config.Locations["stashCartel"].coords.y, Config.Locations["stashCartel"].coords.z, "~g~E~w~ - Closet ")
                         if IsControlJustReleased(0, Keys["E"]) then
                             TriggerServerEvent("inventory:server:OpenInventory", "stash", "Carteltash", {
                                 maxweight = 4000000,
@@ -452,9 +452,9 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.Locations["ogcarspawnMafia"].coords.x, Config.Locations["ogcarspawnMafia"].coords.y, Config.Locations["ogcarspawnMafia"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["ogcarspawnMafia"].coords.x, Config.Locations["ogcarspawnMafia"].coords.y, Config.Locations["ogcarspawnMafia"].coords.z, true) < 1.5) then
                         if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                            DrawText3D(Config.Locations["ogcarspawnMafia"].coords.x, Config.Locations["ogcarspawnMafia"].coords.y, Config.Locations["ogcarspawnMafia"].coords.z, "~g~E~w~ - Guardar Veiculo")
+                            DrawText3D(Config.Locations["ogcarspawnMafia"].coords.x, Config.Locations["ogcarspawnMafia"].coords.y, Config.Locations["ogcarspawnMafia"].coords.z, "~g~E~w~ - Save vehicle")
                         else
-                            DrawText3D(Config.Locations["ogcarspawnMafia"].coords.x, Config.Locations["ogcarspawnMafia"].coords.y, Config.Locations["ogcarspawnMafia"].coords.z, "~g~E~w~ - Garagem")
+                            DrawText3D(Config.Locations["ogcarspawnMafia"].coords.x, Config.Locations["ogcarspawnMafia"].coords.y, Config.Locations["ogcarspawnMafia"].coords.z, "~g~E~w~ - Garage")
                         end
                         if IsControlJustReleased(0, Keys["E"]) then
                             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
@@ -486,7 +486,7 @@ Citizen.CreateThread(function()
                 if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashMafia"].coords.x, Config.Locations["stashMafia"].coords.y, Config.Locations["stashMafia"].coords.z, true) < 10.0) then
                     DrawMarker(2, Config.Locations["stashMafia"].coords.x, Config.Locations["stashMafia"].coords.y, Config.Locations["stashMafia"].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 200, 200, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations["stashMafia"].coords.x, Config.Locations["stashMafia"].coords.y, Config.Locations["stashMafia"].coords.z, true) < 1.5) then
-                            DrawText3D(Config.Locations["stashMafia"].coords.x, Config.Locations["stashMafia"].coords.y, Config.Locations["stashMafia"].coords.z, "~g~E~w~ - Armario ")
+                            DrawText3D(Config.Locations["stashMafia"].coords.x, Config.Locations["stashMafia"].coords.y, Config.Locations["stashMafia"].coords.z, "~g~E~w~ - Closet ")
                         if IsControlJustReleased(0, Keys["E"]) then
                             TriggerServerEvent("inventory:server:OpenInventory", "stash", "Mafiastash", {
                                 maxweight = 4000000,
