@@ -17,6 +17,6 @@ If you have any questions about it, click [Here](https://discord.gg/yMShaH5Kae)
 If you want to help in this project you have [Here](https://www.buymeacoffee.com/moraisscripts)
 
 ## 📑 License
-Copyright © 2021 Miguel Morais.
+Copyright © 2021 Morais.
 
-QBCore-Morais is a community project, you legal permission to copy, distribute and/or modify it only if you have forked this repository, If it's not a forked repo, then the release will be taken down by DMCA request.
+MS-Framework is a community project, you legal permission to copy, distribute and/or modify it only if you have forked this repository, If it's not a forked repo, then the release will be taken down by DMCA request.
