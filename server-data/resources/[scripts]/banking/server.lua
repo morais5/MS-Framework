@@ -1,51 +1,51 @@
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+MSCore = nil
+TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 
 -- Code
 
 local BankStatus = {}
 
-RegisterServerEvent('qb-banking:server:SetBankClosed')
-AddEventHandler('qb-banking:server:SetBankClosed', function(BankId, bool)
+RegisterServerEvent('ms-banking:server:SetBankClosed')
+AddEventHandler('ms-banking:server:SetBankClosed', function(BankId, bool)
   print(BankId)
   BankStatus[BankId] = bool
-  TriggerClientEvent('qb-banking:client:SetBankClosed', -1, BankId, bool)
+  TriggerClientEvent('ms-banking:client:SetBankClosed', -1, BankId, bool)
 end)
 
 RegisterServerEvent('bank:withdraw')
 AddEventHandler('bank:withdraw', function(amount)
     local src = source
-    local ply = QBCore.Functions.GetPlayer(src)
+    local ply = MSCore.Functions.GetPlayer(src)
     local bankamount = ply.PlayerData.money["bank"]
     local amount = tonumber(amount)
     if bankamount >= amount and amount > 0 then
       ply.Functions.RemoveMoney('bank', amount, "Tirar Dinheiro Do Bank")
-      TriggerEvent("qb-log:server:CreateLog", "banking", "Retirar", "red", "**"..GetPlayerName(src) .. "** retirou $"..amount.." de sua conta bancária.")
+      TriggerEvent("ms-log:server:CreateLog", "banking", "Retirar", "red", "**"..GetPlayerName(src) .. "** retirou $"..amount.." de sua conta bancária.")
       ply.Functions.AddMoney('cash', amount, "Tirar Dinheiro Do Bank")
     else
-      TriggerClientEvent('QBCore:Notify', src, 'Não tens dinheiro suficiente no bank :(', 'error')
+      TriggerClientEvent('MSCore:Notify', src, 'Não tens dinheiro suficiente no bank :(', 'error')
     end
 end)
 
 RegisterServerEvent('bank:deposit')
 AddEventHandler('bank:deposit', function(amount)
     local src = source
-    local ply = QBCore.Functions.GetPlayer(src)
+    local ply = MSCore.Functions.GetPlayer(src)
     local cashamount = ply.PlayerData.money["cash"]
     local amount = tonumber(amount)
     if cashamount >= amount and amount > 0 then
       ply.Functions.RemoveMoney('cash', amount, "Depósito bancário")
-      TriggerEvent("qb-log:server:CreateLog", "banking", "Depositar", "green", "**"..GetPlayerName(src) .. "** depositou $"..amount.." na sua conta bancária.")
+      TriggerEvent("ms-log:server:CreateLog", "banking", "Depositar", "green", "**"..GetPlayerName(src) .. "** depositou $"..amount.." na sua conta bancária.")
       ply.Functions.AddMoney('bank', amount, "Depósito bancário")
     else
-      TriggerClientEvent('QBCore:Notify', src, 'Não tens dinheiro suficiente para depositar :(', 'error')
+      TriggerClientEvent('MSCore:Notify', src, 'Não tens dinheiro suficiente para depositar :(', 'error')
     end
 end)
 
-QBCore.Commands.Add("dardinheiro", "Dê algum dinheiro a um jogador", {{name="id", help="Id do player"},{name="amount", help="Quantia de dinheiro"}}, true, function(source, args)
-  local Player = QBCore.Functions.GetPlayer(source)
+MSCore.Commands.Add("dardinheiro", "Dê algum dinheiro a um jogador", {{name="id", help="Id do player"},{name="amount", help="Quantia de dinheiro"}}, true, function(source, args)
+  local Player = MSCore.Functions.GetPlayer(source)
   local TargetId = tonumber(args[1])
-  local Target = QBCore.Functions.GetPlayer(TargetId)
+  local Target = MSCore.Functions.GetPlayer(TargetId)
   local amount = tonumber(args[2])
   
   if Target ~= nil then
@@ -74,8 +74,8 @@ end)
 RegisterServerEvent('banking:server:giveCash')
 AddEventHandler('banking:server:giveCash', function(trgtId, amount)
   local src = source
-  local Player = QBCore.Functions.GetPlayer(src)
-  local Target = QBCore.Functions.GetPlayer(trgtId)
+  local Player = MSCore.Functions.GetPlayer(src)
+  local Target = MSCore.Functions.GetPlayer(trgtId)
 
   print(src)
   print(trgtId)
@@ -84,12 +84,12 @@ AddEventHandler('banking:server:giveCash', function(trgtId, amount)
     Player.Functions.RemoveMoney('cash', amount, "Dinheiro dado a "..Player.PlayerData.citizenid)
     Target.Functions.AddMoney('cash', amount, "Dinheiro recebido de "..Target.PlayerData.citizenid)
 
-    TriggerEvent("qb-log:server:CreateLog", "banking", "Dê dinheiro", "blue", "**"..GetPlayerName(src) .. "** tem dado $"..amount.." para **" .. GetPlayerName(trgtId) .. "**")
+    TriggerEvent("ms-log:server:CreateLog", "banking", "Dê dinheiro", "blue", "**"..GetPlayerName(src) .. "** tem dado $"..amount.." para **" .. GetPlayerName(trgtId) .. "**")
     
-    TriggerClientEvent('QBCore:Notify', trgtId, "Você recebeu $"..amount.." from "..Player.PlayerData.charinfo.firstname.."!", 'success')
-    TriggerClientEvent('QBCore:Notify', src, "Você deu $"..amount.." para "..Target.PlayerData.charinfo.firstname.."!", 'success')
+    TriggerClientEvent('MSCore:Notify', trgtId, "Você recebeu $"..amount.." from "..Player.PlayerData.charinfo.firstname.."!", 'success')
+    TriggerClientEvent('MSCore:Notify', src, "Você deu $"..amount.." para "..Target.PlayerData.charinfo.firstname.."!", 'success')
   else
-    TriggerEvent("qb-anticheat:server:banPlayer", "Cheating")
-    TriggerEvent("qb-log:server:CreateLog", "anticheat", "Jogador banido! (Na verdade não é um teste, duhhhhh)", "red", "** @everyone " ..GetPlayerName(player).. "** tentei dar **"..amount.." para ele mesmo")  
+    TriggerEvent("ms-anticheat:server:banPlayer", "Cheating")
+    TriggerEvent("ms-log:server:CreateLog", "anticheat", "Jogador banido! (Na verdade não é um teste, duhhhhh)", "red", "** @everyone " ..GetPlayerName(player).. "** tentei dar **"..amount.." para ele mesmo")  
   end
 end)

@@ -1,14 +1,14 @@
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+MSCore = nil
+TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 
 
 
-QBCore.Commands.Add("spec", "emm1", {}, false, function(source, args)
+MSCore.Commands.Add("spec", "emm1", {}, false, function(source, args)
 	TriggerClientEvent('spectatelu:spectate', source, target)
 end, "admin")
 
-QBCore.Functions.CreateCallback('spectatelu:getPlayerData', function(source, cb, id)
-    local Player = QBCore.Functions.GetPlayers()
+MSCore.Functions.CreateCallback('spectatelu:getPlayerData', function(source, cb, id)
+    local Player = MSCore.Functions.GetPlayers()
     if Player ~= nil then
         cb(Player)
     end

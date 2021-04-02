@@ -9,7 +9,7 @@
 --	https://github.com/iEns/RealisticVehicleFailure
 --
 
-QBCore = nil
+MSCore = nil
 
 local pedInSameVehicleLast=false
 local vehicle
@@ -51,8 +51,8 @@ local fixMessagePos = math.random(repairCfg.fixMessageCount)
 local noFixMessagePos = math.random(repairCfg.noFixMessageCount)
 
 Citizen.CreateThread(function()
-	while QBCore == nil do
-		TriggerEvent("QBCore:GetObject", function(obj) QBCore = obj end)   
+	while MSCore == nil do
+		TriggerEvent("MSCore:GetObject", function(obj) MSCore = obj end)   
 		Citizen.Wait(0)
 	end
 end)
@@ -74,7 +74,7 @@ end)
 
 RegisterNetEvent('vehiclefailure:client:RepairVehicle')
 AddEventHandler('vehiclefailure:client:RepairVehicle', function()
-	local vehicle = QBCore.Functions.GetClosestVehicle()
+	local vehicle = MSCore.Functions.GetClosestVehicle()
 	if vehicle ~= nil and vehicle ~= 0 then
 		local pos = GetEntityCoords(GetPlayerPed(-1))
 		local vehpos = GetEntityCoords(vehicle)
@@ -94,7 +94,7 @@ end)
 
 RegisterNetEvent('vehiclefailure:client:RepairVehicleFull')
 AddEventHandler('vehiclefailure:client:RepairVehicleFull', function()
-	local vehicle = QBCore.Functions.GetClosestVehicle()
+	local vehicle = MSCore.Functions.GetClosestVehicle()
 	if vehicle ~= nil and vehicle ~= 0 then
 		local pos = GetEntityCoords(GetPlayerPed(-1))
 		local vehpos = GetEntityCoords(vehicle)
@@ -117,22 +117,22 @@ function CleanVehicle(vehicle)
 	local pos = GetEntityCoords(ped)
 	TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_MAID_CLEAN", 0, true)
 	print('deu')
-	QBCore.Functions.Progressbar("repair_vehicle", "A limpar veiculo...", math.random(10000, 20000), false, true, {
+	MSCore.Functions.Progressbar("repair_vehicle", "A limpar veiculo...", math.random(10000, 20000), false, true, {
 		disableMovement = true,
 		disableCarMovement = true,
 		disableMouse = false,
 		disableCombat = true,
 	}, {}, {}, {}, function() -- Done
-		QBCore.Functions.Notify("Veiculo limpo com sucesso!")
+		MSCore.Functions.Notify("Veiculo limpo com sucesso!")
 		SetVehicleDirtLevel(vehicle, 0.1)
         SetVehicleUndriveable(vehicle, false)
 		WashDecalsFromVehicle(vehicle, 1.0)
 		TriggerServerEvent('vehiclefailure:server:removewashingkit', vehicle)
-		TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["cleaningkit"], "remove")
+		TriggerEvent('inventory:client:ItemBox', MSCore.Shared.Items["cleaningkit"], "remove")
 		ClearAllPedProps(GetPlayerPed(-1))
 		ClearPedTasks(GetPlayerPed(-1))
 	end, function() -- Cancel
-		QBCore.Functions.Notify("Falhou!", "error")
+		MSCore.Functions.Notify("Falhou!", "error")
 		ClearAllPedProps(GetPlayerPed(-1))
 		ClearPedTasks(GetPlayerPed(-1))
 	end)
@@ -147,7 +147,7 @@ end)
 
 RegisterNetEvent('vehiclefailure:client:CleanVehicle')
 AddEventHandler('vehiclefailure:client:CleanVehicle', function()
-	local vehicle = QBCore.Functions.GetClosestVehicle()
+	local vehicle = MSCore.Functions.GetClosestVehicle()
 	if vehicle ~= nil and vehicle ~= 0 then
 		local pos = GetEntityCoords(GetPlayerPed(-1))
 		local vehpos = GetEntityCoords(vehicle)
@@ -166,7 +166,7 @@ function RepairVehicleFull(vehicle)
         SetVehicleDoorOpen(vehicle, 4, false, false)
 	end
 	print('deu')
-	QBCore.Functions.Progressbar("repair_vehicle", "A reparar veiculo..", math.random(20000, 30000), false, true, {
+	MSCore.Functions.Progressbar("repair_vehicle", "A reparar veiculo..", math.random(20000, 30000), false, true, {
 		disableMovement = true,
 		disableCarMovement = true,
 		disableMouse = false,
@@ -177,17 +177,17 @@ function RepairVehicleFull(vehicle)
 		flags = 16,
 	}, {}, {}, function() -- Done
 		StopAnimTask(GetPlayerPed(-1), "mini@repair", "fixing_a_player", 1.0)
-		QBCore.Functions.Notify("Veiculo reparado com sucesso!")
+		MSCore.Functions.Notify("Veiculo reparado com sucesso!")
 		SetVehicleEngineHealth(vehicle, 1000.0)
 		if (IsBackEngine(GetEntityModel(vehicle))) then
 			SetVehicleDoorShut(vehicle, 5, false)
 		else
 			SetVehicleDoorShut(vehicle, 4, false)
 		end
-		TriggerServerEvent('qb-vehiclefailure:removeItem', "advancedrepairkit")
+		TriggerServerEvent('ms-vehiclefailure:removeItem', "advancedrepairkit")
 	end, function() -- Cancel
 		StopAnimTask(GetPlayerPed(-1), "mini@repair", "fixing_a_player", 1.0)
-		QBCore.Functions.Notify("Cancelado!", "error")
+		MSCore.Functions.Notify("Cancelado!", "error")
 		if (IsBackEngine(GetEntityModel(vehicle))) then
 			SetVehicleDoorShut(vehicle, 5, false)
 		else
@@ -203,7 +203,7 @@ function RepairVehicle(vehicle)
         SetVehicleDoorOpen(vehicle, 4, false, false)
 	end
 	print('deu')
-	QBCore.Functions.Progressbar("repair_vehicle", "A Reparar veiculo..", math.random(10000, 20000), false, true, {
+	MSCore.Functions.Progressbar("repair_vehicle", "A Reparar veiculo..", math.random(10000, 20000), false, true, {
 		disableMovement = true,
 		disableCarMovement = true,
 		disableMouse = false,
@@ -214,17 +214,17 @@ function RepairVehicle(vehicle)
 		flags = 16,
 	}, {}, {}, function() -- Done
 		StopAnimTask(GetPlayerPed(-1), "mini@repair", "fixing_a_player", 1.0)
-		QBCore.Functions.Notify("Veiculo reparado com sucesso!")
+		MSCore.Functions.Notify("Veiculo reparado com sucesso!")
 		SetVehicleEngineHealth(vehicle, 1000.0)
 		if (IsBackEngine(GetEntityModel(vehicle))) then
 			SetVehicleDoorShut(vehicle, 5, false)
 		else
 			SetVehicleDoorShut(vehicle, 4, false)
 		end
-		TriggerServerEvent('qb-vehiclefailure:removeItem', "repairkit")
+		TriggerServerEvent('ms-vehiclefailure:removeItem', "repairkit")
 	end, function() -- Cancel
 		StopAnimTask(GetPlayerPed(-1), "mini@repair", "fixing_a_player", 1.0)
-		QBCore.Functions.Notify("Cancelado!", "error")
+		MSCore.Functions.Notify("Cancelado!", "error")
 		if (IsBackEngine(GetEntityModel(vehicle))) then
 			SetVehicleDoorShut(vehicle, 5, false)
 		else
@@ -243,7 +243,7 @@ function IsBackEngine(vehModel)
 end
 
 local function notification(msg)
-	QBCore.Functions.Notify(msg)
+	MSCore.Functions.Notify(msg)
 end
 
 local function isPedDrivingAVehicle()
@@ -348,7 +348,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(7)
         local pos = GetEntityCoords(GetPlayerPed(-1), true)
         if showPro then
-            QBCore.Functions.DrawText3D(pos.x, pos.y, pos.z, TimeLeft .. '~g~%')
+            MSCore.Functions.DrawText3D(pos.x, pos.y, pos.z, TimeLeft .. '~g~%')
         end
     end
 end)

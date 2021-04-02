@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- This is the page that index redirects too after the song ends or whenever you decide.
+You are free to delete this tho'. 
+Don't mind the mess.
+
+********************************************************************
+CONTACT: Root
+********************************************************************
+Github: https://github.com/root-v
+Discord: Root#0190
+Discord Server: https://discord.gg/2upVXwv
+
+!-->
+<html>
+<head>
+    <title>Restart For FiveM.</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	       <style type="text/css">
+            body {
+                background-color:#000000;
+                color:#000000;
+                border:0px;
+                margin:0px;
+                overflow:hidden;
+				<!-- Video player CSS stuff -->
+				            }
+           * { box-sizing: border-box; }
+.video-background {
+  background: #000;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -99;
+}
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+#vidtop-content {
+	top: 0;
+	color: #fff;
+}
+.vid-info { position: absolute; top: 0; right: 0; width: 33%; background: rgba(0,0,0,0.3); color: #fff; padding: 1rem; font-family: Avenir, Helvetica, sans-serif; }
+.vid-info h1 { font-size: 2rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
+.vid-info a { display: block; color: #fff; text-decoration: none; background: rgba(0,0,0,0.5); transition: .6s background; border-bottom: none; margin: 1rem auto; text-align: center; }
+@media (min-aspect-ratio: 16/9) {
+  .video-foreground { height: 300%; top: -100%; }
+}
+@media (max-aspect-ratio: 16/9) {
+  .video-foreground { width: 300%; left: -100%; }
+}
+@media all and (max-width: 600px) {
+.vid-info { width: 50%; padding: .5rem; }
+.vid-info h1 { margin-bottom: .2rem; }
+}
+@media all and (max-width: 500px) {
+.vid-info .acronym { display: none; }
+}
+<!-- END VIDEO PLAYER CSS STUFF -->
+</style>
+</head>
+<body>
+<!-- Text -->
+<center><font size="10" color="white"><p style="position: absolute; top: 50px;">[ERROR]  Restart For FiveM.</p></font></center>
+<!-- END TEXT -->
+
+<!-- Youtube video background -->
+<div class="video-background">
+    <div class="video-foreground">
+      <iframe width="1320" height="630" src="https://www.youtube.com/embed/247EPGTUnqc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+  <!-- END YOUTUBE VIDEO BACKGROUND -->
+  
+<!-- Background music -->
+<div style="display:none"><audio controls id="audio" loop="true" autoplay="autoplay">
+<source src="INSERTYOURMUSICHERE" type="audio/mpeg"> <!-- INSERT MUSIC BOI HERE -->
+Müzik çalışmayı durdurdu.
+</audio></div>
+	<script>
+		var audio = document.getElementById("audio");
+			audio.volume = 0.02;
+	</script>
+<!-- END BACKGROUND MUSIC -->
+
+<!-- Time Out Refresh (remove if u want, but otherwise some weird globe will show after the video finished) -->
+    <script>
+        var timer = setTimeout(function() {
+            window.location='timeout.html'
+        }, 70800);
+    </script>
+	        <!-- END TIME OUT REFRESH -->
+</body>
+</html>

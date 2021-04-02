@@ -1,4 +1,4 @@
-# <img src="https://i.imgur.com/RxoQ2SU.png" width="32" height="32"> Morais Scripts v5.1
+![](https://i.imgur.com/S25N3Su.jpg)
 
 ### 📚 Documentation
 Take a look at [Wiki](https://github.com/morais5/QBCore-Morais/wiki)
@@ -17,6 +17,6 @@ If you have any questions about it, click [Here](https://discord.gg/yMShaH5Kae)
 If you want to help in this project you have [Here](https://www.buymeacoffee.com/moraisscripts)
 
 ## 📑 License
-Copyright © 2021 Miguel Morais.
+Copyright © 2021 Morais.
 
-QBCore-Morais is a community project, you legal permission to copy, distribute and/or modify it only if you have forked this repository, If it's not a forked repo, then the release will be taken down by DMCA request.
+MS-Framework is a community project, you legal permission to copy, distribute and/or modify it only if you have forked this repository, If it's not a forked repo, then the release will be taken down by DMCA request.

@@ -1,10 +1,10 @@
-QBCore = nil
+MSCore = nil
 
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(10)
-		if QBCore == nil then
-			TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+		if MSCore == nil then
+			TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 			Citizen.Wait(200)
 		end
 	end
@@ -149,9 +149,9 @@ function EndMinigame(won)
 	SafeCracker.MinigameOpen = false
 	if won then 
 		PlaySoundFrontend(SafeCracker.SoundID, SafeCracker.Config.SafeFinalSound, SafeCracker.Config.SafeSoundset, true)
-		QBCore.Functions.Notify("Kluis geopend..", "success")
+		MSCore.Functions.Notify("Kluis geopend..", "success")
 	else
-		QBCore.Functions.Notify("Kluis gefaald..", "error")
+		MSCore.Functions.Notify("Kluis gefaald..", "error")
 	end
   	TriggerEvent('SafeCracker:EndMinigame', won)
 	FreezeEntityPosition(GetPlayerPed(-1), false)

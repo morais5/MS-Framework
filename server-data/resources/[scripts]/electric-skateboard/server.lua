@@ -5,22 +5,22 @@ AddEventHandler("shareImOnSkate", function()
     TriggerClientEvent("shareHeIsOnSkate", -1, _source)
 end)
 
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+MSCore = nil
+TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 
 
-QBCore.Functions.CreateUseableItem("skateboard", function(source, item)
-	local Player = QBCore.Functions.GetPlayer(source)
+MSCore.Functions.CreateUseableItem("skateboard", function(source, item)
+	local Player = MSCore.Functions.GetPlayer(source)
 	Player.Functions.RemoveItem("skateboard", 1, item.slot) 
 	TriggerClientEvent('skateboard:Spawn', source)
-	TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items["skateboard"], "remove")
+	TriggerClientEvent('inventory:client:ItemBox', source, MSCore.Shared.Items["skateboard"], "remove")
 end)
 
 RegisterServerEvent('skateboard:pick')
 AddEventHandler('skateboard:pick', function(item, amount)	
-	local Player = QBCore.Functions.GetPlayer(source)
+	local Player = MSCore.Functions.GetPlayer(source)
 	Player.Functions.AddItem("skateboard", 1)
-	TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items["skateboard"], "add")
+	TriggerClientEvent('inventory:client:ItemBox', source, MSCore.Shared.Items["skateboard"], "add")
 end)
 
 

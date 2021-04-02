@@ -1,10 +1,10 @@
-QBCore = nil
+MSCore = nil
 
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(10)
-		if QBCore == nil then
-			TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+		if MSCore == nil then
+			TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 			Citizen.Wait(200)
 		end
 	end
@@ -31,8 +31,8 @@ Citizen.CreateThread(function()
 	end
 end)
 
-RegisterNetEvent("qb-seatshuff:client:Shuff")
-AddEventHandler("qb-seatshuff:client:Shuff", function()
+RegisterNetEvent("ms-seatshuff:client:Shuff")
+AddEventHandler("ms-seatshuff:client:Shuff", function()
 	local ped = GetPlayerPed(-1)
 	if IsPedInAnyVehicle(ped, false) then
 		disableShuffle = false

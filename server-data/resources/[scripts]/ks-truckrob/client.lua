@@ -1,5 +1,5 @@
 
-QBCore = nil
+MSCore = nil
 
 local PlayerData = nil
 local CurrentEventNum = nil
@@ -22,8 +22,8 @@ local playerGender
 Citizen.CreateThread(function() 
     while true do
         Citizen.Wait(10)
-        if QBCore == nil then
-            TriggerEvent("QBCore:GetObject", function(obj) QBCore = obj end)    
+        if MSCore == nil then
+            TriggerEvent("MSCore:GetObject", function(obj) MSCore = obj end)    
             Citizen.Wait(200)
         end
     end
@@ -104,7 +104,7 @@ AddEventHandler("ks-TruckRobbery:hackertje",function()
 	local player = PlayerPedId()
 	FreezeEntityPosition(player, true)
 	--Citizen.Wait(4000)
-	QBCore.Functions.Progressbar("hack", "Insira o cartão SD no tablet..", 8500, false, true, {
+	MSCore.Functions.Progressbar("hack", "Insira o cartão SD no tablet..", 8500, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -131,7 +131,7 @@ function HackingMinigame(success)
 		TriggerEvent("ks-TruckRobbery:startMission",source,0)
 		PlaySoundFrontend(-1, "Mission_Pass_Notify", "DLC_HEISTS_GENERAL_FRONTEND_SOUNDS", 0)
 		print('deu')
-		QBCore.Functions.Notify("Você invadiu o sistema", "error")
+		MSCore.Functions.Notify("Você invadiu o sistema", "error")
 		FreezeEntityPosition(player,false)
 		ClearPedTasks(player)
     else
@@ -153,13 +153,13 @@ AddEventHandler("ks-TruckRobbery:startMission",function(spot)
 		num = math.random(1,#Config.ArmoredTruck)
 	end
 	if numy == 100 then
-	    QBCore.Functions.Notify("Sem missões disponíveis!")
+	    MSCore.Functions.Notify("Sem missões disponíveis!")
 	else
 		CurrentEventNum = num
 		TriggerEvent("ks-TruckRobbery:startTheEvent",num)
 		PlaySoundFrontend(-1, "Mission_Pass_Notify", "DLC_HEISTS_GENERAL_FRONTEND_SOUNDS", 0)
 		print('deu2 a cena do caminhão')
-		QBCore.Functions.Notify("O caminhão está marcado no seu GPS!")
+		MSCore.Functions.Notify("O caminhão está marcado no seu GPS!")
 	end
 end)
 
@@ -228,14 +228,14 @@ AddEventHandler('ks-TruckRobbery:startTheEvent', function(num)
 
 			if distance <= 30.0  then
 				if KillGuardsText == false then
-					QBCore.Functions.Notify("Mate os guardas!")
+					MSCore.Functions.Notify("Mate os guardas!")
 					KillGuardsText = true
 				end
 			end
 			
 			if distance <= 5 and TruckIsDemolished == false then
 			    local requiredItems = {
-				    [1] = {name = QBCore.Shared.Items["tijdbom"]["name"], image = QBCore.Shared.Items["tijdbom"]["image"]},
+				    [1] = {name = MSCore.Shared.Items["tijdbom"]["name"], image = MSCore.Shared.Items["tijdbom"]["image"]},
 			    }
 		        if not requiredItemsShowed then
 		            requiredItemsShowed = true
@@ -254,7 +254,7 @@ AddEventHandler('ks-TruckRobbery:startTheEvent', function(num)
 		
 		if TruckIsExploded == true then
 		    if openText == false then
-				QBCore.Functions.Notify("Pressione E para roubar tudo :)!")
+				MSCore.Functions.Notify("Pressione E para roubar tudo :)!")
 				openText = true
 			end
 			local pos = GetEntityCoords(GetPlayerPed(-1), false)
@@ -275,7 +275,7 @@ AddEventHandler('ks-TruckRobbery:startTheEvent', function(num)
 		end
 		
 		if missionCompleted == true then
-			QBCore.Functions.Notify("Missão completa")
+			MSCore.Functions.Notify("Missão completa")
 			Config.ArmoredTruck[num].InUse = false
 			RemoveBlip(blip)
 			TriggerServerEvent("ks-TruckRobbery:syncMissionData",Config.ArmoredTruck)
@@ -302,13 +302,13 @@ AddEventHandler("ks-TruckRobbery:UsableItem",function()
 	local distance = GetDistanceBetweenCoords(pos.x, pos.y, pos.z, TruckPos.x, TruckPos.y, TruckPos.z, false)
 	if missionInProgress == true then
     if distance <= 5 and TruckIsDemolished == false then				 
-			QBCore.Functions.TriggerCallback('ks-TruckRobbery:server:Hasbomb', function(HasItem)
+			MSCore.Functions.TriggerCallback('ks-TruckRobbery:server:Hasbomb', function(HasItem)
 				if HasItem then
 				    TriggerServerEvent("ks-TruckRobbery:RemoveItem")
 					BlowTheTruckDoor()
 					Citizen.Wait(500) 
 				else
-					QBCore.Functions.Notify('Você precisa de uma bomba-relógio ..', 'error')
+					MSCore.Functions.Notify('Você precisa de uma bomba-relógio ..', 'error')
 				end
 			end)
 		end
@@ -331,7 +331,7 @@ function BlowTheTruckDoor()
 				TriggerServerEvent('ks-TruckRobbery:TruckRobberyInProgress',GetEntityCoords(PlayerPedId()),streetName)
 			end
 
-			QBCore.Functions.Progressbar("hack", "Coloque a bomba", 5500, false, true, {
+			MSCore.Functions.Progressbar("hack", "Coloque a bomba", 5500, false, true, {
 
             }, {}, {}, function() 
 	        end)-- Done
@@ -353,7 +353,7 @@ function BlowTheTruckDoor()
 			FreezeEntityPosition(playerPed, false)
 			Citizen.Wait(500)
 			
-			QBCore.Functions.Progressbar("hack", "Espere..", 9500, false, true, {
+			MSCore.Functions.Progressbar("hack", "Espere..", 9500, false, true, {
 
             }, {}, {}, function() 
 	        end)-- Done			
@@ -365,12 +365,12 @@ function BlowTheTruckDoor()
 			AddExplosion(TruckPos.x,TruckPos.y,TruckPos.z, 'EXPLOSION_TANKER', 2.0, true, false, 2.0)
 			ApplyForceToEntity(ArmoredTruckVeh, 0, TruckPos.x,TruckPos.y,TruckPos.z, 0.0, 0.0, 0.0, 1, false, true, true, true, true)
 			TruckIsExploded = true
-			QBCore.Functions.Notify('Roubo de caminhão iniciado..', 'error')
+			MSCore.Functions.Notify('Roubo de caminhão iniciado..', 'error')
 		else
-			QBCore.Functions.Notify('Seguranças ainda estão vivos..', 'error')
+			MSCore.Functions.Notify('Seguranças ainda estão vivos..', 'error')
 		end
 	else
-		QBCore.Functions.Notify('O caminhão ainda não parou ..', 'error')
+		MSCore.Functions.Notify('O caminhão ainda não parou ..', 'error')
 	end
 end
 
@@ -391,7 +391,7 @@ function RobbingTheMoney()
 	FreezeEntityPosition(playerPed, true)
 	
 
-	QBCore.Functions.Progressbar("hack", "Agarre com suas garras..", 6000, false, true, {
+	MSCore.Functions.Progressbar("hack", "Agarre com suas garras..", 6000, false, true, {
 
     }, {}, {}, function() 
 	end)-- Done	

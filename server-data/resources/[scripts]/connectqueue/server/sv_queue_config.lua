@@ -1,7 +1,7 @@
 Config = {}
 
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+MSCore = nil
+TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 
 -- priority list can be any identifier. (hex steamid, steamid32, ip) Integer = power over other people with priority
 -- a lot of the steamid converting websites are broken rn and give you the wrong steamid. I use https://steamid.xyz/ with no problems.
@@ -60,7 +60,7 @@ Citizen.CreateThread(function()
 end)
 
 function loadDatabaseQueue()
-	QBCore.Functions.ExecuteSql(false, "SELECT * FROM `queue`", function(result)
+	MSCore.Functions.ExecuteSql(false, "SELECT * FROM `queue`", function(result)
 		if result[1] ~= nil then
 			for k, v in pairs(result) do
 				Config.Priority[v.steam] = tonumber(v.priority)
@@ -69,13 +69,13 @@ function loadDatabaseQueue()
 	end)
 end
 
-QBCore.Commands.Add("reloadqueuepriority", "Give queue priority", {{name="id", help="ID of the player"}, {name="priority", help="Priority level"}}, true, function(source, args)
+MSCore.Commands.Add("reloadqueuepriority", "Give queue priority", {{name="id", help="ID of the player"}, {name="priority", help="Priority level"}}, true, function(source, args)
 	loadDatabaseQueue()
 	TriggerClientEvent('chatMessage', source, "SYSTEM", "normal", "REFRESH")	
 end, "god")
 
-QBCore.Commands.Add("addpriority", "Give queue priority", {{name="id", help="ID of the player"}, {name="priority", help="Priority level"}}, true, function(source, args)
-    local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
+MSCore.Commands.Add("addpriority", "Give queue priority", {{name="id", help="ID of the player"}, {name="priority", help="Priority level"}}, true, function(source, args)
+    local Player = MSCore.Functions.GetPlayer(tonumber(args[1]))
 	local level = tonumber(args[2])
 	if Player ~= nil then
         AddPriority(Player.PlayerData.source, level)
@@ -85,8 +85,8 @@ QBCore.Commands.Add("addpriority", "Give queue priority", {{name="id", help="ID 
 	end
 end, "god")
 
-QBCore.Commands.Add("removepriority", "Take priority away from someone", {{name="id", help="ID of the player"}}, true, function(source, args)
-	local Player = QBCore.Functions.GetPlayer(tonumber(args[1]))
+MSCore.Commands.Add("removepriority", "Take priority away from someone", {{name="id", help="ID of the player"}}, true, function(source, args)
+	local Player = MSCore.Functions.GetPlayer(tonumber(args[1]))
 	if Player ~= nil then
         RemovePriority(Player.PlayerData.source)
         TriggerClientEvent('chatMessage', source, "SYSTEM", "normal", "You removed priority from " .. GetPlayerName(Player.PlayerData.source))	
@@ -96,19 +96,19 @@ QBCore.Commands.Add("removepriority", "Take priority away from someone", {{name=
 end, "god")
 
 function AddPriority(source, level)
-	local Player = QBCore.Functions.GetPlayer(source)
+	local Player = MSCore.Functions.GetPlayer(source)
 	if Player ~= nil then 
 		Config.Priority[GetPlayerIdentifiers(source)[1]] = level
-		QBCore.Functions.ExecuteSql(true, "DELETE FROM `queue` WHERE `steam` = '"..GetPlayerIdentifiers(source)[1].."'")
-		QBCore.Functions.ExecuteSql(true, "INSERT INTO `queue` (`name`, `steam`, `license`, `priority`) VALUES ('"..GetPlayerName(source).."', '"..GetPlayerIdentifiers(source)[1].."', '"..GetPlayerIdentifiers(source)[2].."', '"..level.."')")
+		MSCore.Functions.ExecuteSql(true, "DELETE FROM `queue` WHERE `steam` = '"..GetPlayerIdentifiers(source)[1].."'")
+		MSCore.Functions.ExecuteSql(true, "INSERT INTO `queue` (`name`, `steam`, `license`, `priority`) VALUES ('"..GetPlayerName(source).."', '"..GetPlayerIdentifiers(source)[1].."', '"..GetPlayerIdentifiers(source)[2].."', '"..level.."')")
 		Player.Functions.UpdatePlayerData()
 	end
 end
 
 function RemovePriority(source)
-	local Player = QBCore.Functions.GetPlayer(source)
+	local Player = MSCore.Functions.GetPlayer(source)
 	if Player ~= nil then 
 		Config.Priority[GetPlayerIdentifiers(source)[1]] = nil
-		QBCore.Functions.ExecuteSql(true, "DELETE FROM `queue` WHERE `steam` = '"..GetPlayerIdentifiers(source)[1].."'")
+		MSCore.Functions.ExecuteSql(true, "DELETE FROM `queue` WHERE `steam` = '"..GetPlayerIdentifiers(source)[1].."'")
 	end
 end

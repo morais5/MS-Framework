@@ -81,7 +81,7 @@ AddEventHandler('animations:client:EmoteCommandStart', function(args)
   if CanDoEmote then
     EmoteCommandStart(args)
   else
-    QBCore.Functions.Notify("Não podes fazer emotes neste momento", "error")
+    MSCore.Functions.Notify("Não podes fazer emotes neste momento", "error")
   end
 end)
 

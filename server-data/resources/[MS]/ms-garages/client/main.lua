@@ -1,0 +1,816 @@
+MSCore = nil
+
+Citizen.CreateThread(function() 
+    while true do
+        Citizen.Wait(1)
+        if MSCore == nil then
+            TriggerEvent("MSCore:GetObject", function(obj) MSCore = obj end)    
+            Citizen.Wait(200)
+        end
+    end
+end)
+
+--- CODE
+
+local currentHouseGarage = nil
+local hasGarageKey = nil
+local currentGarage = nil
+local OutsideVehicles = {}
+
+RegisterNetEvent('ms-garages:client:setHouseGarage')
+AddEventHandler('ms-garages:client:setHouseGarage', function(house, hasKey)
+    currentHouseGarage = house
+    hasGarageKey = hasKey
+end)
+
+RegisterNetEvent('ms-garages:client:houseGarageConfig')
+AddEventHandler('ms-garages:client:houseGarageConfig', function(garageConfig)
+    HouseGarages = garageConfig
+end)
+
+RegisterNetEvent('ms-garages:client:addHouseGarage')
+AddEventHandler('ms-garages:client:addHouseGarage', function(house, garageInfo)
+    HouseGarages[house] = garageInfo
+end)
+
+-- function AddOutsideVehicle(plate, veh)
+--     OutsideVehicles[plate] = veh
+--     TriggerServerEvent('ms-garages:server:UpdateOutsideVehicles', OutsideVehicles)
+-- end
+
+RegisterNetEvent('ms-garages:client:takeOutDepot')
+AddEventHandler('ms-garages:client:takeOutDepot', function(vehicle)
+    if OutsideVehicles ~= nil and next(OutsideVehicles) ~= nil then
+        if OutsideVehicles[vehicle.plate] ~= nil then
+            local VehExists = DoesEntityExist(OutsideVehicles[vehicle.plate])
+            if not VehExists then
+                MSCore.Functions.SpawnVehicle(vehicle.vehicle, function(veh)
+                    MSCore.Functions.TriggerCallback('ms-garage:server:GetVehicleProperties', function(properties)
+                        MSCore.Functions.SetVehicleProperties(veh, properties)
+                        enginePercent = round(vehicle.engine / 10, 0)
+                        bodyPercent = round(vehicle.body / 10, 0)
+                        currentFuel = vehicle.fuel
+
+                        if vehicle.plate ~= nil then
+                        	MSCore.Functions.DeleteVehicle(OutsideVehicles[vehicle.plate])
+                            OutsideVehicles[vehicle.plate] = veh
+                            TriggerServerEvent('ms-garages:server:UpdateOutsideVehicles', OutsideVehicles)
+                        end
+
+                        if vehicle.status ~= nil and next(vehicle.status) ~= nil then
+                            TriggerServerEvent('ms-vehicletuning:server:LoadStatus', vehicle.status, vehicle.plate)
+                        end
+                        
+                        if vehicle.drivingdistance ~= nil then
+                            local amount = round(vehicle.drivingdistance / 1000, -2)
+                            TriggerEvent('ms-hud:client:UpdateDrivingMeters', true, amount)
+                            TriggerServerEvent('ms-vehicletuning:server:UpdateDrivingDistance', vehicle.drivingdistance, vehicle.plate)
+                        end
+
+                        if vehicle.vehicle == "urus" then
+                            SetVehicleExtra(veh, 1, false)
+                            SetVehicleExtra(veh, 2, true)
+                        end
+
+                        SetVehicleNumberPlateText(veh, vehicle.plate)
+                        SetEntityHeading(veh, Depots[currentGarage].takeVehicle.h)
+                        TaskWarpPedIntoVehicle(GetPlayerPed(-1), veh, -1)
+                        exports['LegacyFuel']:SetFuel(veh, vehicle.fuel)
+                        SetEntityAsMissionEntity(veh, true, true)
+                        doCarDamage(veh, vehicle)
+                        TriggerServerEvent('ms-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
+                        MSCore.Functions.Notify("Remove the vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel.: "..currentFuel.. "%", "primary", 4500)
+                        closeMenuFull()
+                        SetVehicleEngineOn(veh, true, true)
+                    	TriggerEvent('persistent-vehicles/register-vehicle', veh)
+                    end, vehicle.plate)
+                    TriggerEvent("vehiclekeys:client:SetOwner", vehicle.plate)
+                end, Depots[currentGarage].spawnPoint, true)
+            else
+                local Engine = GetVehicleEngineHealth(OutsideVehicles[vehicle.plate])
+                if Engine < 40.0 then
+                    MSCore.Functions.SpawnVehicle(vehicle.vehicle, function(veh)
+                        MSCore.Functions.TriggerCallback('ms-garage:server:GetVehicleProperties', function(properties)
+                            MSCore.Functions.SetVehicleProperties(veh, properties)
+                            enginePercent = round(vehicle.engine / 10, 0)
+                            bodyPercent = round(vehicle.body / 10, 0)
+                            currentFuel = vehicle.fuel
+    
+                            if vehicle.plate ~= nil then
+                            	MSCore.Functions.DeleteVehicle(OutsideVehicles[vehicle.plate])
+                                OutsideVehicles[vehicle.plate] = veh
+                                TriggerServerEvent('ms-garages:server:UpdateOutsideVehicles', OutsideVehicles)
+                            end
+
+                            if vehicle.status ~= nil and next(vehicle.status) ~= nil then
+                                TriggerServerEvent('ms-vehicletuning:server:LoadStatus', vehicle.status, vehicle.plate)
+                            end
+                            
+                            if vehicle.drivingdistance ~= nil then
+                                local amount = round(vehicle.drivingdistance / 1000, -2)
+                                TriggerEvent('ms-hud:client:UpdateDrivingMeters', true, amount)
+                                TriggerServerEvent('ms-vehicletuning:server:UpdateDrivingDistance', vehicle.drivingdistance, vehicle.plate)
+                            end
+    
+                            SetVehicleNumberPlateText(veh, vehicle.plate)
+                            SetEntityHeading(veh, Depots[currentGarage].takeVehicle.h)
+                            TaskWarpPedIntoVehicle(GetPlayerPed(-1), veh, -1)
+                            exports['LegacyFuel']:SetFuel(veh, vehicle.fuel)
+                            SetEntityAsMissionEntity(veh, true, true)
+                            doCarDamage(veh, vehicle)
+                            TriggerServerEvent('ms-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
+                            MSCore.Functions.Notify("Vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel.: "..currentFuel.. "%", "primary", 4500)
+                            closeMenuFull()
+                            SetVehicleEngineOn(veh, true, true)
+                            TriggerEvent('persistent-vehicles/register-vehicle', veh)
+                        end, vehicle.plate)
+                        TriggerEvent("vehiclekeys:client:SetOwner", vehicle.plate)
+                    end, Depots[currentGarage].spawnPoint, true)
+                else
+                    MSCore.Functions.Notify('You can not duplicate this vehicle..', 'error')
+                    AddTemporaryBlip(OutsideVehicles[vehicle.plate])
+                end
+            end
+        else
+            MSCore.Functions.SpawnVehicle(vehicle.vehicle, function(veh)
+                MSCore.Functions.TriggerCallback('ms-garage:server:GetVehicleProperties', function(properties)
+                    MSCore.Functions.SetVehicleProperties(veh, properties)
+                    enginePercent = round(vehicle.engine / 10, 0)
+                    bodyPercent = round(vehicle.body / 10, 0)
+                    currentFuel = vehicle.fuel
+
+                    if vehicle.plate ~= nil then
+                        OutsideVehicles[vehicle.plate] = veh
+                        TriggerServerEvent('ms-garages:server:UpdateOutsideVehicles', OutsideVehicles)
+                    end
+
+                    if vehicle.status ~= nil and next(vehicle.status) ~= nil then
+                        TriggerServerEvent('ms-vehicletuning:server:LoadStatus', vehicle.status, vehicle.plate)
+                    end
+
+                    SetVehicleNumberPlateText(veh, vehicle.plate)
+                    SetEntityHeading(veh, Depots[currentGarage].takeVehicle.h)
+                    TaskWarpPedIntoVehicle(GetPlayerPed(-1), veh, -1)
+                    exports['LegacyFuel']:SetFuel(veh, vehicle.fuel)
+                    SetEntityAsMissionEntity(veh, true, true)
+                    doCarDamage(veh, vehicle)
+                    TriggerServerEvent('ms-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
+                    MSCore.Functions.Notify("You removed the vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
+                    closeMenuFull()
+                    SetVehicleEngineOn(veh, true, true)
+                    TriggerEvent('persistent-vehicles/register-vehicle', veh)
+                end, vehicle.plate)
+                TriggerEvent("vehiclekeys:client:SetOwner", vehicle.plate)
+            end, Depots[currentGarage].spawnPoint, true)
+        end
+    else
+        MSCore.Functions.SpawnVehicle(vehicle.vehicle, function(veh)
+            MSCore.Functions.TriggerCallback('ms-garage:server:GetVehicleProperties', function(properties)
+                MSCore.Functions.SetVehicleProperties(veh, properties)
+                enginePercent = round(vehicle.engine / 10, 0)
+                bodyPercent = round(vehicle.body / 10, 0)
+                currentFuel = vehicle.fuel
+
+                if vehicle.plate ~= nil then
+                    OutsideVehicles[vehicle.plate] = veh
+                    TriggerServerEvent('ms-garages:server:UpdateOutsideVehicles', OutsideVehicles)
+                end
+
+                if vehicle.status ~= nil and next(vehicle.status) ~= nil then
+                    TriggerServerEvent('ms-vehicletuning:server:LoadStatus', vehicle.status, vehicle.plate)
+                end
+                
+                if vehicle.drivingdistance ~= nil then
+                    local amount = round(vehicle.drivingdistance / 1000, -2)
+                    TriggerEvent('ms-hud:client:UpdateDrivingMeters', true, amount)
+                    TriggerServerEvent('ms-vehicletuning:server:UpdateDrivingDistance', vehicle.drivingdistance, vehicle.plate)
+                end
+
+                SetVehicleNumberPlateText(veh, vehicle.plate)
+                SetEntityHeading(veh, Depots[currentGarage].takeVehicle.h)
+                TaskWarpPedIntoVehicle(GetPlayerPed(-1), veh, -1)
+                exports['LegacyFuel']:SetFuel(veh, vehicle.fuel)
+                SetEntityAsMissionEntity(veh, true, true)
+                doCarDamage(veh, vehicle)
+                TriggerServerEvent('ms-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
+                MSCore.Functions.Notify("You removed the vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
+                closeMenuFull()
+                SetVehicleEngineOn(veh, true, true)
+                TriggerEvent('persistent-vehicles/register-vehicle', veh)
+            end, vehicle.plate)
+            TriggerEvent("vehiclekeys:client:SetOwner", vehicle.plate)
+        end, Depots[currentGarage].spawnPoint, true)
+    end
+
+    TriggerEvent("vehiclekeys:client:SetOwner", GetVehicleNumberPlateText(GetVehiclePedIsIn(GetPlayerPed(-1), false)))
+end)
+
+function AddTemporaryBlip(vehicle)  
+    local VehicleCoords = GetEntityCoords(vehicle)
+    local TempBlip = AddBlipForCoord(VehicleCoords)
+    local VehicleData = MSCore.Shared.VehicleModels[GetEntityModel(vehicle)]
+
+    SetBlipSprite (TempBlip, 225)
+    SetBlipDisplay(TempBlip, 4)
+    SetBlipScale  (TempBlip, 0.85)
+    SetBlipAsShortRange(TempBlip, true)
+    SetBlipColour(TempBlip, 0)
+
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentSubstringPlayerName("Temporary blip: "..VehicleData["name"])
+    EndTextCommandSetBlipName(TempBlip)
+    MSCore.Functions.Notify("Your vehicle "..VehicleData["name"].." is temporarily marked on the GPS!", "success", 10000)
+
+    SetTimeout(60 * 1000, function()
+        MSCore.Functions.Notify('Your vehicle is no longer marked on the GPS!', 'error')
+        RemoveBlip(TempBlip)
+    end)
+end
+
+DrawText3Ds = function(x, y, z, text)
+	SetTextScale(0.35, 0.35)
+    SetTextFont(4)
+    SetTextProportional(1)
+    SetTextColour(255, 255, 255, 215)
+    SetTextEntry("STRING")
+    SetTextCentre(true)
+    AddTextComponentString(text)
+    SetDrawOrigin(x,y,z, 0)
+    DrawText(0.0, 0.0)
+    local factor = (string.len(text)) / 370
+    DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
+    ClearDrawOrigin()
+end
+
+Citizen.CreateThread(function()
+    for k, v in pairs(Garages) do
+        Garage = AddBlipForCoord(Garages[k].takeVehicle.x, Garages[k].takeVehicle.y, Garages[k].takeVehicle.z)
+
+        SetBlipSprite (Garage, 357)
+        SetBlipDisplay(Garage, 4)
+        SetBlipScale  (Garage, 0.65)
+        SetBlipAsShortRange(Garage, true)
+        SetBlipColour(Garage, 3)
+
+        BeginTextCommandSetBlipName("STRING")
+        AddTextComponentSubstringPlayerName(Garages[k].label)
+        EndTextCommandSetBlipName(Garage)
+    end
+
+    for k, v in pairs(Depots) do
+        Depot = AddBlipForCoord(Depots[k].takeVehicle.x, Depots[k].takeVehicle.y, Depots[k].takeVehicle.z)
+
+        SetBlipSprite (Depot, 68)
+        SetBlipDisplay(Depot, 4)
+        SetBlipScale  (Depot, 0.7)
+        SetBlipAsShortRange(Depot, true)
+        SetBlipColour(Depot, 5)
+
+        BeginTextCommandSetBlipName("STRING")
+        AddTextComponentSubstringPlayerName(Depots[k].label)
+        EndTextCommandSetBlipName(Depot)
+    end
+end)
+
+function MenuGarage()
+    ped = GetPlayerPed(-1);
+    MenuTitle = "Garage"
+    ClearMenu()
+    Menu.addButton("My vehicles", "VoertuigLijst", nil)
+    Menu.addButton("Close", "close", nil) 
+end
+
+function MenuDepot()
+    ped = GetPlayerPed(-1);
+    MenuTitle = "Depot"
+    ClearMenu()
+    Menu.addButton("Impound", "DepotLijst", nil)
+    Menu.addButton("Close", "close", nil) 
+end
+
+function MenuHouseGarage(house)
+    ped = GetPlayerPed(-1);
+    MenuTitle = HouseGarages[house].label
+    ClearMenu()
+    Menu.addButton("My vehicles", "HouseGarage", house)
+    Menu.addButton("Close", "close", nil) 
+end
+
+function yeet(label)
+    print(label)
+end
+
+function HouseGarage(house)
+    MSCore.Functions.TriggerCallback("ms-garage:server:GetHouseVehicles", function(result)
+        ped = GetPlayerPed(-1);
+        MenuTitle = "Impound Vehicles :"
+        ClearMenu()
+
+        if result == nil then
+            MSCore.Functions.Notify("You have no vehicles in your garage", "error", 5000)
+            closeMenuFull()
+        else
+            Menu.addButton(HouseGarages[house].label, "yeet", HouseGarages[house].label)
+
+            for k, v in pairs(result) do
+                enginePercent = round(v.engine / 10, 0)
+                bodyPercent = round(v.body / 10, 0)
+                currentFuel = v.fuel
+                curGarage = HouseGarages[house].label
+
+                if v.state == 0 then
+                    v.state = "Outside"
+                elseif v.state == 1 then
+                    v.state = "Garage"
+                elseif v.state == 2 then
+                    v.state = "Impound"
+                end
+                
+                local label = MSCore.Shared.Vehicles[v.vehicle]["name"]
+                if MSCore.Shared.Vehicles[v.vehicle]["brand"] ~= nil then
+                    label = MSCore.Shared.Vehicles[v.vehicle]["brand"].." "..MSCore.Shared.Vehicles[v.vehicle]["name"]
+                end
+                Menu.addButton(label, "TakeOutGarageVehicle", v, v.state, " Engine: " .. enginePercent.."%", " Body: " .. bodyPercent.."%", " Fuel: "..currentFuel.."%")
+            end
+        end
+            
+        Menu.addButton("Back", "MenuHouseGarage", house)
+    end, house)
+end
+
+function getPlayerVehicles(garage)
+    local vehicles = {}
+
+    return vehicles
+end
+
+function DepotLijst()
+    MSCore.Functions.TriggerCallback("ms-garage:server:GetDepotVehicles", function(result)
+        ped = GetPlayerPed(-1);
+        MenuTitle = "Impounded Vehicles :"
+        ClearMenu()
+
+        if result == nil then
+            MSCore.Functions.Notify("You have no impounded vehicle", "error", 5000)
+            closeMenuFull()
+        else
+            Menu.addButton(Depots[currentGarage].label, "yeet", Depots[currentGarage].label)
+
+            for k, v in pairs(result) do
+                enginePercent = round(v.engine / 10, 0)
+                bodyPercent = round(v.body / 10, 0)
+                currentFuel = v.fuel
+
+
+                if v.state == 0 then
+                    v.state = "Apreendido"
+                end
+
+                local label = MSCore.Shared.Vehicles[v.vehicle]["name"]
+                if MSCore.Shared.Vehicles[v.vehicle]["brand"] ~= nil then
+                    label = MSCore.Shared.Vehicles[v.vehicle]["brand"].." "..MSCore.Shared.Vehicles[v.vehicle]["name"]
+                end
+                Menu.addButton(label, "TakeOutDepotVehicle", v, v.state .. " ($"..v.depotprice..",-)", " Engine: " .. enginePercent.."%", " Body: " .. bodyPercent.."%", " Fuel: "..currentFuel.."%")
+            end
+        end
+            
+        Menu.addButton("Back", "MenuDepot",nil)
+    end)
+end
+
+function VoertuigLijst()
+    MSCore.Functions.TriggerCallback("ms-garage:server:GetUserVehicles", function(result)
+        ped = GetPlayerPed(-1);
+        MenuTitle = "My vehicles :"
+        ClearMenu()
+
+        if result == nil then
+            MSCore.Functions.Notify("You don't have a vehicle in this garage", "error", 5000)
+            closeMenuFull()
+        else
+            Menu.addButton(Garages[currentGarage].label, "yeet", Garages[currentGarage].label)
+
+            for k, v in pairs(result) do
+                enginePercent = round(v.engine / 10, 0)
+                bodyPercent = round(v.body / 10, 0)
+                currentFuel = v.fuel
+                curGarage = Garages[v.garage].label
+
+
+                if v.state == 0 then
+                    v.state = "Outside"
+                elseif v.state == 1 then
+                    v.state = "Garage"
+                elseif v.state == 2 then
+                    v.state = "Impound"
+                end
+
+                local label = MSCore.Shared.Vehicles[v.vehicle]["name"]
+                if MSCore.Shared.Vehicles[v.vehicle]["brand"] ~= nil then
+                    label = MSCore.Shared.Vehicles[v.vehicle]["brand"].." "..MSCore.Shared.Vehicles[v.vehicle]["name"]
+                end
+                Menu.addButton(label, "TakeOutVehicle", v, v.state, " Engine: " .. enginePercent .. "%", " Body: " .. bodyPercent.. "%", " Fuel: "..currentFuel.. "%")
+            end
+        end
+            
+        Menu.addButton("Voltar", "MenuGarage", nil)
+    end, currentGarage)
+end
+
+-- Citizen.CreateThread(function()
+--     while true do
+--         if VehPlate ~= nil then
+--             local veh = OutsideVehicles[VehPlate]
+--             local Damage = GetVehicleBodyHealth(veh)
+--         end
+
+--         Citizen.Wait(1000)
+--     end
+-- end)
+
+local jaTaSpawnadinho = false
+function TakeOutVehicle(vehicle)
+    print(vehicle.state)
+    if vehicle.state == "Garage" then
+        enginePercent = round(vehicle.engine / 10, 1)
+        bodyPercent = round(vehicle.body / 10, 1)
+        currentFuel = vehicle.fuel
+
+        if jaTaSpawnadinho == true then
+        	MSCore.Functions.Notify("Wait 2s until you can spawn another vehicle")
+        	Wait(2000)
+        	jaTaSpawnadinho = false
+        else
+        	jaTaSpawnadinho = true
+	        MSCore.Functions.SpawnVehicle(vehicle.vehicle, function(veh)
+	            MSCore.Functions.TriggerCallback('ms-garage:server:GetVehicleProperties', function(properties)
+
+	                if vehicle.plate ~= nil then
+	                    OutsideVehicles[vehicle.plate] = veh
+	                    TriggerServerEvent('ms-garages:server:UpdateOutsideVehicles', OutsideVehicles)
+	                end
+
+	                if vehicle.status ~= nil and next(vehicle.status) ~= nil then
+	                    TriggerServerEvent('ms-vehicletuning:server:LoadStatus', vehicle.status, vehicle.plate)
+	                end
+
+	                if vehicle.vehicle == "urus" then
+	                    SetVehicleExtra(veh, 1, false)
+	                    SetVehicleExtra(veh, 2, true)
+	                end
+	                
+	                if vehicle.drivingdistance ~= nil then
+	                    local amount = round(vehicle.drivingdistance / 1000, -2)
+	                    TriggerEvent('ms-hud:client:UpdateDrivingMeters', true, amount)
+	                    TriggerServerEvent('ms-vehicletuning:server:UpdateDrivingDistance', vehicle.drivingdistance, vehicle.plate)
+	                end
+
+	                MSCore.Functions.SetVehicleProperties(veh, properties)
+	                SetVehicleNumberPlateText(veh, vehicle.plate)
+	                SetEntityHeading(veh, Garages[currentGarage].spawnPoint.h)
+	                exports['LegacyFuel']:SetFuel(veh, vehicle.fuel)
+	                doCarDamage(veh, vehicle)
+	                SetEntityAsMissionEntity(veh, true, true)
+	                TriggerServerEvent('ms-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
+	                MSCore.Functions.Notify("You picked up a vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
+	                closeMenuFull()
+	                jaTaSpawnadinho = false
+	                TaskWarpPedIntoVehicle(GetPlayerPed(-1), veh, -1)
+	                TriggerEvent("vehiclekeys:client:SetOwner", GetVehicleNumberPlateText(veh))
+	                TriggerEvent('persistent-vehicles/register-vehicle', veh)
+	                SetVehicleEngineOn(veh, true, true)
+	            end, vehicle.plate)
+	            Citizen.Wait(2000)
+	            
+	        end, Garages[currentGarage].spawnPoint, true)
+	    end
+    elseif vehicle.state == "Outside" then
+        MSCore.Functions.Notify("Are you sure your vehicle is impounded with us??", "error", 2500)
+    elseif vehicle.state == "Impound" then
+        MSCore.Functions.Notify("Your vehicle was apprehended by the police", "error", 4000)
+    end
+end
+
+function TakeOutDepotVehicle(vehicle)
+    if vehicle.state == "Apreendido" then
+        TriggerServerEvent("ms-garage:server:PayDepotPrice", vehicle)
+    end
+end
+
+function TakeOutGarageVehicle(vehicle)
+    if vehicle.state == "Garage" then
+        MSCore.Functions.SpawnVehicle(vehicle.vehicle, function(veh)
+            MSCore.Functions.TriggerCallback('ms-garage:server:GetVehicleProperties', function(properties)
+                MSCore.Functions.SetVehicleProperties(veh, properties)
+                enginePercent = round(vehicle.engine / 10, 1)
+                bodyPercent = round(vehicle.body / 10, 1)
+                currentFuel = vehicle.fuel
+
+                if vehicle.plate ~= nil then
+                    OutsideVehicles[vehicle.plate] = veh
+                    TriggerServerEvent('ms-garages:server:UpdateOutsideVehicles', OutsideVehicles)
+                end
+                
+                
+                if vehicle.drivingdistance ~= nil then
+                    local amount = round(vehicle.drivingdistance / 1000, -2)
+                    TriggerEvent('ms-hud:client:UpdateDrivingMeters', true, amount)
+                    TriggerServerEvent('ms-vehicletuning:server:UpdateDrivingDistance', vehicle.drivingdistance, vehicle.plate)
+                end
+
+                if vehicle.vehicle == "urus" then
+                    SetVehicleExtra(veh, 1, false)
+                    SetVehicleExtra(veh, 2, true)
+                end
+
+                if vehicle.status ~= nil and next(vehicle.status) ~= nil then
+                    TriggerServerEvent('ms-vehicletuning:server:LoadStatus', vehicle.status, vehicle.plate)
+                end
+
+                SetVehicleNumberPlateText(veh, vehicle.plate)
+                SetEntityHeading(veh, HouseGarages[currentHouseGarage].takeVehicle.h)
+                TaskWarpPedIntoVehicle(GetPlayerPed(-1), veh, -1)
+                exports['LegacyFuel']:SetFuel(veh, vehicle.fuel)
+                SetEntityAsMissionEntity(veh, true, true)
+                doCarDamage(veh, vehicle)
+                TriggerServerEvent('ms-garage:server:updateVehicleState', 0, vehicle.plate, vehicle.garage)
+                MSCore.Functions.Notify("You picked up a vehicle: Engine: " .. enginePercent .. "% Body: " .. bodyPercent.. "% Fuel: "..currentFuel.. "%", "primary", 4500)
+                closeMenuFull()
+                TriggerEvent("vehiclekeys:client:SetOwner", GetVehicleNumberPlateText(veh))
+                TriggerEvent('persistent-vehicles/register-vehicle', veh)
+                SetVehicleEngineOn(veh, true, true)
+            end, vehicle.plate)
+        end, HouseGarages[currentHouseGarage].takeVehicle, true)
+    end
+end
+
+function doCarDamage(currentVehicle, veh)
+	smash = false
+	damageOutside = false
+	damageOutside2 = false 
+	local engine = veh.engine + 0.0
+	local body = veh.body + 0.0
+	if engine < 200.0 then
+		engine = 200.0
+    end
+    
+    if engine > 1000.0 then
+        engine = 1000.0
+    end
+
+	if body < 150.0 then
+		body = 150.0
+	end
+	if body < 900.0 then
+		smash = true
+	end
+
+	if body < 800.0 then
+		damageOutside = true
+	end
+
+	if body < 500.0 then
+		damageOutside2 = true
+	end
+
+    Citizen.Wait(100)
+    SetVehicleEngineHealth(currentVehicle, engine)
+	if smash then
+		SmashVehicleWindow(currentVehicle, 0)
+		SmashVehicleWindow(currentVehicle, 1)
+		SmashVehicleWindow(currentVehicle, 2)
+		SmashVehicleWindow(currentVehicle, 3)
+		SmashVehicleWindow(currentVehicle, 4)
+	end
+	if damageOutside then
+		SetVehicleDoorBroken(currentVehicle, 1, true)
+		SetVehicleDoorBroken(currentVehicle, 6, true)
+		SetVehicleDoorBroken(currentVehicle, 4, true)
+	end
+	if damageOutside2 then
+		SetVehicleTyreBurst(currentVehicle, 1, false, 990.0)
+		SetVehicleTyreBurst(currentVehicle, 2, false, 990.0)
+		SetVehicleTyreBurst(currentVehicle, 3, false, 990.0)
+		SetVehicleTyreBurst(currentVehicle, 4, false, 990.0)
+	end
+	if body < 1000 then
+		SetVehicleBodyHealth(currentVehicle, 985.1)
+	end
+end
+
+function close()
+    Menu.hidden = true
+end
+
+function closeMenuFull()
+    Menu.hidden = true
+    currentGarage = nil
+    ClearMenu()
+end
+
+function ClearMenu()
+	--Menu = {}
+	Menu.GUI = {}
+	Menu.buttonCount = 0
+	Menu.selection = 0
+end
+
+Citizen.CreateThread(function()
+    Citizen.Wait(1000)
+    while true do
+        Citizen.Wait(5)
+        local ped = GetPlayerPed(-1)
+        local pos = GetEntityCoords(ped)
+        local inGarageRange = false
+
+        for k, v in pairs(Garages) do
+            local takeDist = GetDistanceBetweenCoords(pos, Garages[k].takeVehicle.x, Garages[k].takeVehicle.y, Garages[k].takeVehicle.z)
+            if takeDist <= 15 then
+                inGarageRange = true
+                DrawMarker(2, Garages[k].takeVehicle.x, Garages[k].takeVehicle.y, Garages[k].takeVehicle.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 0, 0, 222, false, false, false, true, false, false, false)
+                if takeDist <= 1.5 then
+                    if not IsPedInAnyVehicle(ped) then
+                        DrawText3Ds(Garages[k].takeVehicle.x, Garages[k].takeVehicle.y, Garages[k].takeVehicle.z + 0.5, '~g~E~w~ - Garage')
+                        if IsControlJustPressed(1, 177) and not Menu.hidden then
+                            close()
+                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                        end
+                        if IsControlJustPressed(0, 38) then
+                            MenuGarage()
+                            Menu.hidden = not Menu.hidden
+                            currentGarage = k
+                        end
+                    else
+                        DrawText3Ds(Garages[k].takeVehicle.x, Garages[k].takeVehicle.y, Garages[k].takeVehicle.z, Garages[k].label)
+                    end
+                end
+
+                Menu.renderGUI()
+
+                if takeDist >= 4 and not Menu.hidden then
+                    closeMenuFull()
+                end
+            end
+
+            local putDist = GetDistanceBetweenCoords(pos, Garages[k].putVehicle.x, Garages[k].putVehicle.y, Garages[k].putVehicle.z)
+
+            if putDist <= 25 and IsPedInAnyVehicle(ped) then
+                inGarageRange = true
+                DrawMarker(2, Garages[k].putVehicle.x, Garages[k].putVehicle.y, Garages[k].putVehicle.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 255, 255, 255, 255, false, false, false, true, false, false, false)
+                if putDist <= 1.5 then
+                    DrawText3Ds(Garages[k].putVehicle.x, Garages[k].putVehicle.y, Garages[k].putVehicle.z + 0.5, '~g~E~w~ - Save Vehicle')
+                    if IsControlJustPressed(0, 38) then
+                        local curVeh = GetVehiclePedIsIn(ped)
+                        local plate = GetVehicleNumberPlateText(curVeh)
+                        MSCore.Functions.TriggerCallback('ms-garage:server:checkVehicleOwner', function(owned)
+                            if owned then
+                                local bodyDamage = math.ceil(GetVehicleBodyHealth(curVeh))
+                                local engineDamage = math.ceil(GetVehicleEngineHealth(curVeh))
+                                local totalFuel = exports['LegacyFuel']:GetFuel(curVeh)
+                                
+                                local propertiescarro = MSCore.Functions.GetVehicleProperties(curVeh)
+                                TriggerServerEvent('ms-garage:server:updateVehicleStatus', totalFuel, engineDamage, bodyDamage, plate, k, propertiescarro)
+                                TriggerServerEvent('ms-garage:server:updateVehicleState', 1, plate, k)
+                                TriggerServerEvent('vehiclemod:server:saveStatus', plate)
+                                MSCore.Functions.DeleteVehicle(curVeh)
+                                if plate ~= nil then
+                                    OutsideVehicles[plate] = veh
+                                    TriggerServerEvent('ms-garages:server:UpdateOutsideVehicles', OutsideVehicles)
+                                end
+                                MSCore.Functions.Notify("Do you keep your vehicle in, "..Garages[k].label, "primary", 4500)
+                            else
+                                MSCore.Functions.Notify("This vehicle does not belong to you....", "error", 3500)
+                            end
+                        end, plate)
+                    end
+                end
+            end
+        end
+
+        if not inGarageRange then
+            Citizen.Wait(1000)
+        end
+    end
+end)
+
+Citizen.CreateThread(function()
+    Citizen.Wait(2000)
+    while true do
+        Citizen.Wait(5)
+        local ped = GetPlayerPed(-1)
+        local pos = GetEntityCoords(ped)
+        local inGarageRange = false
+
+        if HouseGarages ~= nil and currentHouseGarage ~= nil then
+            if hasGarageKey and HouseGarages[currentHouseGarage] ~= nil then
+                local takeDist = GetDistanceBetweenCoords(pos, HouseGarages[currentHouseGarage].takeVehicle.x, HouseGarages[currentHouseGarage].takeVehicle.y, HouseGarages[currentHouseGarage].takeVehicle.z)
+                if takeDist <= 15 then
+                    inGarageRange = true
+                    DrawMarker(2, HouseGarages[currentHouseGarage].takeVehicle.x, HouseGarages[currentHouseGarage].takeVehicle.y, HouseGarages[currentHouseGarage].takeVehicle.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 0, 0, 222, false, false, false, true, false, false, false)
+                    if takeDist < 2.0 then
+                        if not IsPedInAnyVehicle(ped) then
+                            DrawText3Ds(HouseGarages[currentHouseGarage].takeVehicle.x, HouseGarages[currentHouseGarage].takeVehicle.y, HouseGarages[currentHouseGarage].takeVehicle.z + 0.5, '~g~E~w~ - Garage')
+                            if IsControlJustPressed(1, 177) and not Menu.hidden then
+                                close()
+                                PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                            end
+                            if IsControlJustPressed(0, 38) then
+                                MenuHouseGarage(currentHouseGarage)
+                                Menu.hidden = not Menu.hidden
+                            end
+                        elseif IsPedInAnyVehicle(ped) then
+                            DrawText3Ds(HouseGarages[currentHouseGarage].takeVehicle.x, HouseGarages[currentHouseGarage].takeVehicle.y, HouseGarages[currentHouseGarage].takeVehicle.z + 0.5, '~g~E~w~ - Save Vehicle')
+                            if IsControlJustPressed(0, 38) then
+                                local curVeh = GetVehiclePedIsIn(ped)
+                                local plate = GetVehicleNumberPlateText(curVeh)
+                                MSCore.Functions.TriggerCallback('ms-garage:server:checkVehicleHouseOwner', function(owned)
+                                    if owned then
+                                        local bodyDamage = round(GetVehicleBodyHealth(curVeh), 1)
+                                        local engineDamage = round(GetVehicleEngineHealth(curVeh), 1)
+                                        local totalFuel = exports['LegacyFuel']:GetFuel(curVeh)
+                                        
+                                        local propertiescarro = MSCore.Functions.GetVehicleProperties(curVeh)
+                                        TriggerServerEvent('ms-garage:server:updateVehicleStatus', totalFuel, engineDamage, bodyDamage, plate, currentHouseGarage, propertiescarro)
+                                        TriggerServerEvent('ms-garage:server:updateVehicleState', 1, plate, currentHouseGarage)
+                                        MSCore.Functions.DeleteVehicle(curVeh)
+                                        if plate ~= nil then
+                                            OutsideVehicles[plate] = veh
+                                            TriggerServerEvent('ms-garages:server:UpdateOutsideVehicles', OutsideVehicles)
+                                        end
+                                        MSCore.Functions.Notify("Do you keep the vehicle in, "..HouseGarages[currentHouseGarage].label, "primary", 4500)
+                                    else
+                                        MSCore.Functions.Notify("This vehicle is not owned by anyone...", "error", 3500)
+                                    end
+                                end, plate, currentHouseGarage)
+                            end
+                        end
+                        
+                        Menu.renderGUI()
+                    end
+
+                    if takeDist > 1.99 and not Menu.hidden then
+                        closeMenuFull()
+                    end
+                end
+            end
+        end
+        
+        if not inGarageRange then
+            Citizen.Wait(5000)
+        end
+    end
+end)
+
+Citizen.CreateThread(function()
+    Citizen.Wait(1000)
+    while true do
+        Citizen.Wait(5)
+        local ped = GetPlayerPed(-1)
+        local pos = GetEntityCoords(ped)
+        local inGarageRange = false
+
+        for k, v in pairs(Depots) do
+            local takeDist = GetDistanceBetweenCoords(pos, Depots[k].takeVehicle.x, Depots[k].takeVehicle.y, Depots[k].takeVehicle.z)
+            if takeDist <= 15 then
+                inGarageRange = true
+                DrawMarker(2, Depots[k].takeVehicle.x, Depots[k].takeVehicle.y, Depots[k].takeVehicle.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 0, 0, 222, false, false, false, true, false, false, false)
+                if takeDist <= 1.5 then
+                    if not IsPedInAnyVehicle(ped) then
+                        DrawText3Ds(Depots[k].takeVehicle.x, Depots[k].takeVehicle.y, Depots[k].takeVehicle.z + 0.5, '~g~E~w~ - See impounds')
+                        if IsControlJustPressed(1, 177) and not Menu.hidden then
+                            close()
+                            PlaySound(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
+                        end
+                        if IsControlJustPressed(0, 38) then
+                            MenuDepot()
+                            Menu.hidden = not Menu.hidden
+                            currentGarage = k
+                        end
+                    end
+                end
+
+                Menu.renderGUI()
+
+                if takeDist >= 4 and not Menu.hidden then
+                    closeMenuFull()
+                end
+            end
+        end
+
+        if not inGarageRange then
+            Citizen.Wait(5000)
+        end
+    end
+end)
+
+function round(num, numDecimalPlaces)
+    return tonumber(string.format("%." .. (numDecimalPlaces or 0) .. "f", num))
+end
+
+function round(num, numDecimalPlaces)
+    if numDecimalPlaces and numDecimalPlaces>0 then
+      local mult = 10^numDecimalPlaces
+      return math.floor(num * mult + 0.5) / mult
+    end
+    return math.floor(num + 0.5)
+end

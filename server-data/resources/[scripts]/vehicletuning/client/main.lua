@@ -1,10 +1,10 @@
-QBCore = nil
+MSCore = nil
 
 Citizen.CreateThread(function() 
     while true do
         Citizen.Wait(10)
-        if QBCore == nil then
-            TriggerEvent("QBCore:GetObject", function(obj) QBCore = obj end)    
+        if MSCore == nil then
+            TriggerEvent("MSCore:GetObject", function(obj) MSCore = obj end)    
             Citizen.Wait(200)
         end
     end
@@ -15,8 +15,8 @@ function CalculateRepair()
 	local model = GetEntityModel(vehicle)
 	local damage = (2000 - (GetVehicleBodyHealth(veh) + GetVehicleEngineHealth(veh)))
 	local vehiclePrice = 25000
-	if QBCore.Shared.VehicleModels[model] ~= nil then
-		vehiclePrice = QBCore.Shared.VehicleModels[model]["price"]
+	if MSCore.Shared.VehicleModels[model] ~= nil then
+		vehiclePrice = MSCore.Shared.VehicleModels[model]["price"]
 	end
 	local addonprice = ((vehiclePrice / 100) * 0.1)
 	local price = (250+1.2*damage) + addonprice
@@ -28,8 +28,8 @@ function CalculateUpgradePrice(standardPrice)
 	local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1))
 	local model = GetEntityModel(vehicle)
 	local vehiclePrice = 25000
-	if QBCore.Shared.VehicleModels[model] ~= nil then
-		vehiclePrice = QBCore.Shared.VehicleModels[model]["price"]
+	if MSCore.Shared.VehicleModels[model] ~= nil then
+		vehiclePrice = MSCore.Shared.VehicleModels[model]["price"]
 	end
 	local price = ((vehiclePrice / 100) * 13.37) + standardPrice
 
@@ -1745,7 +1745,7 @@ function DriveOutOfGarage(pos)
 
 	isBusy = true
 
-	QBCore.Functions.Progressbar("vehicletune_editvehicle", "Bezig met Vehicle..", (editCount * 500), false, true, {
+	MSCore.Functions.Progressbar("vehicletune_editvehicle", "Bezig met Vehicle..", (editCount * 500), false, true, {
 		disableMovement = true,
 		disableCarMovement = true,
 		disableMouse = false,
@@ -1764,7 +1764,7 @@ function DriveOutOfGarage(pos)
 		SetPlayerInvincible(GetPlayerIndex(),false)
 		SetEntityInvincible(veh,false)
 
-		TriggerServerEvent("vehicletuning:server:SaveVehicleProps", QBCore.Functions.GetVehicleProperties(veh))
+		TriggerServerEvent("vehicletuning:server:SaveVehicleProps", MSCore.Functions.GetVehicleProperties(veh))
 		--TriggerServerEvent('lockGarage',false,lsc.currentgarage)
 	end)
 end
@@ -2144,7 +2144,7 @@ Citizen.CreateThread(function()
 								
 								if button.costs ~= nil then
 									if button.costs ~= 0 then
-										QBCore.Functions.GetPlayerData(function(PlayerData)
+										MSCore.Functions.GetPlayerData(function(PlayerData)
 											local cash = PlayerData.money["cash"]
 											local bank = PlayerData.money["bank"]
 											if cash >= button.costs or bank >= button.costs then
@@ -2153,7 +2153,7 @@ Citizen.CreateThread(function()
 												TriggerServerEvent("InteractSound_SV:PlayOnSource", "airwrench", 0.1)
 												ButtonSelected(button)
 											else
-												QBCore.Functions.Notify("Je hebt niet genoeg geld!", "error")
+												MSCore.Functions.Notify("Je hebt niet genoeg geld!", "error")
 											end
 										end)
 									else
@@ -2652,7 +2652,7 @@ Citizen.CreateThread(function()
     while true do
         Citizen.Wait(7)
         if ShowEnginePos then
-            local vehicle = QBCore.Functions.GetClosestVehicle()
+            local vehicle = MSCore.Functions.GetClosestVehicle()
             if vehicle ~= 0 and vehicle ~= nil then
                 local pos = GetEntityCoords(GetPlayerPed(-1))
                 local vehpos = GetEntityCoords(vehicle)
@@ -2661,7 +2661,7 @@ Citizen.CreateThread(function()
                     if (IsBackEngine(GetEntityModel(vehicle))) then
                         drawpos = GetOffsetFromEntityInWorldCoords(vehicle, 0, -2.5, 0)
                     end
-                    QBCore.Functions.DrawText3D(drawpos.x, drawpos.y, drawpos.z, "Sta hier..")
+                    MSCore.Functions.DrawText3D(drawpos.x, drawpos.y, drawpos.z, "Sta hier..")
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, drawpos) < 2.0) and not IsPedInAnyVehicle(GetPlayerPed(-1)) then
 						RepairVehicle(vehicle)
 						ShowEnginePos = false
@@ -2674,7 +2674,7 @@ end)
 
 RegisterNetEvent('vehicletuning:client:RepairVehicle')
 AddEventHandler('vehicletuning:client:RepairVehicle', function()
-	local vehicle = QBCore.Functions.GetClosestVehicle()
+	local vehicle = MSCore.Functions.GetClosestVehicle()
 	if vehicle ~= nil and vehicle ~= 0 then
 		local pos = GetEntityCoords(GetPlayerPed(-1))
 		local vehpos = GetEntityCoords(vehicle)
@@ -2698,7 +2698,7 @@ function RepairVehicle(vehicle)
     else
         SetVehicleDoorOpen(vehicle, 4, false, false)
     end
-	QBCore.Functions.Progressbar("repair_vehicle", "Bezig met sleutelen..", math.random(10000, 20000), false, true, {
+	MSCore.Functions.Progressbar("repair_vehicle", "Bezig met sleutelen..", math.random(10000, 20000), false, true, {
 		disableMovement = true,
 		disableCarMovement = true,
 		disableMouse = false,
@@ -2709,7 +2709,7 @@ function RepairVehicle(vehicle)
 		flags = 16,
 	}, {}, {}, function() -- Done
 		StopAnimTask(GetPlayerPed(-1), "mini@repair", "fixing_a_player", 1.0)
-		QBCore.Functions.Notify("Vehicle gemaakt!")
+		MSCore.Functions.Notify("Vehicle gemaakt!")
 		SetVehicleEngineHealth(vehicle, 500.0)
 		SetVehicleTyreFixed(vehicle, 0)
 		SetVehicleTyreFixed(vehicle, 1)
@@ -2723,7 +2723,7 @@ function RepairVehicle(vehicle)
 		end
 	end, function() -- Cancel
 		StopAnimTask(GetPlayerPed(-1), "mini@repair", "fixing_a_player", 1.0)
-		QBCore.Functions.Notify("Mislukt!", "error")
+		MSCore.Functions.Notify("Mislukt!", "error")
 		if (IsBackEngine(GetEntityModel(vehicle))) then
 			SetVehicleDoorShut(vehicle, 5, false)
 		else
