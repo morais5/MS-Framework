@@ -20,6 +20,9 @@ files {
 	'html/js/jquery.min.js',
 	'html/js/jquery-ui.min.js',
 
+	-- Vehicle Images
+	'html/img/vehicle/fuel.png',
+
 	'html/img/vehicle/locked.png',
 	'html/img/vehicle/unlocked.png',
 
@@ -65,10 +68,16 @@ client_scripts {
 	'client/settings.lua',
 	--'client/cinematic.lua',
 	'client/money.lua',
+	'client/fuel.lua',
 	'client/stress.lua',
 }
 
 server_scripts {
 	'config.lua',
 	'server/server.lua',
+}
+
+exports {
+	'GetFuel',
+	'SetFuel'
 }
