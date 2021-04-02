@@ -312,7 +312,7 @@ AddEventHandler('ms-radialmenu:client:ChangeSeat', function(data)
             MSCore.Functions.Notify('This place is occupied..')
         end
     else
-        MSCore.Functions.Notify('You have a 3-point belt, you can't change the seat...', 'error')
+        MSCore.Functions.Notify('You have a 3-point belt, you cant change the seat...', 'error')
     end
 end)
 

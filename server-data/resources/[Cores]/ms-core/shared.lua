@@ -2323,6 +2323,10 @@ MShared.Jobs = {
 		payment = 1000,
 		defaultDuty = true,
 	},
+    ["gundealer"] = {
+		label = "Gundealer",
+		defaultDuty = true,
+	},
 	["tow"] = {
 		label = "Tow",
 		payment = 10,
