@@ -20,9 +20,9 @@ $(document).on('click', '.phone-app-footer-button', function(e){
         $(".phone-"+PressedFooterTab).show();
 
         if (PressedFooterTab == "recent") {
-            $.post('http://ms-phone_new/ClearRecentAlerts');
+            $.post('http://ms-phone/ClearRecentAlerts');
         } else if (PressedFooterTab == "suggestedcontacts") {
-            $.post('http://ms-phone_new/ClearRecentAlerts');
+            $.post('http://ms-phone/ClearRecentAlerts');
         }
 
         CurrentFooterTab = PressedFooterTab;
@@ -93,7 +93,7 @@ $(document).on('click', '.phone-recent-call', function(e){
 
     console.log(ms.Phone.Data.AnonymousCall)
 
-    $.post('http://ms-phone_new/CallContact', JSON.stringify({
+    $.post('http://ms-phone/CallContact', JSON.stringify({
         ContactData: cData,
         Anonymous: ms.Phone.Data.AnonymousCall,
     }), function(status){
@@ -145,7 +145,7 @@ $(document).on('click', ".phone-keypad-key-call", function(e){
         name: InputNum,
     }
 
-    $.post('http://ms-phone_new/CallContact', JSON.stringify({
+    $.post('http://ms-phone/CallContact', JSON.stringify({
         ContactData: cData,
         Anonymous: ms.Phone.Data.AnonymousCall,
     }), function(status){
@@ -223,7 +223,7 @@ $(document).on('click', '#new-chat-phone', function(e){
     var ContactData = $("[data-contactid='"+ContactId+"']").data('contactData');
 
     if (ContactData.number !== ms.Phone.Data.PlayerData.charinfo.phone) {
-        $.post('http://ms-phone_new/GetWhatsappChats', JSON.stringify({}), function(chats){
+        $.post('http://ms-phone/GetWhatsappChats', JSON.stringify({}), function(chats){
             ms.Phone.Functions.LoadWhatsappChats(chats);
         });
     
@@ -240,7 +240,7 @@ $(document).on('click', '#new-chat-phone', function(e){
             ms.Phone.Functions.ToggleApp("whatsapp", "block");
             ms.Phone.Data.currentApplication = "whatsapp";
         
-            $.post('http://ms-phone_new/GetWhatsappChat', JSON.stringify({phone: ContactData.number}), function(chat){
+            $.post('http://ms-phone/GetWhatsappChat', JSON.stringify({phone: ContactData.number}), function(chat){
                 ms.Phone.Functions.SetupChatMessages(chat, {
                     name: ContactData.name,
                     number: ContactData.number
@@ -291,7 +291,7 @@ $(document).on('click', '#edit-contact-save', function(e){
     var ContactIban = $(".phone-edit-contact-iban").val();
 
     if (ContactName != "" && ContactNumber != "") {
-        $.post('http://ms-phone_new/EditContact', JSON.stringify({
+        $.post('http://ms-phone/EditContact', JSON.stringify({
             CurrentContactName: ContactName,
             CurrentContactNumber: ContactNumber,
             CurrentContactIban: ContactIban,
@@ -318,7 +318,7 @@ $(document).on('click', '#edit-contact-delete', function(e){
     var ContactNumber = $(".phone-edit-contact-number").val();
     var ContactIban = $(".phone-edit-contact-iban").val();
 
-    $.post('http://ms-phone_new/DeleteContact', JSON.stringify({
+    $.post('http://ms-phone/DeleteContact', JSON.stringify({
         CurrentContactName: ContactName,
         CurrentContactNumber: ContactNumber,
         CurrentContactIban: ContactIban,
@@ -417,7 +417,7 @@ $(document).on('click', '#add-contact-save', function(e){
     var ContactIban = $(".phone-add-contact-iban").val();
 
     if (ContactName != "" && ContactNumber != "") {
-        $.post('http://ms-phone_new/AddNewContact', JSON.stringify({
+        $.post('http://ms-phone/AddNewContact', JSON.stringify({
             ContactName: ContactName,
             ContactNumber: ContactNumber,
             ContactIban: ContactIban,
@@ -431,7 +431,7 @@ $(document).on('click', '#add-contact-save', function(e){
         }, 250)
 
         if (SelectedSuggestion !== null) {
-            $.post('http://ms-phone_new/RemoveSuggestion', JSON.stringify({
+            $.post('http://ms-phone/RemoveSuggestion', JSON.stringify({
                 data: $(SelectedSuggestion).data('SuggestionData')
             }));
             $(SelectedSuggestion).remove();
@@ -468,7 +468,7 @@ $(document).on('click', '#phone-start-call', function(e){
 
 SetupCall = function(cData) {
     var retval = false;
-    $.post('http://ms-phone_new/CallContact', JSON.stringify({
+    $.post('http://ms-phone/CallContact', JSON.stringify({
         ContactData: cData,
         Anonymous: ms.Phone.Data.AnonymousCall,
     }), function(status){
@@ -524,19 +524,19 @@ CancelOutgoingCall = function() {
 $(document).on('click', '#outgoing-cancel', function(e){
     e.preventDefault();
 
-    $.post('http://ms-phone_new/CancelOutgoingCall');
+    $.post('http://ms-phone/CancelOutgoingCall');
 });
 
 $(document).on('click', '#incoming-deny', function(e){
     e.preventDefault();
 
-    $.post('http://ms-phone_new/DenyIncomingCall');
+    $.post('http://ms-phone/DenyIncomingCall');
 });
 
 $(document).on('click', '#ongoing-cancel', function(e){
     e.preventDefault();
     
-    $.post('http://ms-phone_new/CancelOngoingCall');
+    $.post('http://ms-phone/CancelOngoingCall');
 });
 
 IncomingCallAlert = function(CallData, Canceled, AnonymousCall) {
@@ -694,7 +694,7 @@ $(document).on('click', '.phone-currentcall-container', function(e){
 $(document).on('click', '#incoming-answer', function(e){
     e.preventDefault();
 
-    $.post('http://ms-phone_new/AnswerCall');
+    $.post('http://ms-phone/AnswerCall');
 });
 
 ms.Phone.Functions.AnswerCall = function(CallData) {

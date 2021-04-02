@@ -100,7 +100,7 @@ AddEventHandler('ms-lapraces:server:FinishPlayer', function(RaceData, TotalTime,
                 }
             }
             MSCore.Functions.ExecuteSql(false, "UPDATE `lapraces` SET `records` = '"..json.encode(Races[RaceData.RaceId].Records).."' WHERE `raceid` = '"..RaceData.RaceId.."'")
-            TriggerClientEvent('ms-phone_new:client:RaceNotify', src, 'You have broken the WR on '..RaceData.RaceName..' with a time of: '..SecondsToClock(BLap)..'!')
+            TriggerClientEvent('ms-phone:client:RaceNotify', src, 'You have broken the WR on '..RaceData.RaceName..' with a time of: '..SecondsToClock(BLap)..'!')
         end
     else
         Races[RaceData.RaceId].Records = {
@@ -111,7 +111,7 @@ AddEventHandler('ms-lapraces:server:FinishPlayer', function(RaceData, TotalTime,
             }
         }
         MSCore.Functions.ExecuteSql(false, "UPDATE `lapraces` SET `records` = '"..json.encode(Races[RaceData.RaceId].Records).."' WHERE `raceid` = '"..RaceData.RaceId.."'")
-        TriggerClientEvent('ms-phone_new:client:RaceNotify', src, 'You have set the WR on '..RaceData.RaceName..' with a time of: '..SecondsToClock(BLap)..'!')
+        TriggerClientEvent('ms-phone:client:RaceNotify', src, 'You have set the WR on '..RaceData.RaceName..' with a time of: '..SecondsToClock(BLap)..'!')
     end
     AvailableRaces[AvailableKey].RaceData = Races[RaceData.RaceId]
     TriggerClientEvent('ms-lapraces:client:PlayerFinishs', -1, RaceData.RaceId, PlayersFinished, Player)
@@ -136,7 +136,7 @@ AddEventHandler('ms-lapraces:server:FinishPlayer', function(RaceData, TotalTime,
         LastRaces[RaceData.RaceId] = nil
         NotFinished[RaceData.RaceId] = nil
     end
-    TriggerClientEvent('ms-phone_new:client:UpdateLapraces', -1)
+    TriggerClientEvent('ms-phone:client:UpdateLapraces', -1)
 end)
 
 function IsWhitelisted(CitizenId)
@@ -278,7 +278,7 @@ AddEventHandler('ms-lapraces:server:JoinRace', function(RaceData)
             AvailableRaces[PreviousRaceKey].RaceData = Races[CurrentRace]
             TriggerClientEvent('ms-lapraces:client:LeaveRace', src, Races[CurrentRace])
         end
-        TriggerClientEvent('ms-phone_new:client:UpdateLapraces', -1)
+        TriggerClientEvent('ms-phone:client:UpdateLapraces', -1)
     end
     Races[RaceId].Waiting = true
     Races[RaceId].Racers[Player.PlayerData.citizenid] = {
@@ -288,10 +288,10 @@ AddEventHandler('ms-lapraces:server:JoinRace', function(RaceData)
     }
     AvailableRaces[AvailableKey].RaceData = Races[RaceId]
     TriggerClientEvent('ms-lapraces:client:JoinRace', src, Races[RaceId], RaceData.Laps)
-    TriggerClientEvent('ms-phone_new:client:UpdateLapraces', -1)
+    TriggerClientEvent('ms-phone:client:UpdateLapraces', -1)
     local creatorsource = MSCore.Functions.GetPlayerByCitizenId(AvailableRaces[AvailableKey].SetupCitizenId).PlayerData.source
     if creatorsource ~= Player.PlayerData.source then
-        TriggerClientEvent('ms-phone_new:client:RaceNotify', creatorsource, string.sub(Player.PlayerData.charinfo.firstname, 1, 1)..'. '..Player.PlayerData.charinfo.lastname..' is de race gejoined!')
+        TriggerClientEvent('ms-phone:client:RaceNotify', creatorsource, string.sub(Player.PlayerData.charinfo.firstname, 1, 1)..'. '..Player.PlayerData.charinfo.lastname..' is de race gejoined!')
     end
 end)
 
@@ -309,7 +309,7 @@ AddEventHandler('ms-lapraces:server:LeaveRace', function(RaceData)
     local AvailableKey = GetOpenedRaceKey(RaceData.RaceId)
     local creatorsource = MSCore.Functions.GetPlayerByCitizenId(AvailableRaces[AvailableKey].SetupCitizenId).PlayerData.source
     if creatorsource ~= Player.PlayerData.source then
-        TriggerClientEvent('ms-phone_new:client:RaceNotify', creatorsource, string.sub(Player.PlayerData.charinfo.firstname, 1, 1)..'. '..Player.PlayerData.charinfo.lastname..' is de race geleaved!')
+        TriggerClientEvent('ms-phone:client:RaceNotify', creatorsource, string.sub(Player.PlayerData.charinfo.firstname, 1, 1)..'. '..Player.PlayerData.charinfo.lastname..' is de race geleaved!')
     end
     local AmountOfRacers = 0
     for k, v in pairs(Races[RaceData.RaceId].Racers) do
@@ -374,7 +374,7 @@ AddEventHandler('ms-lapraces:server:LeaveRace', function(RaceData)
         AvailableRaces[AvailableKey].RaceData = Races[RaceId]
         TriggerClientEvent('ms-lapraces:client:LeaveRace', src, Races[RaceId])
     end
-    TriggerClientEvent('ms-phone_new:client:UpdateLapraces', -1)
+    TriggerClientEvent('ms-phone:client:UpdateLapraces', -1)
 end)
 
 RegisterServerEvent('ms-lapraces:server:SetupRace')
@@ -390,7 +390,7 @@ AddEventHandler('ms-lapraces:server:SetupRace', function(RaceId, Laps)
                     RaceId = RaceId,
                     SetupCitizenId = Player.PlayerData.citizenid,
                 })
-                TriggerClientEvent('ms-phone_new:client:UpdateLapraces', -1)
+                TriggerClientEvent('ms-phone:client:UpdateLapraces', -1)
                 SetTimeout(5 * 60 * 1000, function()
                     if Races[RaceId].Waiting then
                         local AvailableKey = GetOpenedRaceKey(RaceId)
@@ -406,7 +406,7 @@ AddEventHandler('ms-lapraces:server:SetupRace', function(RaceId, Laps)
                         Races[RaceId].Started = false
                         Races[RaceId].Waiting = false
                         LastRaces[RaceId] = nil
-                        TriggerClientEvent('ms-phone_new:client:UpdateLapraces', -1)
+                        TriggerClientEvent('ms-phone:client:UpdateLapraces', -1)
                     end
                 end)
             else
@@ -455,7 +455,7 @@ AddEventHandler('ms-lapraces:server:StartRace', function(RaceId)
                     TriggerClientEvent('ms-lapraces:client:RaceCountdown', Player.PlayerData.source)
                 end
             end
-            TriggerClientEvent('ms-phone_new:client:UpdateLapraces', -1)
+            TriggerClientEvent('ms-phone:client:UpdateLapraces', -1)
         else
             TriggerClientEvent('MSCore:Notify', src, 'Your not the creator of the race..', 'error')
         end
@@ -546,7 +546,7 @@ MSCore.Commands.Add("cancelrace", "Cancel gaande race..", {}, false, function(so
                 Races[RaceId].Started = false
                 Races[RaceId].Waiting = false
                 LastRaces[RaceId] = nil
-                TriggerClientEvent('ms-phone_new:client:UpdateLapraces', -1)
+                TriggerClientEvent('ms-phone:client:UpdateLapraces', -1)
             else
                 TriggerClientEvent('MSCore:Notify', source, 'This race has not started yet.', 'error')
             end

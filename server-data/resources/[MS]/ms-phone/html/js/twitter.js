@@ -16,11 +16,11 @@ $(document).on('click', '.twitter-header-tab', function(e){
         $("."+PressedTwitterTab+"-tab").css({"display":"block"});
 
         if (PressedTwitterTab === "twitter-mentions") {
-            $.post('http://ms-phone_new/ClearMentions');
+            $.post('http://ms-phone/ClearMentions');
         }
 
         if (PressedTwitterTab == "twitter-home") {
-            $.post('http://ms-phone_new/GetTweets', JSON.stringify({}), function(Tweets){
+            $.post('http://ms-phone/GetTweets', JSON.stringify({}), function(Tweets){
                 ms.Phone.Notifications.LoadTweets(Tweets);
             });
         }
@@ -52,13 +52,13 @@ $(document).on('click', '.twitter-header-tab', function(e){
     } else if (CurrentTwitterTab == "twitter-home" && PressedTwitterTab == "twitter-home") {
         event.preventDefault();
 
-        $.post('http://ms-phone_new/GetTweets', JSON.stringify({}), function(Tweets){
+        $.post('http://ms-phone/GetTweets', JSON.stringify({}), function(Tweets){
             ms.Phone.Notifications.LoadTweets(Tweets);
         });
     } else if (CurrentTwitterTab == "twitter-mentions" && PressedTwitterTab == "twitter-mentions") {
         event.preventDefault();
 
-        $.post('http://ms-phone_new/GetMentionedTweets', JSON.stringify({}), function(MentionedTweets){
+        $.post('http://ms-phone/GetMentionedTweets', JSON.stringify({}), function(MentionedTweets){
             ms.Phone.Notifications.LoadMentionedTweets(MentionedTweets)
         })
     }
@@ -207,14 +207,14 @@ $(document).on('click', '#send-tweet', function(e){
 
     if (TweetMessage != "") {
         var CurrentDate = new Date();
-        $.post('http://ms-phone_new/PostNewTweet', JSON.stringify({
+        $.post('http://ms-phone/PostNewTweet', JSON.stringify({
             Message: TweetMessage,
             Date: CurrentDate,
             Picture: ms.Phone.Data.MetaData.profilepicture
         }), function(Tweets){
             ms.Phone.Notifications.LoadTweets(Tweets);
         });
-        $.post('http://ms-phone_new/GetHashtags', JSON.stringify({}), function(Hashtags){
+        $.post('http://ms-phone/GetHashtags', JSON.stringify({}), function(Hashtags){
             ms.Phone.Notifications.LoadHashtags(Hashtags)
         })
         ms.Phone.Animations.TopSlideUp(".twitter-new-tweet-tab", 450, -120);
@@ -246,7 +246,7 @@ $(document).on('click', '.hashtag-tag-text', function(e){
         $("."+CurrentTwitterTab+"-tab").css({"display":"none"});
         $(".twitter-hashtags-tab").css({"display":"block"});
     
-        $.post('http://ms-phone_new/GetHashtagMessages', JSON.stringify({hashtag: Hashtag}), function(HashtagData){
+        $.post('http://ms-phone/GetHashtagMessages', JSON.stringify({hashtag: Hashtag}), function(HashtagData){
             ms.Phone.Notifications.LoadHashtagMessages(HashtagData.messages);
         });
     

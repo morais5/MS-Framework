@@ -12,8 +12,8 @@ local Calls = {}
 local Adverts = {}
 local GeneratedPlates = {}
 
-RegisterServerEvent('ms-phone_new:server:AddAdvert')
-AddEventHandler('ms-phone_new:server:AddAdvert', function(msg)
+RegisterServerEvent('ms-phone:server:AddAdvert')
+AddEventHandler('ms-phone:server:AddAdvert', function(msg)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
     local CitizenId = Player.PlayerData.citizenid
@@ -30,7 +30,7 @@ AddEventHandler('ms-phone_new:server:AddAdvert', function(msg)
         }
     end
 
-    TriggerClientEvent('ms-phone_new:client:UpdateAdverts', -1, Adverts, "@"..Player.PlayerData.charinfo.firstname..""..Player.PlayerData.charinfo.lastname)
+    TriggerClientEvent('ms-phone:client:UpdateAdverts', -1, Adverts, "@"..Player.PlayerData.charinfo.firstname..""..Player.PlayerData.charinfo.lastname)
 end)
 
 function GetOnlineStatus(number)
@@ -40,7 +40,7 @@ function GetOnlineStatus(number)
     return retval
 end
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetPhoneData', function(source, cb)
+MSCore.Functions.CreateCallback('ms-phone:server:GetPhoneData', function(source, cb)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
     if Player ~= nil then
@@ -155,7 +155,7 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:GetPhoneData', function(sou
     end
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetCallState', function(source, cb, ContactData)
+MSCore.Functions.CreateCallback('ms-phone:server:GetCallState', function(source, cb, ContactData)
     local Target = MSCore.Functions.GetPlayerByPhone(ContactData.number)
 
     if Target ~= nil then
@@ -173,8 +173,8 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:GetCallState', function(sou
     end
 end)
 
-RegisterServerEvent('ms-phone_new:server:SetCallState')
-AddEventHandler('ms-phone_new:server:SetCallState', function(bool)
+RegisterServerEvent('ms-phone:server:SetCallState')
+AddEventHandler('ms-phone:server:SetCallState', function(bool)
     local src = source
     local Ply = MSCore.Functions.GetPlayer(src)
 
@@ -186,8 +186,8 @@ AddEventHandler('ms-phone_new:server:SetCallState', function(bool)
     end
 end)
 
-RegisterServerEvent('ms-phone_new:server:RemoveMail')
-AddEventHandler('ms-phone_new:server:RemoveMail', function(MailId)
+RegisterServerEvent('ms-phone:server:RemoveMail')
+AddEventHandler('ms-phone:server:RemoveMail', function(MailId)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
 
@@ -202,7 +202,7 @@ AddEventHandler('ms-phone_new:server:RemoveMail', function(MailId)
                 end
             end
     
-            TriggerClientEvent('ms-phone_new:client:UpdateMails', src, mails)
+            TriggerClientEvent('ms-phone:client:UpdateMails', src, mails)
         end)
     end)
 end)
@@ -221,7 +221,7 @@ AddEventHandler('ms-phone:server:sendNewMail', function(mailData)
     else
         MSCore.Functions.ExecuteSql(false, "INSERT INTO `player_mails` (`citizenid`, `sender`, `subject`, `message`, `mailid`, `read`, `button`) VALUES ('"..Player.PlayerData.citizenid.."', '"..mailData.sender.."', '"..mailData.subject.."', '"..mailData.message.."', '"..GenerateMailId().."', '0', '"..json.encode(mailData.button).."')")
     end
-    TriggerClientEvent('ms-phone_new:client:NewMailNotify', src, mailData)
+    TriggerClientEvent('ms-phone:client:NewMailNotify', src, mailData)
     SetTimeout(200, function()
         MSCore.Functions.ExecuteSql(false, 'SELECT * FROM `player_mails` WHERE `citizenid` = "'..Player.PlayerData.citizenid..'" ORDER BY `date` DESC', function(mails)
             if mails[1] ~= nil then
@@ -232,7 +232,7 @@ AddEventHandler('ms-phone:server:sendNewMail', function(mailData)
                 end
             end
     
-            TriggerClientEvent('ms-phone_new:client:UpdateMails', src, mails)
+            TriggerClientEvent('ms-phone:client:UpdateMails', src, mails)
         end)
     end)
 end)
@@ -246,10 +246,10 @@ AddEventHandler('ms-phone:server:sendNewMailToOffline', function(citizenid, mail
 
         if mailData.button == nil then
             MSCore.Functions.ExecuteSql(false, "INSERT INTO `player_mails` (`citizenid`, `sender`, `subject`, `message`, `mailid`, `read`) VALUES ('"..Player.PlayerData.citizenid.."', '"..mailData.sender.."', '"..mailData.subject.."', '"..mailData.message.."', '"..GenerateMailId().."', '0')")
-            TriggerClientEvent('ms-phone_new:client:NewMailNotify', src, mailData)
+            TriggerClientEvent('ms-phone:client:NewMailNotify', src, mailData)
         else
             MSCore.Functions.ExecuteSql(false, "INSERT INTO `player_mails` (`citizenid`, `sender`, `subject`, `message`, `mailid`, `read`, `button`) VALUES ('"..Player.PlayerData.citizenid.."', '"..mailData.sender.."', '"..mailData.subject.."', '"..mailData.message.."', '"..GenerateMailId().."', '0', '"..json.encode(mailData.button).."')")
-            TriggerClientEvent('ms-phone_new:client:NewMailNotify', src, mailData)
+            TriggerClientEvent('ms-phone:client:NewMailNotify', src, mailData)
         end
 
         SetTimeout(200, function()
@@ -262,7 +262,7 @@ AddEventHandler('ms-phone:server:sendNewMailToOffline', function(citizenid, mail
                     end
                 end
         
-                TriggerClientEvent('ms-phone_new:client:UpdateMails', src, mails)
+                TriggerClientEvent('ms-phone:client:UpdateMails', src, mails)
             end)
         end)
     else
@@ -291,13 +291,13 @@ AddEventHandler('ms-phone:server:sendNewEventMail', function(citizenid, mailData
                 end
             end
     
-            TriggerClientEvent('ms-phone_new:client:UpdateMails', src, mails)
+            TriggerClientEvent('ms-phone:client:UpdateMails', src, mails)
         end)
     end)
 end)
 
-RegisterServerEvent('ms-phone_new:server:ClearButtonData')
-AddEventHandler('ms-phone_new:server:ClearButtonData', function(mailId)
+RegisterServerEvent('ms-phone:server:ClearButtonData')
+AddEventHandler('ms-phone:server:ClearButtonData', function(mailId)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
 
@@ -312,20 +312,20 @@ AddEventHandler('ms-phone_new:server:ClearButtonData', function(mailId)
                 end
             end
     
-            TriggerClientEvent('ms-phone_new:client:UpdateMails', src, mails)
+            TriggerClientEvent('ms-phone:client:UpdateMails', src, mails)
         end)
     end)
 end)
 
-RegisterServerEvent('ms-phone_new:server:MentionedPlayer')
-AddEventHandler('ms-phone_new:server:MentionedPlayer', function(firstName, lastName, TweetMessage)
+RegisterServerEvent('ms-phone:server:MentionedPlayer')
+AddEventHandler('ms-phone:server:MentionedPlayer', function(firstName, lastName, TweetMessage)
     for k, v in pairs(MSCore.Functions.GetPlayers()) do
         local Player = MSCore.Functions.GetPlayer(v)
         if Player ~= nil then
             if (Player.PlayerData.charinfo.firstname == firstName and Player.PlayerData.charinfo.lastname == lastName) then
                 msPhone.SetPhoneAlerts(Player.PlayerData.citizenid, "twitter")
                 msPhone.AddMentionedTweet(Player.PlayerData.citizenid, TweetMessage)
-                TriggerClientEvent('ms-phone_new:client:GetMentioned', Player.PlayerData.source, TweetMessage, AppAlerts[Player.PlayerData.citizenid]["twitter"])
+                TriggerClientEvent('ms-phone:client:GetMentioned', Player.PlayerData.source, TweetMessage, AppAlerts[Player.PlayerData.citizenid]["twitter"])
             else
                 MSCore.Functions.ExecuteSql(false, "SELECT * FROM `players` WHERE `charinfo` LIKE '%"..firstName.."%' AND `charinfo` LIKE '%"..lastName.."%'", function(result)
                     if result[1] ~= nil then
@@ -339,18 +339,18 @@ AddEventHandler('ms-phone_new:server:MentionedPlayer', function(firstName, lastN
 	end
 end)
 
-RegisterServerEvent('ms-phone_new:server:CallContact')
-AddEventHandler('ms-phone_new:server:CallContact', function(TargetData, CallId, AnonymousCall)
+RegisterServerEvent('ms-phone:server:CallContact')
+AddEventHandler('ms-phone:server:CallContact', function(TargetData, CallId, AnonymousCall)
     local src = source
     local Ply = MSCore.Functions.GetPlayer(src)
     local Target = MSCore.Functions.GetPlayerByPhone(TargetData.number)
 
     if Target ~= nil then
-        TriggerClientEvent('ms-phone_new:client:GetCalled', Target.PlayerData.source, Ply.PlayerData.charinfo.phone, CallId, AnonymousCall)
+        TriggerClientEvent('ms-phone:client:GetCalled', Target.PlayerData.source, Ply.PlayerData.charinfo.phone, CallId, AnonymousCall)
     end
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:PayInvoice', function(source, cb, sender, amount, invoiceId)
+MSCore.Functions.CreateCallback('ms-phone:server:PayInvoice', function(source, cb, sender, amount, invoiceId)
     local src = source
     local Ply = MSCore.Functions.GetPlayer(src)
     local Trgt = MSCore.Functions.GetPlayerByCitizenId(sender)
@@ -422,7 +422,7 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:PayInvoice', function(sourc
     end
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:DeclineInvoice', function(source, cb, sender, amount, invoiceId)
+MSCore.Functions.CreateCallback('ms-phone:server:DeclineInvoice', function(source, cb, sender, amount, invoiceId)
     local src = source
     local Ply = MSCore.Functions.GetPlayer(src)
     local Trgt = MSCore.Functions.GetPlayerByCitizenId(sender)
@@ -452,8 +452,8 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:DeclineInvoice', function(s
     end)
 end)
 
-RegisterServerEvent('ms-phone_new:server:UpdateHashtags')
-AddEventHandler('ms-phone_new:server:UpdateHashtags', function(Handle, messageData)
+RegisterServerEvent('ms-phone:server:UpdateHashtags')
+AddEventHandler('ms-phone:server:UpdateHashtags', function(Handle, messageData)
     if Hashtags[Handle] ~= nil and next(Hashtags[Handle]) ~= nil then
         table.insert(Hashtags[Handle].messages, messageData)
     else
@@ -463,7 +463,7 @@ AddEventHandler('ms-phone_new:server:UpdateHashtags', function(Handle, messageDa
         }
         table.insert(Hashtags[Handle].messages, messageData)
     end
-    TriggerClientEvent('ms-phone_new:client:UpdateHashtags', -1, Handle, messageData)
+    TriggerClientEvent('ms-phone:client:UpdateHashtags', -1, Handle, messageData)
 end)
 
 msPhone.AddMentionedTweet = function(citizenid, TweetData)
@@ -500,7 +500,7 @@ msPhone.SetPhoneAlerts = function(citizenid, app, alerts)
     end
 end
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetContactPictures', function(source, cb, Chats)
+MSCore.Functions.CreateCallback('ms-phone:server:GetContactPictures', function(source, cb, Chats)
     for k, v in pairs(Chats) do
         local Player = MSCore.Functions.GetPlayerByPhone(v.number)
         
@@ -521,7 +521,7 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:GetContactPictures', functi
     end)
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetContactPicture', function(source, cb, Chat)
+MSCore.Functions.CreateCallback('ms-phone:server:GetContactPicture', function(source, cb, Chat)
     local Player = MSCore.Functions.GetPlayerByPhone(Chat.number)
 
     MSCore.Functions.ExecuteSql(false, "SELECT * FROM `players` WHERE `charinfo` LIKE '%"..Chat.number.."%'", function(result)
@@ -538,7 +538,7 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:GetContactPicture', functio
     end)
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetPicture', function(source, cb, number)
+MSCore.Functions.CreateCallback('ms-phone:server:GetPicture', function(source, cb, number)
     local Player = MSCore.Functions.GetPlayerByPhone(number)
     local Picture = nil
 
@@ -565,16 +565,16 @@ AddEventHandler('ms-phone:server:SetPhoneAlerts', function(app, alerts)
     msPhone.SetPhoneAlerts(CitizenId, app, alerts)
 end)
 
-RegisterServerEvent('ms-phone_new:server:UpdateTweets')
-AddEventHandler('ms-phone_new:server:UpdateTweets', function(NewTweets, TweetData)
+RegisterServerEvent('ms-phone:server:UpdateTweets')
+AddEventHandler('ms-phone:server:UpdateTweets', function(NewTweets, TweetData)
     Tweets = NewTweets
     local TwtData = TweetData
     local src = source
-    TriggerClientEvent('ms-phone_new:client:UpdateTweets', -1, src, Tweets, TwtData)
+    TriggerClientEvent('ms-phone:client:UpdateTweets', -1, src, Tweets, TwtData)
 end)
 
-RegisterServerEvent('ms-phone_new:server:TransferMoney')
-AddEventHandler('ms-phone_new:server:TransferMoney', function(iban, amount)
+RegisterServerEvent('ms-phone:server:TransferMoney')
+AddEventHandler('ms-phone:server:TransferMoney', function(iban, amount)
     local src = source
     local sender = MSCore.Functions.GetPlayer(src)
 
@@ -588,7 +588,7 @@ AddEventHandler('ms-phone_new:server:TransferMoney', function(iban, amount)
                 sender.Functions.RemoveMoney('bank', amount, "phone-transfered-to-"..recieverSteam.PlayerData.citizenid)
 
                 if PhoneItem ~= nil then
-                    TriggerClientEvent('ms-phone_new:client:TransferMoney', recieverSteam.PlayerData.source, amount, recieverSteam.PlayerData.money.bank)
+                    TriggerClientEvent('ms-phone:client:TransferMoney', recieverSteam.PlayerData.source, amount, recieverSteam.PlayerData.money.bank)
                 end
             else
                 local moneyInfo = json.decode(result[1].money)
@@ -602,31 +602,31 @@ AddEventHandler('ms-phone_new:server:TransferMoney', function(iban, amount)
     end)
 end)
 
-RegisterServerEvent('ms-phone_new:server:EditContact')
-AddEventHandler('ms-phone_new:server:EditContact', function(newName, newNumber, newIban, oldName, oldNumber, oldIban)
+RegisterServerEvent('ms-phone:server:EditContact')
+AddEventHandler('ms-phone:server:EditContact', function(newName, newNumber, newIban, oldName, oldNumber, oldIban)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
     MSCore.Functions.ExecuteSql(false, "UPDATE `player_contacts` SET `name` = '"..newName.."', `number` = '"..newNumber.."', `iban` = '"..newIban.."' WHERE `citizenid` = '"..Player.PlayerData.citizenid.."' AND `name` = '"..oldName.."' AND `number` = '"..oldNumber.."'")
 end)
 
-RegisterServerEvent('ms-phone_new:server:RemoveContact')
-AddEventHandler('ms-phone_new:server:RemoveContact', function(Name, Number)
+RegisterServerEvent('ms-phone:server:RemoveContact')
+AddEventHandler('ms-phone:server:RemoveContact', function(Name, Number)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
     
     MSCore.Functions.ExecuteSql(false, "DELETE FROM `player_contacts` WHERE `name` = '"..Name.."' AND `number` = '"..Number.."' AND `citizenid` = '"..Player.PlayerData.citizenid.."'")
 end)
 
-RegisterServerEvent('ms-phone_new:server:AddNewContact')
-AddEventHandler('ms-phone_new:server:AddNewContact', function(name, number, iban)
+RegisterServerEvent('ms-phone:server:AddNewContact')
+AddEventHandler('ms-phone:server:AddNewContact', function(name, number, iban)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
 
     MSCore.Functions.ExecuteSql(false, "INSERT INTO `player_contacts` (`citizenid`, `name`, `number`, `iban`) VALUES ('"..Player.PlayerData.citizenid.."', '"..tostring(name).."', '"..tostring(number).."', '"..tostring(iban).."')")
 end)
 
-RegisterServerEvent('ms-phone_new:server:UpdateMessages')
-AddEventHandler('ms-phone_new:server:UpdateMessages', function(ChatMessages, ChatNumber, New)
+RegisterServerEvent('ms-phone:server:UpdateMessages')
+AddEventHandler('ms-phone:server:UpdateMessages', function(ChatMessages, ChatNumber, New)
     local src = source
     local SenderData = MSCore.Functions.GetPlayer(src)
 
@@ -644,7 +644,7 @@ AddEventHandler('ms-phone_new:server:UpdateMessages', function(ChatMessages, Cha
                         MSCore.Functions.ExecuteSql(false, "UPDATE `phone_messages` SET `messages` = '"..json.encode(ChatMessages).."' WHERE `citizenid` = '"..SenderData.PlayerData.citizenid.."' AND `number` = '"..TargetData.PlayerData.charinfo.phone.."'")
                     
                         -- Send notification & Update messages for target
-                        TriggerClientEvent('ms-phone_new:client:UpdateMessages', TargetData.PlayerData.source, ChatMessages, SenderData.PlayerData.charinfo.phone, false)
+                        TriggerClientEvent('ms-phone:client:UpdateMessages', TargetData.PlayerData.source, ChatMessages, SenderData.PlayerData.charinfo.phone, false)
                     else
                         -- Insert for target
                         MSCore.Functions.ExecuteSql(false, "INSERT INTO `phone_messages` (`citizenid`, `number`, `messages`) VALUES ('"..TargetData.PlayerData.citizenid.."', '"..SenderData.PlayerData.charinfo.phone.."', '"..json.encode(ChatMessages).."')")
@@ -653,7 +653,7 @@ AddEventHandler('ms-phone_new:server:UpdateMessages', function(ChatMessages, Cha
                         MSCore.Functions.ExecuteSql(false, "INSERT INTO `phone_messages` (`citizenid`, `number`, `messages`) VALUES ('"..SenderData.PlayerData.citizenid.."', '"..TargetData.PlayerData.charinfo.phone.."', '"..json.encode(ChatMessages).."')")
 
                         -- Send notification & Update messages for target
-                        TriggerClientEvent('ms-phone_new:client:UpdateMessages', TargetData.PlayerData.source, ChatMessages, SenderData.PlayerData.charinfo.phone, true)
+                        TriggerClientEvent('ms-phone:client:UpdateMessages', TargetData.PlayerData.source, ChatMessages, SenderData.PlayerData.charinfo.phone, true)
                     end
                 end)
             else
@@ -679,8 +679,8 @@ AddEventHandler('ms-phone_new:server:UpdateMessages', function(ChatMessages, Cha
     end)
 end)
 
-RegisterServerEvent('ms-phone_new:server:AddRecentCall')
-AddEventHandler('ms-phone_new:server:AddRecentCall', function(type, data)
+RegisterServerEvent('ms-phone:server:AddRecentCall')
+AddEventHandler('ms-phone:server:AddRecentCall', function(type, data)
     local src = source
     local Ply = MSCore.Functions.GetPlayer(src)
 
@@ -688,11 +688,11 @@ AddEventHandler('ms-phone_new:server:AddRecentCall', function(type, data)
     local Minute = os.date("%M")
     local label = Hour..":"..Minute
 
-    TriggerClientEvent('ms-phone_new:client:AddRecentCall', src, data, label, type)
+    TriggerClientEvent('ms-phone:client:AddRecentCall', src, data, label, type)
 
     local Trgt = MSCore.Functions.GetPlayerByPhone(data.number)
     if Trgt ~= nil then
-        TriggerClientEvent('ms-phone_new:client:AddRecentCall', Trgt.PlayerData.source, {
+        TriggerClientEvent('ms-phone:client:AddRecentCall', Trgt.PlayerData.source, {
             name = Ply.PlayerData.charinfo.firstname .. " " ..Ply.PlayerData.charinfo.lastname,
             number = Ply.PlayerData.charinfo.phone,
             anonymous = anonymous
@@ -700,26 +700,26 @@ AddEventHandler('ms-phone_new:server:AddRecentCall', function(type, data)
     end
 end)
 
-RegisterServerEvent('ms-phone_new:server:CancelCall')
-AddEventHandler('ms-phone_new:server:CancelCall', function(ContactData)
+RegisterServerEvent('ms-phone:server:CancelCall')
+AddEventHandler('ms-phone:server:CancelCall', function(ContactData)
     local Ply = MSCore.Functions.GetPlayerByPhone(ContactData.TargetData.number)
 
     if Ply ~= nil then
-        TriggerClientEvent('ms-phone_new:client:CancelCall', Ply.PlayerData.source)
+        TriggerClientEvent('ms-phone:client:CancelCall', Ply.PlayerData.source)
     end
 end)
 
-RegisterServerEvent('ms-phone_new:server:AnswerCall')
-AddEventHandler('ms-phone_new:server:AnswerCall', function(CallData)
+RegisterServerEvent('ms-phone:server:AnswerCall')
+AddEventHandler('ms-phone:server:AnswerCall', function(CallData)
     local Ply = MSCore.Functions.GetPlayerByPhone(CallData.TargetData.number)
 
     if Ply ~= nil then
-        TriggerClientEvent('ms-phone_new:client:AnswerCall', Ply.PlayerData.source)
+        TriggerClientEvent('ms-phone:client:AnswerCall', Ply.PlayerData.source)
     end
 end)
 
-RegisterServerEvent('ms-phone_new:server:SaveMetaData')
-AddEventHandler('ms-phone_new:server:SaveMetaData', function(MData)
+RegisterServerEvent('ms-phone:server:SaveMetaData')
+AddEventHandler('ms-phone:server:SaveMetaData', function(MData)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
 
@@ -737,7 +737,7 @@ function escape_sqli(source)
     return source:gsub( "['\"]", replacements ) -- or string.gsub( source, "['\"]", replacements )
 end
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:FetchResult', function(source, cb, search)
+MSCore.Functions.CreateCallback('ms-phone:server:FetchResult', function(source, cb, search)
     local src = source
     local search = escape_sqli(search)
     local searchData = {}
@@ -800,7 +800,7 @@ function SplitStringToArray(string)
     return retval
 end
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetVehicleSearchResults', function(source, cb, search)
+MSCore.Functions.CreateCallback('ms-phone:server:GetVehicleSearchResults', function(source, cb, search)
     local src = source
     local search = escape_sqli(search)
     local searchData = {}
@@ -861,7 +861,7 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:GetVehicleSearchResults', f
     end)
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:ScanPlate', function(source, cb, plate)
+MSCore.Functions.CreateCallback('ms-phone:server:ScanPlate', function(source, cb, plate)
     local src = source
     local vehicleData = {}
     if plate ~= nil then 
@@ -937,7 +937,7 @@ function GenerateOwnerName()
     return names[math.random(1, #names)]
 end
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetGarageVehicles', function(source, cb)
+MSCore.Functions.CreateCallback('ms-phone:server:GetGarageVehicles', function(source, cb)
     local Player = MSCore.Functions.GetPlayer(source)
     local Vehicles = {}
 
@@ -997,7 +997,7 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:GetGarageVehicles', functio
     end)
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:HasPhone', function(source, cb)
+MSCore.Functions.CreateCallback('ms-phone:server:HasPhone', function(source, cb)
     local Player = MSCore.Functions.GetPlayer(source)
     
     if Player ~= nil then
@@ -1012,7 +1012,7 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:HasPhone', function(source,
     end
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:CanTransferMoney', function(source, cb, amount, iban)
+MSCore.Functions.CreateCallback('ms-phone:server:CanTransferMoney', function(source, cb, amount, iban)
     local Player = MSCore.Functions.GetPlayer(source)
 
     if (Player.PlayerData.money.bank - amount) >= 0 then
@@ -1038,8 +1038,8 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:CanTransferMoney', function
     end
 end)
 
-RegisterServerEvent('ms-phone_new:server:GiveContactDetails')
-AddEventHandler('ms-phone_new:server:GiveContactDetails', function(PlayerId)
+RegisterServerEvent('ms-phone:server:GiveContactDetails')
+AddEventHandler('ms-phone:server:GiveContactDetails', function(PlayerId)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
 
@@ -1052,18 +1052,18 @@ AddEventHandler('ms-phone_new:server:GiveContactDetails', function(PlayerId)
         bank = Player.PlayerData.charinfo.account
     }
 
-    TriggerClientEvent('ms-phone_new:client:AddNewSuggestion', PlayerId, SuggestionData)
+    TriggerClientEvent('ms-phone:client:AddNewSuggestion', PlayerId, SuggestionData)
 end)
 
-RegisterServerEvent('ms-phone_new:server:AddTransaction')
-AddEventHandler('ms-phone_new:server:AddTransaction', function(data)
+RegisterServerEvent('ms-phone:server:AddTransaction')
+AddEventHandler('ms-phone:server:AddTransaction', function(data)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
 
     MSCore.Functions.ExecuteSql(false, "INSERT INTO `crypto_transactions` (`citizenid`, `title`, `message`) VALUES ('"..Player.PlayerData.citizenid.."', '"..escape_sqli(data.TransactionTitle).."', '"..escape_sqli(data.TransactionMessage).."')")
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetCurrentLawyers', function(source, cb)
+MSCore.Functions.CreateCallback('ms-phone:server:GetCurrentLawyers', function(source, cb)
     local Lawyers = {}
     for k, v in pairs(MSCore.Functions.GetPlayers()) do
         local Player = MSCore.Functions.GetPlayer(v)
@@ -1079,7 +1079,7 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:GetCurrentLawyers', functio
     cb(Lawyers)
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetCurrentTaxis', function(source, cb)
+MSCore.Functions.CreateCallback('ms-phone:server:GetCurrentTaxis', function(source, cb)
     local drivers = {}
     for k, v in pairs(MSCore.Functions.GetPlayers()) do
         local Player = MSCore.Functions.GetPlayer(v)
@@ -1095,7 +1095,7 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:GetCurrentTaxis', function(
     cb(drivers)
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetCurrentMecanicos', function(source, cb)
+MSCore.Functions.CreateCallback('ms-phone:server:GetCurrentMecanicos', function(source, cb)
     local drivers = {}
     for k, v in pairs(MSCore.Functions.GetPlayers()) do
         local Player = MSCore.Functions.GetPlayer(v)
@@ -1111,24 +1111,24 @@ MSCore.Functions.CreateCallback('ms-phone_new:server:GetCurrentMecanicos', funct
     cb(drivers)
 end)
 
-RegisterServerEvent('ms-phone_new:server:InstallApplication')
-AddEventHandler('ms-phone_new:server:InstallApplication', function(ApplicationData)
+RegisterServerEvent('ms-phone:server:InstallApplication')
+AddEventHandler('ms-phone:server:InstallApplication', function(ApplicationData)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
     Player.PlayerData.metadata["phonedata"].InstalledApps[ApplicationData.app] = ApplicationData
     Player.Functions.SetMetaData("phonedata", Player.PlayerData.metadata["phonedata"])
 
-    -- TriggerClientEvent('ms-phone_new:RefreshPhone', src)
+    -- TriggerClientEvent('ms-phone:RefreshPhone', src)
 end)
 
-RegisterServerEvent('ms-phone_new:server:RemoveInstallation')
-AddEventHandler('ms-phone_new:server:RemoveInstallation', function(App)
+RegisterServerEvent('ms-phone:server:RemoveInstallation')
+AddEventHandler('ms-phone:server:RemoveInstallation', function(App)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
     Player.PlayerData.metadata["phonedata"].InstalledApps[App] = nil
     Player.Functions.SetMetaData("phonedata", Player.PlayerData.metadata["phonedata"])
 
-    -- TriggerClientEvent('ms-phone_new:RefreshPhone', src)
+    -- TriggerClientEvent('ms-phone:RefreshPhone', src)
 end)
 
 MSCore.Commands.Add("setmetadata", "Set metadata", {}, false, function(source, args)

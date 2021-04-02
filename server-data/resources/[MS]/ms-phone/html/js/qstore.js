@@ -53,11 +53,11 @@ $(document).on('click', '.storeapp-remove', function(e){
 
     ms.Phone.Data.Applications[AppData.app] = null;
 
-    $.post('http://ms-phone_new/RemoveApplication', JSON.stringify({
+    $.post('http://ms-phone/RemoveApplication', JSON.stringify({
         app: AppData.app
     }));
     setTimeout(function(){
-        $.post('http://ms-phone_new/SetupStoreApps', JSON.stringify({}), function(data){
+        $.post('http://ms-phone/SetupStoreApps', JSON.stringify({}), function(data){
             SetupAppstore(data); 
         });
     }, 100);
@@ -82,7 +82,7 @@ $(document).on('click', '.download-password-accept', function(e){
                 $(".download-progressbar-fill").css("width", "0%");
             });
 
-            $.post('http://ms-phone_new/InstallApplication', JSON.stringify({
+            $.post('http://ms-phone/InstallApplication', JSON.stringify({
                 app: CurrentApp,
             }), function(Installed){
                 if (Installed) {
@@ -115,7 +115,7 @@ $(document).on('click', '.download-password-accept', function(e){
                     ms.Phone.Data.Applications[Installed.data.app] = Installed.data;
 
                     setTimeout(function(){
-                        $.post('http://ms-phone_new/SetupStoreApps', JSON.stringify({}), function(data){
+                        $.post('http://ms-phone/SetupStoreApps', JSON.stringify({}), function(data){
                             SetupAppstore(data);
                             $(".download-password-input").attr('readonly', false);
                             $(".download-progressbar-fill").css("width", "0%");

@@ -41,8 +41,8 @@ PhoneData = {
     CryptoTransactions = {},
 }
 
-RegisterNetEvent('ms-phone_new:client:RaceNotify')
-AddEventHandler('ms-phone_new:client:RaceNotify', function(message)
+RegisterNetEvent('ms-phone:client:RaceNotify')
+AddEventHandler('ms-phone:client:RaceNotify', function(message)
     if PhoneData.isOpen then
         SendNUIMessage({
             action = "PhoneNotification",
@@ -68,8 +68,8 @@ AddEventHandler('ms-phone_new:client:RaceNotify', function(message)
     end
 end)
 
-RegisterNetEvent('ms-phone_new:client:AddRecentCall')
-AddEventHandler('ms-phone_new:client:AddRecentCall', function(data, time, type)
+RegisterNetEvent('ms-phone:client:AddRecentCall')
+AddEventHandler('ms-phone:client:AddRecentCall', function(data, time, type)
     table.insert(PhoneData.RecentCalls, {
         name = IsNumberInContacts(data.number),
         time = time,
@@ -106,7 +106,7 @@ RegisterNUICallback('SetBackground', function(data)
     local background = data.background
 
     PhoneData.MetaData.background = background
-    TriggerServerEvent('ms-phone_new:server:SaveMetaData', PhoneData.MetaData)
+    TriggerServerEvent('ms-phone:server:SaveMetaData', PhoneData.MetaData)
 end)
 
 RegisterNUICallback('GetMissedCalls', function(data, cb)
@@ -178,7 +178,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(60000)
 
         if isLoggedIn then
-            MSCore.Functions.TriggerCallback('ms-phone_new:server:GetPhoneData', function(pData)   
+            MSCore.Functions.TriggerCallback('ms-phone:server:GetPhoneData', function(pData)   
                 if pData.PlayerContacts ~= nil and next(pData.PlayerContacts) ~= nil then 
                     PhoneData.Contacts = pData.PlayerContacts
                 end
@@ -195,7 +195,7 @@ end)
 function LoadPhone()
     Citizen.Wait(100)
     isLoggedIn = true
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetPhoneData', function(pData)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetPhoneData', function(pData)
         PlayerJob = MSCore.Functions.GetPlayerData().job
         PhoneData.PlayerData = MSCore.Functions.GetPlayerData()
         local PhoneMeta = PhoneData.PlayerData.metadata["phone"]
@@ -328,13 +328,13 @@ AddEventHandler('MSCore:Client:OnPlayerLoaded', function()
 end)
 
 RegisterNUICallback('HasPhone', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:HasPhone', function(HasPhone)
+    MSCore.Functions.TriggerCallback('ms-phone:server:HasPhone', function(HasPhone)
         cb(HasPhone)
     end)
 end)
 
 function OpenPhone()
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:HasPhone', function(HasPhone)
+    MSCore.Functions.TriggerCallback('ms-phone:server:HasPhone', function(HasPhone)
         if HasPhone then
             PhoneData.PlayerData = MSCore.Functions.GetPlayerData()
             SetNuiFocus(true, true)
@@ -364,7 +364,7 @@ function OpenPhone()
                 newPhoneProp()
             end)
     
-            MSCore.Functions.TriggerCallback('ms-phone_new:server:GetGarageVehicles', function(vehicles)
+            MSCore.Functions.TriggerCallback('ms-phone:server:GetGarageVehicles', function(vehicles)
                 PhoneData.GarageVehicles = vehicles
             end)
         else
@@ -401,12 +401,12 @@ end)
 RegisterNUICallback('RemoveMail', function(data, cb)
     local MailId = data.mailId
 
-    TriggerServerEvent('ms-phone_new:server:RemoveMail', MailId)
+    TriggerServerEvent('ms-phone:server:RemoveMail', MailId)
     cb('ok')
 end)
 
-RegisterNetEvent('ms-phone_new:client:UpdateMails')
-AddEventHandler('ms-phone_new:client:UpdateMails', function(NewMails)
+RegisterNetEvent('ms-phone:client:UpdateMails')
+AddEventHandler('ms-phone:client:UpdateMails', function(NewMails)
     SendNUIMessage({
         action = "UpdateMails",
         Mails = NewMails
@@ -416,7 +416,7 @@ end)
 
 RegisterNUICallback('AcceptMailButton', function(data)
     TriggerEvent(data.buttonEvent, data.buttonData)
-    TriggerServerEvent('ms-phone_new:server:ClearButtonData', data.mailId)
+    TriggerServerEvent('ms-phone:server:ClearButtonData', data.mailId)
 end)
 
 RegisterNUICallback('AddNewContact', function(data, cb)
@@ -430,7 +430,7 @@ RegisterNUICallback('AddNewContact', function(data, cb)
     if PhoneData.Chats[data.ContactNumber] ~= nil and next(PhoneData.Chats[data.ContactNumber]) ~= nil then
         PhoneData.Chats[data.ContactNumber].name = data.ContactName
     end
-    TriggerServerEvent('ms-phone_new:server:AddNewContact', data.ContactName, data.ContactNumber, data.ContactIban)
+    TriggerServerEvent('ms-phone:server:AddNewContact', data.ContactName, data.ContactNumber, data.ContactIban)
 end)
 
 RegisterNUICallback('GetMails', function(data, cb)
@@ -448,7 +448,7 @@ end)
 RegisterNUICallback('GetProfilePicture', function(data, cb)
     local number = data.number
 
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetPicture', function(picture)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetPicture', function(picture)
         cb(picture)
     end, number)
 end)
@@ -539,7 +539,7 @@ RegisterNUICallback('SendMessage', function(data, cb)
                     },
                 })
             end
-            TriggerServerEvent('ms-phone_new:server:UpdateMessages', PhoneData.Chats[NumberKey].messages, ChatNumber, false)
+            TriggerServerEvent('ms-phone:server:UpdateMessages', PhoneData.Chats[NumberKey].messages, ChatNumber, false)
             NumberKey = GetKeyByNumber(ChatNumber)
             ReorganizeChats(NumberKey)
         else
@@ -568,7 +568,7 @@ RegisterNUICallback('SendMessage', function(data, cb)
                     },
                 })
             end
-            TriggerServerEvent('ms-phone_new:server:UpdateMessages', PhoneData.Chats[NumberKey].messages, ChatNumber, true)
+            TriggerServerEvent('ms-phone:server:UpdateMessages', PhoneData.Chats[NumberKey].messages, ChatNumber, true)
             NumberKey = GetKeyByNumber(ChatNumber)
             ReorganizeChats(NumberKey)
         end
@@ -604,12 +604,12 @@ RegisterNUICallback('SendMessage', function(data, cb)
                 },
             })
         end
-        TriggerServerEvent('ms-phone_new:server:UpdateMessages', PhoneData.Chats[NumberKey].messages, ChatNumber, true)
+        TriggerServerEvent('ms-phone:server:UpdateMessages', PhoneData.Chats[NumberKey].messages, ChatNumber, true)
         NumberKey = GetKeyByNumber(ChatNumber)
         ReorganizeChats(NumberKey)
     end
 
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetContactPicture', function(Chat)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetContactPicture', function(Chat)
         SendNUIMessage({
             action = "UpdateChat",
             chatData = Chat,
@@ -635,8 +635,8 @@ RegisterNUICallback('SharedLocation', function(data)
     })
 end)
 
-RegisterNetEvent('ms-phone_new:client:UpdateMessages')
-AddEventHandler('ms-phone_new:client:UpdateMessages', function(ChatMessages, SenderNumber, New)
+RegisterNetEvent('ms-phone:client:UpdateMessages')
+AddEventHandler('ms-phone:client:UpdateMessages', function(ChatMessages, SenderNumber, New)
     local Sender = IsNumberInContacts(SenderNumber)
 
     local NumberKey = GetKeyByNumber(SenderNumber)
@@ -683,7 +683,7 @@ AddEventHandler('ms-phone_new:client:UpdateMessages', function(ChatMessages, Sen
             ReorganizeChats(NumberKey)
 
             Wait(100)
-            MSCore.Functions.TriggerCallback('ms-phone_new:server:GetContactPictures', function(Chats)
+            MSCore.Functions.TriggerCallback('ms-phone:server:GetContactPictures', function(Chats)
                 SendNUIMessage({
                     action = "UpdateChat",
                     chatData = Chats[GetKeyByNumber(SenderNumber)],
@@ -743,7 +743,7 @@ AddEventHandler('ms-phone_new:client:UpdateMessages', function(ChatMessages, Sen
             ReorganizeChats(NumberKey)
             
             Wait(100)
-            MSCore.Functions.TriggerCallback('ms-phone_new:server:GetContactPictures', function(Chats)
+            MSCore.Functions.TriggerCallback('ms-phone:server:GetContactPictures', function(Chats)
                 SendNUIMessage({
                     action = "UpdateChat",
                     chatData = Chats[GetKeyByNumber(SenderNumber)],
@@ -786,8 +786,8 @@ AddEventHandler("ms-phone-new:client:BankNotify", function(text)
     })
 end)
 
-RegisterNetEvent('ms-phone_new:client:NewMailNotify')
-AddEventHandler('ms-phone_new:client:NewMailNotify', function(MailData)
+RegisterNetEvent('ms-phone:client:NewMailNotify')
+AddEventHandler('ms-phone:client:NewMailNotify', function(MailData)
     if PhoneData.isOpen then
         SendNUIMessage({
             action = "PhoneNotification",
@@ -816,11 +816,11 @@ AddEventHandler('ms-phone_new:client:NewMailNotify', function(MailData)
 end)
 
 RegisterNUICallback('PostAdvert', function(data)
-    TriggerServerEvent('ms-phone_new:server:AddAdvert', data.message)
+    TriggerServerEvent('ms-phone:server:AddAdvert', data.message)
 end)
 
-RegisterNetEvent('ms-phone_new:client:UpdateAdverts')
-AddEventHandler('ms-phone_new:client:UpdateAdverts', function(Adverts, LastAd)
+RegisterNetEvent('ms-phone:client:UpdateAdverts')
+AddEventHandler('ms-phone:client:UpdateAdverts', function(Adverts, LastAd)
     PhoneData.Adverts = Adverts
 
     if PhoneData.isOpen then
@@ -884,7 +884,7 @@ RegisterNUICallback('PayInvoice', function(data, cb)
     local amount = data.amount
     local invoiceId = data.invoiceId
 
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:PayInvoice', function(CanPay, Invoices)
+    MSCore.Functions.TriggerCallback('ms-phone:server:PayInvoice', function(CanPay, Invoices)
         if CanPay then PhoneData.Invoices = Invoices end
         cb(CanPay)
     end, sender, amount, invoiceId)
@@ -895,7 +895,7 @@ RegisterNUICallback('DeclineInvoice', function(data, cb)
     local amount = data.amount
     local invoiceId = data.invoiceId
 
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:DeclineInvoice', function(CanPay, Invoices)
+    MSCore.Functions.TriggerCallback('ms-phone:server:DeclineInvoice', function(CanPay, Invoices)
         PhoneData.Invoices = Invoices
         cb('ok')
     end, sender, amount, invoiceId)
@@ -921,7 +921,7 @@ RegisterNUICallback('EditContact', function(data, cb)
     end
     Citizen.Wait(100)
     cb(PhoneData.Contacts)
-    TriggerServerEvent('ms-phone_new:server:EditContact', NewName, NewNumber, NewIban, OldName, OldNumber, OldIban)
+    TriggerServerEvent('ms-phone:server:EditContact', NewName, NewNumber, NewIban, OldName, OldNumber, OldIban)
 end)
 
 local function escape_str(s)
@@ -938,8 +938,8 @@ function GenerateTweetId()
     return tweetId
 end
 
-RegisterNetEvent('ms-phone_new:client:UpdateHashtags')
-AddEventHandler('ms-phone_new:client:UpdateHashtags', function(Handle, msgData)
+RegisterNetEvent('ms-phone:client:UpdateHashtags')
+AddEventHandler('ms-phone:client:UpdateHashtags', function(Handle, msgData)
     if PhoneData.Hashtags[Handle] ~= nil then
         table.insert(PhoneData.Hashtags[Handle].messages, msgData)
     else
@@ -973,7 +973,7 @@ RegisterNUICallback('UpdateProfilePicture', function(data)
 
     PhoneData.MetaData.profilepicture = pf
     
-    TriggerServerEvent('ms-phone_new:server:SaveMetaData', PhoneData.MetaData)
+    TriggerServerEvent('ms-phone:server:SaveMetaData', PhoneData.MetaData)
 end)
 
 local patt = "[?!@#]"
@@ -999,7 +999,7 @@ RegisterNUICallback('PostNewTweet', function(data, cb)
             if InvalidSymbol then
                 Handle = Handle:gsub("%"..InvalidSymbol, "")
             end
-            TriggerServerEvent('ms-phone_new:server:UpdateHashtags', Handle, TweetMessage)
+            TriggerServerEvent('ms-phone:server:UpdateHashtags', Handle, TweetMessage)
         end
     end
 
@@ -1013,7 +1013,7 @@ RegisterNUICallback('PostNewTweet', function(data, cb)
 
             if (Firstname ~= nil and Firstname ~= "") and (Lastname ~= nil and Lastname ~= "") then
                 if Firstname ~= PhoneData.PlayerData.charinfo.firstname and Lastname ~= PhoneData.PlayerData.charinfo.lastname then
-                    TriggerServerEvent('ms-phone_new:server:MentionedPlayer', Firstname, Lastname, TweetMessage)
+                    TriggerServerEvent('ms-phone:server:MentionedPlayer', Firstname, Lastname, TweetMessage)
                 else
                     SetTimeout(2500, function()
                         SendNUIMessage({
@@ -1035,11 +1035,11 @@ RegisterNUICallback('PostNewTweet', function(data, cb)
     Citizen.Wait(100)
     cb(PhoneData.Tweets)
 
-    TriggerServerEvent('ms-phone_new:server:UpdateTweets', PhoneData.Tweets, TweetMessage)
+    TriggerServerEvent('ms-phone:server:UpdateTweets', PhoneData.Tweets, TweetMessage)
 end)
 
-RegisterNetEvent('ms-phone_new:client:TransferMoney')
-AddEventHandler('ms-phone_new:client:TransferMoney', function(amount, newmoney)
+RegisterNetEvent('ms-phone:client:TransferMoney')
+AddEventHandler('ms-phone:client:TransferMoney', function(amount, newmoney)
     PhoneData.PlayerData.money.bank = newmoney
     if PhoneData.isOpen then
         SendNUIMessage({ action = "PhoneNotification", PhoneNotify = { title = "Bank", text = "You have &dollar;"..amount.." available!", icon = "fas fa-university", color = "#8c7ae6", }, })
@@ -1050,8 +1050,8 @@ AddEventHandler('ms-phone_new:client:TransferMoney', function(amount, newmoney)
 end)
 
 
-RegisterNetEvent('ms-phone_new:client:UpdateTweets')
-AddEventHandler('ms-phone_new:client:UpdateTweets', function(src, Tweets, NewTweetData)
+RegisterNetEvent('ms-phone:client:UpdateTweets')
+AddEventHandler('ms-phone:client:UpdateTweets', function(src, Tweets, NewTweetData)
     PhoneData.Tweets = Tweets
     local MyPlayerId = PhoneData.PlayerData.source
 
@@ -1104,8 +1104,8 @@ RegisterNUICallback('GetHashtags', function(data, cb)
     end
 end)
 
-RegisterNetEvent('ms-phone_new:client:GetMentioned')
-AddEventHandler('ms-phone_new:client:GetMentioned', function(TweetMessage, AppAlerts)
+RegisterNetEvent('ms-phone:client:GetMentioned')
+AddEventHandler('ms-phone:client:GetMentioned', function(TweetMessage, AppAlerts)
     Config.PhoneApplications["twitter"].Alerts = AppAlerts
     if not PhoneData.isOpen then
         SendNUIMessage({ action = "Notification", NotifyData = { title = "You were mentioned in a tweet!", content = TweetMessage.message, icon = "fab fa-twitter", timeout = 3500, color = nil, }, })
@@ -1157,7 +1157,7 @@ RegisterNUICallback('TransferMoney', function(data, cb)
     data.amount = tonumber(data.amount)
     if tonumber(PhoneData.PlayerData.money.bank) >= data.amount then
         local amaountata = PhoneData.PlayerData.money.bank - data.amount
-        TriggerServerEvent('ms-phone_new:server:TransferMoney', data.iban, data.amount)
+        TriggerServerEvent('ms-phone:server:TransferMoney', data.iban, data.amount)
         local cbdata = {
             CanTransfer = true,
             NewAmount = amaountata 
@@ -1178,7 +1178,7 @@ RegisterNUICallback('CanTransferMoney', function(data, cb)
     local PlayerData = MSCore.Functions.GetPlayerData()
 
     if (PlayerData.money.bank - amount) >= 0 then
-        MSCore.Functions.TriggerCallback('ms-phone_new:server:CanTransferMoney', function(Transferd)
+        MSCore.Functions.TriggerCallback('ms-phone:server:CanTransferMoney', function(Transferd)
             if Transferd then
                 cb({TransferedMoney = true, NewBalance = (PlayerData.money.bank - amount)})
             else
@@ -1191,13 +1191,13 @@ RegisterNUICallback('CanTransferMoney', function(data, cb)
 end)
 
 RegisterNUICallback('GetWhatsappChats', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetContactPictures', function(Chats)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetContactPictures', function(Chats)
         cb(Chats)
     end, PhoneData.Chats)
 end)
 
 RegisterNUICallback('CallContact', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetCallState', function(CanCall, IsOnline)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetCallState', function(CanCall, IsOnline)
         local status = { 
             CanCall = CanCall, 
             IsOnline = IsOnline,
@@ -1223,8 +1223,8 @@ CallContact = function(CallData, AnonymousCall)
     PhoneData.CallData.AnsweredCall = false
     PhoneData.CallData.CallId = GenerateCallId(PhoneData.PlayerData.charinfo.phone, CallData.number)
 
-    TriggerServerEvent('ms-phone_new:server:CallContact', PhoneData.CallData.TargetData, PhoneData.CallData.CallId, AnonymousCall)
-    TriggerServerEvent('ms-phone_new:server:SetCallState', true)
+    TriggerServerEvent('ms-phone:server:CallContact', PhoneData.CallData.TargetData, PhoneData.CallData.CallId, AnonymousCall)
+    TriggerServerEvent('ms-phone:server:SetCallState', true)
     
     for i = 1, Config.CallRepeats + 1, 1 do
         if not PhoneData.CallData.AnsweredCall then
@@ -1247,7 +1247,7 @@ CallContact = function(CallData, AnonymousCall)
 end
 
 CancelCall = function()
-    TriggerServerEvent('ms-phone_new:server:CancelCall', PhoneData.CallData)
+    TriggerServerEvent('ms-phone:server:CancelCall', PhoneData.CallData)
     if PhoneData.CallData.CallType == "ongoing" then
         exports["mumble-voip"]:SetCallChannel(0)
 		--exports.tokovoip_script:removePlayerFromRadio(PhoneData.CallData.CallId)
@@ -1268,7 +1268,7 @@ CancelCall = function()
         PhoneData.AnimationData.anim = nil
     end
 
-    TriggerServerEvent('ms-phone_new:server:SetCallState', false)
+    TriggerServerEvent('ms-phone:server:SetCallState', false)
 
     if not PhoneData.isOpen then
         SendNUIMessage({ 
@@ -1303,8 +1303,8 @@ CancelCall = function()
     end
 end
 
-RegisterNetEvent('ms-phone_new:client:CancelCall')
-AddEventHandler('ms-phone_new:client:CancelCall', function()
+RegisterNetEvent('ms-phone:client:CancelCall')
+AddEventHandler('ms-phone:client:CancelCall', function()
     if PhoneData.CallData.CallType == "ongoing" then
         SendNUIMessage({
             action = "CancelOngoingCall"
@@ -1327,7 +1327,7 @@ AddEventHandler('ms-phone_new:client:CancelCall', function()
         PhoneData.AnimationData.anim = nil
     end
 
-    TriggerServerEvent('ms-phone_new:server:SetCallState', false)
+    TriggerServerEvent('ms-phone:server:SetCallState', false)
 
     if not PhoneData.isOpen then
         SendNUIMessage({ 
@@ -1362,8 +1362,8 @@ AddEventHandler('ms-phone_new:client:CancelCall', function()
     end
 end)
 
-RegisterNetEvent('ms-phone_new:client:GetCalled')
-AddEventHandler('ms-phone_new:client:GetCalled', function(CallerNumber, CallId, AnonymousCall)
+RegisterNetEvent('ms-phone:client:GetCalled')
+AddEventHandler('ms-phone:client:GetCalled', function(CallerNumber, CallId, AnonymousCall)
     local RepeatCount = 0
     local CallData = {
         number = CallerNumber,
@@ -1381,7 +1381,7 @@ AddEventHandler('ms-phone_new:client:GetCalled', function(CallerNumber, CallId, 
     PhoneData.CallData.TargetData = CallData
     PhoneData.CallData.CallId = CallId
 
-    TriggerServerEvent('ms-phone_new:server:SetCallState', true)
+    TriggerServerEvent('ms-phone:server:SetCallState', true)
 
     SendNUIMessage({
         action = "SetupHomeCall",
@@ -1392,7 +1392,7 @@ AddEventHandler('ms-phone_new:client:GetCalled', function(CallerNumber, CallId, 
         if not PhoneData.CallData.AnsweredCall then
             if RepeatCount + 1 ~= Config.CallRepeats + 1 then
                 if PhoneData.CallData.InCall then
-                    MSCore.Functions.TriggerCallback('ms-phone_new:server:HasPhone', function(HasPhone)
+                    MSCore.Functions.TriggerCallback('ms-phone:server:HasPhone', function(HasPhone)
                         if HasPhone then
                             RepeatCount = RepeatCount + 1
                             TriggerServerEvent("InteractSound_SV:PlayOnSource", "ringing", 0.2)
@@ -1414,7 +1414,7 @@ AddEventHandler('ms-phone_new:client:GetCalled', function(CallerNumber, CallId, 
                         Canceled = true,
                         AnonymousCall = AnonymousCall,
                     })
-                    TriggerServerEvent('ms-phone_new:server:AddRecentCall', "missed", CallData)
+                    TriggerServerEvent('ms-phone:server:AddRecentCall', "missed", CallData)
                     break
                 end
                 Citizen.Wait(Config.RepeatTimeout)
@@ -1425,11 +1425,11 @@ AddEventHandler('ms-phone_new:client:GetCalled', function(CallerNumber, CallId, 
                     Canceled = true,
                     AnonymousCall = AnonymousCall,
                 })
-                TriggerServerEvent('ms-phone_new:server:AddRecentCall', "missed", CallData)
+                TriggerServerEvent('ms-phone:server:AddRecentCall', "missed", CallData)
                 break
             end
         else
-            TriggerServerEvent('ms-phone_new:server:AddRecentCall', "missed", CallData)
+            TriggerServerEvent('ms-phone:server:AddRecentCall', "missed", CallData)
             break
         end
     end
@@ -1460,7 +1460,7 @@ function AnswerCall()
         SendNUIMessage({ action = "AnswerCall", CallData = PhoneData.CallData})
         SendNUIMessage({ action = "SetupHomeCall", CallData = PhoneData.CallData})
 
-        TriggerServerEvent('ms-phone_new:server:SetCallState', true)
+        TriggerServerEvent('ms-phone:server:SetCallState', true)
 
         if PhoneData.isOpen then
             DoPhoneAnimation('cellphone_text_to_call')
@@ -1485,7 +1485,7 @@ function AnswerCall()
             end
         end)
 
-        TriggerServerEvent('ms-phone_new:server:AnswerCall', PhoneData.CallData)
+        TriggerServerEvent('ms-phone:server:AnswerCall', PhoneData.CallData)
 
         --exports.tokovoip_script:addPlayerToRadio(PhoneData.CallData.CallId, 'Phone')
 		exports["mumble-voip"]:SetCallChannel(PhoneData.CallData.CallId)
@@ -1506,8 +1506,8 @@ function AnswerCall()
     end
 end
 
-RegisterNetEvent('ms-phone_new:client:AnswerCall')
-AddEventHandler('ms-phone_new:client:AnswerCall', function()
+RegisterNetEvent('ms-phone:client:AnswerCall')
+AddEventHandler('ms-phone:client:AnswerCall', function()
     if (PhoneData.CallData.CallType == "incoming" or PhoneData.CallData.CallType == "outgoing") and PhoneData.CallData.InCall and not PhoneData.CallData.AnsweredCall then
         PhoneData.CallData.CallType = "ongoing"
         PhoneData.CallData.AnsweredCall = true
@@ -1516,7 +1516,7 @@ AddEventHandler('ms-phone_new:client:AnswerCall', function()
         SendNUIMessage({ action = "AnswerCall", CallData = PhoneData.CallData})
         SendNUIMessage({ action = "SetupHomeCall", CallData = PhoneData.CallData})
 
-        TriggerServerEvent('ms-phone_new:server:SetCallState', true)
+        TriggerServerEvent('ms-phone:server:SetCallState', true)
 
         if PhoneData.isOpen then
             DoPhoneAnimation('cellphone_text_to_call')
@@ -1567,13 +1567,13 @@ end)
 -- end)
 
 RegisterNUICallback('FetchSearchResults', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:FetchResult', function(result)
+    MSCore.Functions.TriggerCallback('ms-phone:server:FetchResult', function(result)
         cb(result)
     end, data.input)
 end)
 
 RegisterNUICallback('FetchVehicleResults', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetVehicleSearchResults', function(result)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetVehicleSearchResults', function(result)
         if result ~= nil then 
             for k, v in pairs(result) do
                 MSCore.Functions.TriggerCallback('police:IsPlateFlagged', function(flagged)
@@ -1591,7 +1591,7 @@ RegisterNUICallback('FetchVehicleScan', function(data, cb)
     local plate = GetVehicleNumberPlateText(vehicle)
     local model = GetEntityModel(vehicle)
 
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:ScanPlate', function(result)
+    MSCore.Functions.TriggerCallback('ms-phone:server:ScanPlate', function(result)
         MSCore.Functions.TriggerCallback('police:IsPlateFlagged', function(flagged)
             result.isFlagged = flagged
             local vehicleInfo = MSCore.Shared.Vehicles[MSCore.Shared.VehicleModels[model]["model"]] ~= nil and MSCore.Shared.Vehicles[MSCore.Shared.VehicleModels[model]["model"]] or {["brand"] = "Unknown brand..", ["name"] = ""}
@@ -1652,14 +1652,14 @@ function GetClosestPlayer()
 	return closestPlayer, closestDistance
 end
 
-RegisterNetEvent('ms-phone_new:client:GiveContactDetails')
-AddEventHandler('ms-phone_new:client:GiveContactDetails', function()
+RegisterNetEvent('ms-phone:client:GiveContactDetails')
+AddEventHandler('ms-phone:client:GiveContactDetails', function()
     local ped = GetPlayerPed(-1)
 
     local player, distance = GetClosestPlayer()
     if player ~= -1 and distance < 2.5 then
         local PlayerId = GetPlayerServerId(player)
-        TriggerServerEvent('ms-phone_new:server:GiveContactDetails', PlayerId)
+        TriggerServerEvent('ms-phone:server:GiveContactDetails', PlayerId)
     else
         MSCore.Functions.Notify("No one around!", "error")
     end
@@ -1667,7 +1667,7 @@ end)
 
 -- Citizen.CreateThread(function()
 --     Wait(1000)
---     TriggerServerEvent('ms-phone_new:server:GiveContactDetails', 1)
+--     TriggerServerEvent('ms-phone:server:GiveContactDetails', 1)
 -- end)
 
 RegisterNUICallback('DeleteContact', function(data, cb)
@@ -1709,11 +1709,11 @@ RegisterNUICallback('DeleteContact', function(data, cb)
     if PhoneData.Chats[Number] ~= nil and next(PhoneData.Chats[Number]) ~= nil then
         PhoneData.Chats[Number].name = Number
     end
-    TriggerServerEvent('ms-phone_new:server:RemoveContact', Name, Number)
+    TriggerServerEvent('ms-phone:server:RemoveContact', Name, Number)
 end)
 
-RegisterNetEvent('ms-phone_new:client:AddNewSuggestion')
-AddEventHandler('ms-phone_new:client:AddNewSuggestion', function(SuggestionData)
+RegisterNetEvent('ms-phone:client:AddNewSuggestion')
+AddEventHandler('ms-phone:client:AddNewSuggestion', function(SuggestionData)
     table.insert(PhoneData.SuggestedContacts, SuggestionData)
 
     if PhoneData.isOpen then
@@ -1768,8 +1768,8 @@ RegisterNUICallback('TransferCrypto', function(data, cb)
     end, data)
 end)
 
-RegisterNetEvent('ms-phone_new:client:RemoveBankMoney')
-AddEventHandler('ms-phone_new:client:RemoveBankMoney', function(amount)
+RegisterNetEvent('ms-phone:client:RemoveBankMoney')
+AddEventHandler('ms-phone:client:RemoveBankMoney', function(amount)
     if PhoneData.isOpen then
         SendNUIMessage({
             action = "PhoneNotification",
@@ -1795,8 +1795,8 @@ AddEventHandler('ms-phone_new:client:RemoveBankMoney', function(amount)
     end
 end)
 
-RegisterNetEvent('ms-phone_new:client:AddTransaction')
-AddEventHandler('ms-phone_new:client:AddTransaction', function(SenderData, TransactionData, Message, Title)
+RegisterNetEvent('ms-phone:client:AddTransaction')
+AddEventHandler('ms-phone:client:AddTransaction', function(SenderData, TransactionData, Message, Title)
     local Data = {
         TransactionTitle = Title,
         TransactionMessage = Message,
@@ -1833,7 +1833,7 @@ AddEventHandler('ms-phone_new:client:AddTransaction', function(SenderData, Trans
         CryptoTransactions = PhoneData.CryptoTransactions
     })
 
-    TriggerServerEvent('ms-phone_new:server:AddTransaction', Data)
+    TriggerServerEvent('ms-phone:server:AddTransaction', Data)
 end)
 
 RegisterNUICallback('GetCryptoTransactions', function(data, cb)
@@ -1861,8 +1861,8 @@ RegisterNUICallback('StartRace', function(data)
     TriggerServerEvent('ms-lapraces:server:StartRace', data.RaceData.RaceId)
 end)
 
-RegisterNetEvent('ms-phone_new:client:UpdateLapraces')
-AddEventHandler('ms-phone_new:client:UpdateLapraces', function()
+RegisterNetEvent('ms-phone:client:UpdateLapraces')
+AddEventHandler('ms-phone:client:UpdateLapraces', function()
     SendNUIMessage({
         action = "UpdateRacingApp",
     })
@@ -1951,13 +1951,13 @@ RegisterNUICallback('CanRaceSetup', function(data, cb)
 end)
 
 RegisterNUICallback('GetPlayerHouses', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetPlayerHouses', function(Houses)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetPlayerHouses', function(Houses)
         cb(Houses)
     end)
 end)
 
 RegisterNUICallback('GetPlayerKeys', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetHouseKeys', function(Keys)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetHouseKeys', function(Keys)
         cb(Keys)
     end)
 end)
@@ -1978,13 +1978,13 @@ end)
 RegisterNUICallback('TransferCid', function(data, cb)
     local TransferedCid = data.newBsn
 
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:TransferCid', function(CanTransfer)
+    MSCore.Functions.TriggerCallback('ms-phone:server:TransferCid', function(CanTransfer)
         cb(CanTransfer)
     end, TransferedCid, data.HouseData)
 end)
 
 RegisterNUICallback('FetchPlayerHouses', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:MeosGetPlayerHouses', function(result)
+    MSCore.Functions.TriggerCallback('ms-phone:server:MeosGetPlayerHouses', function(result)
         cb(result)
     end, data.input)
 end)
@@ -2005,19 +2005,19 @@ RegisterNUICallback('SetApartmentLocation', function(data, cb)
 end)
 
 RegisterNUICallback('GetCurrentLawyers', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetCurrentLawyers', function(lawyers)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetCurrentLawyers', function(lawyers)
         cb(lawyers)
     end)
 end)
 
 RegisterNUICallback('GetCurrentTaxis', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetCurrentTaxis', function(taxis)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetCurrentTaxis', function(taxis)
         cb(taxis)
     end)
 end)
 
 RegisterNUICallback('GetCurrentMecanicos', function(data, cb)
-    MSCore.Functions.TriggerCallback('ms-phone_new:server:GetCurrentMecanicos', function(mecanicos)
+    MSCore.Functions.TriggerCallback('ms-phone:server:GetCurrentMecanicos', function(mecanicos)
         cb(mecanicos)
     end)
 end)
@@ -2050,7 +2050,7 @@ RegisterNUICallback('InstallApplication', function(data, cb)
     end
     
     if NewSlot <= Config.MaxSlots then
-        TriggerServerEvent('ms-phone_new:server:InstallApplication', {
+        TriggerServerEvent('ms-phone:server:InstallApplication', {
             app = data.app,
         })
         cb({
@@ -2063,11 +2063,11 @@ RegisterNUICallback('InstallApplication', function(data, cb)
 end)
 
 RegisterNUICallback('RemoveApplication', function(data, cb)
-    TriggerServerEvent('ms-phone_new:server:RemoveInstallation', data.app)
+    TriggerServerEvent('ms-phone:server:RemoveInstallation', data.app)
 end)
 
-RegisterNetEvent('ms-phone_new:RefreshPhone')
-AddEventHandler('ms-phone_new:RefreshPhone', function()
+RegisterNetEvent('ms-phone:RefreshPhone')
+AddEventHandler('ms-phone:RefreshPhone', function()
     LoadPhone()
     SetTimeout(250, function()
         SendNUIMessage({

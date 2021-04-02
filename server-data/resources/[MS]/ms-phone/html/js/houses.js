@@ -111,7 +111,7 @@ $(document).on('click', '.house-key-delete', function(e){
         $(this).remove();
     });
 
-    $.post('http://ms-phone_new/RemoveKeyholder', JSON.stringify({
+    $.post('http://ms-phone/RemoveKeyholder', JSON.stringify({
         HolderData: Data,
         HouseData: CurrentHouseData,
     }));
@@ -129,7 +129,7 @@ $(document).on('click', '#myhouse-option-transfer-confirm', function(e){
         
     var NewBSN = $(".myhouse-option-transfer-container-citizenid").val();
 
-    $.post('http://ms-phone_new/TransferCid', JSON.stringify({
+    $.post('http://ms-phone/TransferCid', JSON.stringify({
         newBsn: NewBSN,
         HouseData: CurrentHouseData,
     }), function(CanTransfer){
@@ -143,7 +143,7 @@ $(document).on('click', '#myhouse-option-transfer-confirm', function(e){
             }, AnimationDuration);
 
             setTimeout(function(){
-                $.post('http://ms-phone_new/GetPlayerHouses', JSON.stringify({}), function(Houses){
+                $.post('http://ms-phone/GetPlayerHouses', JSON.stringify({}), function(Houses){
                     SetupPlayerHouses(Houses);
                     $(".myhouses-options-container").fadeOut(150);
                 });

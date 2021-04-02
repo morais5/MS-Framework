@@ -31,7 +31,7 @@ $(document).on('click', '.mail-back', function(e){
 $(document).on('click', '#accept-mail', function(e){
     e.preventDefault();
     var MailData = $("#"+OpenedMail).data('MailData');
-    $.post('http://ms-phone_new/AcceptMailButton', JSON.stringify({
+    $.post('http://ms-phone/AcceptMailButton', JSON.stringify({
         buttonEvent: MailData.button.buttonEvent,
         buttonData: MailData.button.buttonData,
         mailId: MailData.mailid,
@@ -47,7 +47,7 @@ $(document).on('click', '#accept-mail', function(e){
 $(document).on('click', '#remove-mail', function(e){
     e.preventDefault();
     var MailData = $("#"+OpenedMail).data('MailData');
-    $.post('http://ms-phone_new/RemoveMail', JSON.stringify({
+    $.post('http://ms-phone/RemoveMail', JSON.stringify({
         mailId: MailData.mailid
     }));
     $(".mail-home").animate({
@@ -152,7 +152,7 @@ $(document).on('click', '#new-advert-submit', function(e){
         $(".new-advert").animate({
             left: -30+"vh"
         });
-        $.post('http://ms-phone_new/PostAdvert', JSON.stringify({
+        $.post('http://ms-phone/PostAdvert', JSON.stringify({
             message: Advert,
         }));
     } else {

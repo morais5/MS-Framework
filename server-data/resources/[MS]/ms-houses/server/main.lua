@@ -485,7 +485,7 @@ AddEventHandler('ms-houses:server:SetInsideMeta', function(insideId, bool)
     end
 end)
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:GetPlayerHouses', function(source, cb)
+MSCore.Functions.CreateCallback('ms-phone:server:GetPlayerHouses', function(source, cb)
 	local src = source
 	local Player = MSCore.Functions.GetPlayer(src)
 	local MyHouses = {}
@@ -528,7 +528,7 @@ function escape_sqli(source)
     return source:gsub( "['\"]", replacements ) -- or string.gsub( source, "['\"]", replacements )
 end
 
-MSCore.Functions.CreateCallback('ms-phone_new:server:MeosGetPlayerHouses', function(source, cb, input)
+MSCore.Functions.CreateCallback('ms-phone:server:MeosGetPlayerHouses', function(source, cb, input)
 	local src = source
 	if input ~= nil then
 		local search = escape_sqli(input)

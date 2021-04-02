@@ -126,73 +126,73 @@ $(document).on('click', '.phone-application', function(e){
                     $("#myPhoneNumber").text(ms.Phone.Data.PlayerData.charinfo.phone);
                     $("#mySerialNumber").text("LUN-" + ms.Phone.Data.PlayerData.metadata["phonedata"].SerialNumber);
                 } else if (PressedApplication == "twitter") {
-                    $.post('http://ms-phone_new/GetMentionedTweets', JSON.stringify({}), function(MentionedTweets){
+                    $.post('http://ms-phone/GetMentionedTweets', JSON.stringify({}), function(MentionedTweets){
                         ms.Phone.Notifications.LoadMentionedTweets(MentionedTweets)
                     })
-                    $.post('http://ms-phone_new/GetHashtags', JSON.stringify({}), function(Hashtags){
+                    $.post('http://ms-phone/GetHashtags', JSON.stringify({}), function(Hashtags){
                         ms.Phone.Notifications.LoadHashtags(Hashtags)
                     })
                     if (ms.Phone.Data.IsOpen) {
-                        $.post('http://ms-phone_new/GetTweets', JSON.stringify({}), function(Tweets){
+                        $.post('http://ms-phone/GetTweets', JSON.stringify({}), function(Tweets){
                             ms.Phone.Notifications.LoadTweets(Tweets);
                         });
                     }
                 } else if (PressedApplication == "bank") {
                     ms.Phone.Functions.DoBankOpen();
-                    $.post('http://ms-phone_new/GetBankContacts', JSON.stringify({}), function(contacts){
+                    $.post('http://ms-phone/GetBankContacts', JSON.stringify({}), function(contacts){
                         ms.Phone.Functions.LoadContactsWithNumber(contacts);
                     });
-                    $.post('http://ms-phone_new/GetInvoices', JSON.stringify({}), function(invoices){
+                    $.post('http://ms-phone/GetInvoices', JSON.stringify({}), function(invoices){
                         ms.Phone.Functions.LoadBankInvoices(invoices);
                     });
                 } else if (PressedApplication == "whatsapp") {
-                    $.post('http://ms-phone_new/GetWhatsappChats', JSON.stringify({}), function(chats){
+                    $.post('http://ms-phone/GetWhatsappChats', JSON.stringify({}), function(chats){
                         ms.Phone.Functions.LoadWhatsappChats(chats);
                     });
                 } else if (PressedApplication == "phone") {
-                    $.post('http://ms-phone_new/GetMissedCalls', JSON.stringify({}), function(recent){
+                    $.post('http://ms-phone/GetMissedCalls', JSON.stringify({}), function(recent){
                         ms.Phone.Functions.SetupRecentCalls(recent);
                     });
-                    $.post('http://ms-phone_new/GetSuggestedContacts', JSON.stringify({}), function(suggested){
+                    $.post('http://ms-phone/GetSuggestedContacts', JSON.stringify({}), function(suggested){
                         ms.Phone.Functions.SetupSuggestedContacts(suggested);
                     });
-                    $.post('http://ms-phone_new/ClearGeneralAlerts', JSON.stringify({
+                    $.post('http://ms-phone/ClearGeneralAlerts', JSON.stringify({
                         app: "phone"
                     }));
                 } else if (PressedApplication == "mail") {
-                    $.post('http://ms-phone_new/GetMails', JSON.stringify({}), function(mails){
+                    $.post('http://ms-phone/GetMails', JSON.stringify({}), function(mails){
                         ms.Phone.Functions.SetupMails(mails);
                     });
-                    $.post('http://ms-phone_new/ClearGeneralAlerts', JSON.stringify({
+                    $.post('http://ms-phone/ClearGeneralAlerts', JSON.stringify({
                         app: "mail"
                     }));
                 } else if (PressedApplication == "advert") {
-                    $.post('http://ms-phone_new/LoadAdverts', JSON.stringify({}), function(Adverts){
+                    $.post('http://ms-phone/LoadAdverts', JSON.stringify({}), function(Adverts){
                         ms.Phone.Functions.RefreshAdverts(Adverts);
                     })
                 } else if (PressedApplication == "garage") {
-                    $.post('http://ms-phone_new/SetupGarageVehicles', JSON.stringify({}), function(Vehicles){
+                    $.post('http://ms-phone/SetupGarageVehicles', JSON.stringify({}), function(Vehicles){
                         SetupGarageVehicles(Vehicles);
                     })
                 } else if (PressedApplication == "crypto") {
-                    $.post('http://ms-phone_new/GetCryptoData', JSON.stringify({
+                    $.post('http://ms-phone/GetCryptoData', JSON.stringify({
                         crypto: "msit",
                     }), function(CryptoData){
                         SetupCryptoData(CryptoData);
                     })
 
-                    $.post('http://ms-phone_new/GetCryptoTransactions', JSON.stringify({}), function(data){
+                    $.post('http://ms-phone/GetCryptoTransactions', JSON.stringify({}), function(data){
                         RefreshCryptoTransactions(data);
                     })
                 } else if (PressedApplication == "racing") {
-                    $.post('http://ms-phone_new/GetAvailableRaces', JSON.stringify({}), function(Races){
+                    $.post('http://ms-phone/GetAvailableRaces', JSON.stringify({}), function(Races){
                         SetupRaces(Races);
                     });
                 } else if (PressedApplication == "houses") {
-                    $.post('http://ms-phone_new/GetPlayerHouses', JSON.stringify({}), function(Houses){
+                    $.post('http://ms-phone/GetPlayerHouses', JSON.stringify({}), function(Houses){
                         SetupPlayerHouses(Houses);
                     });
-                    $.post('http://ms-phone_new/GetPlayerKeys', JSON.stringify({}), function(Keys){
+                    $.post('http://ms-phone/GetPlayerKeys', JSON.stringify({}), function(Keys){
                         $(".house-app-mykeys-container").html("");
                         if (Keys.length > 0) {
                             $.each(Keys, function(i, key){
@@ -206,23 +206,23 @@ $(document).on('click', '.phone-application', function(e){
                 } else if (PressedApplication == "meos") {
                     SetupMeosHome();
                 } else if (PressedApplication == "lawyers") {
-                    $.post('http://ms-phone_new/GetCurrentLawyers', JSON.stringify({}), function(data){
+                    $.post('http://ms-phone/GetCurrentLawyers', JSON.stringify({}), function(data){
                         SetupLawyers(data);
                     });
                 } else if (PressedApplication == "taxis") {
-                    $.post('http://ms-phone_new/GetCurrentTaxis', JSON.stringify({}), function(data){
+                    $.post('http://ms-phone/GetCurrentTaxis', JSON.stringify({}), function(data){
                         SetupTaxis(data);
                     });
                 } else if (PressedApplication == "mecanicos") {
-                    $.post('http://ms-phone_new/GetCurrentMecanicos', JSON.stringify({}), function(data){
+                    $.post('http://ms-phone/GetCurrentMecanicos', JSON.stringify({}), function(data){
                         SetupMecanicos(data);
                     });
                 } else if (PressedApplication == "store") {
-                    $.post('http://ms-phone_new/SetupStoreApps', JSON.stringify({}), function(data){
+                    $.post('http://ms-phone/SetupStoreApps', JSON.stringify({}), function(data){
                         SetupAppstore(data); 
                     });
                 } else if (PressedApplication == "trucker") {
-                    $.post('http://ms-phone_new/GetTruckerData', JSON.stringify({}), function(data){
+                    $.post('http://ms-phone/GetTruckerData', JSON.stringify({}), function(data){
                         SetupTruckerInfo(data);
                     });
                 }
@@ -238,7 +238,7 @@ $(document).on('click', '.mykeys-key', function(e){
 
     var KeyData = $(this).data('KeyData');
 
-    $.post('http://ms-phone_new/SetHouseLocation', JSON.stringify({
+    $.post('http://ms-phone/SetHouseLocation', JSON.stringify({
         HouseData: KeyData
     }))
 });
@@ -346,7 +346,7 @@ ms.Phone.Functions.Close = function() {
     }
 
     ms.Phone.Animations.BottomSlideDown('.container', 300, -70);
-    $.post('http://ms-phone_new/Close');
+    $.post('http://ms-phone/Close');
     ms.Phone.Data.IsOpen = false;
 }
 
@@ -383,7 +383,7 @@ ms.Phone.Animations.TopSlideUp = function(Object, Timeout, Percentage, cb) {
 }
 
 ms.Phone.Notifications.Add = function(icon, title, text, color, timeout) {
-    $.post('http://ms-phone_new/HasPhone', JSON.stringify({}), function(HasPhone){
+    $.post('http://ms-phone/HasPhone', JSON.stringify({}), function(HasPhone){
         if (HasPhone) {
             if (timeout == null && timeout == undefined) {
                 timeout = 1500;
@@ -464,7 +464,7 @@ ms.Phone.Functions.UpdateTime = function(data) {
 var NotificationTimeout = null;
 
 ms.Screen.Notification = function(title, content, icon, timeout, color) {
-    $.post('http://ms-phone_new/HasPhone', JSON.stringify({}), function(HasPhone){
+    $.post('http://ms-phone/HasPhone', JSON.stringify({}), function(HasPhone){
         if (HasPhone) {
             if (color != null && color != undefined) {
                 $(".screen-notifications-container").css({"background-color":color});
@@ -547,14 +547,14 @@ $(document).ready(function(){
                 ms.Phone.Functions.ReloadWhatsappAlerts(event.data.Chats);
                 break;
             case "CancelOutgoingCall":
-                $.post('http://ms-phone_new/HasPhone', JSON.stringify({}), function(HasPhone){
+                $.post('http://ms-phone/HasPhone', JSON.stringify({}), function(HasPhone){
                     if (HasPhone) {
                         CancelOutgoingCall();
                     }
                 });
                 break;
             case "IncomingCallAlert":
-                $.post('http://ms-phone_new/HasPhone', JSON.stringify({}), function(HasPhone){
+                $.post('http://ms-phone/HasPhone', JSON.stringify({}), function(HasPhone){
                     if (HasPhone) {
                         IncomingCallAlert(event.data.CallData, event.data.Canceled, event.data.AnonymousCall);
                     }
@@ -627,7 +627,7 @@ $(document).ready(function(){
                 RefreshCryptoTransactions(event.data);
                 break;
             case "UpdateRacingApp":
-                $.post('http://ms-phone_new/GetAvailableRaces', JSON.stringify({}), function(Races){
+                $.post('http://ms-phone/GetAvailableRaces', JSON.stringify({}), function(Races){
                     SetupRaces(Races);
                 });
                 break;

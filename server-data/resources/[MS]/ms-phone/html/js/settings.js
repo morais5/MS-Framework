@@ -49,7 +49,7 @@ $(document).on('click', '#accept-background', function(e){
         $(".phone-background").css({"background-image":"url('"+ms.Phone.Settings.Background+"')"});
     }
 
-    $.post('http://ms-phone_new/SetBackground', JSON.stringify({
+    $.post('http://ms-phone/SetBackground', JSON.stringify({
         background: ms.Phone.Settings.Background,
     }))
 });
@@ -148,7 +148,7 @@ $(document).on('click', '#accept-profilepicture', function(e){
         console.log(ProfilePicture)
         $("[data-settingstab='profilepicture']").find('.settings-tab-icon').html('<img src="'+ProfilePicture+'">');
     }
-    $.post('http://ms-phone_new/UpdateProfilePicture', JSON.stringify({
+    $.post('http://ms-phone/UpdateProfilePicture', JSON.stringify({
         profilepicture: ProfilePicture,
     }));
 });

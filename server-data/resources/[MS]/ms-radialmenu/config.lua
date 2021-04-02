@@ -22,7 +22,7 @@ Config.MenuItems = {
                 title = 'Give Contact Details',
                 icon = '#nummer',
                 type = 'client',
-                event = 'ms-phone_new:client:GiveContactDetails',
+                event = 'ms-phone:client:GiveContactDetails',
                 shouldClose = true,
             },
             {

@@ -153,7 +153,7 @@ $(document).on('click', '#buy-crypto', function(e){
 
     if ((Coins !== "") && (Price !== "")) {
         if (ms.Phone.Data.PlayerData.money.bank >= Price) {
-            $.post('http://ms-phone_new/BuyCrypto', JSON.stringify({
+            $.post('http://ms-phone/BuyCrypto', JSON.stringify({
                 Coins: Coins,
                 Price: Price,
             }), function(CryptoData){
@@ -182,7 +182,7 @@ $(document).on('click', '#sell-crypto', function(e){
 
     if ((Coins !== "") && (Price !== "")) {
         if (CryptoData.Portfolio >= parseInt(Coins)) {
-            $.post('http://ms-phone_new/SellCrypto', JSON.stringify({
+            $.post('http://ms-phone/SellCrypto', JSON.stringify({
                 Coins: Coins,
                 Price: Price,
             }), function(CryptoData){
@@ -212,7 +212,7 @@ $(document).on('click', '#transfer-crypto', function(e){
     if ((Coins !== "") && (WalletId !== "")) {
         if (CryptoData.Portfolio >= Coins) {
             if (WalletId !== CryptoData.WalletId) {
-                $.post('http://ms-phone_new/TransferCrypto', JSON.stringify({
+                $.post('http://ms-phone/TransferCrypto', JSON.stringify({
                     Coins: Coins,
                     WalletId: WalletId,
                 }), function(CryptoData){

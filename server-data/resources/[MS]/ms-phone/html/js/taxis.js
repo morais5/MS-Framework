@@ -23,7 +23,7 @@ $(document).on('click', '.taxi-list-call', function(e){
         name: LawyerData.name
     }
 
-    $.post('http://ms-phone_new/CallContact', JSON.stringify({
+    $.post('http://ms-phone/CallContact', JSON.stringify({
         ContactData: cData,
         Anonymous: ms.Phone.Data.AnonymousCall,
     }), function(status){
