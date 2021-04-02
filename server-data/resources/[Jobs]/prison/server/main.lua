@@ -1,17 +1,17 @@
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+MSCore = nil
+TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 
 local AlarmActivated = false
 
 RegisterServerEvent('prison:server:SetJailStatus')
 AddEventHandler('prison:server:SetJailStatus', function(jailTime)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
+    local Player = MSCore.Functions.GetPlayer(src)
     Player.Functions.SetMetaData("injail", jailTime)
     if jailTime > 0 then
         if Player.PlayerData.job.name ~= "unemployed" then
             Player.Functions.SetJob("unemployed")
-            TriggerClientEvent('QBCore:Notify', src, "Estas desempregado..")
+            TriggerClientEvent('MSCore:Notify', src, "Estas desempregado..")
         end
     end
 end)
@@ -19,7 +19,7 @@ end)
 RegisterServerEvent('prison:server:SaveJailItems')
 AddEventHandler('prison:server:SaveJailItems', function(jailTime)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
+    local Player = MSCore.Functions.GetPlayer(src)
     local amount = 10
     if Player.PlayerData.metadata["jailitems"] == nil or next(Player.PlayerData.metadata["jailitems"]) == nil then 
         Player.Functions.SetMetaData("jailitems", Player.PlayerData.items)
@@ -32,7 +32,7 @@ end)
 RegisterServerEvent('prison:server:GiveJailItems')
 AddEventHandler('prison:server:GiveJailItems', function()
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
+    local Player = MSCore.Functions.GetPlayer(src)
     Player.Functions.ClearInventory()
     Citizen.Wait(1000)
     for k, v in pairs(Player.PlayerData.metadata["jailitems"]) do
@@ -46,8 +46,8 @@ RegisterServerEvent('prison:server:SecurityLockdown')
 AddEventHandler('prison:server:SecurityLockdown', function()
     local src = source
     TriggerClientEvent("prison:client:SetLockDown", -1, true)
-    for k, v in pairs(QBCore.Functions.GetPlayers()) do
-        local Player = QBCore.Functions.GetPlayer(v)
+    for k, v in pairs(MSCore.Functions.GetPlayers()) do
+        local Player = MSCore.Functions.GetPlayer(v)
         if Player ~= nil then 
             if (Player.PlayerData.job.name == "police" and Player.PlayerData.job.onduty) then
                 TriggerClientEvent("prison:client:PrisonBreakAlert", v)
@@ -61,8 +61,8 @@ AddEventHandler('prison:server:SetGateHit', function(key)
     local src = source
     TriggerClientEvent("prison:client:SetGateHit", -1, key, true)
     if math.random(1, 100) <= 50 then
-        for k, v in pairs(QBCore.Functions.GetPlayers()) do
-            local Player = QBCore.Functions.GetPlayer(v)
+        for k, v in pairs(MSCore.Functions.GetPlayers()) do
+            local Player = MSCore.Functions.GetPlayer(v)
             if Player ~= nil then 
                 if (Player.PlayerData.job.name == "police" and Player.PlayerData.job.onduty) then
                     TriggerClientEvent("prison:client:PrisonBreakAlert", v)
@@ -75,7 +75,7 @@ end)
 RegisterServerEvent('prison:server:CheckRecordStatus')
 AddEventHandler('prison:server:CheckRecordStatus', function()
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
+    local Player = MSCore.Functions.GetPlayer(src)
     local CriminalRecord = Player.PlayerData.metadata["criminalrecord"]
     local currentDate = os.date("*t")
 
@@ -101,13 +101,13 @@ AddEventHandler('prison:server:JailAlarm', function()
     end
 end)
 
-QBCore.Functions.CreateUseableItem("electronickit", function(source, item)
-    local Player = QBCore.Functions.GetPlayer(source)
+MSCore.Functions.CreateUseableItem("electronickit", function(source, item)
+    local Player = MSCore.Functions.GetPlayer(source)
 	if Player.Functions.GetItemByName(item.name) then
         TriggerClientEvent("electronickit:UseElectronickit", source)
     end
 end)
 
-QBCore.Functions.CreateCallback('prison:server:IsAlarmActive', function(source, cb)
+MSCore.Functions.CreateCallback('prison:server:IsAlarmActive', function(source, cb)
     cb(AlarmActivated)
 end)

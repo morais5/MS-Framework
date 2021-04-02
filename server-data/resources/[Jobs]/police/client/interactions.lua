@@ -46,7 +46,7 @@ Citizen.CreateThread(function()
 			DisableControlAction(0, 75, true)  -- Disable exit vehicle
 			DisableControlAction(27, 75, true) -- Disable exit vehicle
 
-            if (not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arrest_paired", "crook_p2_back_right", 3)) and not QBCore.Functions.GetPlayerData().metadata["isdead"] then
+            if (not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arresting", "idle", 3) and not IsEntityPlayingAnim(GetPlayerPed(-1), "mp_arrest_paired", "crook_p2_back_right", 3)) and not MSCore.Functions.GetPlayerData().metadata["isdead"] then
                 loadAnimDict("mp_arresting")
                 TaskPlayAnim(GetPlayerPed(-1), "mp_arresting", "idle", 8.0, -8, -1, cuffType, 0, 0, 0, 0)
             end
@@ -68,7 +68,7 @@ end)
 RegisterNetEvent('police:client:PutInVehicle')
 AddEventHandler('police:client:PutInVehicle', function()
     if isHandcuffed or isEscorted then
-        local vehicle = QBCore.Functions.GetClosestVehicle()
+        local vehicle = MSCore.Functions.GetClosestVehicle()
         if DoesEntityExist(vehicle) then
 			for i = GetVehicleMaxNumberOfPassengers(vehicle), 1, -1 do
                 if IsVehicleSeatFree(vehicle, i) then
@@ -94,7 +94,7 @@ AddEventHandler('police:client:SearchPlayer', function()
         TriggerServerEvent("inventory:server:OpenInventory", "otherplayer", playerId)
         TriggerServerEvent("police:server:SearchPlayer", playerId)
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -105,7 +105,7 @@ AddEventHandler('police:client:SeizeCash', function()
         local playerId = GetPlayerServerId(player)
         TriggerServerEvent("police:server:SeizeCash", playerId)
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -116,7 +116,7 @@ AddEventHandler('police:client:SeizeDriverLicense', function()
         local playerId = GetPlayerServerId(player)
         TriggerServerEvent("police:server:SeizeDriverLicense", playerId)
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -128,7 +128,7 @@ AddEventHandler('police:client:RobPlayer', function()
         local playerPed = GetPlayerPed(player)
         local playerId = GetPlayerServerId(player)
         if IsEntityPlayingAnim(playerPed, "missminuteman_1ig_2", "handsup_base", 3) or IsEntityPlayingAnim(playerPed, "mp_arresting", "idle", 3) or IsTargetDead(playerId) then
-            QBCore.Functions.Progressbar("robbing_player", "Robbing person..", math.random(5000, 7000), false, true, {
+            MSCore.Functions.Progressbar("robbing_player", "Robbing person..", math.random(5000, 7000), false, true, {
                 disableMovement = true,
                 disableCarMovement = true,
                 disableMouse = false,
@@ -146,15 +146,15 @@ AddEventHandler('police:client:RobPlayer', function()
                     TriggerServerEvent("inventory:server:OpenInventory", "otherplayer", playerId)
                     TriggerEvent("inventory:server:RobPlayer", playerId)
                 else
-                    QBCore.Functions.Notify("Ninguem por perto!", "error")
+                    MSCore.Functions.Notify("Ninguem por perto!", "error")
                 end
             end, function() -- Cancel
                 StopAnimTask(GetPlayerPed(-1), "random@shop_robbery", "robbery_action_b", 1.0)
-                QBCore.Functions.Notify("Cancelado..", "error")
+                MSCore.Functions.Notify("Cancelado..", "error")
             end)
         end
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -181,10 +181,10 @@ AddEventHandler('police:client:JailPlayer', function()
         if tonumber(time) > 0 then
             TriggerServerEvent("police:server:JailPlayer", playerId, tonumber(time))
         else
-            QBCore.Functions.Notify("Tempo precisa de ser maior que 0..", "error")
+            MSCore.Functions.Notify("Tempo precisa de ser maior que 0..", "error")
         end
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -201,10 +201,10 @@ AddEventHandler('police:client:BillPlayer', function()
         if tonumber(price) > 0 then
             TriggerServerEvent("police:server:BillPlayer", playerId, tonumber(price))
         else
-            QBCore.Functions.Notify("Tempo precisa de ser maior que 0..", "error")
+            MSCore.Functions.Notify("Tempo precisa de ser maior que 0..", "error")
         end
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -217,7 +217,7 @@ AddEventHandler('police:client:PutPlayerInVehicle', function()
             TriggerServerEvent("police:server:PutPlayerInVehicle", playerId)
         end
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -230,7 +230,7 @@ AddEventHandler('police:client:SetPlayerOutVehicle', function()
             TriggerServerEvent("police:server:SetPlayerOutVehicle", playerId)
         end
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -243,7 +243,7 @@ AddEventHandler('police:client:EscortPlayer', function()
             TriggerServerEvent("police:server:EscortPlayer", playerId)
         end
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -262,7 +262,7 @@ AddEventHandler('police:client:KidnapPlayer', function()
             end
         end
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -276,10 +276,10 @@ AddEventHandler('police:client:CuffPlayerSoft', function()
                 TriggerServerEvent("police:server:CuffPlayer", playerId, true)
                 HandCuffAnimation()
             else
-                QBCore.Functions.Notify("Você não pode algemar alguém em um veículo", "error")
+                MSCore.Functions.Notify("Você não pode algemar alguém em um veículo", "error")
             end
         else
-            QBCore.Functions.Notify("Ninguem por perto!", "error")
+            MSCore.Functions.Notify("Ninguem por perto!", "error")
         end
     else
         Citizen.Wait(2000)
@@ -291,21 +291,21 @@ AddEventHandler('police:client:CuffPlayer', function()
     if not IsPedRagdoll(GetPlayerPed(-1)) then
         local player, distance = GetClosestPlayer()
         if player ~= -1 and distance < 1.5 then
-            QBCore.Functions.TriggerCallback('QBCore:HasItem', function(result)
+            MSCore.Functions.TriggerCallback('MSCore:HasItem', function(result)
                 if result then 
                     local playerId = GetPlayerServerId(player)
                     if not IsPedInAnyVehicle(GetPlayerPed(player)) and not IsPedInAnyVehicle(GetPlayerPed(GetPlayerPed(-1))) then
                         TriggerServerEvent("police:server:CuffPlayer", playerId, false)
                         HandCuffAnimation()
                     else
-                        QBCore.Functions.Notify("Você não pode algemar alguém em um veículo", "error")
+                        MSCore.Functions.Notify("Você não pode algemar alguém em um veículo", "error")
                     end
                 else
-                    QBCore.Functions.Notify("You don\'t have handcuffs on you", "error")
+                    MSCore.Functions.Notify("You don\'t have handcuffs on you", "error")
                 end
             end, "handcuffs")
         else
-            QBCore.Functions.Notify("Ninguem por perto!", "error")
+            MSCore.Functions.Notify("Ninguem por perto!", "error")
         end
     else
         Citizen.Wait(2000)
@@ -314,7 +314,7 @@ end)
 
 RegisterNetEvent('police:client:GetEscorted')
 AddEventHandler('police:client:GetEscorted', function(playerId)
-    QBCore.Functions.GetPlayerData(function(PlayerData)
+    MSCore.Functions.GetPlayerData(function(PlayerData)
         if PlayerData.metadata["isdead"] or isHandcuffed or PlayerData.metadata["inlaststand"] then
             if not isEscorted then
                 isEscorted = true
@@ -341,7 +341,7 @@ end)
 
 RegisterNetEvent('police:client:GetKidnappedTarget')
 AddEventHandler('police:client:GetKidnappedTarget', function(playerId)
-    QBCore.Functions.GetPlayerData(function(PlayerData)
+    MSCore.Functions.GetPlayerData(function(PlayerData)
         if PlayerData.metadata["isdead"] or PlayerData.metadata["inlaststand"] or isHandcuffed then
             if not isEscorted then
                 isEscorted = true
@@ -370,7 +370,7 @@ local isEscorting = false
 
 RegisterNetEvent('police:client:GetKidnappedDragger')
 AddEventHandler('police:client:GetKidnappedDragger', function(playerId)
-    QBCore.Functions.GetPlayerData(function(PlayerData)
+    MSCore.Functions.GetPlayerData(function(PlayerData)
         if not isEscorting then
             draggerId = playerId
             local dragger = GetPlayerPed(-1)
@@ -388,7 +388,7 @@ AddEventHandler('police:client:GetKidnappedDragger', function(playerId)
             isEscorting = false
         end
         TriggerEvent('hospital:client:SetEscortingState', isEscorting)
-        TriggerEvent('qb-kidnapping:client:SetKidnapping', isEscorting)
+        TriggerEvent('ms-kidnapping:client:SetKidnapping', isEscorting)
     end)
 end)
 
@@ -401,11 +401,11 @@ AddEventHandler('police:client:GetCuffed', function(playerId, isSoftcuff)
         if not isSoftcuff then
             cuffType = 16
             GetCuffedAnimation(playerId)
-            QBCore.Functions.Notify("Você está algemado!")
+            MSCore.Functions.Notify("Você está algemado!")
         else
             cuffType = 49
             GetCuffedAnimation(playerId)
-            QBCore.Functions.Notify("Você está algemado, mas pode andar")
+            MSCore.Functions.Notify("Você está algemado, mas pode andar")
         end
     else
         isHandcuffed = false
@@ -414,7 +414,7 @@ AddEventHandler('police:client:GetCuffed', function(playerId, isSoftcuff)
         DetachEntity(GetPlayerPed(-1), true, false)
         TriggerServerEvent("police:server:SetHandcuffStatus", false)
         ClearPedTasksImmediately(GetPlayerPed(-1))
-        QBCore.Functions.Notify("Você não está algemado!")
+        MSCore.Functions.Notify("Você não está algemado!")
     end
 end)
 
@@ -427,7 +427,7 @@ end)
 
 function IsTargetDead(playerId)
     local retval = false
-    QBCore.Functions.TriggerCallback('police:server:isPlayerDead', function(result)
+    MSCore.Functions.TriggerCallback('police:server:isPlayerDead', function(result)
         retval = result
     end, playerId)
     Citizen.Wait(100)

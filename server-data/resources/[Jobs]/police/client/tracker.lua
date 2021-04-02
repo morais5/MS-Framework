@@ -5,7 +5,7 @@ AddEventHandler('police:client:CheckDistance', function()
         local playerId = GetPlayerServerId(player)
         TriggerServerEvent("police:server:SetTracker", playerId)
     else
-        QBCore.Functions.Notify("Ninguem por perto!", "error")
+        MSCore.Functions.Notify("Ninguem por perto!", "error")
     end
 end)
 
@@ -22,9 +22,9 @@ AddEventHandler('police:client:SetTracker', function(bool)
             ["accessory"] = { item = 13, texture = 0}
         }
 
-        TriggerEvent('qb-clothing:client:loadOutfit', trackerClothingData)
+        TriggerEvent('ms-clothing:client:loadOutfit', trackerClothingData)
     else
-        TriggerEvent('qb-clothing:client:loadOutfit', trackerClothingData)
+        TriggerEvent('ms-clothing:client:loadOutfit', trackerClothingData)
     end
 end)
 

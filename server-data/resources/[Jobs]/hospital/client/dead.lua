@@ -25,9 +25,9 @@ Citizen.CreateThread(function()
 
                 local killerId = NetworkGetPlayerIndexFromPed(killer)
                 local killerName = killerId ~= -1 and GetPlayerName(killerId) .. " " .. "("..GetPlayerServerId(killerId)..")" or "He owns or NPC"
-                local weaponLabel = QBCore.Shared.Weapons[killerWeapon] ~= nil and QBCore.Shared.Weapons[killerWeapon]["label"] or "Unknown"
-                local weaponName = QBCore.Shared.Weapons[killerWeapon] ~= nil and QBCore.Shared.Weapons[killerWeapon]["name"] or "Unknown weapon"
-                --TriggerServerEvent("qb-log:server:CreateLog", "death", GetPlayerName(player) .. " ("..GetPlayerServerId(player)..") morreu", "red", "**".. killerName .. "** matou ".. GetPlayerName(player) .." com **".. weaponLabel .. "** (" .. weaponName .. ")")
+                local weaponLabel = MSCore.Shared.Weapons[killerWeapon] ~= nil and MSCore.Shared.Weapons[killerWeapon]["label"] or "Unknown"
+                local weaponName = MSCore.Shared.Weapons[killerWeapon] ~= nil and MSCore.Shared.Weapons[killerWeapon]["name"] or "Unknown weapon"
+                --TriggerServerEvent("ms-log:server:CreateLog", "death", GetPlayerName(player) .. " ("..GetPlayerServerId(player)..") morreu", "red", "**".. killerName .. "** matou ".. GetPlayerName(player) .." com **".. weaponLabel .. "** (" .. weaponName .. ")")
                 deathTime = Config.DeathTime
                 OnDeath()
                 DeathTimer()

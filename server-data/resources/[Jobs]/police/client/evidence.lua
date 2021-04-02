@@ -81,7 +81,7 @@ RegisterNetEvent("evidence:client:ClearBlooddropsInArea")
 AddEventHandler("evidence:client:ClearBlooddropsInArea", function()
 	local pos = GetEntityCoords(GetPlayerPed(-1))
 	local blooddropList = {}
-	QBCore.Functions.Progressbar("clear_blooddrops", "A limpar o sangue...", 5000, false, true, {
+	MSCore.Functions.Progressbar("clear_blooddrops", "A limpar o sangue...", 5000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
 		disableMouse = false,
@@ -94,10 +94,10 @@ AddEventHandler("evidence:client:ClearBlooddropsInArea", function()
 				end
 			end
 			TriggerServerEvent("evidence:server:ClearBlooddrops", blooddropList)
-			QBCore.Functions.Notify("Limpaste o sangue")
+			MSCore.Functions.Notify("Limpaste o sangue")
 		end
     end, function() -- Cancel
-        QBCore.Functions.Notify("Cancelado..", "error")
+        MSCore.Functions.Notify("Cancelado..", "error")
     end)
 end)
 
@@ -125,7 +125,7 @@ RegisterNetEvent("evidence:client:ClearCasingsInArea")
 AddEventHandler("evidence:client:ClearCasingsInArea", function()
 	local pos = GetEntityCoords(GetPlayerPed(-1))
 	local casingList = {}
-	QBCore.Functions.Progressbar("clear_casings", "A remover capsulas de balas...", 5000, false, true, {
+	MSCore.Functions.Progressbar("clear_casings", "A remover capsulas de balas...", 5000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
 		disableMouse = false,
@@ -138,10 +138,10 @@ AddEventHandler("evidence:client:ClearCasingsInArea", function()
 				end
 			end
 			TriggerServerEvent("evidence:server:ClearCasings", casingList)
-			QBCore.Functions.Notify("Removeste todas as capsulas de balas :)")
+			MSCore.Functions.Notify("Removeste todas as capsulas de balas :)")
 		end
     end, function() -- Cancel
-        QBCore.Functions.Notify("Cancelado", "error")
+        MSCore.Functions.Notify("Cancelado", "error")
     end)
 end)
 
@@ -211,7 +211,7 @@ Citizen.CreateThread(function()
 						label = "Capsula de Bala",
 						type = "casing",
 						street = streetLabel:gsub("%'", ""),
-						ammolabel = Config.AmmoLabels[QBCore.Shared.Weapons[Casings[CurrentCasing].type]["ammotype"]],
+						ammolabel = Config.AmmoLabels[MSCore.Shared.Weapons[Casings[CurrentCasing].type]["ammotype"]],
 						ammotype = Casings[CurrentCasing].type,
 						serie = Casings[CurrentCasing].serie,
 					}
@@ -422,7 +422,7 @@ Citizen.CreateThread( function()
 					print('shooting alert')
 					local coords = GetEntityCoords(GetPlayerPed(-1))
 					local automatic = false
-					if QBCore.Shared.Weapons[currentWeapon]["ammotype"] ~= "AMMO_PISTOL" then
+					if MSCore.Shared.Weapons[currentWeapon]["ammotype"] ~= "AMMO_PISTOL" then
 						automatic = true
 					end
 					local s1, s2 = Citizen.InvokeNative(0x2EB41072B4C1E4C0, coords.x, coords.y, coords.z, Citizen.PointerValueInt(), Citizen.PointerValueInt())
@@ -467,7 +467,7 @@ function IsPedNearby()
     end
     local player = GetPlayerPed(-1)
     local coords = GetEntityCoords(player)
-	local closestPed, closestDistance = QBCore.Functions.GetClosestPed(coords, PlayerPeds)
+	local closestPed, closestDistance = MSCore.Functions.GetClosestPed(coords, PlayerPeds)
 	if not IsEntityDead(closestPed) and closestDistance < 100.0 then
 		retval = true
 	end
@@ -482,7 +482,7 @@ function IsSilentWeapon(weapon)
 		end
 	end
 	if not retval then 
-		QBCore.Functions.TriggerCallback('police:IsSilencedWeapon', function(result)
+		MSCore.Functions.TriggerCallback('police:IsSilencedWeapon', function(result)
 			retval = result
 			return result
 		end, weapon)

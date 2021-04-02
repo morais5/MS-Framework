@@ -1,16 +1,16 @@
-QBCore = nil
+MSCore = nil
 PlayerJob = {}
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(10)
-        if QBCore == nil then
-            TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+        if MSCore == nil then
+            TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
             Citizen.Wait(200)
         end
     end
 end)
-RegisterNetEvent('QBCore:Client:OnJobUpdate')
-AddEventHandler('QBCore:Client:OnJobUpdate', function(JobInfo)
+RegisterNetEvent('MSCore:Client:OnJobUpdate')
+AddEventHandler('MSCore:Client:OnJobUpdate', function(JobInfo)
     PlayerJob = JobInfo
 end)
 ObjectInFront = function(ped, pos)

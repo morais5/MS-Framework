@@ -10,13 +10,13 @@ local Keys = {
     ["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
-QBCore = nil
+MSCore = nil
 
 Citizen.CreateThread(function() 
     while true do
         Citizen.Wait(10)
-        if QBCore == nil then
-            TriggerEvent("QBCore:GetObject", function(obj) QBCore = obj end)    
+        if MSCore == nil then
+            TriggerEvent("MSCore:GetObject", function(obj) MSCore = obj end)    
             Citizen.Wait(200)
         end
     end
@@ -125,10 +125,10 @@ function Process(action, start, tick, finish)
                 end
             end)
         else
-            QBCore.Functions.Notify("You are already doing something!", "error")
+            MSCore.Functions.Notify("You are already doing something!", "error")
         end
     else
-        QBCore.Functions.Notify("Cant do that action!", "error")
+        MSCore.Functions.Notify("Cant do that action!", "error")
     end
 end
 

@@ -17,7 +17,7 @@ local currentGarage = 1
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)
-        if isLoggedIn and QBCore ~= nil then
+        if isLoggedIn and MSCore ~= nil then
             local pos = GetEntityCoords(GetPlayerPed(-1))
             if PlayerJob.name == "doctor" or PlayerJob.name == "ambulance" then
 
@@ -36,7 +36,7 @@ Citizen.CreateThread(function()
                                 elseif onDuty == false then
                                 	exports["rp-radio"]:RemovePlayerAccessToFrequencies(6, 7, 8, 9, 10)
                                 end
-                                TriggerServerEvent("QBCore:ToggleDuty")
+                                TriggerServerEvent("MSCore:ToggleDuty")
                                 TriggerServerEvent("police:server:UpdateBlips")
                                 Wait(500)
                             end
@@ -72,7 +72,7 @@ Citizen.CreateThread(function()
                             end
                             if IsControlJustReleased(0, Keys["E"]) then
                                 if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                                    QBCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))
+                                    MSCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))
                                 else
                                     MenuGarage()
                                     currentGarage = k
@@ -96,10 +96,10 @@ Citizen.CreateThread(function()
                                 end
                                 if IsControlJustReleased(0, Keys["E"]) then
                                     if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                                        QBCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))
+                                        MSCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))
                                     else
                                         local coords = Config.Locations["helicopter"][k]
-                                        QBCore.Functions.SpawnVehicle(Config.Helicopter, function(veh)
+                                        MSCore.Functions.SpawnVehicle(Config.Helicopter, function(veh)
                                             SetVehicleNumberPlateText(veh, "LIFE"..tostring(math.random(1000, 9999)))
                                             SetEntityHeading(veh, coords.h)
                                             exports['LegacyFuel']:SetFuel(veh, 100.0)
@@ -231,8 +231,8 @@ AddEventHandler('hospital:client:AiCall', function()
     end
     local player = GetPlayerPed(-1)
     local coords = GetEntityCoords(player)
-    local closestPed, closestDistance = QBCore.Functions.GetClosestPed(coords, PlayerPeds)
-    local gender = QBCore.Functions.GetPlayerData().gender
+    local closestPed, closestDistance = MSCore.Functions.GetClosestPed(coords, PlayerPeds)
+    local gender = MSCore.Functions.GetPlayerData().gender
     local s1, s2 = Citizen.InvokeNative(0x2EB41072B4C1E4C0, coords.x, coords.y, coords.z, Citizen.PointerValueInt(), Citizen.PointerValueInt())
     local street1 = GetStreetNameFromHashKey(s1)
     local street2 = GetStreetNameFromHashKey(s2)
@@ -300,13 +300,13 @@ end
 
 RegisterNetEvent('hospital:client:RevivePlayer')
 AddEventHandler('hospital:client:RevivePlayer', function()
-    QBCore.Functions.GetPlayerData(function(PlayerData)
+    MSCore.Functions.GetPlayerData(function(PlayerData)
         if PlayerJob.name == "ambulance" then--estava doctor alterei para ambulance
             local player, distance = GetClosestPlayer()
             if player ~= -1 and distance < 5.0 then
                 local playerId = GetPlayerServerId(player)
                 isHealingPerson = true
-                QBCore.Functions.Progressbar("hospital_revive", "To revive civilian...", 5000, false, true, {
+                MSCore.Functions.Progressbar("hospital_revive", "To revive civilian...", 5000, false, true, {
                     disableMovement = false,
                     disableCarMovement = false,
                     disableMouse = false,
@@ -318,12 +318,12 @@ AddEventHandler('hospital:client:RevivePlayer', function()
                 }, {}, {}, function() -- Done
                     isHealingPerson = false
                     StopAnimTask(GetPlayerPed(-1), healAnimDict, "exit", 1.0)
-                    QBCore.Functions.Notify("You revived the civilian!")
+                    MSCore.Functions.Notify("You revived the civilian!")
                     TriggerServerEvent("hospital:server:RevivePlayer", playerId)
                 end, function() -- Cancel
                     isHealingPerson = false
                     StopAnimTask(GetPlayerPed(-1), healAnimDict, "exit", 1.0)
-                    QBCore.Functions.Notify("Faulty!", "error")
+                    MSCore.Functions.Notify("Faulty!", "error")
                 end)
             end
         end
@@ -332,13 +332,13 @@ end)
 
 RegisterNetEvent('hospital:client:CheckStatus')
 AddEventHandler('hospital:client:CheckStatus', function()
-    QBCore.Functions.GetPlayerData(function(PlayerData)
+    MSCore.Functions.GetPlayerData(function(PlayerData)
         if PlayerJob.name == "doctor" or PlayerJob.name == "ambulance" or PlayerJob.name == "police" then
             local player, distance = GetClosestPlayer()
             if player ~= -1 and distance < 5.0 then
                 local playerId = GetPlayerServerId(player)
                 statusCheckPed = GetPlayerPed(player)
-                QBCore.Functions.TriggerCallback('hospital:GetPlayerStatus', function(result)
+                MSCore.Functions.TriggerCallback('hospital:GetPlayerStatus', function(result)
                     if result ~= nil then
                         for k, v in pairs(result) do
                             if k ~= "BLEED" and k ~= "WEAPONWOUNDS" then
@@ -362,13 +362,13 @@ end)
 
 RegisterNetEvent('hospital:client:TreatWounds')
 AddEventHandler('hospital:client:TreatWounds', function()
-    QBCore.Functions.GetPlayerData(function(PlayerData)
+    MSCore.Functions.GetPlayerData(function(PlayerData)
         if PlayerJob.name == "doctor" or PlayerJob.name == "ambulance" then
             local player, distance = GetClosestPlayer()
             if player ~= -1 and distance < 5.0 then
                 local playerId = GetPlayerServerId(player)
                 isHealingPerson = true
-                QBCore.Functions.Progressbar("hospital_healwounds", "Cure injuries..", 5000, false, true, {
+                MSCore.Functions.Progressbar("hospital_healwounds", "Cure injuries..", 5000, false, true, {
                     disableMovement = false,
                     disableCarMovement = false,
                     disableMouse = false,
@@ -380,12 +380,12 @@ AddEventHandler('hospital:client:TreatWounds', function()
                 }, {}, {}, function() -- Done
                     isHealingPerson = false
                     StopAnimTask(GetPlayerPed(-1), healAnimDict, "exit", 1.0)
-                    QBCore.Functions.Notify("You helped the civilian!")
+                    MSCore.Functions.Notify("You helped the civilian!")
                     TriggerServerEvent("hospital:server:TreatWounds", playerId)
                 end, function() -- Cancel
                     isHealingPerson = false
                     StopAnimTask(GetPlayerPed(-1), healAnimDict, "exit", 1.0)
-                    QBCore.Functions.Notify("Faulty!", "error")
+                    MSCore.Functions.Notify("Faulty!", "error")
                 end)
             end
         end
@@ -413,7 +413,7 @@ end
 
 function TakeOutVehicle(vehicleInfo)
     local coords = Config.Locations["vehicle"][currentGarage]
-    QBCore.Functions.SpawnVehicle(vehicleInfo[1], function(veh)
+    MSCore.Functions.SpawnVehicle(vehicleInfo[1], function(veh)
         SetVehicleNumberPlateText(veh, "AMBU"..tostring(math.random(1000, 9999)))
         SetEntityHeading(veh, coords.h)
         exports['LegacyFuel']:SetFuel(veh, 100.0)
@@ -433,7 +433,7 @@ end
 
 function IsInemWhitelist()
     local retval = false
-    local citizenid = QBCore.Functions.GetPlayerData().citizenid
+    local citizenid = MSCore.Functions.GetPlayerData().citizenid
     for k, v in pairs(Config.Whitelist) do
         if v == citizenid then
             retval = true

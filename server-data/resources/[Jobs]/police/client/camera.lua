@@ -105,7 +105,7 @@ AddEventHandler('police:client:ActiveCamera', function(cameraId)
         })
         DoScreenFadeIn(250)
     else
-        QBCore.Functions.Notify("Essa camera não existe...", "error")
+        MSCore.Functions.Notify("Essa camera não existe...", "error")
     end
 end)
 

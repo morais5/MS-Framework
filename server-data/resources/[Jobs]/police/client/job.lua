@@ -32,9 +32,9 @@ Citizen.CreateThread(function()
                             if IsControlJustReleased(0, Keys["E"]) then
                                 onDuty = not onDuty
                                 TriggerServerEvent("police:server:UpdateCurrentCops")
-                                TriggerServerEvent("QBCore:ToggleDuty")
+                                TriggerServerEvent("MSCore:ToggleDuty")
                                 TriggerServerEvent("police:server:UpdateBlips")
-                                TriggerEvent('qb-policealerts:ToggleDuty', onDuty)
+                                TriggerEvent('ms-policealerts:ToggleDuty', onDuty)
                             end
                         elseif (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 2.5) then
                             DrawText3D(v.x, v.y, v.z, "Entrar/Sair de serviço")
@@ -122,7 +122,7 @@ Citizen.CreateThread(function()
                                  end
                                  if IsControlJustReleased(0, Keys["E"]) then
                                      if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                                         QBCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))
+                                         MSCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))
                                      else
                                          MenuGarage()
                                          currentGarage = k
@@ -147,7 +147,7 @@ Citizen.CreateThread(function()
                                 end
                                 if IsControlJustReleased(0, Keys["E"]) then
                                     if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                                        --QBCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))--eu comentei isto
+                                        --MSCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))--eu comentei isto
                                     else
                                         MenuImpound()
                                         currentGarage = k
@@ -172,10 +172,10 @@ Citizen.CreateThread(function()
                                 end
                                 if IsControlJustReleased(0, Keys["E"]) then
                                     if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
-                                        QBCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))
+                                        MSCore.Functions.DeleteVehicle(GetVehiclePedIsIn(GetPlayerPed(-1)))
                                     else
                                         local coords = Config.Locations["helicopter"][k]
-                                        QBCore.Functions.SpawnVehicle(Config.Helicopter, function(veh)
+                                        MSCore.Functions.SpawnVehicle(Config.Helicopter, function(veh)
                                             SetVehicleNumberPlateText(veh, "ZULU"..tostring(math.random(1000, 9999)))
                                             SetEntityHeading(veh, coords.h)
                                             exports['LegacyFuel']:SetFuel(veh, 100.0)
@@ -213,8 +213,8 @@ Citizen.CreateThread(function()
                             if (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 1.5) then
                                 DrawText3D(v.x, v.y, v.z, "~g~E~w~ - Armario Pessoal")
                                 if IsControlJustReleased(0, Keys["E"]) then
-                                    TriggerServerEvent("inventory:server:OpenInventory", "stash", "policestash_"..QBCore.Functions.GetPlayerData().citizenid)
-                                    TriggerEvent("inventory:client:SetCurrentStash", "policestash_"..QBCore.Functions.GetPlayerData().citizenid)
+                                    TriggerServerEvent("inventory:server:OpenInventory", "stash", "policestash_"..MSCore.Functions.GetPlayerData().citizenid)
+                                    TriggerEvent("inventory:client:SetCurrentStash", "policestash_"..MSCore.Functions.GetPlayerData().citizenid)
                                 end
                             elseif (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 2.5) then
                                 DrawText3D(v.x, v.y, v.z, "Armario Pessoal")
@@ -234,7 +234,7 @@ Citizen.CreateThread(function()
                                         local playerId = GetPlayerServerId(player)
                                         TriggerServerEvent("police:server:showFingerprint", playerId)
                                     else
-                                        QBCore.Functions.Notify("Ninguem por perto!", "error")
+                                        MSCore.Functions.Notify("Ninguem por perto!", "error")
                                     end
                                 end
                             elseif (GetDistanceBetweenCoords(pos, v.x, v.y, v.z, true) < 2.5) then
@@ -319,26 +319,26 @@ end)
 
 RegisterNetEvent('police:client:ImpoundVehicle')
 AddEventHandler('police:client:ImpoundVehicle', function(fullImpound, price)
-    local vehicle = QBCore.Functions.GetClosestVehicle()
+    local vehicle = MSCore.Functions.GetClosestVehicle()
     if vehicle ~= 0 and vehicle ~= nil then
         local pos = GetEntityCoords(GetPlayerPed(-1))
         local vehpos = GetEntityCoords(vehicle)
         if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, vehpos.x, vehpos.y, vehpos.z, true) < 5.0) and not IsPedInAnyVehicle(GetPlayerPed(-1)) then
             local plate = GetVehicleNumberPlateText(vehicle)
             TriggerServerEvent("police:server:Impound", plate, fullImpound, price)
-            QBCore.Functions.DeleteVehicle(vehicle)
+            MSCore.Functions.DeleteVehicle(vehicle)
         end
     end
 end)
 
 RegisterNetEvent('police:client:CheckStatus')
 AddEventHandler('police:client:CheckStatus', function()
-    QBCore.Functions.GetPlayerData(function(PlayerData)
+    MSCore.Functions.GetPlayerData(function(PlayerData)
         if PlayerData.job.name == "police" then
             local player, distance = GetClosestPlayer()
             if player ~= -1 and distance < 5.0 then
                 local playerId = GetPlayerServerId(player)
-                QBCore.Functions.TriggerCallback('police:GetPlayerStatus', function(result)
+                MSCore.Functions.TriggerCallback('police:GetPlayerStatus', function(result)
                     if result ~= nil then
                         for k, v in pairs(result) do
                             TriggerEvent("chatMessage", "ESTADO", "warning", v)
@@ -359,13 +359,13 @@ function MenuImpound()
 end
 
 function ImpoundVehicleList()
-    QBCore.Functions.TriggerCallback("police:GetImpoundedVehicles", function(result)
+    MSCore.Functions.TriggerCallback("police:GetImpoundedVehicles", function(result)
         ped = GetPlayerPed(-1);
         MenuTitle = "Veiculos:"
         ClearMenu()
 
         if result == nil then
-            QBCore.Functions.Notify("Não existe veiculos apreendidos", "error", 5000)
+            MSCore.Functions.Notify("Não existe veiculos apreendidos", "error", 5000)
             closeMenuFull()
         else
             for k, v in pairs(result) do
@@ -373,7 +373,7 @@ function ImpoundVehicleList()
                 bodyPercent = round(v.body / 10, 0)
                 currentFuel = v.fuel
 
-                Menu.addButton(QBCore.Shared.Vehicles[v.vehicle]["name"], "TakeOutImpound", v, "Apreendido", " Motor: " .. enginePercent .. "%", " Body: " .. bodyPercent.. "%", " Gasolina: "..currentFuel.. "%")
+                Menu.addButton(MSCore.Shared.Vehicles[v.vehicle]["name"], "TakeOutImpound", v, "Apreendido", " Motor: " .. enginePercent .. "%", " Body: " .. bodyPercent.. "%", " Gasolina: "..currentFuel.. "%")
             end
         end
             
@@ -386,9 +386,9 @@ function TakeOutImpound(vehicle)
     bodyPercent = round(vehicle.body / 10, 0)
     currentFuel = vehicle.fuel
     local coords = Config.Locations["impound"][currentGarage]
-    QBCore.Functions.SpawnVehicle(vehicle.vehicle, function(veh)
-        QBCore.Functions.TriggerCallback('qb-garage:server:GetVehicleProperties', function(properties)
-            QBCore.Functions.SetVehicleProperties(veh, properties)
+    MSCore.Functions.SpawnVehicle(vehicle.vehicle, function(veh)
+        MSCore.Functions.TriggerCallback('ms-garage:server:GetVehicleProperties', function(properties)
+            MSCore.Functions.SetVehicleProperties(veh, properties)
             SetVehicleNumberPlateText(veh, vehicle.plate)
             SetEntityHeading(veh, coords.h)
             exports['LegacyFuel']:SetFuel(veh, vehicle.fuel)
@@ -418,13 +418,13 @@ function changeOutfit()
 end
 
 function OutfitsLijst()
-    QBCore.Functions.TriggerCallback('apartments:GetOutfits', function(outfits)
+    MSCore.Functions.TriggerCallback('apartments:GetOutfits', function(outfits)
         ped = GetPlayerPed(-1);
         MenuTitle = "Fardas :"
         ClearMenu()
 
         if outfits == nil then
-            QBCore.Functions.Notify("Não tens nenhuma farda guardada...", "error", 3500)
+            MSCore.Functions.Notify("Não tens nenhuma farda guardada...", "error", 3500)
             closeMenuFull()
         else
             for k, v in pairs(outfits) do
@@ -447,14 +447,14 @@ end
 
 function selectOutfit(oData)
     TriggerServerEvent('clothes:selectOutfit', oData.model, oData.skin)
-    QBCore.Functions.Notify(oData.outfitname.." selecionado", "success", 2500)
+    MSCore.Functions.Notify(oData.outfitname.." selecionado", "success", 2500)
     closeMenuFull()
     changeOutfit()
 end
 
 function removeOutfit(oData)
     TriggerServerEvent('clothes:removeOutfit', oData.outfitname)
-    QBCore.Functions.Notify(oData.outfitname.." removido", "success", 2500)
+    MSCore.Functions.Notify(oData.outfitname.." removido", "success", 2500)
     closeMenuFull()
 end
 
@@ -485,7 +485,7 @@ end
 function TakeOutVehicle(vehicleInfo)
     local coords = Config.Locations["vehicle"][currentGarage]
 
-    QBCore.Functions.SpawnVehicle(vehicleInfo, function(veh)
+    MSCore.Functions.SpawnVehicle(vehicleInfo, function(veh)
         SetVehicleNumberPlateText(veh, "PLZI"..tostring(math.random(1000, 9999)))
         SetEntityHeading(veh, coords.h)
         exports['LegacyFuel']:SetFuel(veh, 100.0)
@@ -560,7 +560,7 @@ end
 function SetCarItemsInfo()
 	local items = {}
 	for k, item in pairs(Config.CarItems) do
-		local itemInfo = QBCore.Shared.Items[item.name:lower()]
+		local itemInfo = MSCore.Shared.Items[item.name:lower()]
 		items[item.slot] = {
 			name = itemInfo["name"],
 			amount = tonumber(item.amount),
@@ -580,7 +580,7 @@ end
 
 function IsArmoryWhitelist()
     local retval = false
-    local citizenid = QBCore.Functions.GetPlayerData().citizenid
+    local citizenid = MSCore.Functions.GetPlayerData().citizenid
     for k, v in pairs(Config.ArmoryWhitelist) do
         if v == citizenid then
             retval = true

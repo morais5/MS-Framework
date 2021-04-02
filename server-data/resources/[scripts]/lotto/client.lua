@@ -1,8 +1,8 @@
-QBCore = nil
+MSCore = nil
 
 Citizen.CreateThread(function()
-	while QBCore == nil do
-		TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+	while MSCore == nil do
+		TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 		Citizen.Wait(0)
 	end
 end)

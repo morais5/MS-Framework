@@ -1,5 +1,5 @@
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+MSCore = nil
+TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 local Notes = {}
 
 RegisterServerEvent("notes:server:SaveNoteData")
@@ -42,6 +42,6 @@ function CreateNoteId()
 	return noteId
 end
 
-QBCore.Commands.Add("notes", "Show trunk position", {}, false, function(source, args)
+MSCore.Commands.Add("notes", "Show trunk position", {}, false, function(source, args)
 	TriggerClientEvent("notes:client:OpenNotepad", source)
 end)

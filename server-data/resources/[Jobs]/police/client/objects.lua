@@ -2,7 +2,7 @@ local ObjectList = {}
 
 RegisterNetEvent('police:client:spawnCone')
 AddEventHandler('police:client:spawnCone', function()
-    QBCore.Functions.Progressbar("spawn_object", "A colocar objeto..", 2500, false, true, {
+    MSCore.Functions.Progressbar("spawn_object", "A colocar objeto..", 2500, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -16,13 +16,13 @@ AddEventHandler('police:client:spawnCone', function()
         TriggerServerEvent("police:server:spawnObject", "cone")
     end, function() -- Cancel
         StopAnimTask(GetPlayerPed(-1), "anim@narcotics@trash", "drop_front", 1.0)
-        QBCore.Functions.Notify("Cancelado..", "error")
+        MSCore.Functions.Notify("Cancelado..", "error")
     end)
 end)
 
 RegisterNetEvent('police:client:spawnBarier')
 AddEventHandler('police:client:spawnBarier', function()
-    QBCore.Functions.Progressbar("spawn_object", "A colocar objeto..", 2500, false, true, {
+    MSCore.Functions.Progressbar("spawn_object", "A colocar objeto..", 2500, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -36,13 +36,13 @@ AddEventHandler('police:client:spawnBarier', function()
         TriggerServerEvent("police:server:spawnObject", "barier")
     end, function() -- Cancel
         StopAnimTask(GetPlayerPed(-1), "anim@narcotics@trash", "drop_front", 1.0)
-        QBCore.Functions.Notify("Cancelado..", "error")
+        MSCore.Functions.Notify("Cancelado..", "error")
     end)
 end)
 
 RegisterNetEvent('police:client:spawnSchotten')
 AddEventHandler('police:client:spawnSchotten', function()
-    QBCore.Functions.Progressbar("spawn_object", "A colocar objeto..", 2500, false, true, {
+    MSCore.Functions.Progressbar("spawn_object", "A colocar objeto..", 2500, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -56,13 +56,13 @@ AddEventHandler('police:client:spawnSchotten', function()
         TriggerServerEvent("police:server:spawnObject", "schotten")
     end, function() -- Cancel
         StopAnimTask(GetPlayerPed(-1), "anim@narcotics@trash", "drop_front", 1.0)
-        QBCore.Functions.Notify("Cancelado..", "error")
+        MSCore.Functions.Notify("Cancelado..", "error")
     end)
 end)
 
 RegisterNetEvent('police:client:spawnTent')
 AddEventHandler('police:client:spawnTent', function()
-    QBCore.Functions.Progressbar("spawn_object", "A colocar objeto..", 2500, false, true, {
+    MSCore.Functions.Progressbar("spawn_object", "A colocar objeto..", 2500, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -76,14 +76,14 @@ AddEventHandler('police:client:spawnTent', function()
         TriggerServerEvent("police:server:spawnObject", "tent")
     end, function() -- Cancel
         StopAnimTask(GetPlayerPed(-1), "anim@narcotics@trash", "drop_front", 1.0)
-        QBCore.Functions.Notify("Cancelado..", "error")
+        MSCore.Functions.Notify("Cancelado..", "error")
     end)
 end)
 
 RegisterNetEvent('police:client:spawnLight')
 AddEventHandler('police:client:spawnLight', function()
     local coords = GetEntityCoords(GetPlayerPed(-1))
-    QBCore.Functions.Progressbar("spawn_object", "A colocar objeto..", 2500, false, true, {
+    MSCore.Functions.Progressbar("spawn_object", "A colocar objeto..", 2500, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -97,7 +97,7 @@ AddEventHandler('police:client:spawnLight', function()
         TriggerServerEvent("police:server:spawnObject", "light")
     end, function() -- Cancel
         StopAnimTask(GetPlayerPed(-1), "anim@narcotics@trash", "drop_front", 1.0)
-        QBCore.Functions.Notify("Cancelado..", "error")
+        MSCore.Functions.Notify("Cancelado..", "error")
     end)
 end)
 
@@ -105,7 +105,7 @@ RegisterNetEvent('police:client:deleteObject')
 AddEventHandler('police:client:deleteObject', function()
     local objectId, dist = GetClosestPoliceObject()
     if dist < 5.0 then
-        QBCore.Functions.Progressbar("remove_object", "Removing object..", 2500, false, true, {
+        MSCore.Functions.Progressbar("remove_object", "Removing object..", 2500, false, true, {
             disableMovement = true,
             disableCarMovement = true,
             disableMouse = false,
@@ -119,7 +119,7 @@ AddEventHandler('police:client:deleteObject', function()
             TriggerServerEvent("police:server:deleteObject", objectId)
         end, function() -- Cancel
             StopAnimTask(GetPlayerPed(-1), "weapons@first_person@aim_rng@generic@projectile@thermal_charge@", "plant_floor", 1.0)
-            QBCore.Functions.Notify("Cancelado..", "error")
+            MSCore.Functions.Notify("Cancelado..", "error")
         end)
     end
 end)
@@ -232,7 +232,7 @@ AddEventHandler('police:client:SpawnSpikeStrip', function()
             TriggerServerEvent('police:server:SyncSpikes', SpawnedSpikes)
         end
     else
-        QBCore.Functions.Notify('Não existe mais linhas de espetos disponiveis...', 'error')
+        MSCore.Functions.Notify('Não existe mais linhas de espetos disponiveis...', 'error')
     end
 end)
 

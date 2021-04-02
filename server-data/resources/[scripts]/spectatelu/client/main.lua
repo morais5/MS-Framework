@@ -1,10 +1,10 @@
-QBCore = nil
+MSCore = nil
 
 Citizen.CreateThread(function() 
     while true do
         Citizen.Wait(1)
-        if QBCore == nil then
-            TriggerEvent("QBCore:GetObject", function(obj) QBCore = obj end)    
+        if MSCore == nil then
+            TriggerEvent("MSCore:GetObject", function(obj) MSCore = obj end)    
             Citizen.Wait(200)
         end
     end
@@ -37,7 +37,7 @@ end
 
 function spectate(target)
 
-	QBCore.Functions.TriggerCallback('spectatelu:getPlayerData', function(player)
+	MSCore.Functions.TriggerCallback('spectatelu:getPlayerData', function(player)
 		if not InSpectatorMode then
 			LastPosition = GetEntityCoords(GetPlayerPed(-1))
 		end
@@ -87,7 +87,7 @@ end
 
 function getPlayersList()
 
-	local players = QBCore.Functions.GetPlayers()
+	local players = MSCore.Functions.GetPlayers()
 	local data = {}
 
 	for i=1, #players, 1 do

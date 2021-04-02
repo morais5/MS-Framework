@@ -1,5 +1,5 @@
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+MSCore = nil
+TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 
 -- Code
 
@@ -589,8 +589,8 @@ local function playerConnect(source, setKickReason, deferrals)
         if not added then CancelEvent() return end
 
         done()
-        TriggerEvent("qb-log:server:CreateLog", "joinleave", "Queue", "orange", "**".. name .. "** joining..")
-        TriggerEvent("qb-log:server:sendLog", ids[1], "joinedqueue", {})
+        TriggerEvent("ms-log:server:CreateLog", "joinleave", "Queue", "orange", "**".. name .. "** joining..")
+        TriggerEvent("ms-log:server:sendLog", ids[1], "joinedqueue", {})
         Queue:DebugPrint(name .. "[" .. ids[1] .. "] está carregando no servidor")
 
         return
@@ -652,8 +652,8 @@ local function playerConnect(source, setKickReason, deferrals)
             if Config.EnableGrace then Queue:AddPriority(ids[1], Config.GracePower, Config.GraceTime) end
 
             Queue:RemoveFromQueue(ids)
-            TriggerEvent("qb-log:server:CreateLog", "joinleave", "Queue", "orange", "**".. name .. "** joining..")
-            TriggerEvent("qb-log:server:sendLog", ids[1], "joinedqueue", {})
+            TriggerEvent("ms-log:server:CreateLog", "joinleave", "Queue", "orange", "**".. name .. "** joining..")
+            TriggerEvent("ms-log:server:sendLog", ids[1], "joinedqueue", {})
             Queue:DebugPrint(name .. "[" .. ids[1] .. "] is loading into the server")
             return
         end

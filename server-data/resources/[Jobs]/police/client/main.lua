@@ -21,10 +21,10 @@ onDuty = false
 
 databankOpen = false
 
-QBCore = nil
+MSCore = nil
 Citizen.CreateThread(function() 
-    while QBCore == nil do
-        TriggerEvent("QBCore:GetObject", function(obj) QBCore = obj end)
+    while MSCore == nil do
+        TriggerEvent("MSCore:GetObject", function(obj) MSCore = obj end)
         Citizen.Wait(200)
     end
     SetCarItemsInfo()
@@ -43,13 +43,13 @@ Citizen.CreateThread(function()
     end
 end)
 
-RegisterNetEvent('QBCore:Client:OnJobUpdate')
-AddEventHandler('QBCore:Client:OnJobUpdate', function(JobInfo)
+RegisterNetEvent('MSCore:Client:OnJobUpdate')
+AddEventHandler('MSCore:Client:OnJobUpdate', function(JobInfo)
     PlayerJob = JobInfo
     TriggerServerEvent("police:server:UpdateBlips")
     if JobInfo.name == "police" then
         if PlayerJob.onduty then
-            TriggerServerEvent("QBCore:ToggleDuty")
+            TriggerServerEvent("MSCore:ToggleDuty")
             onDuty = false
         end
     end
@@ -64,24 +64,24 @@ AddEventHandler('QBCore:Client:OnJobUpdate', function(JobInfo)
     end
 end)
 
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+RegisterNetEvent('MSCore:Client:OnPlayerLoaded')
+AddEventHandler('MSCore:Client:OnPlayerLoaded', function()
     isLoggedIn = true
-    PlayerJob = QBCore.Functions.GetPlayerData().job
-    onDuty = QBCore.Functions.GetPlayerData().job.onduty
+    PlayerJob = MSCore.Functions.GetPlayerData().job
+    onDuty = MSCore.Functions.GetPlayerData().job.onduty
     isHandcuffed = false
-    TriggerServerEvent("QBCore:Server:SetMetaData", "ishandcuffed", false)
+    TriggerServerEvent("MSCore:Server:SetMetaData", "ishandcuffed", false)
     TriggerServerEvent("police:server:SetHandcuffStatus", false)
     TriggerServerEvent("police:server:UpdateBlips")
     TriggerServerEvent("police:server:UpdateCurrentCops")
     TriggerServerEvent("police:server:CheckBills")
 
-    if QBCore.Functions.GetPlayerData().metadata["tracker"] then
+    if MSCore.Functions.GetPlayerData().metadata["tracker"] then
         local trackerClothingData = {outfitData = {["accessory"] = { item = 13, texture = 0}}}
-        TriggerEvent('qb-clothing:client:loadOutfit', trackerClothingData)
+        TriggerEvent('ms-clothing:client:loadOutfit', trackerClothingData)
     else
         local trackerClothingData = {outfitData = {["accessory"]   = { item = -1, texture = 0}}}
-        TriggerEvent('qb-clothing:client:loadOutfit', trackerClothingData)
+        TriggerEvent('ms-clothing:client:loadOutfit', trackerClothingData)
     end
 
     if (PlayerJob ~= nil) and PlayerJob.name ~= "police" then
@@ -98,11 +98,11 @@ RegisterNetEvent('police:client:sendBillingMail')
 AddEventHandler('police:client:sendBillingMail', function(amount)
     SetTimeout(math.random(2500, 4000), function()
         local gender = "Mr."
-        if QBCore.Functions.GetPlayerData().charinfo.gender == 1 then
+        if MSCore.Functions.GetPlayerData().charinfo.gender == 1 then
             gender = "Mrs."
         end
-        local charinfo = QBCore.Functions.GetPlayerData().charinfo
-        TriggerServerEvent('qb-phone:server:sendNewMail', {
+        local charinfo = MSCore.Functions.GetPlayerData().charinfo
+        TriggerServerEvent('ms-phone:server:sendNewMail', {
             sender = "Central Judicial Collection Agency",
             subject = "Debt collection",
             message = "Dear " .. gender .. " " .. charinfo.lastname .. ",<br /><br />The Central Judicial Collection Agency (CJCA) charged the fines you received from the police.<br />There is <strong>$"..amount.."</strong> withdrawn from your account.<br /><br />Kind regards,<br />Mr. I.K. Graai",
@@ -153,8 +153,8 @@ RegisterNUICallback("closeDatabank", function(data, cb)
     TaskPlayAnim(GetPlayerPed(-1), "amb@code_human_in_bus_passenger_idles@female@tablet@base", "exit", 3.0, 3.0, -1, 49, 0, 0, 0, 0)
 end)
 
-RegisterNetEvent('QBCore:Client:OnPlayerUnload')
-AddEventHandler('QBCore:Client:OnPlayerUnload', function()
+RegisterNetEvent('MSCore:Client:OnPlayerUnload')
+AddEventHandler('MSCore:Client:OnPlayerUnload', function()
     TriggerServerEvent('police:server:UpdateBlips')
     TriggerServerEvent("police:server:SetHandcuffStatus", false)
     TriggerServerEvent("police:server:UpdateCurrentCops")
@@ -233,8 +233,8 @@ AddEventHandler('police:client:SendPoliceEmergencyAlert', function()
 
     local MyId = GetPlayerServerId(PlayerId())
 
-    TriggerServerEvent("police:server:SendPoliceEmergencyAlert", streetLabel, pos, QBCore.Functions.GetPlayerData().metadata["callsign"])
-    TriggerServerEvent('qb-policealerts:server:AddPoliceAlert', {
+    TriggerServerEvent("police:server:SendPoliceEmergencyAlert", streetLabel, pos, MSCore.Functions.GetPlayerData().metadata["callsign"])
+    TriggerServerEvent('ms-policealerts:server:AddPoliceAlert', {
         timeOut = 10000,
         alertTitle = alertTitle,
         coords = {
@@ -245,14 +245,14 @@ AddEventHandler('police:client:SendPoliceEmergencyAlert', function()
         details = {
             [1] = {
                 icon = '<i class="fas fa-passport"></i>',
-                detail = MyId .. ' | ' .. QBCore.Functions.GetPlayerData().charinfo.firstname .. ' ' .. QBCore.Functions.GetPlayerData().charinfo.lastname,
+                detail = MyId .. ' | ' .. MSCore.Functions.GetPlayerData().charinfo.firstname .. ' ' .. MSCore.Functions.GetPlayerData().charinfo.lastname,
             },
             [2] = {
                 icon = '<i class="fas fa-globe-europe"></i>',
                 detail = streetLabel,
             },
         },
-        callSign = QBCore.Functions.GetPlayerData().metadata["callsign"],
+        callSign = MSCore.Functions.GetPlayerData().metadata["callsign"],
     }, true)
 end)
 
@@ -321,7 +321,7 @@ AddEventHandler('police:client:GunShotAlert', function(streetLabel, isAutomatic,
             }
         end
 
-        TriggerEvent('qb-policealerts:client:AddPoliceAlert', {
+        TriggerEvent('ms-policealerts:client:AddPoliceAlert', {
             timeOut = 4000,
             alertTitle = blipText,
             coords = {
@@ -330,7 +330,7 @@ AddEventHandler('police:client:GunShotAlert', function(streetLabel, isAutomatic,
                 z = coords.z,
             },
             details = MessageDetails,
-            callSign = QBCore.Functions.GetPlayerData().metadata["callsign"],
+            callSign = MSCore.Functions.GetPlayerData().metadata["callsign"],
         })
 
         PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
@@ -361,7 +361,7 @@ end)
 RegisterNetEvent('police:client:VehicleCall')
 AddEventHandler('police:client:VehicleCall', function(pos, alertTitle, streetLabel, modelPlate, modelName)
     if PlayerJob.name == 'police' and onDuty then
-        TriggerEvent('qb-policealerts:client:AddPoliceAlert', {
+        TriggerEvent('ms-policealerts:client:AddPoliceAlert', {
             timeOut = 4000,
             alertTitle = alertTitle,
             coords = {
@@ -383,7 +383,7 @@ AddEventHandler('police:client:VehicleCall', function(pos, alertTitle, streetLab
                     detail = streetLabel,
                 },
             },
-            callSign = QBCore.Functions.GetPlayerData().metadata["callsign"],
+            callSign = MSCore.Functions.GetPlayerData().metadata["callsign"],
         })
         PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
         local transG = 250
@@ -413,7 +413,7 @@ end)
 RegisterNetEvent('police:client:HouseRobberyCall')
 AddEventHandler('police:client:HouseRobberyCall', function(coords, msg, gender, streetLabel)
     if PlayerJob.name == 'police' and onDuty then
-        TriggerEvent('qb-policealerts:client:AddPoliceAlert', {
+        TriggerEvent('ms-policealerts:client:AddPoliceAlert', {
             timeOut = 5000,
             alertTitle = "Burglary attempt",
             coords = {
@@ -431,7 +431,7 @@ AddEventHandler('police:client:HouseRobberyCall', function(coords, msg, gender, 
                     detail = streetLabel,
                 },
             },
-            callSign = QBCore.Functions.GetPlayerData().metadata["callsign"],
+            callSign = MSCore.Functions.GetPlayerData().metadata["callsign"],
         })
 
         PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
@@ -463,7 +463,7 @@ RegisterNetEvent('112:client:SendPoliceAlert')
 AddEventHandler('112:client:SendPoliceAlert', function(notifyType, data, blipSettings)
     if PlayerJob.name == 'police' and onDuty then
         if notifyType == "flagged" then
-            TriggerEvent('qb-policealerts:client:AddPoliceAlert', {
+            TriggerEvent('ms-policealerts:client:AddPoliceAlert', {
                 timeOut = 5000,
                 alertTitle = "Burglary attempt",
                 details = {
@@ -480,7 +480,7 @@ AddEventHandler('112:client:SendPoliceAlert', function(notifyType, data, blipSet
                         detail = data.streetLabel,
                     },
                 },
-                callSign = QBCore.Functions.GetPlayerData().metadata["callsign"],
+                callSign = MSCore.Functions.GetPlayerData().metadata["callsign"],
             })
             RadarSound()
         end
@@ -514,7 +514,7 @@ end)
 RegisterNetEvent('police:client:PoliceAlertMessage')
 AddEventHandler('police:client:PoliceAlertMessage', function(title, streetLabel, coords)
     if PlayerJob.name == 'police' and onDuty then
-        TriggerEvent('qb-policealerts:client:AddPoliceAlert', {
+        TriggerEvent('ms-policealerts:client:AddPoliceAlert', {
             timeOut = 5000,
             alertTitle = title,
             details = {
@@ -523,7 +523,7 @@ AddEventHandler('police:client:PoliceAlertMessage', function(title, streetLabel,
                     detail = streetLabel,
                 },
             },
-            callSign = QBCore.Functions.GetPlayerData().metadata["callsign"],
+            callSign = MSCore.Functions.GetPlayerData().metadata["callsign"],
         })
 
         PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
@@ -551,7 +551,7 @@ end)
 
 RegisterNetEvent('police:server:SendEmergencyMessageCheck')
 AddEventHandler('police:server:SendEmergencyMessageCheck', function(MainPlayer, message, coords)
-    local PlayerData = QBCore.Functions.GetPlayerData()
+    local PlayerData = MSCore.Functions.GetPlayerData()
     if ((PlayerData.job.name == "police" or PlayerData.job.name == "ambulance" or PlayerData.job.name == "doctor") and onDuty) then
         TriggerEvent('chatMessage', "ALERTA 112 - " .. MainPlayer.PlayerData.charinfo.firstname .. " " .. MainPlayer.PlayerData.charinfo.lastname .. " ("..MainPlayer.PlayerData.source..")", "warning", message)
         TriggerEvent("police:client:EmergencySound")
@@ -581,7 +581,7 @@ end)
 
 RegisterNetEvent('police:client:Send112AMessage')
 AddEventHandler('police:client:Send112AMessage', function(message)
-    local PlayerData = QBCore.Functions.GetPlayerData()
+    local PlayerData = MSCore.Functions.GetPlayerData()
     if ((PlayerData.job.name == "police" or PlayerData.job.name == "ambulance") and onDuty) then
         TriggerEvent('chatMessage', "ALERTA 112 ANONIMO", "warning", message)
         TriggerEvent("police:client:EmergencySound")
@@ -610,7 +610,7 @@ function RadarSound()
 end
 
 function GetClosestPlayer()
-    local closestPlayers = QBCore.Functions.GetPlayersFromCoords()
+    local closestPlayers = MSCore.Functions.GetPlayersFromCoords()
     local closestDistance = -1
     local closestPlayer = -1
     local coords = GetEntityCoords(GetPlayerPed(-1))

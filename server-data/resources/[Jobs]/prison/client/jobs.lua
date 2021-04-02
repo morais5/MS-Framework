@@ -15,7 +15,7 @@ Citizen.CreateThread(function()
                     DrawMarker(2, Config.Locations.jobs[currentJob][currentLocation].coords.x, Config.Locations.jobs[currentJob][currentLocation].coords.y, Config.Locations.jobs[currentJob][currentLocation].coords.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 150, 200, 50, 222, false, false, false, true, false, false, false)
                     if (GetDistanceBetweenCoords(pos.x, pos.y, pos.z, Config.Locations.jobs[currentJob][currentLocation].coords.x, Config.Locations.jobs[currentJob][currentLocation].coords.y, Config.Locations.jobs[currentJob][currentLocation].coords.z, true) < 1.0) and not isWorking then
                         isWorking = true
-                        QBCore.Functions.Progressbar("work_electric", "A trabalhar com eletrecidade..", math.random(5000, 10000), false, true, {
+                        MSCore.Functions.Progressbar("work_electric", "A trabalhar com eletrecidade..", math.random(5000, 10000), false, true, {
                             disableMovement = true,
                             disableCarMovement = true,
                             disableMouse = false,
@@ -31,7 +31,7 @@ Citizen.CreateThread(function()
                         end, function() -- Cancel
                             isWorking = false
                             StopAnimTask(GetPlayerPed(-1), "anim@gangops@facility@servers@", "hotwire", 1.0)
-                            QBCore.Functions.Notify("Cancelado..", "error")
+                            MSCore.Functions.Notify("Cancelado..", "error")
                         end)
                     end
                 end
@@ -47,7 +47,7 @@ end)
 
 function JobDone()
     if math.random(1, 100) <= 50 then
-        QBCore.Functions.Notify("A tua pena diminuiu")
+        MSCore.Functions.Notify("A tua pena diminuiu")
         jailTime = jailTime - math.random(1, 2)
     end
     local newLocation = math.random(1, #Config.Locations.jobs[currentJob])
@@ -79,9 +79,9 @@ function CreateJobBlip()
         --[[local Chance = math.random(100)--eu comentei isto
         local Odd = math.random(100)
         if Chance == Odd then
-            TriggerServerEvent('QBCore:Server:AddItem', 'phone', 1)
-            TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["phone"], "add")
-            QBCore.Functions.Notify("Encontraste um phone..", "success")
+            TriggerServerEvent('MSCore:Server:AddItem', 'phone', 1)
+            TriggerEvent('inventory:client:ItemBox', MSCore.Shared.Items["phone"], "add")
+            MSCore.Functions.Notify("Encontraste um phone..", "success")
         end--]]
     end
 end

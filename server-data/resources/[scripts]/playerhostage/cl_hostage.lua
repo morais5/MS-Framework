@@ -1,10 +1,10 @@
-QBCore = nil
+MSCore = nil
 
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(10)
-		if QBCore == nil then
-			TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+		if MSCore == nil then
+			TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 			Citizen.Wait(200)
 		end
 	end
@@ -49,7 +49,7 @@ function takeHostage()
 					NoWeapon = false
 					break
 				else
-					QBCore.Functions.Notify("Não tens munição!")
+					MSCore.Functions.Notify("Não tens munição!")
 					return			
 				end	
 			else
@@ -58,7 +58,7 @@ function takeHostage()
 		end
 
 		if NoWeapon then
-			QBCore.Functions.Notify("Não podes utilizar esta arma para fazer refens!")
+			MSCore.Functions.Notify("Não podes utilizar esta arma para fazer refens!")
 			return
 		end
 
@@ -83,7 +83,7 @@ function takeHostage()
 			TriggerServerEvent('cmg3_animations:sync', closestPlayer, lib,lib2, anim1, anim2, distans, distans2, height,target,length,spin,controlFlagMe,controlFlagTarget,animFlagTarget,attachFlag, false)
 		end
 	else
-		QBCore.Functions.Notify("Ninguem por perto!")
+		MSCore.Functions.Notify("Ninguem por perto!")
 	end
 	canTakeHostage = false 
 end 

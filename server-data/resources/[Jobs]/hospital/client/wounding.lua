@@ -135,7 +135,7 @@ Citizen.CreateThread(function()
                         local randX = math.random() + math.random(-1, 1)
                         local randY = math.random() + math.random(-1, 1)
                         local coords = GetOffsetFromEntityInWorldCoords(GetPlayerPed(GetPlayerFromServerId(playerId)), randX, randY, 0)
-                        TriggerServerEvent("evidence:server:CreateBloodDrop", QBCore.Functions.GetPlayerData().citizenid, QBCore.Functions.GetPlayerData().metadata["bloodtype"], coords)
+                        TriggerServerEvent("evidence:server:CreateBloodDrop", MSCore.Functions.GetPlayerData().citizenid, MSCore.Functions.GetPlayerData().metadata["bloodtype"], coords)
 
                         if advanceBleedTimer >= Config.AdvanceBleedTimer then
                             ApplyBleed(1)
@@ -365,7 +365,7 @@ end
 
 RegisterNetEvent('hospital:client:UseBandage')
 AddEventHandler('hospital:client:UseBandage', function()
-    QBCore.Functions.Progressbar("use_bandage", "A colocar uma bandagem..", 4000, false, true, {
+    MSCore.Functions.Progressbar("use_bandage", "A colocar uma bandagem..", 4000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
 		disableMouse = false,
@@ -376,8 +376,8 @@ AddEventHandler('hospital:client:UseBandage', function()
 		flags = 49,
     }, {}, {}, function() -- Done
         StopAnimTask(GetPlayerPed(-1), "anim@amb@business@weed@weed_inspecting_high_dry@", "weed_inspecting_high_base_inspector", 1.0)
-        TriggerServerEvent("QBCore:Server:RemoveItem", "bandage", 1)
-        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["bandage"], "remove")
+        TriggerServerEvent("MSCore:Server:RemoveItem", "bandage", 1)
+        TriggerEvent("inventory:client:ItemBox", MSCore.Shared.Items["bandage"], "remove")
         SetEntityHealth(GetPlayerPed(-1), GetEntityHealth(GetPlayerPed(-1)) + 10)
         if math.random(1, 100) < 50 then
             RemoveBleed(1)
@@ -387,13 +387,13 @@ AddEventHandler('hospital:client:UseBandage', function()
         end
     end, function() -- Cancel
         StopAnimTask(GetPlayerPed(-1), "anim@amb@business@weed@weed_inspecting_high_dry@", "weed_inspecting_high_base_inspector", 1.0)
-        QBCore.Functions.Notify("Falhaste", "error")
+        MSCore.Functions.Notify("Falhaste", "error")
     end)
 end)
 
 RegisterNetEvent('hospital:client:UsePainkillers')
 AddEventHandler('hospital:client:UsePainkillers', function()
-    QBCore.Functions.Progressbar("use_bandage", "A tomar PainKillers", 3000, false, true, {
+    MSCore.Functions.Progressbar("use_bandage", "A tomar PainKillers", 3000, false, true, {
         disableMovement = false,
         disableCarMovement = false,
 		disableMouse = false,
@@ -404,15 +404,15 @@ AddEventHandler('hospital:client:UsePainkillers', function()
 		flags = 49,
     }, {}, {}, function() -- Done
         StopAnimTask(GetPlayerPed(-1), "mp_suicide", "pill", 1.0)
-        TriggerServerEvent("QBCore:Server:RemoveItem", "painkillers", 1)
-        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["painkillers"], "remove")
+        TriggerServerEvent("MSCore:Server:RemoveItem", "painkillers", 1)
+        TriggerEvent("inventory:client:ItemBox", MSCore.Shared.Items["painkillers"], "remove")
         onPainKillers = true
         if painkillerAmount < 3 then
             painkillerAmount = painkillerAmount + 1
         end
     end, function() -- Cancel
         StopAnimTask(GetPlayerPed(-1), "mp_suicide", "pill", 1.0)
-        QBCore.Functions.Notify("Falhaste", "error")
+        MSCore.Functions.Notify("Falhaste", "error")
     end)
 end)
 

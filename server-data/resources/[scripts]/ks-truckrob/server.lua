@@ -2,7 +2,7 @@
 ------- Edited by Captainrum89 -------
 -------------------------------- 
 
-QBCore = nil
+MSCore = nil
 
 local cooldownTimer = {}
 
@@ -14,7 +14,7 @@ local ItemTable = {
 	"diamond_ring",
 }
 
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+TriggerEvent('MSCore:GetObject', function(obj) MSCore = obj end)
 
 -- server side for cooldown timer
 RegisterServerEvent("ks-TruckRobbery:missionCooldown")
@@ -36,8 +36,8 @@ Citizen.CreateThread(function() -- do not touch this thread function!
 	end
 end)
 
-QBCore.Functions.CreateCallback('ks-TruckRobbery:server:Hasbomb', function(source, cb)
-    local Player = QBCore.Functions.GetPlayer(source)
+MSCore.Functions.CreateCallback('ks-TruckRobbery:server:Hasbomb', function(source, cb)
+    local Player = MSCore.Functions.GetPlayer(source)
     local Item = Player.Functions.GetItemByName("tijdbom")
 
     if Item ~= nil then
@@ -49,15 +49,15 @@ end)
 
 
 
-QBCore.Functions.CreateUseableItem("sdkaart", function(source, item)
-    local Player = QBCore.Functions.GetPlayer(source)
+MSCore.Functions.CreateUseableItem("sdkaart", function(source, item)
+    local Player = MSCore.Functions.GetPlayer(source)
 	if Player.Functions.GetItemByName('tablet') ~= nil then
 		TriggerClientEvent("ks-TruckRobbery:hackertje",source,0)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
+    local Player = MSCore.Functions.GetPlayer(src)
       Player.Functions.RemoveItem('sdkaart', 1)
 	else
-        TriggerClientEvent('QBCore:Notify', source, "Você precisa de um tablet..", "error")
+        TriggerClientEvent('MSCore:Notify', source, "Você precisa de um tablet..", "error")
     end
 end)
 
@@ -67,8 +67,8 @@ AddEventHandler("ks-TruckRobbery:syncMissionData",function(data)
 	TriggerClientEvent("ks-TruckRobbery:syncMissionData",-1,data)
 end)
 
-QBCore.Functions.CreateUseableItem("tijdbom", function(source, item)
-    local Player = QBCore.Functions.GetPlayer(source)
+MSCore.Functions.CreateUseableItem("tijdbom", function(source, item)
+    local Player = MSCore.Functions.GetPlayer(source)
 	TriggerClientEvent("ks-TruckRobbery:UsableItem",source)
 
 end)
@@ -78,7 +78,7 @@ RegisterServerEvent('ks-TruckRobbery:missionComplete')
 AddEventHandler('ks-TruckRobbery:missionComplete', function()
     local src = source
     local item = {}
-    local Player = QBCore.Functions.GetPlayer(src)
+    local Player = MSCore.Functions.GetPlayer(src)
     local gotID = {}
     local rolls = math.random(1, 3)
 
@@ -87,14 +87,14 @@ AddEventHandler('ks-TruckRobbery:missionComplete', function()
         for i = 1, math.random(3, 4), 1 do
             local randItem = ItemTable[math.random(1, #ItemTable)]
             local amount = math.random(3, 5)
-            TriggerClientEvent('QBCore:Notify', src, 'Garimpeiro..', 'success')
+            TriggerClientEvent('MSCore:Notify', src, 'Garimpeiro..', 'success')
             Player.Functions.AddItem(randItem, amount)
-            TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[randItem], 'add')
+            TriggerClientEvent('inventory:client:ItemBox', src, MSCore.Shared.Items[randItem], 'add')
             Citizen.Wait(500)
 			local luck = math.random(10, 80)
 			if luck <= 10 then
 			    Player.Functions.AddItem("bluechip", math.random(1, 2))
-				TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["bluechip"], "add")
+				TriggerClientEvent('inventory:client:ItemBox', src, MSCore.Shared.Items["bluechip"], "add")
 			end
 			
         end
