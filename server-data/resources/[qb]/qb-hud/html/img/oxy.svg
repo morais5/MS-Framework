@@ -1,27 +1,21 @@
-<svg width="264.6" height="264.6" xmlns="http://www.w3.org/2000/svg">
- <style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
-	.st1{fill:#FFFFFF;}</style>
-
- <g>
-  <title>background</title>
-  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
- </g>
- <g>
-  <title>Layer 1</title>
-  <style transform="matrix(0.11111111773384952,0,0,0.11111111773384952,0,0) " type="text/css">.st0{fill:#FFFFFF;}</style>
-  <g stroke="null" id="svg_12">
-   <g stroke="null" transform="matrix(0.6923813841125632,0,0,0.6923813841125632,-761.9249245992067,-792.3709783481685) " id="svg_11">
-    <g stroke="null" id="svg_10">
-     <path stroke="null" id="svg_9" d="m1248.192081,1434.716569c51.2,0 92.9,-41.7 92.9,-92.9c0,-50.2 -87.1,-164.1 -90.8,-168.9l-2.1,-2.8l-2.1,2.8c-3.7,4.8 -90.8,118.7 -90.8,168.9c0,51.2 41.6,92.9 92.9,92.9z" class="st0"/>
-    </g>
-   </g>
-  </g>
-  <g stroke="null" id="svg_8">
-   <g stroke="null" transform="matrix(0.6923813841125632,0,0,0.6923813841125632,-761.9249245992067,-792.3709783481685) " id="svg_5">
-    <g stroke="null" id="svg_6">
-     <path stroke="null" id="svg_7" d="m1324.739491,1492.488198c51.2,0 92.9,-41.7 92.9,-92.9c0,-50.2 -87.1,-164.1 -90.8,-168.9l-2.1,-2.8l-2.1,2.8c-3.7,4.8 -90.8,118.7 -90.8,168.9c0,51.2 41.6,92.9 92.9,92.9z" class="st0"/>
-    </g>
-   </g>
-  </g>
- </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 264.6 264.6" style="enable-background:new 0 0 264.6 264.6;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st1{fill:#FFFFFF;}
+</style>
+<g id="layer1" transform="translate(-157.0337,-25.948529)">
+	<g id="g2476" transform="matrix(1.1858,0,0,1.1858,4.61306,-328.857)">
+		<g id="g1988" transform="translate(3.5356,3.53494)">
+			<path id="path26" class="st0" d="M125,389.7c0,51.4,35.9,94,87.9,94c51.8,0,87.6-42.6,87.6-94c0-54.6-35.2-94-87.6-94
+				C160.2,295.7,125,335.1,125,389.7 M158.8,389.7c0-34.1,20-67.2,54.1-67.2c33.8,0,53.8,33.1,53.8,67.2c0,32-16.5,67.2-53.8,67.2
+				C175.4,456.9,158.8,421.7,158.8,389.7"/>
+			<path id="path28" class="st1" d="M348.1,518.8v-12.5H317c12.5-12.8,28.7-28.2,28.7-45.1c0-15.6-9.4-23.2-23.9-23.2
+				c-7.8,0-15.8,2.1-22.7,5.7l1.2,13.2c5-3.4,11.2-6.4,17.6-6.4c6.2,0,12.5,3.4,12.5,10.7c0,14.6-25.9,37.1-33,44.3v13.3
+				L348.1,518.8"/>
+		</g>
+	</g>
+</g>
 </svg>
