@@ -158,15 +158,6 @@ Citizen.CreateThread(function()
 				end
 			end
 
-			fuel = GetFuel(GetVehiclePedIsIn(GLOBAL_PED, false))	
-			SendNUIMessage({action = "updateGas", key = "gas", value = fuel})
-
-			--[[ if fuel < 15 then
-				if not IsThisModelABike(GetEntityModel(GLOBAL_PEDVEH)) then
-					TriggerEvent("CarFuelAlarm")
-				end
-			end ]]
-
 			if nitro ~= 0 then
 				SendNUIMessage({action = "updateNitro", key = "nitro", value = nitro, show = true})
 			else

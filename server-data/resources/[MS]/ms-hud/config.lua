@@ -6,24 +6,6 @@ msHud.Money.ShowConstant = false -- Show money constantly
 
 msHud.MaxOxygen = 25.00 --must be a float, preferrably 100.0 or below. 100 even feels superhuman. 25.00 feels about right and rounds nicely.
 
-msHud.Strings = {
-	ExitVehicle = "Get out / off to refuel",
-	EToRefuel = "[~g~E~w~] To refuel vehicle ",
-	JerryCanEmpty = "Jerry can is empty",
-	FullTank = "Fuel tank is full",
-	--PurchaseJerryCan = "Press ~g~E ~w~to purchase a jerry can for ~g~$" .. Config.JerryCanCost,
-    CancelFuelingPump = "[~g~E~w~] To stop refueling",
-    Refueling = "Refueling the vehicle",
-	CancelFuelingJerryCan = "Press ~g~E ~w~to cancel the fueling",
-	NotEnoughCash = "You don't have enough money",
-	RefillJerryCan = "Press ~g~E ~w~ to refill the jerry can for ",
-	NotEnoughCashJerryCan = "Not enough cash to refill jerry can",
-	JerryCanFull = "Jerry can is full",
-	TotalCost = "Costs",
-}
-
-msHud.MaxOxygen = 25.00 --must be a float, preferrably 100.0 or below. 100 even feels superhuman. 25.00 feels about right and rounds nicely.
-
 msHud.Intensity = {
     ["shake"] = {
         [1] = {

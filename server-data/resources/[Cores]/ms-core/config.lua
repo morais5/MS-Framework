@@ -1,6 +1,6 @@
 MSConfig = {}
 
-MSConfig.MaxPlayers = GetConvarInt('sv_maxclients', 150) -- Gets max players from config file, default 32
+MSConfig.MaxPlayers = GetConvarInt('sv_maxclients', 64) -- Gets max players from config file, default 32
 MSConfig.IdentifierType = "steam" -- Set the identifier type (can be: steam, license)
 MSConfig.DefaultSpawn = {x=-1035.71,y=-2731.87,z=12.86,a=0.0}
 

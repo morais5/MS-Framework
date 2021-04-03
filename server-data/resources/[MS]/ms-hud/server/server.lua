@@ -139,15 +139,3 @@ RegisterServerEvent('ms-hud:server:ejection')
 AddEventHandler('ms-hud:server:ejection', function(plyID, veloc)
     TriggerClientEvent("ms-hud:client:ejection", plyID, veloc)
 end)
-
-MSCore.Commands.Add("setfuel", "Set vehicle fuel amount", {{name="amount", help="Amount of fuel to give (max 100)"}}, true, function(source, args)
-	local Amount = MSCore.Functions.GetPlayer(tonumber(args[1]))
-    local veh = GetVehiclePedIsIn(source,false)
-    
-    if veh ~= nil then
-        exports['ms-hud']:SetFuel(veh, Amount)
-    else
-        TriggerClientEvent('DoShortHudText', src, 'Player is not in a vehicle')
-    end
-
-end, "god")
