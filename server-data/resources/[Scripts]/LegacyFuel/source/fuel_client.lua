@@ -1,10 +1,10 @@
-QBCore = nil
+MSCore = nil
 
 Citizen.CreateThread(function() 
     while true do
         Citizen.Wait(10)
-        if QBCore == nil then
-            TriggerEvent("QBCore:GetObject", function(obj) QBCore = obj end)    
+        if MSCore == nil then
+            TriggerEvent("MSCore:GetObject", function(obj) MSCore = obj end)    
             Citizen.Wait(200)
         end
     end
@@ -119,7 +119,7 @@ Citizen.CreateThread(function()
 		if pumpDistance < 2.5 then
 			isNearPump = pumpObject
 
-			currentCash = QBCore.Functions.GetPlayerData().money["cash"]
+			currentCash = MSCore.Functions.GetPlayerData().money["cash"]
 		else
 			isNearPump = false
 			Citizen.Wait(math.ceil(pumpDistance * 20))
@@ -209,8 +209,8 @@ AddEventHandler('fuel:refuelFromPump', function(pumpObject, ped, vehicle)
 
 			extraString = Config.Strings.TotalCost .. ": ~g~€" .. Round(currentCost, 1)
 
-			QBCore.Functions.DrawText3D(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.CancelFuelingPump .. extraString)
-			QBCore.Functions.DrawText3D(vehicleCoords.x, vehicleCoords.y, vehicleCoords.z + 0.5, Round(currentFuel, 1) .. "%")
+			MSCore.Functions.DrawText3D(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.CancelFuelingPump .. extraString)
+			MSCore.Functions.DrawText3D(vehicleCoords.x, vehicleCoords.y, vehicleCoords.z + 0.5, Round(currentFuel, 1) .. "%")
 		end
 
 		if not IsEntityPlayingAnim(ped, "timetable@gardener@filling_can", "gar_ig_5_filling_can", 3) then
@@ -242,7 +242,7 @@ Citizen.CreateThread(function()
 			if IsPedInAnyVehicle(ped) and GetPedInVehicleSeat(GetVehiclePedIsIn(ped), -1) == ped then
 				local pumpCoords = GetEntityCoords(isNearPump)
 
-				QBCore.Functions.DrawText3D(pumpCoords.x, pumpCoords.y, pumpCoords.z + 1.2, Config.Strings.ExitVehicle)
+				MSCore.Functions.DrawText3D(pumpCoords.x, pumpCoords.y, pumpCoords.z + 1.2, Config.Strings.ExitVehicle)
 			else
 				local vehicle = GetVehiclePedIsIn(GetPlayerPed(-1), true)
 				local vehicleCoords = GetEntityCoords(vehicle)
@@ -262,7 +262,7 @@ Citizen.CreateThread(function()
 
 						if GetVehicleFuelLevel(vehicle) < 95 and canFuel then
 							if currentCash > 0 then
-								QBCore.Functions.DrawText3D(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.EToRefuel)
+								MSCore.Functions.DrawText3D(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.EToRefuel)
 
 								if IsControlJustReleased(0, 38) then
 									isFueling = true
@@ -273,10 +273,10 @@ Citizen.CreateThread(function()
 									LoadAnimDict("timetable@gardener@filling_can")
 								end
 							else
-								QBCore.Functions.DrawText3D(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.NotEnoughCash)
+								MSCore.Functions.DrawText3D(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.NotEnoughCash)
 							end
 						else
-							QBCore.Functions.DrawText3D(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.FullTank)
+							MSCore.Functions.DrawText3D(stringCoords.x, stringCoords.y, stringCoords.z + 1.2, Config.Strings.FullTank)
 						end
 					end
 				else
