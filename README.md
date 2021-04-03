@@ -16,6 +16,9 @@ If you have any questions about it, click [Here](https://discord.gg/yMShaH5Kae)
 
 If you want to help in this project you have [Here](https://www.buymeacoffee.com/moraisscripts)
 
+Thank you for supporting this project!
+- [TIGERS](https://github.com/Tigers-11)
+
 ## 📑 License
 Copyright © 2021 Morais.
 
