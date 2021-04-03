@@ -1,4 +1,4 @@
-![](https://i.imgur.com/kpykvfI.jpg)
+![](https://i.imgur.com/VEsUlJ1.jpg)
 
 ### 📚 Documentation
 Take a look at [Wiki](https://github.com/morais5/QBCore-Morais/wiki)
