@@ -9,6 +9,7 @@ assignees: ''
 
 **Describe the bug**
  - Version : [v1, v1.1.1]
+ - Operating System : [Windows, Linux]
 A clear and concise description of what the bug is.
 
 **Screenshots**
