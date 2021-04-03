@@ -9,7 +9,7 @@ AddEventHandler("hud:client:SetMoney", function()
             bankAmount = PlayerData.money["bank"]
         end
     end)
-    if msHud.Money.ShowConstant then
+    if QBHud.Money.ShowConstant then
         SendNUIMessage({
             action = "open",
             cash = cashAmount,
@@ -36,7 +36,7 @@ AddEventHandler("hud:client:OnMoneyChange", function(type, amount, isMinus)
         bankAmount = PlayerData.money["bank"]
     end)
     
-    if msHud.Money.ShowConstant then
+    if QBHud.Money.ShowConstant then
         SendNUIMessage({
             action = "open",
             cash = cashAmount,

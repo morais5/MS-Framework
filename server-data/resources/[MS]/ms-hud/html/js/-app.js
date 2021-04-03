@@ -89,7 +89,14 @@ var CurrentProx = 0;
         $(".ui-container").css("display", Show);
 
         // HP Bar
-        $("#boxSetHealth").css("width", (data.health - 100) + "%");
+        // $(".ui-healthbar").find('.ui-barfill').css("width", data.health - 100 + "%");
+        // $(".ui-armorbar").find('.ui-barfill').css("width", data.armor + "%");
+        // $(".ui-foodbar").find('.ui-smallbarfill').css("height", data.hunger + "%");
+        // $(".ui-thirstbar").find('.ui-smallbarfill').css("height", data.thirst + "%");
+        // $(".ui-stressbar").find('.ui-smallbarfill').css("height", data.stress + "%");
+        // $(".ui-bleedbar").find('.ui-smallbarfill').css("height", data.bleeding + "%");
+
+        $("#boxSetHealth").css("width", data.health + "%");
         $("#boxSetArmour").css("width", data.armor + "%");
         widthHeightSplit(data.hunger, $("#boxSetHunger"));
         widthHeightSplit(data.thirst, $("#boxSetThirst"));

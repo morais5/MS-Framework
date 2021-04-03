@@ -1,12 +1,24 @@
-msHud = {}
-msHud.Show = true
+QBHud = {}
 
-msHud.Money = {}
-msHud.Money.ShowConstant = false -- Show money constantly
+QBHud.Show = true
 
-msHud.MaxOxygen = 25.00 --must be a float, preferrably 100.0 or below. 100 even feels superhuman. 25.00 feels about right and rounds nicely.
+QBHud.Money = {}
+QBHud.Money.ShowConstant = false -- Show money constantly
 
-msHud.Intensity = {
+QBHud.Radar = {}
+QBHud.Radar.NoRadarVehicles = {
+    "bmx",
+    "cruiser",
+    "fixter",
+    "scorcher",
+    "tribike",
+    "tribike2",
+    "tribike3",
+}
+
+QBStress = {}
+
+QBStress.Intensity = {
     ["shake"] = {
         [1] = {
             min = 50,
@@ -36,10 +48,10 @@ msHud.Intensity = {
     }
 }
 
-msHud.MinimumStress = 50
-msHud.MinimumSpeed = 150 --mph at which player will accumulate stress, every 30 secs
+QBStress.MinimumStress = 50
+QBStress.MinimumSpeed = 250
 
-msHud.EffectInterval = {
+QBStress.EffectInterval = {
     [1] = {
         min = 50,
         max = 60,
