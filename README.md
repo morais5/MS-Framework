@@ -7,7 +7,7 @@ Take a look at [Wiki](https://github.com/morais5/QBCore-Morais/wiki)
 Click [Here](https://github.com/morais5/QBCore-Morais/wiki/Installation) to go to the base installation page 
 
 ### 🐞 Issues
-If you get a bug, please report it [Here](https://github.com/morais5/QBCore-Morais/issues)
+If you get a bug, please report it [Here](https://github.com/morais5/MS-Framework/issues/new/choose)
 
 ### ❓ Support 
 If you have any questions about it, click [Here](https://discord.gg/yMShaH5Kae)
