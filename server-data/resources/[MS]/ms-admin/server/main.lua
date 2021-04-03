@@ -73,7 +73,7 @@ AddEventHandler('ms-admin:server:banPlayer', function(playerId, time, reason)
         local timeTable = os.date("*t", banTime)
         TriggerClientEvent('chatMessage', -1, "BANHAMMER", "error", GetPlayerName(playerId).." foi banido por: "..reason.." "..suffix[math.random(1, #suffix)])
         MSCore.Functions.ExecuteSql(false, "INSERT INTO `bans` (`name`, `steam`, `license`, `discord`,`ip`, `reason`, `expire`, `bannedby`) VALUES ('"..GetPlayerName(playerId).."', '"..GetPlayerIdentifiers(playerId)[1].."', '"..GetPlayerIdentifiers(playerId)[2].."', '"..GetPlayerIdentifiers(playerId)[3].."', '"..GetPlayerIdentifiers(playerId)[4].."', '"..reason.."', "..banTime..", '"..GetPlayerName(src).."')")
-        DropPlayer(playerId, "Você foi banido do servidor:\n"..reason.."\n\nAcaba "..timeTable["day"].. "/" .. timeTable["month"] .. "/" .. timeTable["year"] .. " " .. timeTable["hour"].. ":" .. timeTable["min"] .. "\n🔸 Kijk op onze discord voor meer informatie: https://discord.gg/Ttr6fY6")
+        DropPlayer(playerId, "Você foi banido do servidor:\n"..reason.."\n\nAcaba "..timeTable["day"].. "/" .. timeTable["month"] .. "/" .. timeTable["year"] .. " " .. timeTable["hour"].. ":" .. timeTable["min"] .. "\n🔸 Check our discord for more information: https://discord.gg/wByd87RErg")
     end
 end)
 RegisterServerEvent('ms-admin:server:revivePlayer')

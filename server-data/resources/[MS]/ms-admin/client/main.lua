@@ -264,7 +264,7 @@ Citizen.CreateThread(function()
     local currentPermIndex = 1
     local selectedPermIndex = 1
 
-    WarMenu.CreateMenu('admin', 'JK Admin')
+    WarMenu.CreateMenu('admin', 'Morais-Scripts Admin')
     WarMenu.CreateSubMenu('playerMan', 'admin')
     WarMenu.CreateSubMenu('serverMan', 'admin')
     WarMenu.CreateSubMenu('adminOpt', 'admin')
