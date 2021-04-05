@@ -10,20 +10,20 @@ var moneyTimeout = null;
 var CurrentProx = 0;
 
 (() => {
-    QBHud = {};
+    msHud = {};
 
-    QBHud.Open = function(data) {
+    msHud.Open = function(data) {
         $(".money-cash").css("display", "block");
         // $(".money-bank").css("display", "block");
         $("#cash").html(data.cash);
         // $("#bank").html(data.bank);
     };
 
-    QBHud.Close = function() {
+    msHud.Close = function() {
 
     };
 
-    QBHud.Show = function(data) {
+    msHud.Show = function(data) {
         if(data.type == "cash") {
             $(".money-cash").fadeIn(150);
             //$(".money-cash").css("display", "block");
@@ -41,7 +41,7 @@ var CurrentProx = 0;
         //}
     };
 
-    QBHud.ToggleSeatbelt = function(data) {
+    msHud.ToggleSeatbelt = function(data) {
         if (data.seatbelt) {
             $(".car-seatbelt-info img").attr('src', './seatbelt-on.png');
         } else {
@@ -49,7 +49,7 @@ var CurrentProx = 0;
         }
     };
 
-    QBHud.ToggleHarness = function(data) {
+    msHud.ToggleHarness = function(data) {
         if (data.toggle) {
             $(".car-seatbelt-info").html('&nbsp;&nbsp;&nbsp;&nbsp;<span class="seatbelt-text">Harnas</div>');
         } else {
@@ -57,7 +57,7 @@ var CurrentProx = 0;
         }
     }
 
-    QBHud.UpdateNitrous = function(data) {
+    msHud.UpdateNitrous = function(data) {
         if (data.toggle) {
             if (data.active) {
                 $("#nos-amount").css({"color":"#fcb80a"});
@@ -71,7 +71,7 @@ var CurrentProx = 0;
         }
     }
 
-    QBHud.CarHud = function(data) {
+    msHud.CarHud = function(data) {
         if (data.show) {
             $(".ui-car-container").fadeIn();
         } else {
@@ -79,7 +79,7 @@ var CurrentProx = 0;
         }
     };
 
-    QBHud.UpdateHud = function(data) {
+    msHud.UpdateHud = function(data) {
         var Show = "block";
         if (data.show) {
             Show = "none";
@@ -119,7 +119,7 @@ var CurrentProx = 0;
         }
     };
 
-    QBHud.UpdateProximity = function(data) {
+    msHud.UpdateProximity = function(data) {
         if (data.prox == 1) {
             $("[data-voicetype='1']").fadeIn(150);
             $("[data-voicetype='2']").fadeOut(150);
@@ -136,7 +136,7 @@ var CurrentProx = 0;
         CurrentProx = data.prox;
     }
 
-    QBHud.SetTalkingState = function(data) {
+    msHud.SetTalkingState = function(data) {
         if (!data.IsTalking) {
             $(".voice-block").animate({"background-color": "rgb(255, 255, 255)"}, 150);
         } else {
@@ -144,7 +144,7 @@ var CurrentProx = 0;
         }
     }
 
-    QBHud.Update = function(data) {
+    msHud.Update = function(data) {
         if(data.type == "cash") {
             $(".money-cash").css("display", "block");
             $("#cash").html(data.cash);
@@ -170,7 +170,7 @@ var CurrentProx = 0;
         }
     };
 
-    QBHud.UpdateCompass = function(data) {
+    msHud.UpdateCompass = function(data) {
         var amt = (data.heading * 0.1133333333333333);
         if (data.lookside == "left") {
             $(".compass-ui").css({
@@ -183,7 +183,7 @@ var CurrentProx = 0;
         }
     }
 
-    QBHud.UpdateMeters = function(data) {
+    msHud.UpdateMeters = function(data) {
         var str = data.amount.toString();
         var l = str.length;
         $(".meters-text").html(data.amount + " <span style='position: relative; top: -.49vh; font-size: 1.2vh;'>km</span>");
@@ -202,43 +202,43 @@ var CurrentProx = 0;
         window.addEventListener('message', function(event) {
             switch(event.data.action) {
                 case "open":
-                    QBHud.Open(event.data);
+                    msHud.Open(event.data);
                     break;
                 case "close":
-                    QBHud.Close();
+                    msHud.Close();
                     break;
                 case "update":
-                    QBHud.Update(event.data);
+                    msHud.Update(event.data);
                     break;
                 case "show":
-                    QBHud.Show(event.data);
+                    msHud.Show(event.data);
                     break;
                 case "hudtick":
-                    QBHud.UpdateHud(event.data);
+                    msHud.UpdateHud(event.data);
                     break;
                 case "car":
-                    QBHud.CarHud(event.data);
+                    msHud.CarHud(event.data);
                     break;
                 case "seatbelt":
-                    QBHud.ToggleSeatbelt(event.data);
+                    msHud.ToggleSeatbelt(event.data);
                     break;
                 case "harness":
-                    QBHud.ToggleHarness(event.data);
+                    msHud.ToggleHarness(event.data);
                     break;
                 case "nitrous":
-                    QBHud.UpdateNitrous(event.data);
+                    msHud.UpdateNitrous(event.data);
                     break;
                 case "proximity":
-                    QBHud.UpdateProximity(event.data);
+                    msHud.UpdateProximity(event.data);
                     break;
                 case "talking":
-                    QBHud.SetTalkingState(event.data);
+                    msHud.SetTalkingState(event.data);
                     break;
                 case "UpdateCompass":
-                    QBHud.UpdateCompass(event.data);
+                    msHud.UpdateCompass(event.data);
                     break;
                 case "UpdateDrivingMeters":
-                    QBHud.UpdateMeters(event.data);
+                    msHud.UpdateMeters(event.data);
                     break;
 
             }

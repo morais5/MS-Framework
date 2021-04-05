@@ -32,7 +32,7 @@ end)
 RegisterNetEvent("MSCore:Client:OnPlayerUnload")
 AddEventHandler("MSCore:Client:OnPlayerUnload", function()
     isLoggedIn = false
-    QBHud.Show = false
+    msHud.Show = false
     SendNUIMessage({
         action = "hudtick",
         show = true,
@@ -42,7 +42,7 @@ end)
 RegisterNetEvent("MSCore:Client:OnPlayerLoaded")
 AddEventHandler("MSCore:Client:OnPlayerLoaded", function()
     isLoggedIn = true
-    QBHud.Show = true
+    msHud.Show = true
     PlayerJob = MSCore.Functions.GetPlayerData().job
 end)
 
@@ -106,7 +106,7 @@ Citizen.CreateThread(function()
             StressGain = math.ceil(StressGain)
             if StressGain > 0 then
                 MSCore.Functions.Notify('Gained stress', "primary", 2000)
-                TriggerServerEvent('qb-hud:Server:UpdateStress', StressGain)
+                TriggerServerEvent('ms-hud:Server:UpdateStress', StressGain)
                 StressGain = 0
             end
         end
