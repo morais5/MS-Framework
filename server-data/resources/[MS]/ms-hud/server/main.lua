@@ -1,7 +1,7 @@
 local ResetStress = false
 
-RegisterServerEvent("qb-hud:Server:UpdateStress")
-AddEventHandler('qb-hud:Server:UpdateStress', function(StressGain)
+RegisterServerEvent("ms-hud:Server:UpdateStress")
+AddEventHandler('ms-hud:Server:UpdateStress', function(StressGain)
 	local src = source
     local Player = MSCore.Functions.GetPlayer(src)
     local newStress
@@ -23,8 +23,8 @@ AddEventHandler('qb-hud:Server:UpdateStress', function(StressGain)
 	end
 end)
 
-RegisterServerEvent('qb-hud:Server:GainStress')
-AddEventHandler('qb-hud:Server:GainStress', function(amount)
+RegisterServerEvent('ms-hud:Server:GainStress')
+AddEventHandler('ms-hud:Server:GainStress', function(amount)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
     local newStress
@@ -47,8 +47,8 @@ AddEventHandler('qb-hud:Server:GainStress', function(amount)
 	end
 end)
 
-RegisterServerEvent('qb-hud:Server:RelieveStress')
-AddEventHandler('qb-hud:Server:RelieveStress', function(amount)
+RegisterServerEvent('ms-hud:Server:RelieveStress')
+AddEventHandler('ms-hud:Server:RelieveStress', function(amount)
     local src = source
     local Player = MSCore.Functions.GetPlayer(src)
     local newStress

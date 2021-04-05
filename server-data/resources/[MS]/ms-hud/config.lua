@@ -1,12 +1,12 @@
-QBHud = {}
+msHud = {}
 
-QBHud.Show = true
+msHud.Show = true
 
-QBHud.Money = {}
-QBHud.Money.ShowConstant = false -- Show money constantly
+msHud.Money = {}
+msHud.Money.ShowConstant = false -- Show money constantly
 
-QBHud.Radar = {}
-QBHud.Radar.NoRadarVehicles = {
+msHud.Radar = {}
+msHud.Radar.NoRadarVehicles = {
     "bmx",
     "cruiser",
     "fixter",
@@ -21,39 +21,39 @@ QBStress = {}
 QBStress.Intensity = {
     ["shake"] = {
         [1] = {
-            min = 50,
+            min = 10,
             max = 60,
-            intensity = 0.12,
+            intensity = 0.20,
         },
         [2] = {
             min = 60,
             max = 70,
-            intensity = 0.17,
+            intensity = 0.27,
         },
         [3] = {
             min = 70,
             max = 80,
-            intensity = 0.22,
+            intensity = 0.32,
         },
         [4] = {
             min = 80,
             max = 90,
-            intensity = 0.28,
+            intensity = 0.38,
         },
         [5] = {
             min = 90,
             max = 100,
-            intensity = 0.32,
+            intensity = 0.42,
         },
     }
 }
 
-QBStress.MinimumStress = 50
+QBStress.MinimumStress = 10
 QBStress.MinimumSpeed = 250
 
 QBStress.EffectInterval = {
     [1] = {
-        min = 50,
+        min = 10,
         max = 60,
         timeout = math.random(50000, 60000)
     },

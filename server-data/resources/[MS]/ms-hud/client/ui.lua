@@ -29,7 +29,7 @@ end
 Citizen.CreateThread(function()
     Citizen.Wait(500)
     while true do 
-        if MSCore ~= nil and isLoggedIn and QBHud.Show then
+        if MSCore ~= nil and isLoggedIn and msHud.Show then
             speed = GetEntitySpeed(GetVehiclePedIsIn(GetPlayerPed(-1), false)) * 3.6
             local pos = GetEntityCoords(GetPlayerPed(-1))
             local time = CalculateTimeToDisplay()
@@ -64,11 +64,11 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-        if MSCore ~= nil and isLoggedIn and QBHud.Show then
+        if MSCore ~= nil and isLoggedIn and msHud.Show then
             if IsPedInAnyVehicle(GetPlayerPed(-1), false) then
                 speed = GetEntitySpeed(GetVehiclePedIsIn(GetPlayerPed(-1), false)) * 3.6
                 if speed >= QBStress.MinimumSpeed then
-                    TriggerServerEvent('qb-hud:Server:GainStress', math.random(1, 2))
+                    TriggerServerEvent('ms-hud:Server:GainStress', math.random(1, 2))
                 end
             end
         end
@@ -80,7 +80,7 @@ local radarActive = false
 Citizen.CreateThread(function() 
     while true do
         Citizen.Wait(1000)
-        if IsPedInAnyVehicle(PlayerPedId()) and isLoggedIn and QBHud.Show then
+        if IsPedInAnyVehicle(PlayerPedId()) and isLoggedIn and msHud.Show then
             DisplayRadar(true)
             SendNUIMessage({
                 action = "car",
@@ -133,16 +133,16 @@ AddEventHandler("seatbelt:client:ToggleSeatbelt", function(toggle)
     end
 end)
 
-RegisterNetEvent('qb-hud:client:ToggleHarness')
-AddEventHandler('qb-hud:client:ToggleHarness', function(toggle)
+RegisterNetEvent('ms-hud:client:ToggleHarness')
+AddEventHandler('ms-hud:client:ToggleHarness', function(toggle)
     SendNUIMessage({
         action = "harness",
         toggle = toggle
     })
 end)
 
-RegisterNetEvent('qb-hud:client:UpdateNitrous')
-AddEventHandler('qb-hud:client:UpdateNitrous', function(toggle, level, IsActive)
+RegisterNetEvent('ms-hud:client:UpdateNitrous')
+AddEventHandler('ms-hud:client:UpdateNitrous', function(toggle, level, IsActive)
     SendNUIMessage({
         action = "nitrous",
         toggle = toggle,
@@ -151,8 +151,8 @@ AddEventHandler('qb-hud:client:UpdateNitrous', function(toggle, level, IsActive)
     })
 end)
 
-RegisterNetEvent('qb-hud:client:UpdateDrivingMeters')
-AddEventHandler('qb-hud:client:UpdateDrivingMeters', function(toggle, amount)
+RegisterNetEvent('ms-hud:client:UpdateDrivingMeters')
+AddEventHandler('ms-hud:client:UpdateDrivingMeters', function(toggle, amount)
     SendNUIMessage({
         action = "UpdateDrivingMeters",
         amount = amount,
@@ -160,16 +160,16 @@ AddEventHandler('qb-hud:client:UpdateDrivingMeters', function(toggle, amount)
     })
 end)
 
-RegisterNetEvent('qb-hud:client:UpdateVoiceProximity')
-AddEventHandler('qb-hud:client:UpdateVoiceProximity', function(Proximity)
+RegisterNetEvent('ms-hud:client:UpdateVoiceProximity')
+AddEventHandler('ms-hud:client:UpdateVoiceProximity', function(Proximity)
     SendNUIMessage({
         action = "proximity",
         prox = Proximity
     })
 end)
 
-RegisterNetEvent('qb-hud:client:ProximityActive')
-AddEventHandler('qb-hud:client:ProximityActive', function(active)
+RegisterNetEvent('ms-hud:client:ProximityActive')
+AddEventHandler('ms-hud:client:ProximityActive', function(active)
     SendNUIMessage({
         action = "talking",
         IsTalking = active
@@ -178,7 +178,7 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-        if isLoggedIn and QBHud.Show and MSCore ~= nil then
+        if isLoggedIn and msHud.Show and MSCore ~= nil then
             MSCore.Functions.TriggerCallback('hospital:GetPlayerBleeding', function(playerBleeding)
                 if playerBleeding == 0 then
                     bleedingPercentage = 0
