@@ -1,4 +1,6 @@
-![](https://i.imgur.com/ItaD38n.jpg) Discontinued
+![](https://i.imgur.com/ItaD38n.jpg) 
+
+### Discontinued
 
 ### 📚 Documentation
 Take a look at [Wiki](https://github.com/morais5/QBCore-Morais/wiki)
